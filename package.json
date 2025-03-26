@@ -1,0 +1,73 @@
+{
+	"name": "vox",
+	"version": "2.0.0",
+	"description": "Vecotrized Online Experiments",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"alphaPinda": "cd character-animator && mkdir -p out && for i in *.mov; do ffmpeg -y -i \"$i\" -c:v libvpx-vp9 -b:v 500k -c:a libvorbis \"out/${i%.*}.webm\"; done && for i in *.mov; do avconvert --source \"$i\" --preset PresetHEVC1920x1080WithAlpha --verbose --replace --output \"out/${i%.*}.mov\"; done",
+		"build": "npm run clean && NODE_ENV=production webpack",
+		"clean": "rimraf dist",
+		"deploy": "npm run build && rsync -avuh --chmod D2775 dist/ $npm_config_user@$npm_config_server:$npm_config_path",
+		"lint": "eslint",
+		"prettier": "prettier --write \"**/*.{ts,js,json,yaml}\"",
+		"start": "webpack serve",
+		"voxify": "node src/voxify/",
+		"fetchdata": "rsync -vraP $npm_config_user@$npm_config_server:$npm_config_data_path src/participant_data/"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:jprein/irtom.git"
+	},
+	"keywords": [
+		"online study",
+		"social cognition",
+		"theory of mind",
+		"cross-cultural", 
+		"individual differences", 
+		"story book", 
+		"developmental psychology"
+	],
+	"author": "Julia Prein <jprein@me.com> (https://github.com/jprein)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/jprein/irtom/issues"
+	},
+	"homepage": "https://github.com/jprein/irtom",
+	"prettier": {
+		"useTabs": true,
+		"singleQuote": true
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.21.0",
+		"@types/lodash": "^4.17.15",
+		"@types/toastify-js": "^1.12.3",
+		"autoprefixer": "^10.4.20",
+		"copy-webpack-plugin": "^12.0.2",
+		"css-loader": "^7.1.2",
+		"eslint": "^9.21.0",
+		"globals": "^16.0.0",
+		"html-loader": "^5.1.0",
+		"html-webpack-plugin": "^5.6.3",
+		"jsdom": "^26.0.0",
+		"rimraf": "^6.0.1",
+		"style-loader": "^4.0.0",
+		"svgo-loader": "^4.0.0",
+		"ts-loader": "^9.5.2",
+		"typescript": "^5.7.3",
+		"typescript-eslint": "^8.24.1",
+		"webpack": "^5.98.0",
+		"webpack-cli": "^6.0.1",
+		"webpack-dev-server": "^5.2.0",
+		"yaml-loader": "^0.8.1"
+	},
+	"dependencies": {
+		"@types/recordrtc": "^5.6.14",
+		"detectrtc": "^1.4.1",
+		"gsap": "^3.12.7",
+		"lodash": "^4.17.21",
+		"recordrtc": "^5.6.2",
+		"svgson": "^5.3.1",
+		"toastify-js": "^1.12.0"
+	}
+}

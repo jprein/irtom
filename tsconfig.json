@@ -1,0 +1,36 @@
+/* 
+	Setup from Matt Pocock's: https://www.totaltypescript.com/tsconfig-cheat-sheet
+	Note that this is project is, unfortunately, not stritly typed.
+	The overrides contain respective comments if they diverge from the recommended settings by Matt Pocock.
+*/
+
+{
+	"compilerOptions": {
+		/* Base Options: */
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"target": "es2022",
+		"allowJs": true,
+		"resolveJsonModule": true,
+		"moduleDetection": "force",
+		"isolatedModules": true,
+		"verbatimModuleSyntax": true,
+
+		/* Strictness */
+		"strict": true,
+		"noImplicitAny": false /* this should be true, or removed since true is part of strict: true! */,
+		"noUncheckedIndexedAccess": false /* This should be true. Prevents you from accessing an array or object without first checking if it's defined. This is a great way to prevent runtime errors, and should really be included in strict. */,
+		"noImplicitOverride": true,
+
+		/* If NOT transpiling with TypeScript: */
+		"module": "Preserve",
+		// "noEmit": true, /* This should be enabled but somewhow the webpack live server needs the tsc emitted files */
+
+		/* If your code runs in the DOM: */
+		"lib": ["es2022", "dom", "dom.iterable"],
+		/* Other options: */
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitReturns": true
+	},
+	"exclude": ["./dist/**/*"]
+}

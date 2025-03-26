@@ -1,0 +1,66 @@
+---
+devmode: # exposes global variables, and does other stuff
+  on: true
+  playbackRate: 1
+htmlBg: black # background color for letter boxing edges if aspect ratio is not 16:9
+svgBg: white
+hideUrlParameters: false
+slideTransition:
+  override: true # force slide transitions
+  fadeOut: 0.25
+  fadeIn: 0.25
+css:
+  # will be used within the init process to to add style="cursor: pointer" to the given ids
+  # this uses querySelectorAll in styleDefaults.ts
+  # Syntax: [id^=startsWith][id$=endsWith]
+  mousePointerObjects:
+    [
+      '#link-si-speaker',
+      '[id^=link][id$=next]',
+      '[id^=link][id$=headphones]',
+      '[id^=link][id$=yes]',
+      '[id^=link][id$=no]',
+    ]
+  # will be used within the init process to to add a zoom animation on hover
+  scaleOnHoverObjects:
+    [
+      '#link-si-speaker',
+      '[id^=link][id$=next]',
+      '[id^=link][id$=headphones]',
+      '[id^=link][id$=yes]',
+      '[id^=link][id$=no]',
+    ]
+  pinda: # applies for pinda and neutral pinda videos
+    height: '30%' # pinda height
+    left: '0' # offset from left SVG edge, use 0 for none offset, otherwise px,%, etc. (e.g., '10px')
+    bottom: '0' # offset from bottom SVG edge, use 0 for none offset, otherwise px,%, etc. (e.g., '10px')
+
+globals:
+  defaultSubjectId: demo
+  defaultCommunity: german # possible keys from
+  defaultBirthday: '2100-01-01'
+  defaultCoupon: TESTCODE
+  defaultPROLIFIC_PID: none
+  adultThresholdAge: 12 # 11 = child, 12 = adult
+  defaultGender: none
+  defaultInput: userchoice-audio
+  defaultDataTransfer: both
+  slideGapDuration: 750 # delay for most slides before transitioning to next
+  playAnimalYesNoAudio: 2
+  playAnimalResponseFeedback: 1
+  minimumTextInputLength: 4
+
+procedure:
+  # use exact slide ids from Illustrator for values
+  # The order defines the experiment order
+  # If you create a key with a sub array everything in the sub array will be randomized
+  # You can nest only two levels deep
+  german:
+    - s-introduction
+    - animalOrder: [s-cow, s-pig, s-sheep]
+    - s-end
+
+  english:
+    - s-introduction
+    - animalOrder: [s-cow, s-pig]
+    - s-end

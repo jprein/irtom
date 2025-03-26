@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1920 1080">
+  <!-- Generator: Adobe Illustrator 29.3.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 151)  -->
+  <defs>
+    <image id="image" width="80" height="80" xlink:href="headphones.png"/>
+    <image id="image1" width="90" height="90" xlink:href="yes.png"/>
+    <image id="image2" width="90" height="90" xlink:href="no.png"/>
+  </defs>
+  <g id="s-end">
+    <rect id="text-thankYou" y="399" width="1920" height="210" fill="#fbb03b" isolation="isolate" opacity=".5" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+    <g id="leuphana-logo">
+      <path id="leuphana" d="M1516.41,87.82h-11.82l.03,11.66-.03,24.87h36.61v-5.87s-9.14,0-12.32,0h-12.46v-19M1588.67,124.35v-5.88l-29.09.02v-9.86h17.24v-5.86h-17.24v-9.08h29.09v-5.86h-40.89v36.53h40.89ZM1677.82,98.94c0,1.64-.7,3.28-1.74,4.1-1.03.82-2.67,1.16-5.43,1.16h-11.15v-10.52h11.01c1.08,0,2.57.11,3.37.23.99.14,1.9.63,2.58,1.37.89.88,1.36,2.26,1.36,3.67M1690.79,98.78c0-4.88-2.99-8.88-7.44-10.15-2.02-.54-4.22-.81-7.22-.81h-28.45l.02,11.66v13.25l-.02,11.62h11.82v-14.29h14.52c5.86,0,9.36-.73,12.18-2.46,2.86-1.82,4.59-5.15,4.59-8.82M1740.59,124.35v-36.53h-11.8v14.89h-20.32l-.04-14.89h-11.77v36.53h11.77l.04-15.29h20.32v15.29h11.8ZM1775.28,107.26h-13.48l6.84-12.54,6.64,12.54ZM1798.36,124.35l-19.71-36.53h-12.83l-14.28,25.69c-.52.87-5.99,10.84-5.99,10.84h6.91l6.56-11.72h19.11l6.18,11.72M1846.41,87.82h-6.1v11.66s0,13.15,0,13.15l-22.53-24.81h-13.44v36.53h6.09s.04-8.05.04-8.93c-.04-.6-.04-1.48-.04-2.69v-13.64l23.09,25.25h12.89v-36.53ZM1881.51,107.28h-13.5l6.84-12.55,6.66,12.55ZM1904.59,124.37l-19.71-36.53h-12.85l-14.27,25.69c-.52.88-6.01,10.85-6.01,10.85h6.93l6.57-11.72h19.12l6.16,11.72M1634.27,87.82h-5.2l.02,11.66v10.2c0,1.47-.2,2.78-.49,3.88-.43,1.59-1.19,2.96-2.19,3.83-1.57,1.4-3.71,2.05-6.09,2.15-3.55-.13-6.55-1.22-8.5-3.06-.9-1-1.53-2.21-1.82-3.51-.31-1.53-.43-2.97-.43-5.65v-19.49h-12.52s.03,7.84.03,11.66v10.95c0,4.71.94,7.45,3.42,10.07,2.53,2.64,5.67,4.06,10.68,4.72.21.04.43.04.64.07,1.83.28,3.7.42,5.55.42.17,0,.33,0,.49-.02.16,0,.32.02.48.02,8.33,0,13.82-1.81,16.95-5.68,2.3-2.81,2.9-5.21,2.9-11.25v-9.3c0-3.89.01-11.66.01-11.66h-3.96Z" fill="#742128"/>
+      <g id="cube">
+        <path id="path6" d="M1704.39,14.68l24.2,13.84.89-1.63-24.2-13.84-.89,1.63Z" fill="#1a171b"/>
+        <path id="path8" d="M1727.66,26.95h1.78v27.6h-1.78v-27.6Z" fill="#1a171b" fill-rule="evenodd"/>
+        <path id="path10" d="M1705.23,13.01l-24.23,13.88.88,1.63,24.23-13.87-.88-1.64Z" fill="#1a171b"/>
+        <path id="path12" d="M1682.38,26.18l46.73,27.38-.89,1.52-46.72-27.38.89-1.52Z" fill="#1a171b" fill-rule="evenodd"/>
+        <path id="path14" d="M1682.61,54.94l-.89-1.52,46.4-27.24.88,1.51-46.39,27.25Z" fill="#1a171b"/>
+        <path id="path16" d="M1704.36,13.62h1.77v53.95h-1.77V13.62Z" fill="#1a171b" fill-rule="evenodd"/>
+        <path id="path18" d="M1705.26,68.34l-24.22-13.72.88-1.63,24.21,13.71-.87,1.64Z" fill="#1a171b"/>
+        <path id="path20" d="M1705.28,68.4l-.9-1.64,24.23-13.83.89,1.64-24.22,13.83Z" fill="#1a171b"/>
+        <path id="path22" d="M1681.04,26.95h1.77v27.6h-1.77v-27.6Z" fill="#1a171b" fill-rule="evenodd"/>
+      </g>
+      <path id="universitaet-lueneburg" d="M1570.4,145.9c0,5.14-4,6.19-7.3,6.19s-7.29-1.05-7.29-6.19v-8.34h1.72v8.34c0,3.27,2.09,4.75,5.57,4.75s5.58-1.48,5.58-4.75v-8.34h1.72v8.34ZM1574.16,137.56h2.43l10.56,11.65v-11.65h1.71v14.18h-1.71l-11.36-12.66v12.66h-1.64v-14.18h0ZM1592.57,137.56h1.72v14.18h-1.72v-14.18ZM1598,137.56l6.26,12.31,6.28-12.31h1.89l-7.34,14.18h-1.67l-7.33-14.18h1.91ZM1614.22,137.56h12.64v1.52h-10.93v4.52h9.13v1.52h-9.13v5.1h11.16v1.52h-12.87v-14.18h0ZM1629.39,137.56h8.2c2.26,0,5.58.48,5.58,3.96,0,2.97-2.75,3.83-4.46,3.91l4.67,6.32h-2.12l-4.56-6.28h-5.58v6.28h-1.71v-14.18ZM1631.11,143.94h6.09c2.48,0,4.33-.35,4.33-2.44s-1.85-2.42-4.33-2.42h-6.09v4.85ZM1646.86,147.69c.82,1.09,2.19,2.88,6.44,2.88,2.18,0,5.16-.63,5.16-2.84,0-4.31-12.36-.52-12.36-6.28,0-3.03,2.79-4.24,6.66-4.24s6.04,1.53,7.02,2.9l-1.25,1.02c-.58-.67-1.95-2.48-5.81-2.48-2.85,0-4.86.74-4.86,2.54,0,4.29,12.36.19,12.36,6.55,0,2.38-2.3,4.36-7.11,4.36s-6.36-1.94-7.57-3.28l1.33-1.13ZM1662.96,137.56h1.72v14.18h-1.72v-14.18ZM1673.78,139.08h-6.84v-1.52h15.41v1.52h-6.85v12.66h-1.72v-12.66ZM1687.94,137.56h2.11l7.27,14.18h-1.93l-1.83-3.7h-9.15l-1.85,3.7h-1.91l7.29-14.18ZM1692.8,146.53l-3.8-7.62-3.81,7.62h7.61ZM1686.34,134.1h1.76v1.99h-1.76v-1.99ZM1689.89,134.1h1.76v1.99h-1.76v-1.99ZM1702.47,139.08h-6.85v-1.52h15.41v1.52h-6.84v12.66h-1.72v-12.66ZM1720.34,137.56h1.71v12.66h11.19v1.52h-12.9v-14.18h0ZM1750.16,145.9c0,5.14-4,6.19-7.31,6.19s-7.29-1.05-7.29-6.19v-8.34h1.71v8.34c0,3.27,2.1,4.75,5.57,4.75s5.59-1.48,5.59-4.75v-8.34h1.72v8.34h0ZM1740.2,134.1h1.75v1.99h-1.75v-1.99ZM1743.75,134.1h1.76v1.99h-1.76v-1.99ZM1753.91,137.56h2.45l10.55,11.65v-11.65h1.72v14.18h-1.72l-11.36-12.66v12.66h-1.64v-14.18ZM1772.33,137.56h12.63v1.52h-10.92v4.52h9.12v1.52h-9.12v5.1h11.15v1.52h-12.86v-14.18ZM1787.5,137.56h8.21c1.63,0,5.5,0,5.5,3.71,0,1.95-1.26,2.56-2.16,2.98.86.37,2.65,1.15,2.65,3.51,0,3.82-4.01,3.98-6.94,3.98h-7.26v-14.18h0ZM1789.22,143.61h6.02c1.99,0,4.25-.33,4.25-2.32,0-2.26-2.31-2.28-4.84-2.28h-5.43v4.6ZM1789.22,150.22h6.64c2.07,0,4.09-.35,4.09-2.53,0-1.96-1.56-2.65-3.89-2.65h-6.84v5.18ZM1819.49,145.9c0,5.14-4,6.19-7.31,6.19s-7.29-1.05-7.29-6.19v-8.34h1.72v8.34c0,3.27,2.1,4.75,5.58,4.75s5.59-1.48,5.59-4.75v-8.34h1.72v8.34h0ZM1823.24,137.56h8.2c2.27,0,5.58.48,5.58,3.96,0,2.97-2.76,3.83-4.48,3.91l4.68,6.32h-2.11l-4.57-6.28h-5.58v6.28h-1.72v-14.18h0ZM1824.96,143.94h6.09c2.47,0,4.33-.35,4.33-2.44s-1.87-2.42-4.33-2.42h-6.09v4.85ZM1854.94,144.85v7.01h-1.52v-2.07c-.96,1.1-2.49,2.3-5.69,2.3-5.51,0-8.1-3.31-8.1-7.41,0-4.88,3.3-7.47,8.07-7.47,3.38,0,5.97,1.52,7.02,3.9l-1.44.76c-1.11-2.54-3.72-3.22-5.63-3.22-3.98,0-6.27,2.2-6.27,6.24,0,3.27,2.21,5.69,6.42,5.69,2.57,0,5.34-1.25,5.58-4.2h-5.76v-1.52h7.32Z" fill="#1a171b"/>
+    </g>
+  </g>
+  <g id="s-sheep">
+    <rect id="ph-s-sheep-headphones" x="19" y="21" width="80" height="80" fill="#b8846e"/>
+    <rect id="ph-s-sheep-sheep" x="864" y="351" width="192" height="192" fill="#4ae5d9" isolation="isolate" opacity=".6"/>
+    <use id="link-s-sheep-headphones" transform="translate(28 30) scale(.76)" xlink:href="#image" isolation="isolate"/>
+    <image id="link-s-sheep-sheep" width="80" height="76" transform="translate(920 365)" xlink:href="sheep.png" isolation="isolate"/>
+    <rect id="ph-s-sheep-no" x="1246" y="730" width="90" height="90" fill="#4ae5d9" isolation="isolate" opacity=".6"/>
+    <use id="link-s-sheep-no" transform="translate(1261 745) scale(.68)" xlink:href="#image2" isolation="isolate"/>
+    <rect id="ph-s-sheep-yes" x="584" y="730" width="90" height="90" fill="#4ae5d9" isolation="isolate" opacity=".6"/>
+    <use id="link-s-sheep-yes" transform="translate(597 743) scale(.71)" xlink:href="#image1" isolation="isolate"/>
+  </g>
+  <g id="s-pig">
+    <rect id="ph-s-pig-headphones" x="19" y="21" width="80" height="80" fill="#b8846e"/>
+    <rect id="ph-s-pig-pig" x="855.5" y="329" width="209" height="209" fill="#4ae5d9" isolation="isolate" opacity=".6"/>
+    <rect id="ph-s-pig-yes" x="584" y="730" width="90" height="90" fill="#4ae5d9" isolation="isolate" opacity=".6"/>
+    <rect id="ph-s-pig-no" x="1246" y="730" width="90" height="90" fill="#4ae5d9" isolation="isolate" opacity=".6"/>
+    <use id="link-s-pig-headphones" transform="translate(28 30) scale(.76)" xlink:href="#image" isolation="isolate"/>
+    <image id="link-s-pig-pig" width="94" height="67" transform="translate(903 344)" xlink:href="pig.png" isolation="isolate"/>
+    <use id="link-s-pig-no" transform="translate(1261 745) scale(.68)" xlink:href="#image2" isolation="isolate"/>
+    <use id="link-s-pig-yes" transform="translate(597 743) scale(.71)" xlink:href="#image1" isolation="isolate"/>
+  </g>
+  <g id="s-cow">
+    <rect id="ph-s-cow-headphones" x="19" y="21" width="80" height="80" fill="#b8846e"/>
+    <rect id="ph-s-cow-cow" x="828" y="258" width="274" height="274" fill="#4ae5d9" isolation="isolate" opacity=".6"/>
+    <rect id="ph-s-cow-yes" x="584" y="730" width="90" height="90" fill="#4ae5d9" isolation="isolate" opacity=".6"/>
+    <rect id="ph-s-cow-no" x="1246" y="730" width="90" height="90" fill="#4ae5d9" isolation="isolate" opacity=".6"/>
+    <use id="link-s-cow-headphones" transform="translate(28 30) scale(.76)" xlink:href="#image" isolation="isolate"/>
+    <image id="link-s-cow-cow" width="116" height="76" transform="translate(907 292)" xlink:href="cow.png" isolation="isolate"/>
+    <use id="link-s-cow-no" transform="translate(1261 745) scale(.68)" xlink:href="#image2" isolation="isolate"/>
+    <use id="link-s-cow-yes" transform="translate(597 743) scale(.71)" xlink:href="#image1" isolation="isolate"/>
+  </g>
+  <g id="s-introduction">
+    <rect id="ph-si-headphones" x="19" y="21" width="80" height="80" fill="#b8846e"/>
+    <use id="link-si-headphones" transform="translate(28 30) scale(.76)" xlink:href="#image" isolation="isolate"/>
+    <rect id="ph-si-next" x="1815" y="981" width="80" height="80" fill="#b8846e"/>
+    <image id="link-si-next" width="80" height="81" transform="translate(1815 981) scale(1 .99)" xlink:href="next.png" isolation="isolate"/>
+    <rect id="ph-si-lueneluetten-logo" x="1570.4" y="21" width="326.95" height="326.95" fill="#aaa"/>
+    <image id="link-si-lueneluetten-logo" width="426" height="426" transform="translate(1627.61 78.21) scale(.5)" xlink:href="lueneluetten-logo.png"/>
+    <rect id="ph-si-speaker" x="920" y="945" width="80" height="80" fill="#b8846e"/>
+    <image id="link-si-speaker" width="80" height="81" transform="translate(938 967) scale(.55)" xlink:href="speaker.png" isolation="isolate"/>
+    <rect id="text-introAdult" x="426" y="142.28" width="1078.59" height="805.43" fill="#fbb03b" isolation="isolate" opacity=".5" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+    <rect id="text-introChild" x="426" y="142.28" width="1078.59" height="805.43" fill="#fbb03b" isolation="isolate" opacity=".5" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+    <rect id="text-beginning" x="426" y="35" width="1078.59" height="110" fill="#fbb03b" isolation="isolate" opacity=".5" stroke="#000" stroke-miterlimit="10" stroke-width="2"/>
+  </g>
+  <g id="s-blocking-state">
+    <rect id="s-bs" width="1920" height="1080" fill="#fff" isolation="isolate" opacity=".75"/>
+    <rect id="ph-leuphana-cube" x="845" y="425" width="230" height="230" fill="#aaa"/>
+    <image id="link-leuphana-cube" width="256" height="293" transform="translate(905.54 480.67) scale(.43)" xlink:href="leuphana-cube.png"/>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: 'irToM'
+message: >-
+  If you use this software, please cite it using these
+  metadata.
+type: software
+authors:
+  - given-names: Julia
+    family-names: Prein
+    email: jprein@me.com
+    orcid: 'https://orcid.org/0000-0002-3154-6167'
+repository-code: 'https://github.com/jprein/irtom'
+url: 'https://github.com/jprein/'
+abstract: tba
+keywords:
+  - 'svg, online experiment, social cognition, theory of mind, cross-cultural, individual differences, children, development'
+license: MIT
+date-released: '2025-xx-xx'

@@ -1,0 +1,110 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Material Design CDN CSS -->
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css"
+    />
+    
+    <!-- Material Design CDN JS -->
+    <script
+    src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"
+    ></script>
+    
+    <!-- Material Design Icons -->
+    <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+    <!-- Typography -->
+    <link
+    rel="stylesheet"
+    href="https://use.typekit.net/ess7xmw.css"
+    />
+    
+    <!-- User Style/JavaScript -->
+    <link rel="stylesheet" href="./goodbye.css" />
+    <script src="./goodbye.js" defer type="module"></script>
+    <script src="https://unpkg.com/pdf-lib@1.4.0"></script>
+    <script src="https://unpkg.com/downloadjs@1.4.7"></script>
+    <title>Leuphana-Kinderstudie</title>
+  </head>
+  
+  <body>
+
+    <div id="flex-wrapper">
+      <div class="flex-item">
+        
+        <h1 class="heading">Vielen herzlichen Dank für eure Hilfe!</h1>
+
+        <p>
+          Toll - alles geschafft! Herzlichen Dank für's Mitspielen. Wir hoffen, es hat dir Spaß gemacht. 
+          <br>
+        </p>
+
+        <br>
+
+        <p>
+          Als Dankeschön bekommst du einen kleinen 
+          <strong> Gutschein</strong>, den hier herunterladen kannst und in der 
+          <strong> Adresse XXX </strong> 
+          einlösen kannst. <br>
+          Um den Gutschein herunterzuladen, klicke einfach auf den Knopf "Gutschein herunterladen". <br>
+        </p>
+
+        <br>
+
+        <p>
+          Falls ihr Fragen oder Anmerkungen habt, wendet euch bitte an diese E-Mail-Adresse:
+          
+            <a
+              href="#"
+              class="cryptedmail"
+              data-name="lueneluetten"
+              data-domain="leuphana"
+              data-tld="de"
+              onclick="window.location.href =
+                `mailto: ${this.dataset.name}@${this.dataset.domain}.${this.dataset.tld}`; return false;"
+          ></a>
+          . 
+          <br>
+          Wir freuen uns auf ein Wiedersehen! 
+        </p>
+        
+        <p>
+          Herzliche Grüße und bis bald, <br>
+          Ihr Forschungsteam von der Leuphana Universität Lüneburg und dem Max-Planck-Institut für evolutionäre Anthropologie Leipzig
+        </p>
+
+        <br>
+        <br>
+
+        <div id="button-center-wrapper">
+            <button
+              type="button"
+              class="ccp-button confirm foo-button mdc-button mdc-button--raised"
+              id="button-center-item"
+            >
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label"><strong>Gutschein herunterladen</strong></span>
+            </button>
+        </a>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+
+        <a href="https://devpsy.web.leuphana.de/imprint.html" target="_blank">Impressum</a>
+      
+      <!-- end flex-item -->
+      </div>
+    
+      <!-- end flex-wrapper -->
+    </div> 
+  </body>
+</html>

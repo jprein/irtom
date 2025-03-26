@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="https://use.typekit.net/ess7xmw.css" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="./favicon-16x16.png"
+		/>
+		<link rel="icon" href="./favicon.ico" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="./apple-touch-icon.png"
+		/>
+		<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5" />
+		<link rel="manifest" href="site.webmanifest" />
+		<title>irToM</title>
+		<link rel="stylesheet" href="index.css" />
+		<script defer src="./translations.js"></script>
+		<script defer src="./index.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<div class="container">
+				<img
+					id="irtom-logo"
+					src="favicon.svg"
+					alt="irToM Logo"
+					style="
+						width: 100%;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					"
+				/>
+
+				<!-- <video controls width="100%" src="movie.mp4">
+					Your browser does not support the video tag.
+				</video> -->
+
+				<form>
+					<h1 id="heading">Soziale Entwicklung von Kindern</h1>
+					<p id="leuphana" style="text-align: center; margin-bottom: 30px">
+						Leuphana Universität Lüneburg, Entwicklungspsychologie, und
+						Max-Planck-Institut für evolutionäre Anthropologie, Vergleichende
+						Kulturpsychologie<br />
+						<span style="font-size: small">Thiede N., et al.</span>
+					</p>
+					<hr />
+					<!-- regex to allow case insensitive alpha numeric inputs including spaces, ß and äöü: /[0-9a-z-_äöüß ]/i -->
+					<div id="form-id" class="form-group">
+						<input
+							id="input-id"
+							type="text"
+							required
+							maxlength="30"
+							autocomplete="off"
+							onkeydown="return /[0-9a-z-_äöüß ]/i.test(event.key)"
+						/>
+						<label for="input-id" class="control-label" id="idLabel"
+							>Vor- und Nachname oder ID</label
+						><i class="bar"></i>
+					</div>
+					<div id="form-community" class="form-group">
+						<select id="input-community" required autocomplete="off">
+							<option>english</option>
+							<option selected="selected">german</option>
+							<!-- <option>kikuyu</option> -->
+							<!-- <option>swahili</option> -->
+							<!-- <option>turkish</option> -->
+						</select>
+						<label for="input-community" class="control-label" id="community"
+							>Gemeinschaft</label
+						><i class="bar"></i>
+					</div>
+					<div id="form-birthday" style="margin-top: -15px">
+						<label
+							for="input-birthday"
+							style="font-size: 0.8rem; color: gray"
+							id="birthday"
+							>Geburtstag</label
+						><br />
+						<input
+							type="date"
+							id="input-birthday"
+							name="birthday"
+							autocomplete="off"
+							required
+							onchange="handleDate(event)"
+						/>
+					</div>
+					<div id="form-gender" class="form-group">
+						<select id="input-gender" autocomplete="off" required>
+							<option id="female">weiblich</option>
+							<option id="male">männlich</option>
+							<option id="diverse">divers</option>
+						</select>
+						<label
+							for="input-gender"
+							class="control-label"
+							autocomplete="off"
+							id="gender"
+							>Geschlecht</label
+						><i class="bar"></i>
+					</div>
+					<div id="form-response" class="form-group">
+						<select
+							id="input-response"
+							required
+							autocomplete="off"
+							onchange="handleInputResponse(event)"
+						>
+							<option id="audioPrio">
+								Später entscheiden (Sprachinput priorisiert)
+							</option>
+							<option id="textPrio">
+								Später entscheiden (Textinput priorisiert)
+							</option>
+							<option id="audioInput">Sprachinput</option>
+							<option id="textInput">Textinput</option>
+						</select>
+						<label
+							for="input-response"
+							class="control-label"
+							id="responseFormat"
+							>Antwortformat</label
+						><i class="bar"></i>
+						<div class="checkbox-microphone">
+							<label>
+								<input
+									id="input-checkbox-microphone"
+									type="checkbox"
+									disabled
+									autocomplete="off"
+								/>
+								<i class="helper"></i>
+								<span id="microphone"></span>
+							</label>
+						</div>
+					</div>
+					<div id="form-datatransfer" class="form-group">
+						<select id="input-datatransfer" required autocomplete="off">
+							<option>Leuphana Server & Download</option>
+							<option>Leuphana Server</option>
+						</select>
+						<label for="input-transfer" class="control-label" id="dataTransfer"
+							>Datentransfer</label
+						><i class="bar"></i>
+					</div>
+					<div>
+						<p id="consentID">
+							Ihre Teilnahme an der Sudie ist natürlich freiwillig. Alle in der
+							Studie erhobenen Daten werden anonymisiert auf einem Server an der
+							Leuphana University Lüneburg (Deutschland) gespeichert und nicht
+							an Dritte weitergegeben. Sie können Ihre Teilnahme zu jedem
+							Zeitpunkt abbrechen, indem sie das Browserfenster schließen. Wenn
+							Sie zu einem späteren Zeitpunkt Ihre erhobenen Daten löschen
+							lassen möchten, kontaktieren Sie uns über
+							<a href="mailto:lueneluetten@leuphana.de"
+								>lueneluetten@leuphana.de</a
+							>
+							und geben Sie dafür Name und Geburtsdatum Ihres Kindes bzw. bei
+							eigener Teilnahme von Ihnen selbst an.
+						</p>
+					</div>
+					<div id="consent">
+						<div>
+							<h2 id="consentHeading">Einwilligungserklärung</h2>
+							<p id="adultConsent">
+								Ich bin damit einverstanden, am oben genannten Projekt der
+								Leuphana Universität Lüneburg teilzunehmen und dass Tonaufnahmen
+								in anonymisierter Form zur Beantwortung wissenschaftlicher
+								Fragestellungen ausgewertet und im Rahmen wissenschaftlicher
+								Beiträge bei Forschungs-, Lehr- oder Informationsveranstaltungen
+								verwendet werden können. Ausführliche Informationen zum
+								<a
+									href="https://lueneluetten.web.leuphana.de/wordpress/wp-content/uploads/Datenschutzhinweise_LueneLuetten_11.24.pdf"
+									target="-blank"
+									>Datenschutz</a
+								>
+								habe ich erhalten.
+							</p>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input
+									id="input-consent"
+									type="checkbox"
+									autocomplete="off"
+									required
+									onclick="handleCheckbox(event)"
+								/>
+								<i class="helper"></i>
+								<span id="consentYes"></span>
+							</label>
+						</div>
+					</div>
+					<div class="button-container">
+						<button
+							id="start-button"
+							style="opacity: 0.5"
+							type="submit"
+							class="button"
+						>
+							<span id="startButton"></span>
+						</button>
+					</div>
+				</form>
+				<hr style="border-width: 0.1npmpx" />
+				<p class="imprint">
+					<a
+						href="https://devpsy.web.leuphana.de/imprint.html"
+						target="_blank"
+						id="imprint"
+						>Impressum</a
+					>
+					/
+					<a
+						href="https://lueneluetten.web.leuphana.de/wordpress/wp-content/uploads/Datenschutzhinweise_LueneLuetten_11.24.pdf"
+						target="_blank"
+						id="dataProtection"
+						>Datenschutz</a
+					><br />
+				</p>
+			</div>
+		</div>
+	</body>
+</html>
