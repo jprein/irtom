@@ -76,13 +76,10 @@ export const procedure = async () => {
 	}
 
 	data.animalSlideCounter = 0;
-	data.reasoningSlideCounter = 0;
-	data.rankingSlideCounter = 0;
-	data.dilemmaMotivationOnePlayed = false;
-	data.dilemmaMotivationTwoPlayed = false;
 
 	currentProcedure = currentProcedure.map((e: string) => _.camelCase(e));
 	data.currentProcedure = currentProcedure;
+	console.log("Procedure for this community:");
 	console.table(currentProcedure);
 
 	data.totalSlides = currentProcedure.length;
@@ -170,11 +167,11 @@ export const procedure = async () => {
 		}
 	}
 	data.endingTimestamp = new Date();
-	data.experimentPaceRawMs =
+	data.completionTimeMS =
 		data.endingTimestamp.getTime() - data.initialTimestamp.getTime();
-	const minutes = millisToMinutesAndSeconds(data.experimentPaceRawMs).minutes;
-	const seconds = millisToMinutesAndSeconds(data.experimentPaceRawMs).seconds;
-	data.experimentPaceHr = `${minutes}-${seconds}`;
+	const minutes = millisToMinutesAndSeconds(data.completionTimeMS).minutes;
+	const seconds = millisToMinutesAndSeconds(data.completionTimeMS).seconds;
+	data.completionTimeM = `${minutes}-${seconds}`;
 
 	if (data.datatransfer === 'both') {
 		uploadData();

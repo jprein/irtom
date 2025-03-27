@@ -80,7 +80,6 @@ export const sAnimalCodeRunner = async (
 	// Get Response
 	const response = await getResponse([yesButton.id, noButton.id]);
 
-	console.log(response.id);
 	data.procedure[data.currentSlide].response = response.id;
 
 	// Remove Event Listeners after response

@@ -91,38 +91,20 @@ export const init = () => {
 		age: ageInYears,
 		agegroup: ageInYears < config.globals.adultThresholdAge ? 'child' : 'adult',
 		gender: urlParameters.gender,
-		input: urlParameters.input,
 		datatransfer: urlParameters.datatransfer,
-		coupon: urlParameters.coupon,
-		PROLIFIC_PID: urlParameters.PROLIFIC_PID,
+		// coupon: urlParameters.coupon,
+		// PROLIFIC_PID: urlParameters.PROLIFIC_PID,
 		initialTimestamp: new Date(),
 		slideCounter: 0,
 		quitBeforeEnd: false,
 		procedure: {},
-		meta: {
-			// store device and browser information
-			hasWebcam: DetectRTC.hasWebcam,
-			hasMicrophone: DetectRTC.hasMicrophone,
-			hasMicrophonePermissions: DetectRTC.isWebsiteHasMicrophonePermissions,
-			hasSpeakers: DetectRTC.hasSpeakers,
-			isMobileDevice: DetectRTC.isMobileDevice,
-			osName: DetectRTC.osName,
-			osVersion: DetectRTC.osVersion,
-			browserName: DetectRTC.browser.name,
-			browserVersion: DetectRTC.browser.version,
-			isChrome: DetectRTC.browser.isChrome || false,
-			isFirefox: DetectRTC.browser.isFirefox || false,
-			isOpera: DetectRTC.browser.isOpera || false,
-			isIE: DetectRTC.browser.isIE || false,
-			isSafari: DetectRTC.browser.isSafari || false,
-			isEdge: DetectRTC.browser.isEdge || false,
-			isPrivateBrowsing: DetectRTC.browser.isPrivateBrowsing || false,
-			userAgent: navigator.userAgent,
-		},
+		hasWebcam: DetectRTC.hasWebcam,
+		browserName: DetectRTC.browser.name,
 	};
+
 	// Safari used .mov extension, other browsers use .webm
 	// Create dynamic extension depening on browser
-	data.meta.videoExtension = data.meta.isSafari ? 'mov' : 'webm';
+	data.videoExtension = DetectRTC.browser.isSafari ? 'mov' : 'webm';
 
 	// check if all translation keys have a matching foreignObject and vice versa
 	const textKeys = widowedKeyChecker();
@@ -196,9 +178,9 @@ export const init = () => {
 		});
 	}
 	pinda.addEventListener('play', (e: Event) => {
-		if (config.devmode.on) {
-			console.log((e.target as HTMLVideoElement).src);
-		}
+		// if (config.devmode.on) {
+		// 	console.log((e.target as HTMLVideoElement).src);
+		// }
 		gsap.set(pinda, { autoAlpha: 0 });
 		gsap.to(pinda, { autoAlpha: 1 });
 		if (config.devmode.on) {
@@ -220,8 +202,6 @@ export const init = () => {
 
 	gsap.set('#link-leuphana-cube', {
 		transformOrigin: '50% 50%',
-		// scale: 0.5,
-		// filter: 'blur(5px)',
 	});
 	gsap.to('#link-leuphana-cube', {
 		duration: 3,
@@ -247,4 +227,6 @@ export const init = () => {
 	global.downloadData = downloadData;
 	global.uploadData = uploadData;
 	global.config = config;
+
+	if (config.devmode.on) console.log("data", data);
 };

@@ -39,11 +39,10 @@ globals:
   defaultSubjectId: demo
   defaultCommunity: german # possible keys from
   defaultBirthday: '2100-01-01'
-  defaultCoupon: TESTCODE
-  defaultPROLIFIC_PID: none
+  # defaultCoupon: TESTCODE
+  # defaultPROLIFIC_PID: none
   adultThresholdAge: 12 # 11 = child, 12 = adult
   defaultGender: none
-  defaultInput: userchoice-audio
   defaultDataTransfer: both
   slideGapDuration: 750 # delay for most slides before transitioning to next
   playAnimalYesNoAudio: 2

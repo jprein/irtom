@@ -79,7 +79,8 @@ export default {
 			directory: path.join(__dirname, './'), // that should point where you index.html is
 		},
 		// port: 3000,
-		open: { target: ['app.html'] },
+		open: { app: { name: 'google chrome' }, target: ['app.html'] },
+		// open: { target: ['app.html'] },
 		hot: true, // enable hot reload
 		compress: true, // enable gzip compression
 		historyApiFallback: true, // enable HTML5 history API

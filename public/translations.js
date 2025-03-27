@@ -9,11 +9,6 @@ const languageIds = [
 	'female',
 	'male',
 	'diverse',
-	'responseFormat',
-	'audioPrio',
-	'textPrio',
-	'audioInput',
-	'textInput',
 	'microphone',
 	'dataTransfer',
 	'consentHeading',
@@ -70,31 +65,6 @@ const translations = {
 		de: `divers`,
 		en: `diverse`,
 		es: `diverso`,
-	},
-	responseFormat: {
-		de: `Antwortformat`,
-		en: `Response Input`,
-		es: `Formato de respuesta`,
-	},
-	audioPrio: {
-		de: `Später entscheiden (Sprachinput priorisiert)`,
-		en: `Decide later (audio priority)`,
-		es: `Decidir más tarde (Audio priorizado)`,
-	},
-	textPrio: {
-		de: `Später entscheiden (Textinput priorisiert)`,
-		en: `Decide later (keyboard priority)`,
-		es: `Decidir más tarde (Texto escrito priorizado)`,
-	},
-	audioInput: {
-		de: `Sprachinput`,
-		en: `Use microphone`,
-		es: `Usar el mirófono`,
-	},
-	textInput: {
-		de: `Textinput`,
-		en: `Use keyboard`,
-		es: `Usar el teclado`,
 	},
 	microphone: {
 		de: `Mikrofongenehmigung`,

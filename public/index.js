@@ -6,10 +6,9 @@ let id = '';
 let community = '';
 let birthday = '';
 let gender = '';
-let input = '';
 let datatransfer = '';
-let coupon = '';
-let PROLIFIC_PID = '';
+// let coupon = '';
+// let PROLIFIC_PID = '';
 
 if (params.has('id')) {
 	id = params.get('id');
@@ -23,18 +22,15 @@ if (params.has('birthday')) {
 if (params.has('gender')) {
 	gender = params.get('gender');
 }
-if (params.has('input')) {
-	input = params.get('input');
-}
 if (params.has('datatransfer')) {
 	datatransfer = params.get('datatransfer');
 }
-if (params.has('coupon')) {
-	coupon = params.get('coupon');
-}
-if (params.has('PROLIFIC_PID')) {
-	PROLIFIC_PID = params.get('PROLIFIC_PID');
-}
+// if (params.has('coupon')) {
+// 	coupon = params.get('coupon');
+// }
+// if (params.has('PROLIFIC_PID')) {
+// 	PROLIFIC_PID = params.get('PROLIFIC_PID');
+// }
 
 // remove all params from URL
 window.history.pushState({}, document.title, window.location.pathname);
@@ -89,11 +85,6 @@ if (gender) {
 	const genderElement = document.getElementById('input-gender');
 	genderElement.required = false;
 	genderElement.parentNode.style.display = 'none';
-}
-if (input) {
-	const inputElement = document.getElementById('input-response');
-	inputElement.required = false;
-	inputElement.parentNode.style.display = 'none';
 }
 if (datatransfer) {
 	const datatransferElement = document.getElementById('input-datatransfer');
@@ -165,10 +156,6 @@ document.querySelector('form').addEventListener('submit', (e) => {
 	if (!gender) {
 		genderIndex = document.getElementById('input-gender').selectedIndex;
 	}
-	let inputIndex = '';
-	if (!input) {
-		inputIndex = document.getElementById('input-response').selectedIndex;
-	}
 	let datatransferIndex = '';
 	if (!datatransfer) {
 		datatransferIndex =
@@ -180,19 +167,14 @@ document.querySelector('form').addEventListener('submit', (e) => {
 		.set(0, 'female')
 		.set(1, 'male')
 		.set(2, 'diverse');
-	const inputMapping = new Map()
-		.set(0, 'userchoice-audio')
-		.set(1, 'userchoice-text')
-		.set(2, 'audio')
-		.set(3, 'text');
 	const datatransferMapping = new Map().set(0, 'both').set(1, 'server');
 
 	gender = gender ? gender : genderMapping.get(genderIndex);
-	input = input ? input : inputMapping.get(inputIndex);
 	datatransfer = datatransfer
 		? datatransfer
 		: datatransferMapping.get(datatransferIndex);
 
-	window.location.href = `${window.location.href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&input=${input}&datatransfer=${datatransfer}&coupon=${coupon}&PROLIFIC_PID=${PROLIFIC_PID}`;
+	// window.location.href = `${window.location.href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&input=${input}&datatransfer=${datatransfer}&coupon=${coupon}&PROLIFIC_PID=${PROLIFIC_PID}`;
+	window.location.href = `${window.location.href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&datatransfer=${datatransfer}`;
 	console.log(window.location.href);
 });

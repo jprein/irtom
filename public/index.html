@@ -114,40 +114,17 @@
 							>Geschlecht</label
 						><i class="bar"></i>
 					</div>
-					<div id="form-response" class="form-group">
-						<select
-							id="input-response"
-							required
-							autocomplete="off"
-							onchange="handleInputResponse(event)"
-						>
-							<option id="audioPrio">
-								Später entscheiden (Sprachinput priorisiert)
-							</option>
-							<option id="textPrio">
-								Später entscheiden (Textinput priorisiert)
-							</option>
-							<option id="audioInput">Sprachinput</option>
-							<option id="textInput">Textinput</option>
-						</select>
-						<label
-							for="input-response"
-							class="control-label"
-							id="responseFormat"
-							>Antwortformat</label
-						><i class="bar"></i>
-						<div class="checkbox-microphone">
-							<label>
-								<input
-									id="input-checkbox-microphone"
-									type="checkbox"
-									disabled
-									autocomplete="off"
-								/>
-								<i class="helper"></i>
-								<span id="microphone"></span>
-							</label>
-						</div>
+					<div class="checkbox-microphone">
+						<label>
+							<input
+								id="input-checkbox-microphone"
+								type="checkbox"
+								disabled
+								autocomplete="off"
+							/>
+							<i class="helper"></i>
+							<span id="microphone"></span>
+						</label>
 					</div>
 					<div id="form-datatransfer" class="form-group">
 						<select id="input-datatransfer" required autocomplete="off">

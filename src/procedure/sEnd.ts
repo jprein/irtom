@@ -12,18 +12,19 @@ export default async ({ currentSlide, previousSlide }) => {
 	}
 
 	const pinda = document.getElementById('pinda') as HTMLVideoElement;
-	pinda.src = `./communities/${data.community}/video/s-end.${data.meta.videoExtension}`;
+	pinda.src = `./communities/${data.community}/video/s-end.${data.videoExtension}`;
 
 	pinda.addEventListener('ended', () => {
 		// For prolific users
-		if (data.PROLIFIC_PID !== 'none') {
-			// TODO: adjust prolific completion code
-			window.location.href = `https://app.prolific.com/submissions/complete?cc=PROLIFICCOMPLETIONCODE`;
-		}
+		// if (data.PROLIFIC_PID !== 'none') {
+		// 	// TODO: adjust prolific completion code
+		// 	window.location.href = `https://app.prolific.com/submissions/complete?cc=PROLIFICCOMPLETIONCODE`;
+		// }
 		// for german setting, forward to goodbye.html with coupon
-		else if (data.community === 'german') {
+		if (data.community === 'german') {
 			gsap.to(pinda, { autoAlpha: 0, duration: 2 });
-			window.location.href = `./goodbye.html?coupon=${data.coupon}`;
+			// window.location.href = `./goodbye.html?coupon=${data.coupon}`;
+			window.location.href = `./goodbye.html`;
 		}
 		gsap.to(pinda, { autoAlpha: 0, duration: 3 });
 	});

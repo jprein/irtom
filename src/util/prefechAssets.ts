@@ -22,7 +22,7 @@
 // 	}
 
 // 	const preloadVideo = await fetch(
-// 		`./communities/${data.community}/video/s-introduction.${data.meta.videoExtension}`
+// 		`./communities/${data.community}/video/s-introduction.${data.videoExtension}`
 // 	);
 // 	const blob = await preloadVideo.blob();
 // 	const url = URL.createObjectURL(blob);

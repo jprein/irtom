@@ -75,37 +75,6 @@ p {
 	background: linear-gradient(to bottom, #1cafe3, #1aaadf, #18a4db, #179fd7, #179ad3) !important;
 }
 
-.dilemma {
-	text-align: center;
-	font-family: pt-sans-narrow;
-	font-size: 2.5rem;
-}
-
-g [id^='sr'] foreignObject p.dilemma {
-	text-align: center;
-	font-family: pt-sans-narrow;
-	font-size: 2rem;
-}
-
-.dilemma__saving {
-	text-align: center;
-	font-family: pt-sans-narrow;
-	font-size: 2.7rem;
-	font-weight: 700;
-}
-
-.dilemma__confirm {
-	text-align: center;
-	font-family: pt-sans-narrow;
-	font-size: 2rem;
-}
-
-.dilemma__qm {
-	text-align: center;
-	font-family: pt-sans-narrow;
-	font-size: 10rem;
-}
-
 textarea {
 	overflow-y: scroll;
 	resize: none;
@@ -257,21 +226,6 @@ button:disabled {
 button:hover:disabled {
 	cursor: not-allowed;
 	opacity: 0.5;
-}
-
-.dilemma-card {
-	outline: solid 1px black;
-	transition: 0.2s;
-	cursor: pointer;
-	pointer-events: visible;
-}
-
-.dilemma-card:hover {
-	outline: solid 10px #006c66;
-}
-
-.dilemma-card-fix {
-	outline: solid 10px #006c66;
 }
 
 .question {

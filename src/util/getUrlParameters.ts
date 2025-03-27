@@ -87,25 +87,6 @@ export const getUrlParameters = () => {
 		params.gender = config.globals.defaultGender;
 	}
 
-	if (params.input) {
-		if (
-			params.input !== 'text' &&
-			params.input !== 'audio' &&
-			params.input !== 'userchoice-audio' &&
-			params.input !== 'userchoice-text'
-		) {
-			Toastify({
-				escapeMarkup: false,
-				text: `<strong>Parameter Error</strong>: <small><code>input</code> parameter can only be: <code>text</code>, <code>audio</code>, <code>userchoice-audio</code> or <code>userchoice-text</code></small><br><br> Defaulting to <code>${config.globals.defaultInput}</code>`,
-				duration: 0,
-				className: 'toast-info',
-			}).showToast();
-			params.input = config.globals.defaultInput;
-		}
-	} else {
-		params.input = config.globals.defaultInput;
-	}
-
 	if (params.datatransfer) {
 		if (params.datatransfer !== 'both' && params.datatransfer !== 'server') {
 			Toastify({
@@ -120,13 +101,13 @@ export const getUrlParameters = () => {
 		params.datatransfer = config.globals.defaultDataTransfer;
 	}
 
-	if (!params.coupon) {
-		params.coupon = config.globals.defaultCoupon;
-	}
+	// if (!params.coupon) {
+	// 	params.coupon = config.globals.defaultCoupon;
+	// }
 
-	if (!params.PROLIFIC_PID) {
-		params.PROLIFIC_PID = config.globals.defaultPROLIFIC_PID;
-	}
+	// if (!params.PROLIFIC_PID) {
+	// 	params.PROLIFIC_PID = config.globals.defaultPROLIFIC_PID;
+	// }
 
 	// if not in devmode, remove all params from URL
 	if (!config.devmode.on) {
