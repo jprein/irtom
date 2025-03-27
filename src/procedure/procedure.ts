@@ -173,11 +173,20 @@ export const procedure = async () => {
 	const seconds = millisToMinutesAndSeconds(data.completionTimeMS).seconds;
 	data.completionTimeM = `${minutes}-${seconds}`;
 
-	if (data.datatransfer === 'both') {
+	const datatransfer = data.datatransfer;
+	// get rid of unnecessary variables for researchers' response log
+	['animalOrder', 'animalSlideCounter', 'currentProcedure', 'currentSlide', 'datatransfer', 'nextSlide', 'previousSlide', 'slideCounter', 'totalSlides', 'videoExtension'].forEach((key) => {
+		if (key in data) {
+			delete data[key];
+		}
+	});
+
+	// upload data to server
+	if (datatransfer === 'both') {
 		uploadData();
 		downloadData();
 	}
-	if (data.datatransfer === 'server') {
+	if (datatransfer === 'server') {
 		uploadData();
 	}
 
