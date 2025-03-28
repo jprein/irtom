@@ -113,6 +113,7 @@ export const procedure = async () => {
 		data.procedure[currentSlide] = {
 			duration: 0,
 			response: '',
+			slideNr: data.slideCounter, 
 		};
 
 		// get possible response buttons (next buttons, yes/no buttons)

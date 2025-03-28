@@ -58,14 +58,17 @@ declare let data: {
 		sCow: {
 			duration: number;
 			response: string;
+			slideNr: number;
 		};
 		sPig: {
 			duration: number;
 			response: string;
+			slideNr: number;
 		};
 		sSheep: {
 			duration: number;
 			response: string;
+			slideNr: number;
 		};
 	};
 };
