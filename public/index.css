@@ -281,8 +281,6 @@ h2 {
 .button::before {
 	content: '';
 	position: absolute;
-	background: #071017;
-	border: 50vh solid #1d4567;
 	width: 30vh;
 	height: 30vh;
 	border-radius: 50%;
