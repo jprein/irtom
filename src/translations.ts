@@ -11,7 +11,6 @@ export const translations = {
 		'german': '<p class="intro-text">Erwachsene</p>',
 		'english': '<p class="intro-text">Adult</p>',
 	},
-
 	thankYou: {
 		'german': '<h1 class="heading">Vielen Dank!</h1>',
 		'english': '<h1 class="heading">Thank you!</h1>',

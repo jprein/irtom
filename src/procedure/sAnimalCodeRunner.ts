@@ -82,6 +82,10 @@ export const sAnimalCodeRunner = async (
 
 	data.procedure[data.currentSlide].response = response.id;
 
+	// TODO: alternative to name key like currentSlide
+	// const test = {};
+	// test[data.currentSlide] = response.id;
+
 	// Remove Event Listeners after response
 	audio.removeEventListener('play', handlePlay);
 	audio.removeEventListener('ended', handleEnded);

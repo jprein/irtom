@@ -29,7 +29,7 @@ const translations = {
 	leuphana: {
 		de: `Leuphana Universität Lüneburg, Abteilung Entwicklungspsychologie`,
 		en: `Leuphana University Lüneburg, Department of Developmental Psychology`,
-		es: `Leuphana Universidad Lüneburg, Departamento de Psicología del Desarrollo`,
+		es: `Universidad Leuphana de Lüneburg, Departamento de Psicología del Desarrollo`,
 	},
 	idLabel: {
 		de: `Vor- und Nachname oder ID`,
@@ -96,7 +96,7 @@ const translations = {
 		to us, indicating the name and birthday of your child or yourself, at this e-mail address: 
 		<a href="mailto:lueneluetten@leuphana.de">lueneluetten@leuphana.de</a>.`,
 		es: `Por supuesto, su participación en el estudio es voluntaria. Todos los datos recogidos 
-		en el estudio se almacenarán en un servidor del Leuphana Universidad Lüneburg (Alemania) 
+		en el estudio se almacenarán en un servidor de la Universidad Leuphana de Lüneburg(Alemania) 
 		y no serán transmitidos a terceros. Puede cancelar su participación en cualquier momento 
 		cerrando la ventana del navegador. Si posteriormente desea que sus datos sean eliminados, 
 		póngase en contacto con nosotros por lueneluetten@leuphana.de e indique el nombre y la 
@@ -114,7 +114,7 @@ const translations = {
 		at research, teaching or information events. I have received detailed information regarding 
 		<a href="https://lueneluetten.web.leuphana.de/wordpress/wp-content/uploads/Datenschutzhinweise_LueneLuetten_11.24.pdf.html" target="-blank"
 			>data protection</a>.`,
-		es: `Estoy de acuerdo de participar en el proyecto del Leuphana Universidad Lüneburg y que las grabaciones de audio pueden estar evaluadas 
+		es: `Estoy de acuerdo de participar en el proyecto de la Universidad Leuphana de Lüneburg y que las grabaciones de audio pueden estar evaluadas 
 		de forma anónima para responder a preguntas científicas y pueden estar utilizadas en el contexto 
 		de contribuciones científicas en actos de investigaciones, enseñanza o información. Recibí la 
 		información detallada sobre la <a href="https://lueneluetten.web.leuphana.de/wordpress/wp-content/uploads/Datenschutzhinweise_LueneLuetten_11.24.pdf.html" target="-blank"

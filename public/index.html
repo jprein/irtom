@@ -4,7 +4,6 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="https://use.typekit.net/ess7xmw.css" />
 		<link
 			rel="icon"
 			type="image/png"
@@ -23,27 +22,16 @@
 			sizes="180x180"
 			href="./apple-touch-icon.png"
 		/>
-		<link rel="mask-icon" href="./safari-pinned-tab.svg" color="#5bbad5" />
 		<link rel="manifest" href="site.webmanifest" />
 		<title>irToM</title>
 		<link rel="stylesheet" href="index.css" />
-		<script defer src="./translations.js"></script>
+		<script defer src="./translations-index.js"></script>
 		<script defer src="./index.js"></script>
 	</head>
 	<body>
 		<div id="root">
 			<div class="container">
-				<img
-					id="irtom-logo"
-					src="favicon.svg"
-					alt="irToM Logo"
-					style="
-						width: 100%;
-						display: flex;
-						justify-content: center;
-						align-items: center;
-					"
-				/>
+				<img id="irtom-logo" src="favicon.svg" alt="irToM Logo" />
 
 				<!-- <video controls width="100%" src="movie.mp4">
 					Your browser does not support the video tag.
@@ -55,7 +43,6 @@
 						Leuphana Universität Lüneburg, Entwicklungspsychologie, und
 						Max-Planck-Institut für evolutionäre Anthropologie, Vergleichende
 						Kulturpsychologie<br />
-						<span style="font-size: small">Thiede N., et al.</span>
 					</p>
 					<hr />
 					<!-- regex to allow case insensitive alpha numeric inputs including spaces, ß and äöü: /[0-9a-z-_äöüß ]/i -->
@@ -128,10 +115,13 @@
 					</div>
 					<div id="form-datatransfer" class="form-group">
 						<select id="input-datatransfer" required autocomplete="off">
-							<option>Leuphana Server & Download</option>
+							<option>Leuphana Server &amp; Download</option>
 							<option>Leuphana Server</option>
 						</select>
-						<label for="input-transfer" class="control-label" id="dataTransfer"
+						<label
+							for="input-datatransfer"
+							class="control-label"
+							id="dataTransfer"
 							>Datentransfer</label
 						><i class="bar"></i>
 					</div>
@@ -194,7 +184,7 @@
 						</button>
 					</div>
 				</form>
-				<hr style="border-width: 0.1npmpx" />
+				<hr />
 				<p class="imprint">
 					<a
 						href="https://devpsy.web.leuphana.de/imprint.html"

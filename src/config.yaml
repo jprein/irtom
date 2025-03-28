@@ -2,7 +2,7 @@
 devmode: # exposes global variables, and does other stuff
   on: true
   playbackRate: 1
-htmlBg: black # background color for letter boxing edges if aspect ratio is not 16:9
+htmlBg: white # background color for letter boxing edges if aspect ratio is not 16:9
 svgBg: white
 hideUrlParameters: false
 slideTransition:

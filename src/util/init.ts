@@ -6,7 +6,7 @@ import config from '../config.yaml';
 import { rectToForeignObject } from './rectToForeignObject';
 import { recycleObjects } from './recycleObjects';
 import { copyAttributes } from './copyAttributes';
-import { downloadData, uploadData, uploadAudio } from './helpers';
+import { downloadData, uploadData } from './helpers';
 import { getUrlParameters } from './getUrlParameters';
 import { widowedKeyChecker } from './widowedKeyChecker';
 import {
@@ -218,7 +218,6 @@ export const init = () => {
 		global.hideAllChildSlides = hideAllChildSlides;
 		global.getChildrenFromParent = getChildrenFromParent;
 		global.removeDisplayNone = removeDisplayNone;
-		global.uploadAudio = uploadAudio;
 		global.svgChilds = svgChilds;
 		global.recycleObjects = recycleObjects;
 		global.copyAttributes = copyAttributes;

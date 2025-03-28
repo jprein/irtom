@@ -130,36 +130,3 @@ export const uploadData = (
 			console.error('Error:', error);
 		});
 };
-
-export const uploadAudio = (
-	blob: Blob,
-	id: string = generateUserIdFilename('irtom', 'audio', 'ogg')
-) => {
-	const formData = new FormData();
-	formData.append('file', blob, id);
-	fetch('./data/audio.php', {
-		method: 'POST',
-		body: formData,
-	})
-		.then((response) => response.json())
-		.then((data) => {
-			console.log('Success:', data);
-			if (data.success) {
-				Toastify({
-					text: '💾',
-					duration: 2000,
-					className: 'toast-info',
-				}).showToast();
-			} else {
-				console.error('Error:', data);
-				Toastify({
-					text: '🤔',
-					duration: 2000,
-					className: 'toast-error',
-				}).showToast();
-			}
-		})
-		.catch((error) => {
-			console.error('Error:', error);
-		});
-};

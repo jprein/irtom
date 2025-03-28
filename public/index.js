@@ -174,7 +174,10 @@ document.querySelector('form').addEventListener('submit', (e) => {
 		? datatransfer
 		: datatransferMapping.get(datatransferIndex);
 
+	let href = window.location.href;
+	if (href.includes('index.html')) {
+		href = href.replace('index.html', '');
+	}
 	// window.location.href = `${window.location.href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&input=${input}&datatransfer=${datatransfer}&coupon=${coupon}&PROLIFIC_PID=${PROLIFIC_PID}`;
-	window.location.href = `${window.location.href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&datatransfer=${datatransfer}`;
-	console.log(window.location.href);
+	window.location.href = `${href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&datatransfer=${datatransfer}`;
 });

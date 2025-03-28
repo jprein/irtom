@@ -1,9 +1,8 @@
 body,
 input,
 select,
-textarea,
 body * {
-	font-family: 'pt-sans-narrow', sans-serif;
+	font-family: 'Trebuchet MS', sans-serif;
 	box-sizing: border-box;
 }
 body::after,
@@ -12,27 +11,37 @@ input::after,
 input::before,
 select::after,
 select::before,
-textarea::after,
-textarea::before,
 body *::after,
 body *::before {
 	box-sizing: border-box;
 }
 
+html {
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+}
+
 body {
-	background-image: -webkit-linear-gradient(top, #f2f2f2, #e6e6e6);
-	background-image: linear-gradient(top, #f2f2f2, #e6e6e6);
+    /* min-height: 100%; */
+    /* margin: 0; */
+    padding: 0 0 1rem;
+    background-image: linear-gradient(to bottom, #D2E0E7, #A4B8C4);
+    background-image: -webkit-linear-gradient(top, #D2E0E7, #A4B8C4);
+    /* background-repeat: no-repeat; */
+    background-attachment: fixed;
+    /* background-size: cover; */
 }
 
 h1 {
-	font-family: cholla-sans, sans-serif;
+	font-family: 'Trebuchet MS', sans-serif;
 	font-size: 2rem;
 	text-align: center;
 	margin: 20px 0;
 }
 
 h2 {
-	font-family: cholla-sans, sans-serif;
+	font-family: 'Trebuchet MS', sans-serif;
 	font-size: 1rem;
 	text-align: left;
 	margin: 20px 0;
@@ -40,13 +49,14 @@ h2 {
 
 .container {
 	position: relative;
-	max-width: 40rem;
-	margin: 5rem auto;
-	background: #fff;
-	width: 100%;
-	padding: 3rem 5rem 0;
-	border-radius: 1px;
+    max-width: 45rem;
+    margin: 5rem auto;
+    padding: 3rem 5rem 0;
+    background: #fff;
+    width: 100%;
+    border-radius: 2rem;
 }
+
 .container::before {
 	content: '';
 	position: absolute;
@@ -63,6 +73,7 @@ h2 {
 	transition: transform 0.28s ease-in-out;
 	transition: transform 0.28s ease-in-out, -webkit-transform 0.28s ease-in-out;
 	z-index: -1;
+	border-radius: 2rem;
 }
 .container:hover::before {
 	-webkit-transform: scale(1);
@@ -73,51 +84,14 @@ h2 {
 	text-align: center;
 }
 
-fieldset {
-	margin: 0 0 3rem;
-	padding: 0;
-	border: none;
-}
-
-.form-radio,
 .form-group {
 	position: relative;
 	margin-top: 2.25rem;
 	margin-bottom: 2.25rem;
 }
 
-.form-inline > .form-group,
-.form-inline > .btn {
-	display: inline-block;
-	margin-bottom: 0;
-}
-
-.form-help {
-	margin-top: 0.125rem;
-	margin-left: 0.125rem;
-	color: #b3b3b3;
-	font-size: 0.8rem;
-}
-.checkbox .form-help,
-.form-radio .form-help,
-.form-group .form-help {
-	position: absolute;
-	width: 100%;
-}
-.checkbox .form-help {
-	position: relative;
-	margin-bottom: 1rem;
-}
-.form-radio .form-help {
-	padding-top: 0.25rem;
-	margin-top: -1rem;
-}
-
 .form-group input {
 	height: 1.9rem;
-}
-.form-group textarea {
-	resize: none;
 }
 .form-group select {
 	width: 100%;
@@ -158,8 +132,7 @@ fieldset {
 	transition: left 0.28s ease, width 0.28s ease;
 	z-index: 2;
 }
-.form-group input,
-.form-group textarea {
+.form-group input {
 	display: block;
 	background: none;
 	padding: 0.125rem 0.125rem 0.0625rem;
@@ -173,56 +146,34 @@ fieldset {
 	transition: all 0.28s ease;
 	box-shadow: none;
 }
-.form-group input[type='file'] {
-	line-height: 1;
-}
-.form-group input[type='file'] ~ .bar {
-	display: none;
-}
 .form-group select,
 .form-group input:focus,
-.form-group input:valid,
-.form-group input.form-file,
-.form-group input.has-value,
-.form-group textarea:focus,
-.form-group textarea:valid,
-.form-group textarea.form-file,
-.form-group textarea.has-value {
+.form-group input:valid {
 	color: #333;
 }
 .form-group select ~ .control-label,
 .form-group input:focus ~ .control-label,
-.form-group input:valid ~ .control-label,
-.form-group input.form-file ~ .control-label,
-.form-group input.has-value ~ .control-label,
-.form-group textarea:focus ~ .control-label,
-.form-group textarea:valid ~ .control-label,
-.form-group textarea.form-file ~ .control-label,
-.form-group textarea.has-value ~ .control-label {
+.form-group input:valid ~ .control-label {
 	font-size: 0.8rem;
 	color: gray;
 	top: -1rem;
 	left: 0;
 }
 .form-group select:focus,
-.form-group input:focus,
-.form-group textarea:focus {
+.form-group input:focus {
 	outline: none;
 }
 .form-group select:focus ~ .control-label,
-.form-group input:focus ~ .control-label,
-.form-group textarea:focus ~ .control-label {
+.form-group input:focus ~ .control-label {
 	color: #337ab7;
 }
 .form-group select:focus ~ .bar::before,
-.form-group input:focus ~ .bar::before,
-.form-group textarea:focus ~ .bar::before {
+.form-group input:focus ~ .bar::before {
 	width: 100%;
 	left: 0;
 }
 
-.checkbox label,
-.form-radio label {
+.checkbox label {
 	position: relative;
 	cursor: pointer;
 	padding-left: 2rem;
@@ -230,61 +181,11 @@ fieldset {
 	color: #333;
 	display: block;
 }
-.checkbox input,
-.form-radio input {
+.checkbox input {
 	width: auto;
 	opacity: 0.00000001;
 	position: absolute;
 	left: 0;
-}
-
-.radio {
-	margin-bottom: 1rem;
-}
-.radio .helper {
-	position: absolute;
-	top: -0.1rem;
-	left: -0.25rem;
-	cursor: pointer;
-	display: block;
-	font-size: 1rem;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-	color: #999;
-}
-.radio .helper::before,
-.radio .helper::after {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 1;
-	margin: 0.25rem;
-	width: 1rem;
-	height: 1rem;
-	-webkit-transition: -webkit-transform 0.28s ease;
-	transition: -webkit-transform 0.28s ease;
-	transition: transform 0.28s ease;
-	transition: transform 0.28s ease, -webkit-transform 0.28s ease;
-	border-radius: 50%;
-	border: 0.125rem solid currentColor;
-}
-.radio .helper::after {
-	-webkit-transform: scale(0);
-	transform: scale(0);
-	background-color: #337ab7;
-	border-color: #337ab7;
-}
-.radio label:hover .helper {
-	color: #337ab7;
-}
-.radio input:checked ~ .helper::after {
-	-webkit-transform: scale(0.5);
-	transform: scale(0.5);
-}
-.radio input:checked ~ .helper::before {
-	color: #337ab7;
 }
 
 .checkbox {
@@ -356,37 +257,13 @@ fieldset {
 	transition-delay: 0.28s;
 }
 
-.radio + .radio,
-.checkbox + .checkbox {
-	margin-top: 1rem;
-}
-
-.has-error .legend.legend,
-.has-error.form-group .control-label.control-label {
-	color: #d9534f;
-}
-.has-error.form-group .form-help,
-.has-error.form-group .helper,
-.has-error.checkbox .form-help,
-.has-error.checkbox .helper,
-.has-error.radio .form-help,
-.has-error.radio .helper,
-.has-error.form-radio .form-help,
-.has-error.form-radio .helper {
-	color: #d9534f;
-}
-.has-error .bar::before {
-	background: #d9534f;
-	left: 0;
-	width: 100%;
-}
-
 .button {
 	position: relative;
 	background: currentColor;
 	border: 1px solid currentColor;
+	border-radius: 0.5rem;
 	font-size: 1.1rem;
-	color: #006c66;
+	color: #89485C;
 	margin: 1rem 0;
 	padding: 0.75rem 3rem;
 	cursor: pointer;
@@ -396,14 +273,12 @@ fieldset {
 	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
 		0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
-.button span,
-.button-microphone span {
+.button span {
 	color: #fff;
 	position: relative;
 	z-index: 1;
 }
-.button::before,
-.button-mircophone::before {
+.button::before {
 	content: '';
 	position: absolute;
 	background: #071017;
@@ -419,16 +294,12 @@ fieldset {
 	-webkit-transform: translate(-50%, -50%) scale(0);
 	transform: translate(-50%, -50%) scale(0);
 }
-.button:hover,
-.button-microphone:hover {
-	color: #29485d;
+.button:hover {
 	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
 		0 3px 5px -1px rgba(0, 0, 0, 0.2);
 }
 .button:active::before,
-.button:focus::before,
-.button-microphone::before,
-.button-microphone:focus::before {
+.button:focus::before {
 	-webkit-transition: opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
 	transition: opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
 	transition: transform 1.12s ease, opacity 0.28s ease 0.364s;
@@ -437,8 +308,7 @@ fieldset {
 	transform: translate(-50%, -50%) scale(1);
 	opacity: 0;
 }
-.button:focus,
-.button-microphone:focus {
+.button:focus {
 	outline: none;
 }
 
@@ -523,64 +393,16 @@ fieldset {
 	transition-delay: 0.28s;
 }
 
-.modal-window {
-	position: fixed;
-	background-color: rgba(255, 255, 255, 0.75);
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	z-index: 999;
-	visibility: hidden;
-	opacity: 0;
-	pointer-events: none;
-	transition: all 0.3s;
-	/* overflow: auto; */
-}
-.modal-window:target {
-	visibility: visible;
-	opacity: 1;
-	pointer-events: auto;
-}
-.modal-window > div {
-	width: 90%;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	padding: 1em;
-	background: white;
-}
-
-.modal-close {
-	color: #aaa;
-	line-height: 50px;
-	font-size: 80%;
-	position: absolute;
-	right: 0;
-	text-align: center;
-	top: 0;
-	width: 70px;
-	text-decoration: none;
-}
-.modal-close:hover {
-	color: black;
-}
-
-.modal-window > div {
-	border-radius: 1rem;
-}
-.modal-window div:not(:last-of-type) {
-	margin-bottom: 15px;
-}
-
 .imprint {
 	text-align: center;
 	padding-bottom: 2rem;
 	font-size: smaller;
 }
 
-.copyright a:link,
+a {
+	color: #1d4567;
+}
+
 a:visited {
 	color: #000 !important;
 	text-decoration: none;
@@ -594,11 +416,15 @@ a:visited {
 	animation: fadein 1s ease 0s 1 normal forwards;
 }
 
-@keyframes fadein {
-	0% {
-		opacity: 0;
-	}
-	100% {
-		opacity: 1;
-	}
+#irtom-logo {
+    display: block;
+    margin: 0 auto;
+	max-width: 40%;
+}
+
+#input-birthday {
+	padding: 0.25rem;
+	margin: 0.25rem;
+	border: #999 0.0625rem solid;
+	border-radius: 0.25rem;
 }
