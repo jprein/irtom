@@ -50,7 +50,7 @@ declare let data: {
 	currentSlide: string;
 	nextSlide: string;
 	currentProcedure: string[];
-	animalSlideCounter: number;
+	simpleSlideCounter: number;
 	procedure: {
 		sIntroduction: {
 			duration: number;

@@ -75,7 +75,7 @@ export const procedure = async () => {
 		}
 	}
 
-	data.animalSlideCounter = 0;
+	data.simpleSlideCounter = 0;
 
 	currentProcedure = currentProcedure.map((e: string) => _.camelCase(e));
 	data.currentProcedure = currentProcedure;
@@ -176,7 +176,7 @@ export const procedure = async () => {
 
 	const datatransfer = data.datatransfer;
 	// get rid of unnecessary variables for researchers' response log
-	['animalOrder', 'animalSlideCounter', 'currentProcedure', 'currentSlide', 'datatransfer', 'nextSlide', 'previousSlide', 'slideCounter', 'totalSlides', 'videoExtension'].forEach((key) => {
+	['currentProcedure', 'currentSlide', 'datatransfer', 'nextSlide', 'previousSlide', 'slideCounter', 'simpleSlideCounter', 'totalSlides', 'videoExtension'].forEach((key) => {
 		if (key in data) {
 			delete data[key];
 		}

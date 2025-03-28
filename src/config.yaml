@@ -45,8 +45,8 @@ globals:
   defaultGender: none
   defaultDataTransfer: both
   slideGapDuration: 750 # delay for most slides before transitioning to next
-  playAnimalYesNoAudio: 2
-  playAnimalResponseFeedback: 1
+  playYesNoAudio: 2
+  playResponseFeedback: 1
   minimumTextInputLength: 4
 
 procedure:
@@ -56,10 +56,11 @@ procedure:
   # You can nest only two levels deep
   german:
     - s-introduction
-    - animalOrder: [s-cow, s-pig, s-sheep]
+    - s-perspectivetaking
+    # - animalOrder: [s-cow, s-pig, s-sheep]
     - s-end
 
   english:
     - s-introduction
-    - animalOrder: [s-cow, s-pig]
+    - s-perspectivetaking
     - s-end

@@ -21,9 +21,19 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
 	parentBlock.removeAttribute('visibility');
-	const preloadVideo = await fetch(
-		`./communities/${data.community}/video/s-introduction.${data.videoExtension}`
-	);
+	
+	let preloadVideo: Response; 
+	
+	if(config.devmode.on) {
+		preloadVideo = await fetch(
+			`./communities/${data.community}/video/s-introduction-short.${data.videoExtension}`
+		);
+	} else {
+		preloadVideo = await fetch(
+			`./communities/${data.community}/video/s-introduction.${data.videoExtension}`
+		);
+	}
+
 	const blob = await preloadVideo.blob();
 	const url = URL.createObjectURL(blob);
 	parentBlock.setAttribute('visibility', 'hidden');
