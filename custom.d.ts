@@ -39,17 +39,6 @@ declare let data: {
 	videoExtension: 'mov' | 'webm';
 	// PROLIFIC_PID: string;
 	// coupon: string;
-	preFetchedVideoBlobs: (Record<string, string> | { keep: boolean })[];
-	pindaNeutralBlob: string;
-	textIntroBlob: string;
-	textIntroBlob2: string;
-	textIntroBlob3: string;
-	audioIntroBlob: string;
-	audioIntroBlob2: string;
-	audioIntroBlob3: string;
-	react1Blob: string;
-	react2Blob: string;
-	react3Blob: string;
 	initialTimestamp: Date;
 	endingTimestamp: Date;
 	completionTimeMS: number;
@@ -61,10 +50,6 @@ declare let data: {
 	currentSlide: string;
 	nextSlide: string;
 	currentProcedure: string[];
-	// animalOrder: string[];
-	companionOrder: string[];
-	foodOrder: string[];
-	controlOrder: string[];
 	animalSlideCounter: number;
 	procedure: {
 		sIntroduction: {
