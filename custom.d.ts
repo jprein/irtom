@@ -30,19 +30,20 @@ declare module '*.webm' {
 
 declare let data: {
 	id: string;
-	gender: 'female' | 'male' | 'other';
+	gender: 'female' | 'male' | 'diverse';
 	community: string;
 	birthday: string;
 	age: number;
 	agegroup: 'child' | 'adult';
-	datatransfer: 'server' | 'both';
+	datatransfer: 'server' | 'local' |'both';
 	videoExtension: 'mov' | 'webm';
 	// PROLIFIC_PID: string;
 	// coupon: string;
-	initialTimestamp: Date;
-	endingTimestamp: Date;
-	completionTimeMS: number;
-	completionTimeM: string;
+	t0: Date;
+	t1: Date;
+	startTime: string;
+	endTime: string;
+	completionTime: string;
 	quitBeforeEnd: boolean;
 	totalSlides: number;
 	slideCounter: number;
@@ -53,22 +54,25 @@ declare let data: {
 	simpleSlideCounter: number;
 	procedure: {
 		sIntroduction: {
-			duration: number;
-		};
-		sCow: {
-			duration: number;
-			response: string;
 			slideNr: number;
-		};
-		sPig: {
-			duration: number;
+			slideDuration: number;
+			correct: string;
 			response: string;
-			slideNr: number;
+			score: number;
 		};
-		sSheep: {
-			duration: number;
-			response: string;
+		sPerspectivetaking: {
 			slideNr: number;
+			slideDuration: number;
+			correct: string;
+			response: string;
+			score: number;
+		};
+		sEnd: {
+			slideNr: number;
+			slideDuration: number;
+			correct: string;
+			response: string;
+			score: number;
 		};
 	};
 };

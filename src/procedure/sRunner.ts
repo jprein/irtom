@@ -95,7 +95,14 @@ export const sRunner = async (
 	// Get Response
 	const response = await getResponse([yesButton.id, noButton.id]);
 
-	data.procedure[data.currentSlide].response = response.id;
+	// Response returns the clicked element. 
+	// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
+	// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
+	data.procedure[data.currentSlide].response = response.id.split('-').pop();
+
+	// Check if the response is correct, and store the score (0 = incorrect, 1 = correct) 
+	data.procedure[data.currentSlide].score = 
+	data.procedure[data.currentSlide].response === data.procedure[data.currentSlide].correct ? 1 : 0;
 
 	// Remove Event Listeners after response
 	audio.removeEventListener('play', handlePlay);

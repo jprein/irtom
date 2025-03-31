@@ -126,4 +126,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	});
 
 	await getResponse(nextButton.id);
+
+	// introduction slide determines the header of our response log
+	data.procedure[data.currentSlide].response = "";
+	data.procedure[data.currentSlide].correct = "";
+	data.procedure[data.currentSlide].score = "";
 };

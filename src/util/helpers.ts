@@ -89,44 +89,183 @@ export const generateUserIdFilename = (
 	return `${prefix}-${data.id}-${day}-${time}-${postfix}.${extension}`;
 };
 
-export const downloadData = () => {
-	// download data as JSON from global data object
-	const blob = new Blob([JSON.stringify(data, null, 2)]);
-	const hiddenElement = document.createElement('a');
-	hiddenElement.href = window.URL.createObjectURL(blob);
-	hiddenElement.download = generateUserIdFilename();
-	hiddenElement.click();
+// Helper function to generate CSV content
+const generateCsvContent = (jsonData: any): string => {
+    // Extract the static fields (non-procedure fields)
+    const staticFields = Object.keys(jsonData).filter(key => key !== "procedure");
+
+    // Extract the procedure keys (dynamic rows)
+    const procedureKeys = Object.keys(jsonData.procedure);
+
+    // Prepare the CSV header
+    const header = [...staticFields, "slide", ...Object.keys(jsonData.procedure[procedureKeys[0]])];
+
+    // Prepare the CSV rows
+    const rows = procedureKeys.map(step => {
+        const procedureData = jsonData.procedure[step];
+        return [
+            ...staticFields.map(field => jsonData[field]), // Add static field values
+            step, // Add the procedure step name
+            ...Object.values(procedureData) // Add procedure-specific values
+        ];
+    });
+
+    // Combine header and rows into a CSV string
+    return [
+        header.join(","), // Header row
+        ...rows.map(row => row.map(value => `"${value}"`).join(",")) // Data rows
+    ].join("\n");
 };
 
-export const uploadData = (
-	jsonData: any = data,
-	id: string = generateUserIdFilename('irtom', undefined)
+// Function to download the CSV
+export const downloadCsv = (
+    jsonData: any = data,
+    id: string = generateUserIdFilename('irtom', undefined, 'csv')
 ) => {
-	fetch('./data/data.php', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({ data: JSON.stringify(jsonData), fname: id }),
-	})
-		.then((response) => response.json())
-		.then((data) => {
-			console.log('Success:', data);
-			if (data.success) {
-				Toastify({
-					text: '💾',
-					duration: 2000,
-					className: 'toast-info',
-				}).showToast();
-			} else {
-				Toastify({
-					text: '🤔',
-					duration: 2000,
-					className: 'toast-error',
-				}).showToast();
-			}
-		})
-		.catch((error) => {
-			console.error('Error:', error);
-		});
+    const csvContent = generateCsvContent(jsonData);
+
+    // Create a Blob and trigger the download
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const hiddenElement = document.createElement('a');
+    hiddenElement.href = window.URL.createObjectURL(blob);
+    hiddenElement.download = id;
+    hiddenElement.click();
 };
+
+// Function to upload the CSV
+export const uploadCsv = (
+    jsonData: any = data,
+    id: string = generateUserIdFilename('irtom', undefined, 'csv')
+) => {
+    const csvContent = generateCsvContent(jsonData);
+
+    // Send the CSV content to the server, including the `id` as part of the request
+    fetch('./data/data.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/csv',
+            'X-File-Name': id, // Include the file name in the headers
+        },
+        body: csvContent, // Send the CSV content as the body
+    })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+            if (data.success) {
+                Toastify({
+                    text: '💾 CSV uploaded successfully!',
+                    duration: 2000,
+                    className: 'toast-info',
+                }).showToast();
+            } else {
+                Toastify({
+                    text: '🤔 CSV upload failed!',
+                    duration: 2000,
+                    className: 'toast-error',
+                }).showToast();
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+};
+// 	jsonData: any = data,
+// 	id: string = generateUserIdFilename('irtom', undefined, 'csv')
+// ) => {
+// 	// Extract the static fields (non-procedure fields)
+// 	const staticFields = Object.keys(jsonData).filter(key => key !== "procedure");
+  
+// 	// Extract the procedure keys (dynamic rows)
+// 	const procedureKeys = Object.keys(jsonData.procedure);
+  
+// 	// Prepare the CSV header
+// 	const header = [...staticFields, "slide", ...Object.keys(jsonData.procedure[procedureKeys[0]])];
+  
+// 	console.log("header", header);
+
+// 	// Prepare the CSV rows
+// 	const rows = procedureKeys.map(step => {
+// 	  const procedureData = jsonData.procedure[step];
+// 	  return [
+// 		...staticFields.map(field => jsonData[field]), // Add static field values
+// 		step, // Add the procedure step name
+// 		...Object.values(procedureData) // Add procedure-specific values
+// 	  ];
+// 	});
+  
+// 	// Combine header and rows into a CSV string
+// 	const csvContent = [
+// 	  header.join(","), // Header row
+// 	  ...rows.map(row => row.map(value => `"${value}"`).join(",")) // Data rows
+// 	].join("\n");
+  
+// 	// Create a Blob and trigger the download
+// 	const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+// 	const hiddenElement = document.createElement('a');
+// 	hiddenElement.href = window.URL.createObjectURL(blob);
+// 	hiddenElement.download = id;
+// 	hiddenElement.click();
+// }
+
+// export const uploadCsv = (
+//     jsonData: any = data,
+//     id: string = generateUserIdFilename('irtom', undefined, 'csv')
+// ) => {
+//     // Extract the static fields (non-procedure fields)
+//     const staticFields = Object.keys(jsonData).filter(key => key !== "procedure");
+
+//     // Extract the procedure keys (dynamic rows)
+//     const procedureKeys = Object.keys(jsonData.procedure);
+
+//     // Prepare the CSV header
+//     const header = [...staticFields, "slide", ...Object.keys(jsonData.procedure[procedureKeys[0]])];
+
+// 	console.log("header", header);
+//     // Prepare the CSV rows
+//     const rows = procedureKeys.map(step => {
+//         const procedureData = jsonData.procedure[step];
+//         return [
+//             ...staticFields.map(field => jsonData[field]), // Add static field values
+//             step, // Add the procedure step name
+//             ...Object.values(procedureData) // Add procedure-specific values
+//         ];
+//     });
+
+//     // Combine header and rows into a CSV string
+//     const csvContent = [
+//         header.join(","), // Header row
+//         ...rows.map(row => row.map(value => `"${value}"`).join(",")) // Data rows
+//     ].join("\n");
+
+// 	console.log("csvContent", csvContent);
+
+//     // Send the CSV content to the server, including the `id` as part of the request
+//     fetch('./data/data.php', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'text/csv',
+//             'X-File-Name': id, // Include the file name in the headers
+//         },
+//         body: csvContent, // Send the CSV content as the body
+//     })
+//         .then((response) => response.json())
+//         .then((data) => {
+//             console.log('Success:', data);
+//             if (data.success) {
+//                 Toastify({
+//                     text: '💾 CSV uploaded successfully!',
+//                     duration: 2000,
+//                     className: 'toast-info',
+//                 }).showToast();
+//             } else {
+//                 Toastify({
+//                     text: '🤔 CSV upload failed!',
+//                     duration: 2000,
+//                     className: 'toast-error',
+//                 }).showToast();
+//             }
+//         })
+//         .catch((error) => {
+//             console.error('Error:', error);
+//         });
+// };

@@ -167,7 +167,10 @@ document.querySelector('form').addEventListener('submit', (e) => {
 		.set(0, 'female')
 		.set(1, 'male')
 		.set(2, 'diverse');
-	const datatransferMapping = new Map().set(0, 'both').set(1, 'server');
+	const datatransferMapping = new Map()
+		.set(0, 'local')
+		.set(1, 'server')
+		.set(2, 'both');
 
 	gender = gender ? gender : genderMapping.get(genderIndex);
 	datatransfer = datatransfer

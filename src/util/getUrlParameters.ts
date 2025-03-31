@@ -88,7 +88,7 @@ export const getUrlParameters = () => {
 	}
 
 	if (params.datatransfer) {
-		if (params.datatransfer !== 'both' && params.datatransfer !== 'server') {
+		if (params.datatransfer !== 'both' && params.datatransfer !== 'server' && params.datatransfer !== 'local') {
 			Toastify({
 				escapeMarkup: false,
 				text: `<strong>Parameter Error</strong>: <small><code>datatransfer</code> parameter can only be: <code>both</code> or <code>server</code></small><br><br> Defaulting to <code>${config.globals.defaultDataTransfer}</code>`,

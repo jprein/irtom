@@ -6,7 +6,7 @@ import config from '../config.yaml';
 import { rectToForeignObject } from './rectToForeignObject';
 import { recycleObjects } from './recycleObjects';
 import { copyAttributes } from './copyAttributes';
-import { downloadData, uploadData } from './helpers';
+import { downloadCsv, uploadCsv } from './helpers';
 import { getUrlParameters } from './getUrlParameters';
 import { widowedKeyChecker } from './widowedKeyChecker';
 import {
@@ -94,7 +94,7 @@ export const init = () => {
 		datatransfer: urlParameters.datatransfer,
 		// coupon: urlParameters.coupon,
 		// PROLIFIC_PID: urlParameters.PROLIFIC_PID,
-		initialTimestamp: new Date(),
+		t0: new Date(),
 		slideCounter: 0,
 		quitBeforeEnd: false,
 		procedure: {},
@@ -158,7 +158,7 @@ export const init = () => {
 		window.onbeforeunload = function (evt: BeforeUnloadEvent) {
 			evt.preventDefault();
 			global.data.quitBeforeEnd = true;
-			uploadData();
+			uploadCsv();
 			return '';
 		};
 	}
@@ -222,9 +222,9 @@ export const init = () => {
 		global.recycleObjects = recycleObjects;
 		global.copyAttributes = copyAttributes;
 	}
-	// always expose downloadData function
-	global.downloadData = downloadData;
-	global.uploadData = uploadData;
+	// always expose download/upload functions
+	global.downloadCsv = downloadCsv;
+	global.uploadCsv = uploadCsv;
 	global.config = config;
 
 	if (config.devmode.on) console.log("data", data);

@@ -3,10 +3,10 @@ import { gsap } from 'gsap';
 import config from '../config.yaml';
 import { stop } from '../util/audio';
 import {
-	downloadData,
+	uploadCsv,
+	downloadCsv,
 	millisToMinutesAndSeconds,
 	sleep,
-	uploadData,
 } from '../util/helpers';
 
 export const procedure = async () => {
@@ -111,9 +111,9 @@ export const procedure = async () => {
 
 		// init default procedure response
 		data.procedure[currentSlide] = {
-			duration: 0,
-			response: '',
 			slideNr: data.slideCounter, 
+			slideDuration: 0,
+			response: '',
 		};
 
 		// get possible response buttons (next buttons, yes/no buttons)
@@ -135,7 +135,7 @@ export const procedure = async () => {
 
 		// POST LOOP Actions (i.e., either an await button was clicked or video ended)
 		// save duration of each slide
-		data.procedure[currentSlide].duration = new Date().getTime() - startTime;
+		data.procedure[currentSlide].slideDuration = new Date().getTime() - startTime;
 
 		if (slide !== 'sEnd') {
 			// always hide all pinda video videos
@@ -167,30 +167,35 @@ export const procedure = async () => {
 			stop();
 		}
 	}
-	data.endingTimestamp = new Date();
-	data.completionTimeMS =
-		data.endingTimestamp.getTime() - data.initialTimestamp.getTime();
-	const minutes = millisToMinutesAndSeconds(data.completionTimeMS).minutes;
-	const seconds = millisToMinutesAndSeconds(data.completionTimeMS).seconds;
-	data.completionTimeM = `${minutes}-${seconds}`;
+
+	// save general variables for response log
+	data.t1 = new Date();
+	data.startTime = `${data.t0.getFullYear()}-${String(data.t0.getMonth() + 1).padStart(2, '0')}-${String(data.t0.getDate()).padStart(2, '0')}_${String(data.t0.getHours()).padStart(2, '0')}:${String(data.t0.getMinutes()).padStart(2, '0')}:${String(data.t0.getSeconds()).padStart(2, '0')}`;
+	data.endTime = `${data.t1.getFullYear()}-${String(data.t1.getMonth() + 1).padStart(2, '0')}-${String(data.t1.getDate()).padStart(2, '0')}_${String(data.t1.getHours()).padStart(2, '0')}:${String(data.t1.getMinutes()).padStart(2, '0')}:${String(data.t1.getSeconds()).padStart(2, '0')}`;
+	
+	const completionTimeMs = data.t1.getTime() - data.t0.getTime();
+	const minutes = millisToMinutesAndSeconds(completionTimeMs).minutes;
+	const seconds = millisToMinutesAndSeconds(completionTimeMs).seconds;
+	data.completionTime = `${minutes}-${seconds}`;
 
 	const datatransfer = data.datatransfer;
 	// get rid of unnecessary variables for researchers' response log
-	['currentProcedure', 'currentSlide', 'datatransfer', 'nextSlide', 'previousSlide', 'slideCounter', 'simpleSlideCounter', 'totalSlides', 'videoExtension'].forEach((key) => {
+	['currentProcedure', 'currentSlide', 'datatransfer', 'nextSlide', 'previousSlide', 'slideCounter', 'simpleSlideCounter', 't0', 't1', 'totalSlides', 'videoExtension'].forEach((key) => {
 		if (key in data) {
 			delete data[key];
 		}
 	});
 
-	// upload data to server
-	if (datatransfer === 'both') {
-		uploadData();
-		downloadData();
+	// Save data depending on choice (local, server, both)
+	if (datatransfer === 'local') {
+		downloadCsv();
+	} else if (datatransfer === 'server') {
+		uploadCsv();
+	} else {
+		uploadCsv();
+		downloadCsv();
 	}
-	if (datatransfer === 'server') {
-		uploadData();
-	}
-
+	
 	// users can leave page now
 	window.onbeforeunload = null;
 
