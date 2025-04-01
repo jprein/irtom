@@ -56,7 +56,10 @@ procedure:
   # You can nest only two levels deep
   german:
     - s-introduction
-    - s-perspectivetaking
+    - s-perspectivetaking-a
+    - s-perspectivetaking-b
+    - s-perspectivetaking-c
+    - s-perspectivetaking-d
     # - animalOrder: [s-cow, s-pig, s-sheep]
     - s-end
 

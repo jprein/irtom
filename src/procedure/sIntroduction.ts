@@ -52,7 +52,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		}
 		play(`./communities/${data.community}/audio/pop.mp3`);
 		gsap.to(speaker, { autoAlpha: 0 });
-		play(`./communities/${data.community}/audio/si-next-red.mp3`, headphones.id);
+		play(`./communities/${data.community}/audio/s-introduction-next.mp3`, headphones.id);
 
 		audio.addEventListener('play', () => {
 			gsap.set([nextButton, headphones], { autoAlpha: 0.25, pointerEvents: 'none' });
