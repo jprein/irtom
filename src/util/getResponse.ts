@@ -1,7 +1,9 @@
 export const getResponse = (id?: string | string[]) => {
 	return new Promise<Element>((resolve) => {
 		const handleResponse = (event: Event) => {
-			const target = event.target as Element;
+			// take currentTarget instead of target
+			// so that we get the parent node where the eventlistener was attached to
+			const target = event.currentTarget as Element;
 			return resolve(target);
 		};
 

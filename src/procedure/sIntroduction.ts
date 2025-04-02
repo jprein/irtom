@@ -11,10 +11,10 @@ export default async ({ currentSlide, previousSlide }) => {
 	swapSlides(currentSlide, previousSlide);
 
 	const audio = document.getElementById('audio') as HTMLMediaElement;
-	const speaker = document.getElementById('link-si-speaker') as SvgInHtml;
+	const speaker = document.getElementById('link-s-introduction-speaker') as SvgInHtml;
 	const pinda = document.getElementById('pinda') as HTMLVideoElement;
-	const headphones = document.getElementById('link-si-headphones') as SvgInHtml;
-	const nextButton = document.getElementById('link-si-next') as SvgInHtml;
+	const headphones = document.getElementById('link-s-introduction-headphones') as SvgInHtml;
+	const nextButton = document.getElementById('link-s-introduction-next') as SvgInHtml;
 	const childQuestion = document.getElementById('text-introChild') as SvgInHtml;
 	const adultQuestion = document.getElementById('text-introAdult') as SvgInHtml;
 	gsap.set([headphones, nextButton], { autoAlpha: 0, pointerEvents: 'none' });

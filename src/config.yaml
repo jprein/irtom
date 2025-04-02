@@ -15,20 +15,24 @@ css:
   # Syntax: [id^=startsWith][id$=endsWith]
   mousePointerObjects:
     [
-      '#link-si-speaker',
+      '#link-s-introduction-speaker',
       '[id^=link][id$=next]',
       '[id^=link][id$=headphones]',
       '[id^=link][id$=yes]',
       '[id^=link][id$=no]',
+      '#s-yesnoresponse-yes',
+      '#s-yesnoresponse-no',
     ]
   # will be used within the init process to to add a zoom animation on hover
   scaleOnHoverObjects:
     [
-      '#link-si-speaker',
+      '#link-s-introduction-speaker',
       '[id^=link][id$=next]',
       '[id^=link][id$=headphones]',
       '[id^=link][id$=yes]',
       '[id^=link][id$=no]',
+      '#s-yesnoresponse-yes',
+      '#s-yesnoresponse-no',
     ]
   pinda: # applies for pinda and neutral pinda videos
     height: '30%' # pinda height
@@ -37,13 +41,13 @@ css:
 
 globals:
   defaultSubjectId: demo
-  defaultCommunity: german # possible keys from
+  defaultCommunity: german
   defaultBirthday: '2100-01-01'
   # defaultCoupon: TESTCODE
   # defaultPROLIFIC_PID: none
-  adultThresholdAge: 12 # 11 = child, 12 = adult
+  adultThresholdAge: 18 # 17 = child, 18 = adult
   defaultGender: none
-  defaultDataTransfer: both
+  defaultDataTransfer: local
   slideGapDuration: 750 # delay for most slides before transitioning to next
   playYesNoAudio: 2
   playResponseFeedback: 1
