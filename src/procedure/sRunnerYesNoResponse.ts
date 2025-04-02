@@ -23,6 +23,7 @@ export const sRunnerYesNoResponse = async (
 	const responseSlide = document.getElementById(responsePrefix) as SvgInHtml;
 	responseSlide.setAttribute('visibility', 'visible');
 	const blurr = document.getElementById(`${responsePrefix}-blurr`) as SvgInHtml;
+	const headphones = document.getElementById(`link-${responsePrefix}-headphones`) as SvgInHtml;
 	const yesGroup = document.getElementById(`${responsePrefix}-yes`) as SvgInHtml;
 	const yesFace = document.getElementById(`${responsePrefix}-face-yes`) as SvgInHtml;
 	const yesFacefeatures = document.getElementById(`${responsePrefix}-facefeatures-yes`) as SvgInHtml;
@@ -30,7 +31,7 @@ export const sRunnerYesNoResponse = async (
 	const noFace = document.getElementById(`${responsePrefix}-face-no`) as SvgInHtml;
 	const noFacefeatures = document.getElementById(`${responsePrefix}-facefeatures-no`) as SvgInHtml;
 
-	gsap.set([yesGroup, noGroup, blurr], { autoAlpha: 0, pointerEvents: 'none' });
+	gsap.set([yesGroup, noGroup, blurr, headphones], { autoAlpha: 0, pointerEvents: 'none' });
 	gsap.set([yesFace, yesFacefeatures, noFace, noFacefeatures], {transformOrigin: '50% 50%'});
 
 	await sleep(1000);
@@ -97,7 +98,7 @@ export const sRunnerYesNoResponse = async (
 					// reset head position
 					gsap.to([noFace, noFacefeatures], {x: 0, ease: 'power1.inOut'})
 					// enable clicking response
-					gsap.to([yesGroup, noGroup], { pointerEvents: 'visible', cursor: 'pointer' });
+					gsap.to([yesGroup, noGroup, headphones], { autoAlpha: 1, pointerEvents: 'visible', cursor: 'pointer' });
 				}
 			}, "<");
 
@@ -170,6 +171,9 @@ export const sRunnerYesNoResponse = async (
 	audio.removeEventListener('play', handlePlay);
 	audio.removeEventListener('ended', handleEnded);
 
+	// Hide response slide
+	responseSlide.setAttribute('visibility', 'hidden');
+	
 	// play button response sounds only for the first trials
 	if (data.simpleSlideCounter <= config.globals.playResponseFeedback) {
 			const responseOption = ['ok', 'alright'];
@@ -179,7 +183,4 @@ export const sRunnerYesNoResponse = async (
 				`./communities/${data.community}/audio/neutral-resp-${randomResponse}.mp3`,
 			);
 	}
-
-	// Hide response slide
-	responseSlide.setAttribute('visibility', 'hidden');
 };
