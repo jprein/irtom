@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-import { play } from '../util/audio';
+import { play, playPromise } from '../util/audio';
 import { swapSlides } from '../util/slideVisibility';
 import { getResponse } from '../util/getResponse';
 import { startFullscreen } from '../util/helpers';
@@ -11,8 +11,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	swapSlides(currentSlide, previousSlide);
 
 	const audio = document.getElementById('audio') as HTMLMediaElement;
-	const speaker = document.getElementById('link-s-introduction-speaker') as SvgInHtml;
 	const pinda = document.getElementById('pinda') as HTMLVideoElement;
+	const speaker = document.getElementById('link-s-introduction-speaker') as SvgInHtml;
 	const headphones = document.getElementById('link-s-introduction-headphones') as SvgInHtml;
 	const nextButton = document.getElementById('link-s-introduction-next') as SvgInHtml;
 	const childQuestion = document.getElementById('text-introChild') as SvgInHtml;
@@ -22,17 +22,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
 	parentBlock.removeAttribute('visibility');
 	
-	let preloadVideo: Response; 
-	
-	if(config.devmode.on) {
-		preloadVideo = await fetch(
-			`./communities/${data.community}/video/s-introduction-short.${data.videoExtension}`
-		);
-	} else {
-		preloadVideo = await fetch(
-			`./communities/${data.community}/video/s-introduction.${data.videoExtension}`
-		);
-	}
+	// let preloadVideo: Response; 
+	const preloadVideo = await fetch(`./communities/${data.community}/video/s-introduction.${data.videoExtension}`);
 
 	const blob = await preloadVideo.blob();
 	const url = URL.createObjectURL(blob);
@@ -46,43 +37,43 @@ export default async ({ currentSlide, previousSlide }) => {
 	}
 
 	let playingTimeline = true;
-	speaker.addEventListener('click', () => {
-		if (!config.devmode.on) {
-			startFullscreen();
-		}
-		play(`./communities/${data.community}/audio/pop.mp3`);
+
+	speaker.addEventListener('click', async () => {
+		if (!config.devmode.on) startFullscreen();
+
+		await playPromise(`./communities/${data.community}/audio/pop.mp3`);
 		gsap.to(speaker, { autoAlpha: 0 });
 		play(`./communities/${data.community}/audio/s-introduction-next.mp3`, headphones.id);
 
+		// when audio plays, next button and headphones cannot be clicked
 		audio.addEventListener('play', () => {
-			gsap.set([nextButton, headphones], { autoAlpha: 0.25, pointerEvents: 'none' });
+			gsap.to([nextButton, headphones], { autoAlpha: 0.25, pointerEvents: 'none' });
 		});
+
+		// when pinda plays, next buttons and headphones are hidden and cannot be clicked
 		pinda.addEventListener('play', () => {
-			gsap.set([nextButton, headphones], { pointerEvents: 'none' });
-			if (playingTimeline) {
-				gsap.set([nextButton, headphones], { autoAlpha: 0 });
-			} else {
-				gsap.set([nextButton, headphones], { autoAlpha: 0.5 });
-			}
+			gsap.to([nextButton, headphones], { autoAlpha: 0, pointerEvents: 'none' });
 		});
+
+		// once audio ended, show next button and headphones again
 		audio.addEventListener('ended', () => {
 			if (playingTimeline) {
-				gsap.set([nextButton, headphones], { pointerEvents: 'none' });
-				gsap.to([nextButton, headphones], { autoAlpha: 0 });
+				gsap.to([nextButton, headphones], { autoAlpha: 0, pointerEvents: 'none' });
 			} else {
-				gsap.set([nextButton, headphones], { pointerEvents: 'visible' });
-				gsap.to([nextButton, headphones], { autoAlpha: 1 });
+				gsap.to([nextButton, headphones], { autoAlpha: 1, pointerEvents: 'visible' });
 			}
 		});
+
+		// once pinda ended, show next button and headphones again, hide pinda
 		pinda.addEventListener('ended', () => {
-			gsap.set([nextButton, headphones], { pointerEvents: 'visible' });
-			gsap.to([nextButton, headphones], { autoAlpha: 1 });
+			gsap.to([nextButton, headphones], { autoAlpha: 1, pointerEvents: 'visible' });
 			gsap.to(pinda, { autoAlpha: 0 });
 		});
 
 		// start pinda video
 		pinda.src = url;
 		pinda.play();
+
 		// only start timeline when media can play through
 		const communityDelay = {
 			headphones: {
@@ -95,6 +86,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				'english': 4,
 			},
 		};
+
 		gsap
 			.timeline()
 			.to(headphones, {
@@ -117,7 +109,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(nextButton, {
-				filter: 'drop-shadow(0px 0px 14px #a90707)',
+				filter: 'drop-shadow(0px 0px 14px #781633)',
 				delay: 1,
 				repeat: -1,
 				yoyo: true,
