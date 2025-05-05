@@ -18,6 +18,7 @@ const languageIds = [
 	'startButton',
 	'imprint',
 	'dataProtection',
+	'freepikAttribution',
 ];
 
 const translations = {
@@ -139,6 +140,21 @@ const translations = {
 		de: `Datenschutz`,
 		en: `Data Protection`,
 		es: `Protección de datos `,
+	},
+	freepikAttribution: {
+		de: `Grafiken und Designelemente auf dieser Website enthalten Ressourcen
+		von Freepik, die unter der freien Lizenz von
+		<a href="https://www.freepik.com/" target="_blank" id="freepik">Freepik</a>
+		mit der erforderlichen Namensnennung verwendet werden. 
+		Einige Inhalte können bearbeitet oder angepasst worden sein.`,
+		en: `Graphics and design elements on this website include resources from
+		<a href="https://www.freepik.com/" target="_blank" id="freepik">Freepik</a>
+		used under Freepik’s Free License with required attribution. 
+		Some contents may have been edited or customized.`,
+		es: `Los gráficos y elementos de diseño de este sitio web incluyen recursos de 
+		<a href="https://www.freepik.com/" target="_blank" id="freepik">Freepik</a>
+		utilizados bajo la Licencia Libre de Freepik con la atribución requerida. 
+		Algunos contenidos pueden haber sido editados o personalizados.`,
 	},
 };
 
