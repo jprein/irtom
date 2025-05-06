@@ -19,13 +19,17 @@ export const sRunnerTwoOptions = async (
 	const slidePrefix = slideName;
 
 	// Get elements for binary response format (yes/no animated nodding)
-	const responsePrefix = 's-perspectivetaking-e';
-	const blurr = document.getElementById(`${responsePrefix}-blurr`) as SvgInHtml;
-	const headphones = document.getElementById(`link-${responsePrefix}-headphones`) as SvgInHtml;
-	const turtleFeet = document.getElementById(`${responsePrefix}-turtle-feet`) as SvgInHtml;
-	const turtleShell = document.getElementById(`${responsePrefix}-turtle-shell`) as SvgInHtml;
+	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
+	const headphones = document.getElementById(`link-${slidePrefix}-headphones`) as SvgInHtml;
+	const optionLeft = document.getElementById(`${slidePrefix}-left`) as SvgInHtml;
+	const optionRight = document.getElementById(`${slidePrefix}-right`) as SvgInHtml;
+	// Check if the subject element exists
+	const subject = document.getElementById(`${slidePrefix}-subject`) as SvgInHtml;
+	if (subject) {
+   		gsap.set(subject, { autoAlpha: 0, pointerEvents: 'none' });
+	}
 
-	gsap.set([turtleFeet, turtleShell, blurr, headphones], { autoAlpha: 0, pointerEvents: 'none' });
+	gsap.set([optionLeft, optionRight, blurr, headphones], { autoAlpha: 0, pointerEvents: 'none' });
 
 	await sleep(1000);
 
@@ -39,36 +43,41 @@ export const sRunnerTwoOptions = async (
 			autoAlpha: 0.9,
 			duration: 0.6,
 		})
-		.to(turtleFeet, { 
+		.to(subject || {}, {
+			autoAlpha: 1,
+			duration: 0.5,
+		})
+		.to(optionLeft, { 
+			delay: 0.5,
 			autoAlpha: 1, 
 			duration: 0.5,
 			pointerEvents: 'visible', 
 			cursor: 'pointer', 
 			onStart: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-turtle-feet.mp3`);
+				play(`./communities/${data.community}/audio/${slidePrefix}-left.mp3`);
 			},
 		})
-		.to(turtleShell, { 
+		.to(optionRight, { 
 			autoAlpha: 1, 
 			duration: 0.5,
 			delay: 1,
 			pointerEvents: 'visible', 
 			cursor: 'pointer', 
 			onStart: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-turtle-shell.mp3`);
+				play(`./communities/${data.community}/audio/${slidePrefix}-right.mp3`);
 			},
 		})
 
 	// if headphone is clicked, play audio again
 	play(
 		`./communities/${data.community}/audio/${slidePrefix}.mp3`,
-		`link-${responsePrefix}-headphones`,
+		`link-${slidePrefix}-headphones`,
 	);
 
 	// while audio is playing, hide yes and no response buttons
 	function handlePlay() {
 		gsap.timeline()
-			.set([turtleFeet, turtleShell], { 
+			.set([optionLeft, optionRight], { 
 				autoAlpha: 0, 
 				pointerEvents: 'none', 
 				cursor: 'default'
@@ -82,7 +91,7 @@ export const sRunnerTwoOptions = async (
 	// when audio ends, show yes and no response buttons
 	function handleEnded() {
 		gsap.timeline()
-		.set([turtleFeet, turtleShell], { 
+		.set([optionLeft, optionRight], { 
 			autoAlpha: 1, 
 			pointerEvents: 'visible', 
 			cursor: 'pointer' 
@@ -97,7 +106,7 @@ export const sRunnerTwoOptions = async (
 	audio.addEventListener('ended', handleEnded);
 
 	// Get Response
-	const response = await getResponse([turtleFeet.id, turtleShell.id]);
+	const response = await getResponse([optionLeft.id, optionRight.id]);
 
 	// Response returns the clicked element. 
 	// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")

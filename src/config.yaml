@@ -22,6 +22,8 @@ css:
       '[id^=link][id$=no]',
       '#s-yesnoresponse-yes',
       '#s-yesnoresponse-no',
+      '[id$=left]',
+      '[id$=right]',
     ]
   # will be used within the init process to to add a zoom animation on hover
   scaleOnHoverObjects:
@@ -33,8 +35,8 @@ css:
       '[id^=link][id$=no]',
       '#s-yesnoresponse-yes',
       '#s-yesnoresponse-no',
-      '#s-perspectivetaking-e-turtle-feet',
-      '#s-perspectivetaking-e-turtle-shell',
+      '[id$=left]',
+      '[id$=right]',
     ]
   pinda: # applies for pinda and neutral pinda videos
     height: '30%' # pinda height
@@ -67,10 +69,11 @@ procedure:
     - s-perspectivetaking-c
     - s-perspectivetaking-d
     - s-perspectivetaking-e
-    # - animalOrder: [s-cow, s-pig, s-sheep]
+    - s-perspectivetaking-f
+    - s-perspectivetaking-g
+    - s-perspectivetaking-h
     - s-end
 
   english:
     - s-introduction
-    # - s-perspectivetaking
     - s-end
