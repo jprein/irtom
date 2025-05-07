@@ -63,15 +63,16 @@ procedure:
   # If you create a key with a sub array everything in the sub array will be randomized
   # You can nest only two levels deep
   german:
-    - s-introduction
-    - s-perspectivetaking-a
-    - s-perspectivetaking-b
-    - s-perspectivetaking-c
-    - s-perspectivetaking-d
-    - s-perspectivetaking-e
-    - s-perspectivetaking-f
-    - s-perspectivetaking-g
-    - s-perspectivetaking-h
+    - s-sofalsebelief-a
+    # - s-introduction
+    # - s-perspectivetaking-a
+    # - s-perspectivetaking-b
+    # - s-perspectivetaking-c
+    # - s-perspectivetaking-d
+    # - s-perspectivetaking-e
+    # - s-perspectivetaking-f
+    # - s-perspectivetaking-g
+    # - s-perspectivetaking-h
     - s-end
 
   english:
