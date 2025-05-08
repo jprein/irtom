@@ -20,8 +20,8 @@ css:
       '[id^=link][id$=headphones]',
       '[id^=link][id$=yes]',
       '[id^=link][id$=no]',
-      '#s-yesnoresponse-yes',
-      '#s-yesnoresponse-no',
+      '#s-yesnochoice-yes',
+      '#s-yesnochoice-no',
       '[id$=left]',
       '[id$=right]',
     ]
@@ -33,8 +33,8 @@ css:
       '[id^=link][id$=headphones]',
       '[id^=link][id$=yes]',
       '[id^=link][id$=no]',
-      '#s-yesnoresponse-yes',
-      '#s-yesnoresponse-no',
+      '#s-yesnochoice-yes',
+      '#s-yesnochoice-no',
       '[id$=left]',
       '[id$=right]',
     ]
@@ -47,8 +47,6 @@ globals:
   defaultSubjectId: demo
   defaultCommunity: german
   defaultBirthday: '2100-01-01'
-  # defaultCoupon: TESTCODE
-  # defaultPROLIFIC_PID: none
   adultThresholdAge: 18 # 17 = child, 18 = adult
   defaultGender: none
   defaultDataTransfer: local
@@ -63,16 +61,16 @@ procedure:
   # If you create a key with a sub array everything in the sub array will be randomized
   # You can nest only two levels deep
   german:
+    - s-introduction
+    - s-perspectivetaking-a
+    - s-perspectivetaking-b
+    - s-perspectivetaking-c
+    - s-perspectivetaking-d
+    - s-perspectivetaking-e
+    - s-perspectivetaking-f
+    - s-perspectivetaking-g
+    - s-perspectivetaking-h
     - s-sofalsebelief-a
-    # - s-introduction
-    # - s-perspectivetaking-a
-    # - s-perspectivetaking-b
-    # - s-perspectivetaking-c
-    # - s-perspectivetaking-d
-    # - s-perspectivetaking-e
-    # - s-perspectivetaking-f
-    # - s-perspectivetaking-g
-    # - s-perspectivetaking-h
     - s-end
 
   english:
