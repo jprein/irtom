@@ -41,7 +41,7 @@ export const showLeftRightChoice = async (
 			},
 		})
 		.to(optionRight, { 
-			delay: 2,
+			delay: 2.5,
 			autoAlpha: 1, 
 			duration: 0.5,
 			pointerEvents: 'visible', 
