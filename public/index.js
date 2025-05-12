@@ -7,8 +7,6 @@ let community = '';
 let birthday = '';
 let gender = '';
 let datatransfer = '';
-// let coupon = '';
-// let PROLIFIC_PID = '';
 
 if (params.has('id')) {
 	id = params.get('id');
@@ -25,12 +23,6 @@ if (params.has('gender')) {
 if (params.has('datatransfer')) {
 	datatransfer = params.get('datatransfer');
 }
-// if (params.has('coupon')) {
-// 	coupon = params.get('coupon');
-// }
-// if (params.has('PROLIFIC_PID')) {
-// 	PROLIFIC_PID = params.get('PROLIFIC_PID');
-// }
 
 // remove all params from URL
 window.history.pushState({}, document.title, window.location.pathname);
@@ -91,52 +83,6 @@ if (datatransfer) {
 	datatransferElement.required = false;
 	datatransferElement.parentElement.style.display = 'none';
 }
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const handleCheckbox = (e) => {
-	if (e.target.checked) {
-		// close modal going to #
-		setTimeout(() => {
-			window.location.href = '#consent';
-			window.history.pushState({}, document.title, window.location.pathname);
-		}, 1000);
-	}
-};
-
-const startButton = document.getElementById('start-button');
-startButton.style.pointerEvents = 'none';
-const microphoneCheckbox = document.getElementById('input-checkbox-microphone');
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const handleInputResponse = (e) => {
-	if (e.target.selectedIndex === 3) {
-		document.getElementById(
-			'input-checkbox-microphone'
-		).parentNode.style.display = 'none';
-		startButton.style.pointerEvents = 'visible';
-		startButton.style.opacity = '1';
-	} else {
-		document.getElementById(
-			'input-checkbox-microphone'
-		).parentNode.style.display = 'block';
-		if (!microphoneCheckbox.checked) {
-			startButton.style.pointerEvents = 'none';
-			startButton.style.opacity = '0.5';
-		}
-	}
-};
-
-microphoneCheckbox.parentNode.addEventListener('click', () => {
-	navigator.mediaDevices
-		.getUserMedia({ audio: true })
-		.then(function () {
-			microphoneCheckbox.checked = true;
-			startButton.style.pointerEvents = 'auto';
-			startButton.style.opacity = '1';
-		})
-		.catch(function () {
-			console.log('No mic for you!');
-		});
-});
 
 // handle submit button
 document.querySelector('form').addEventListener('submit', (e) => {
