@@ -25,7 +25,7 @@ export const procedure = async () => {
 
 			// check if nested object is nested again
 			const isNestedAgain: boolean = currentProcedure[ni][nkey].some(
-				(e: string) => _.isPlainObject(e)
+				(e: string) => _.isPlainObject(e),
 			);
 
 			// if nested object is nested again, get nested key(s)
@@ -35,7 +35,7 @@ export const procedure = async () => {
 
 				// get new nested key order
 				const nnkeys = currentProcedure[ni][nkey].map(
-					(e: string[]) => Object.keys(e)[0]
+					(e: string[]) => Object.keys(e)[0],
 				) as string[];
 
 				// save shuffled order in data object
@@ -79,7 +79,7 @@ export const procedure = async () => {
 
 	currentProcedure = currentProcedure.map((e: string) => _.camelCase(e));
 	data.currentProcedure = currentProcedure;
-	console.log("Procedure for this community:");
+	console.log('Procedure for this community:');
 	console.table(currentProcedure);
 
 	data.totalSlides = currentProcedure.length;
@@ -87,7 +87,7 @@ export const procedure = async () => {
 	// pinda video wrapper
 	const pinda = document.getElementById('pinda') as HTMLVideoElement;
 	const pindaNeutral = document.getElementById(
-		'pinda-neutral'
+		'pinda-neutral',
 	) as HTMLVideoElement;
 
 	// ================================================
@@ -111,14 +111,14 @@ export const procedure = async () => {
 
 		// init default procedure response
 		data.procedure[currentSlide] = {
-			slideNr: data.slideCounter, 
+			slideNr: data.slideCounter,
 			slideDuration: 0,
 			response: '',
 		};
 
 		// get possible response buttons (next buttons, yes/no buttons)
 		const responseButtons = document.querySelectorAll(
-			`#${currentSlideKc} [id^=link][id$=next], #${currentSlideKc} [id^=link][id$=yes], #${currentSlideKc} [id^=link][id$=no]`
+			`#${currentSlideKc} [id^=link][id$=next], #${currentSlideKc} [id^=link][id$=yes], #${currentSlideKc} [id^=link][id$=no]`,
 		);
 
 		// start time tracking
@@ -135,7 +135,8 @@ export const procedure = async () => {
 
 		// POST LOOP Actions (i.e., either an await button was clicked or video ended)
 		// save duration of each slide
-		data.procedure[currentSlide].slideDuration = new Date().getTime() - startTime;
+		data.procedure[currentSlide].slideDuration =
+			new Date().getTime() - startTime;
 
 		if (slide !== 'sEnd') {
 			// always hide all pinda video videos
@@ -157,7 +158,7 @@ export const procedure = async () => {
 
 			// always hide div wrapper of text/audio feedback
 			const responseWrapper = document.querySelectorAll(
-				'div [id^=wrapper-s]'
+				'div [id^=wrapper-s]',
 			) as NodeListOf<HTMLDivElement>;
 			responseWrapper.forEach((e) => {
 				e.style.display = 'none';
@@ -172,7 +173,7 @@ export const procedure = async () => {
 	data.t1 = new Date();
 	data.startTime = `${data.t0.getFullYear()}-${String(data.t0.getMonth() + 1).padStart(2, '0')}-${String(data.t0.getDate()).padStart(2, '0')}_${String(data.t0.getHours()).padStart(2, '0')}:${String(data.t0.getMinutes()).padStart(2, '0')}:${String(data.t0.getSeconds()).padStart(2, '0')}`;
 	data.endTime = `${data.t1.getFullYear()}-${String(data.t1.getMonth() + 1).padStart(2, '0')}-${String(data.t1.getDate()).padStart(2, '0')}_${String(data.t1.getHours()).padStart(2, '0')}:${String(data.t1.getMinutes()).padStart(2, '0')}:${String(data.t1.getSeconds()).padStart(2, '0')}`;
-	
+
 	const completionTimeMs = data.t1.getTime() - data.t0.getTime();
 	const minutes = millisToMinutesAndSeconds(completionTimeMs).minutes;
 	const seconds = millisToMinutesAndSeconds(completionTimeMs).seconds;
@@ -180,7 +181,19 @@ export const procedure = async () => {
 
 	const datatransfer = data.datatransfer;
 	// get rid of unnecessary variables for researchers' response log
-	['currentProcedure', 'currentSlide', 'datatransfer', 'nextSlide', 'previousSlide', 'slideCounter', 'simpleSlideCounter', 't0', 't1', 'totalSlides', 'videoExtension'].forEach((key) => {
+	[
+		'currentProcedure',
+		'currentSlide',
+		'datatransfer',
+		'nextSlide',
+		'previousSlide',
+		'slideCounter',
+		'simpleSlideCounter',
+		't0',
+		't1',
+		'totalSlides',
+		'videoExtension',
+	].forEach((key) => {
 		if (key in data) {
 			delete data[key];
 		}
@@ -195,13 +208,13 @@ export const procedure = async () => {
 		uploadCsv();
 		downloadCsv();
 	}
-	
+
 	// users can leave page now
 	window.onbeforeunload = null;
 
 	console.group(
 		'%cStudy Summary',
-		'background-color: #e0005a ; color: #ffffff ; font-weight: bold ; padding: 4px ;'
+		'background-color: #e0005a ; color: #ffffff ; font-weight: bold ; padding: 4px ;',
 	);
 	console.log(`The study took ${minutes} minutes and ${seconds} seconds.`);
 	console.log('Here is what we stored:');

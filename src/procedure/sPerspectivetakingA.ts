@@ -8,9 +8,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	const slidePrefix = 's-perspectivetaking-a';
 	const choicePrefix = 's-yesnochoice';
 
-	// Store correct response 
+	// Store correct response
 	data.procedure[data.currentSlide].correct = 'yes';
-	
+
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
 	data.simpleSlideCounter++;

@@ -21,12 +21,12 @@ export const getChildrenFromParent = (parentId = 'svg') => {
 	const parent = document.getElementById(parentId) as SvgInHtml;
 	// remove the defs element from the array, since this is not defined within Illustrator
 	const childrenArray = [...parent.children].filter(
-		(element) => !(element.tagName === 'defs')
+		(element) => !(element.tagName === 'defs'),
 	);
 	let childIds = childrenArray.map((e) => e.id);
 	if (childIds.filter((e) => e === '').length > 0) {
 		console.warn(
-			`IDs are missing in the first level of the SVG (see ${parentId}). Make sure those objects have an ID.`
+			`IDs are missing in the first level of the SVG (see ${parentId}). Make sure those objects have an ID.`,
 		);
 		childIds = childIds.filter(Boolean);
 	}
@@ -110,7 +110,7 @@ export const removeChildVisibiltyStyleAttribs = (parentSlide: string) => {
 export const swapSlides = (
 	visibleSlides?: string | string[],
 	hiddenSlides?: string | string[],
-	fadeDurations?: [number, number]
+	fadeDurations?: [number, number],
 ) => {
 	// if fadeDurations is missing and if in config slideTransition has override set to true
 	// ... apply the fadeOut/fadeIn from config

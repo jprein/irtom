@@ -7,13 +7,13 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
 	const slidePrefix = 's-perspectivetaking-h';
 
-	// Store correct response 
+	// Store correct response
 	data.procedure[data.currentSlide].correct = 'left';
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
 	data.simpleSlideCounter++;
-	
+
 	// In beginning, hide response options
 	await hideLeftRightChoice(slidePrefix);
 

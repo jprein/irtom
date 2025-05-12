@@ -70,7 +70,7 @@ export const init = () => {
 	if (document.querySelectorAll('[display="none"]').length > 0) {
 		console.warn(
 			'Found elements with \'display="none"\' attribute. Make sure all objects are visible when exporting the SVG.',
-			'Use removeDisplayNone(); to bypass this temporarily. Details:'
+			'Use removeDisplayNone(); to bypass this temporarily. Details:',
 		);
 		console.warn(document.querySelectorAll('[display="none"]'));
 		removeDisplayNone();
@@ -111,7 +111,7 @@ export const init = () => {
 
 	const translation = _.zipObject(
 		Object.keys(translations),
-		Object.values(translations).map((e) => e[data.community])
+		Object.values(translations).map((e) => e[data.community]),
 	);
 
 	// iterate over all text keys and add text into foreign objects
@@ -227,5 +227,5 @@ export const init = () => {
 	global.uploadCsv = uploadCsv;
 	global.config = config;
 
-	if (config.devmode.on) console.log("data", data);
+	if (config.devmode.on) console.log('data', data);
 };

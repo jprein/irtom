@@ -6,7 +6,7 @@ import config from '../config.yaml';
 export default async ({ currentSlide, previousSlide }) => {
 	// swap slides automatically (don’t touch this)
 	swapSlides(currentSlide, previousSlide);
-	
+
 	if (!config.devmode.on) {
 		exitFullscreen();
 	}
@@ -15,15 +15,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	pinda.src = `./communities/${data.community}/video/s-end.${data.videoExtension}`;
 
 	pinda.addEventListener('ended', () => {
-		// For prolific users
-		// if (data.PROLIFIC_PID !== 'none') {
-		// 	// TODO: adjust prolific completion code
-		// 	window.location.href = `https://app.prolific.com/submissions/complete?cc=PROLIFICCOMPLETIONCODE`;
-		// }
-		// for german setting, forward to goodbye.html with coupon
 		if (data.community === 'german') {
 			gsap.to(pinda, { autoAlpha: 0, duration: 2 });
-			// window.location.href = `./goodbye.html?coupon=${data.coupon}`;
 			window.location.href = `./goodbye.html`;
 		}
 		gsap.to(pinda, { autoAlpha: 0, duration: 3 });

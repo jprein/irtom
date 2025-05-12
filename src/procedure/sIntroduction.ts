@@ -12,18 +12,26 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	const audio = document.getElementById('audio') as HTMLMediaElement;
 	const pinda = document.getElementById('pinda') as HTMLVideoElement;
-	const speaker = document.getElementById('link-s-introduction-speaker') as SvgInHtml;
-	const headphones = document.getElementById('link-s-introduction-headphones') as SvgInHtml;
-	const nextButton = document.getElementById('link-s-introduction-next') as SvgInHtml;
+	const speaker = document.getElementById(
+		'link-s-introduction-speaker',
+	) as SvgInHtml;
+	const headphones = document.getElementById(
+		'link-s-introduction-headphones',
+	) as SvgInHtml;
+	const nextButton = document.getElementById(
+		'link-s-introduction-next',
+	) as SvgInHtml;
 	const childQuestion = document.getElementById('text-introChild') as SvgInHtml;
 	const adultQuestion = document.getElementById('text-introAdult') as SvgInHtml;
 	gsap.set([headphones, nextButton], { autoAlpha: 0, pointerEvents: 'none' });
 
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
 	parentBlock.removeAttribute('visibility');
-	
-	// let preloadVideo: Response; 
-	const preloadVideo = await fetch(`./communities/${data.community}/video/s-introduction.${data.videoExtension}`);
+
+	// let preloadVideo: Response;
+	const preloadVideo = await fetch(
+		`./communities/${data.community}/video/s-introduction.${data.videoExtension}`,
+	);
 
 	const blob = await preloadVideo.blob();
 	const url = URL.createObjectURL(blob);
@@ -43,30 +51,48 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await playPromise(`./communities/${data.community}/audio/pop.mp3`);
 		gsap.to(speaker, { autoAlpha: 0 });
-		play(`./communities/${data.community}/audio/s-introduction-next.mp3`, headphones.id);
+		play(
+			`./communities/${data.community}/audio/s-introduction-next.mp3`,
+			headphones.id,
+		);
 
 		// when audio plays, next button and headphones cannot be clicked
 		audio.addEventListener('play', () => {
-			gsap.to([nextButton, headphones], { autoAlpha: 0.25, pointerEvents: 'none' });
+			gsap.to([nextButton, headphones], {
+				autoAlpha: 0.25,
+				pointerEvents: 'none',
+			});
 		});
 
 		// when pinda plays, next buttons and headphones are hidden and cannot be clicked
 		pinda.addEventListener('play', () => {
-			gsap.to([nextButton, headphones], { autoAlpha: 0, pointerEvents: 'none' });
+			gsap.to([nextButton, headphones], {
+				autoAlpha: 0,
+				pointerEvents: 'none',
+			});
 		});
 
 		// once audio ended, show next button and headphones again
 		audio.addEventListener('ended', () => {
 			if (playingTimeline) {
-				gsap.to([nextButton, headphones], { autoAlpha: 0, pointerEvents: 'none' });
+				gsap.to([nextButton, headphones], {
+					autoAlpha: 0,
+					pointerEvents: 'none',
+				});
 			} else {
-				gsap.to([nextButton, headphones], { autoAlpha: 1, pointerEvents: 'visible' });
+				gsap.to([nextButton, headphones], {
+					autoAlpha: 1,
+					pointerEvents: 'visible',
+				});
 			}
 		});
 
 		// once pinda ended, show next button and headphones again, hide pinda
 		pinda.addEventListener('ended', () => {
-			gsap.to([nextButton, headphones], { autoAlpha: 1, pointerEvents: 'visible' });
+			gsap.to([nextButton, headphones], {
+				autoAlpha: 1,
+				pointerEvents: 'visible',
+			});
 			gsap.to(pinda, { autoAlpha: 0 });
 		});
 
@@ -77,13 +103,12 @@ export default async ({ currentSlide, previousSlide }) => {
 		// only start timeline when media can play through
 		const communityDelay = {
 			headphones: {
-				'german': 16,
-				'english': 16,
-
+				german: 16,
+				english: 16,
 			},
 			nextButton: {
-				'german': 5,
-				'english': 4,
+				german: 5,
+				english: 4,
 			},
 		};
 
@@ -120,7 +145,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	await getResponse(nextButton.id);
 
 	// introduction slide determines the header of our response log
-	data.procedure[data.currentSlide].response = "";
-	data.procedure[data.currentSlide].correct = "";
-	data.procedure[data.currentSlide].score = "";
+	data.procedure[data.currentSlide].response = '';
+	data.procedure[data.currentSlide].correct = '';
+	data.procedure[data.currentSlide].score = '';
 };

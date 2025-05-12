@@ -6,8 +6,8 @@ import { showLeftRightChoice } from '../util/showLeftRightChoice';
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
 	const slidePrefix = 's-perspectivetaking-e';
-	
-	// Store correct response 
+
+	// Store correct response
 	data.procedure[data.currentSlide].correct = 'left';
 
 	// Swap slides

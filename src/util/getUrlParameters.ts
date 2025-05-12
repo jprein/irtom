@@ -39,7 +39,7 @@ export const getUrlParameters = () => {
 			Toastify({
 				escapeMarkup: false,
 				text: `🌏 <strong>Community not found.</strong> <small>Your given URL paramter was not found within procedure objects in config.yaml. You either need to define the procedure, or check your URL parameter for typos.<br><br><b>Possible values: ${Object.keys(
-					config.procedure
+					config.procedure,
 				).join(', ')}<br>Redirected to: ${
 					config.globals.defaultCommunity
 				}</small></b></small>`,
@@ -88,7 +88,11 @@ export const getUrlParameters = () => {
 	}
 
 	if (params.datatransfer) {
-		if (params.datatransfer !== 'both' && params.datatransfer !== 'server' && params.datatransfer !== 'local') {
+		if (
+			params.datatransfer !== 'both' &&
+			params.datatransfer !== 'server' &&
+			params.datatransfer !== 'local'
+		) {
 			Toastify({
 				escapeMarkup: false,
 				text: `<strong>Parameter Error</strong>: <small><code>datatransfer</code> parameter can only be: <code>both</code> or <code>server</code></small><br><br> Defaulting to <code>${config.globals.defaultDataTransfer}</code>`,
@@ -100,14 +104,6 @@ export const getUrlParameters = () => {
 	} else {
 		params.datatransfer = config.globals.defaultDataTransfer;
 	}
-
-	// if (!params.coupon) {
-	// 	params.coupon = config.globals.defaultCoupon;
-	// }
-
-	// if (!params.PROLIFIC_PID) {
-	// 	params.PROLIFIC_PID = config.globals.defaultPROLIFIC_PID;
-	// }
 
 	// if not in devmode, remove all params from URL
 	if (!config.devmode.on) {

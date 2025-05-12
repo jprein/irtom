@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -61,11 +61,14 @@
 					</div>
 					<div id="form-community" class="form-group">
 						<select id="input-community" required autocomplete="off">
-							<option>english</option>
-							<option selected="selected">german</option>
-							<!-- <option>kikuyu</option> -->
-							<!-- <option>swahili</option> -->
-							<!-- <option>turkish</option> -->
+							<option id="chooseCommunity" value="" selected disabled>
+								Bitte auswählen...
+							</option>
+							<option id="english">Englisch</option>
+							<option id="german">Deutsch</option>
+							<!-- <option id="kikuyu">kikuyu</option> -->
+							<!-- <option id="swahili">swahili</option> -->
+							<!-- <option id="turkish">turkish</option> -->
 						</select>
 						<label for="input-community" class="control-label" id="community"
 							>Gemeinschaft</label
@@ -89,6 +92,9 @@
 					</div>
 					<div id="form-gender" class="form-group">
 						<select id="input-gender" autocomplete="off" required>
+							<option id="chooseGender" value="" selected disabled>
+								Bitte auswählen...
+							</option>
 							<option id="female">weiblich</option>
 							<option id="male">männlich</option>
 							<option id="diverse">divers</option>
@@ -101,23 +107,16 @@
 							>Geschlecht</label
 						><i class="bar"></i>
 					</div>
-					<div class="checkbox-microphone">
-						<label>
-							<input
-								id="input-checkbox-microphone"
-								type="checkbox"
-								disabled
-								autocomplete="off"
-							/>
-							<i class="helper"></i>
-							<span id="microphone"></span>
-						</label>
-					</div>
 					<div id="form-datatransfer" class="form-group">
 						<select id="input-datatransfer" required autocomplete="off">
-							<option selected="selected">Local Download</option>
-							<option>Leuphana Server</option>
-							<option>Leuphana Server &amp; Local Download</option>
+							<option id="chooseDatatransfer" value="" selected disabled>
+								Bitte auswählen...
+							</option>
+							<option id="download">Lokaler Download</option>
+							<option id="upload">Upload auf Leuphana Server</option>
+							<option id="downupload">
+								Lokaler Download &amp; Upload auf Leuphana Server
+							</option>
 						</select>
 						<label
 							for="input-datatransfer"
@@ -175,12 +174,7 @@
 						</div>
 					</div>
 					<div class="button-container">
-						<button
-							id="start-button"
-							style="opacity: 0.5"
-							type="submit"
-							class="button"
-						>
+						<button id="start-button" type="submit" class="button">
 							<span id="startButton"></span>
 						</button>
 					</div>

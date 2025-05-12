@@ -65,11 +65,25 @@ p {
 }
 
 .toast-error {
-	background: linear-gradient(to bottom, #e31c6a, #e0185f, #dc1655, #d8164a, #d31740) !important;
+	background: linear-gradient(
+		to bottom,
+		#e31c6a,
+		#e0185f,
+		#dc1655,
+		#d8164a,
+		#d31740
+	) !important;
 }
 
 .toast-info {
-	background: linear-gradient(to bottom, #1cafe3, #1aaadf, #18a4db, #179fd7, #179ad3) !important;
+	background: linear-gradient(
+		to bottom,
+		#1cafe3,
+		#1aaadf,
+		#18a4db,
+		#179fd7,
+		#179ad3
+	) !important;
 }
 
 textarea {
@@ -145,10 +159,18 @@ input[type='checkbox']:checked + .check-trail .check-handler::before {
 	margin: 7% auto;
 	padding: 0.75rem 3rem;
 	cursor: pointer;
-	-webkit-transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
-	transition: background-color 0.28s ease, color 0.28s ease, box-shadow 0.28s ease;
+	-webkit-transition:
+		background-color 0.28s ease,
+		color 0.28s ease,
+		box-shadow 0.28s ease;
+	transition:
+		background-color 0.28s ease,
+		color 0.28s ease,
+		box-shadow 0.28s ease;
 	overflow: hidden;
-	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+	box-shadow:
+		0 2px 2px 0 rgba(0, 0, 0, 0.14),
+		0 3px 1px -2px rgba(0, 0, 0, 0.2),
 		0 1px 5px 0 rgba(0, 0, 0, 0.12);
 	border-radius: 50px;
 }
@@ -176,15 +198,26 @@ input[type='checkbox']:checked + .check-trail .check-handler::before {
 }
 .button:hover {
 	color: #29485d;
-	box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12),
+	box-shadow:
+		0 6px 10px 0 rgba(0, 0, 0, 0.14),
+		0 1px 18px 0 rgba(0, 0, 0, 0.12),
 		0 3px 5px -1px rgba(0, 0, 0, 0.2);
 }
 .button:active::before,
 .button:focus::before {
-	-webkit-transition: opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
-	transition: opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
-	transition: transform 1.12s ease, opacity 0.28s ease 0.364s;
-	transition: transform 1.12s ease, opacity 0.28s ease 0.364s, -webkit-transform 1.12s ease;
+	-webkit-transition:
+		opacity 0.28s ease 0.364s,
+		-webkit-transform 1.12s ease;
+	transition:
+		opacity 0.28s ease 0.364s,
+		-webkit-transform 1.12s ease;
+	transition:
+		transform 1.12s ease,
+		opacity 0.28s ease 0.364s;
+	transition:
+		transform 1.12s ease,
+		opacity 0.28s ease 0.364s,
+		-webkit-transform 1.12s ease;
 	-webkit-transform: translate(-50%, -50%) scale(1);
 	transform: translate(-50%, -50%) scale(1);
 	opacity: 0;

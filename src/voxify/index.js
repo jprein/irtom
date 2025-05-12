@@ -50,7 +50,7 @@ voxSvg = voxSvg.replace(/#image\d*/g, (match) => {
 // fs.writeFile(path.resolve(__dirname, '../assets/experiment-voxified.svg'), stringify(svgDom));
 fs.writeFile(
 	path.resolve(__dirname, '../assets/experiment-voxified.svg'),
-	voxSvg
+	voxSvg,
 );
 
 console.log('------------------------------------------------------------');

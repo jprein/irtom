@@ -35,7 +35,7 @@ declare let data: {
 	birthday: string;
 	age: number;
 	agegroup: 'child' | 'adult';
-	datatransfer: 'server' | 'local' |'both';
+	datatransfer: 'server' | 'local' | 'both';
 	videoExtension: 'mov' | 'webm';
 	// PROLIFIC_PID: string;
 	// coupon: string;
