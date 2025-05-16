@@ -3,6 +3,7 @@ import config from '../config.yaml';
 import type { SvgInHtml } from '../types';
 import { play, playPromise } from './audio';
 import { getResponse } from './getResponse';
+import { head } from 'lodash';
 
 export const showYesNoChoice = async (
 	slidePrefix: string,
@@ -118,7 +119,7 @@ export const showYesNoChoice = async (
 				autoAlpha: 0.9,
 				duration: 0.6,
 			})
-			.to([yesGroup, noGroup], {
+			.to([yesGroup, noGroup, headphones], {
 				autoAlpha: 1,
 				duration: 0.5,
 				pointerEvents: 'visible',
@@ -193,7 +194,7 @@ export const showYesNoChoice = async (
 		const randomResponse =
 			responseOption[Math.floor(Math.random() * responseOption.length)];
 		await playPromise(
-			`./communities/${data.community}/audio/neutral-resp-${randomResponse}.mp3`,
+			`./communities/${data.community}/audio/neutral-response-${randomResponse}.mp3`,
 		);
 	}
 };

@@ -9,6 +9,9 @@ export const showLeftRightChoice = async (slidePrefix: string) => {
 
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
+	const headphones = document.getElementById(
+		`link-${slidePrefix}-headphones`,
+	) as SvgInHtml;
 	const optionLeft = document.getElementById(
 		`${slidePrefix}-left`,
 	) as SvgInHtml;
@@ -52,6 +55,13 @@ export const showLeftRightChoice = async (slidePrefix: string) => {
 			onStart: () => {
 				play(`./communities/${data.community}/audio/${slidePrefix}-right.mp3`);
 			},
+			onComplete: () => {
+				gsap.to(headphones, {
+					autoAlpha: 1,
+					pointerEvents: 'visible',
+					cursor: 'pointer',
+				});
+			},
 		});
 
 	// if headphone is clicked, play audio again
@@ -64,7 +74,7 @@ export const showLeftRightChoice = async (slidePrefix: string) => {
 	function handlePlay() {
 		gsap
 			.timeline()
-			.set([optionLeft, optionRight], {
+			.set([optionLeft, optionRight, subject], {
 				autoAlpha: 0,
 				pointerEvents: 'none',
 				cursor: 'default',
@@ -118,7 +128,7 @@ export const showLeftRightChoice = async (slidePrefix: string) => {
 		const randomResponse =
 			responseOption[Math.floor(Math.random() * responseOption.length)];
 		await playPromise(
-			`./communities/${data.community}/audio/neutral-resp-${randomResponse}.mp3`,
+			`./communities/${data.community}/audio/neutral-response-${randomResponse}.mp3`,
 		);
 	}
 };

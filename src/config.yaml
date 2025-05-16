@@ -62,16 +62,17 @@ procedure:
   # You can nest only two levels deep
   german:
     - s-introduction
-    - s-perspectivetaking-a
-    - s-perspectivetaking-b
-    - s-perspectivetaking-c
-    - s-perspectivetaking-d
-    - s-perspectivetaking-e
-    - s-perspectivetaking-f
-    - s-perspectivetaking-g
-    - s-perspectivetaking-h
-    - s-knowledgeaccess-c
-    - s-sofalsebelief-a
+    - s-perspectivetaking-one-a
+    - s-perspectivetaking-one-b
+    - s-perspectivetaking-one-c
+    - s-perspectivetaking-one-d
+    - s-perspectivetaking-two-a
+    - s-perspectivetaking-two-b
+    - s-perspectivetaking-two-c
+    - s-perspectivetaking-two-d
+    - s-knowledgeaccess-a
+    - s-knowledgeaccess-b
+    - s-falsebelief-two-a
     - s-end
 
   english:
