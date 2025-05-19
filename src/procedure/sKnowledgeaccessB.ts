@@ -24,16 +24,16 @@ export default async ({ currentSlide, previousSlide }) => {
 	gsap.defaults({ ease: 'none' });
 
 	// Get all relevant elements
-	const girlHandsUp = document.getElementById(
+	const girlHandsup = document.getElementById(
 		`${slidePrefix}-girl-handsup`,
 	) as SvgInHtml;
-	const girlHandsDown = document.getElementById(
+	const girlHandsdown = document.getElementById(
 		`${slidePrefix}-girl-handsdown`,
 	) as SvgInHtml;
-	const boyHandsUp = document.getElementById(
+	const boyHandsup = document.getElementById(
 		`${slidePrefix}-boy-handsup`,
 	) as SvgInHtml;
-	const boyHandsDown = document.getElementById(
+	const boyHandsdown = document.getElementById(
 		`${slidePrefix}-boy-handsdown`,
 	) as SvgInHtml;
 	const boxOpen = document.getElementById(
@@ -44,8 +44,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	) as SvgInHtml;
 
 	// Initially hide some agent elements
-	gsap.set(boyHandsDown, { x: -1200 });
-	gsap.set([girlHandsUp, boyHandsUp, boxOpen], { autoAlpha: 0 });
+	gsap.set(boyHandsdown, { x: -1200 });
+	gsap.set([girlHandsup, boyHandsup, boxOpen], { autoAlpha: 0 });
 
 	// Play initial audio
 	await playPromise(
@@ -55,13 +55,13 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Animation sequence
 	await gsap
 		.timeline()
-		.to([girlHandsDown, boxClosed], {
+		.to([girlHandsdown, boxClosed], {
 			delay: 1.5,
 			autoAlpha: 0,
 			duration: 0.1,
 		})
 		.to(
-			[girlHandsUp, boxOpen],
+			[girlHandsup, boxOpen],
 			{
 				autoAlpha: 1,
 				duration: 0.1,
@@ -71,9 +71,9 @@ export default async ({ currentSlide, previousSlide }) => {
 			},
 			'<',
 		)
-		.to([girlHandsUp, boxOpen], { delay: 4, autoAlpha: 0, duration: 0.1 })
-		.to([girlHandsDown, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
-		.to(girlHandsDown, {
+		.to([girlHandsup, boxOpen], { delay: 4, autoAlpha: 0, duration: 0.1 })
+		.to([girlHandsdown, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
+		.to(girlHandsdown, {
 			delay: 0.5,
 			x: 1100,
 			duration: 3,
@@ -81,7 +81,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				play(`./communities/${data.community}/audio/${slidePrefix}-3.mp3`);
 			},
 		})
-		.to(boyHandsDown, {
+		.to(boyHandsdown, {
 			delay: 2.5,
 			x: 0,
 			duration: 3,
@@ -90,12 +90,12 @@ export default async ({ currentSlide, previousSlide }) => {
 			},
 		})
 		.to(boxClosed, { delay: 4, x: 50, y: -400, duration: 0 })
-		.to(boyHandsDown, { delay: 1, autoAlpha: 0, duration: 0.1 })
-		.to(boyHandsUp, { autoAlpha: 1, duration: 0.1 }, '<')
-		.to(boxClosed, { y: -700, duration: 1, repeat: 2, yoyo: true })
-		.to(boyHandsUp, { delay: 1, autoAlpha: 0, duration: 0.1 })
+		.to(boyHandsdown, { delay: 1, autoAlpha: 0, duration: 0.1 })
+		.to(boyHandsup, { autoAlpha: 1, duration: 0.1 }, '<')
+		.to(boxClosed, { x: 0, y: -700, duration: 1, repeat: 2, yoyo: true })
+		.to(boyHandsup, { delay: 1, autoAlpha: 0, duration: 0.1 })
 		.to(
-			boyHandsDown,
+			boyHandsdown,
 			{
 				autoAlpha: 1,
 				duration: 0.1,
@@ -106,7 +106,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			'<',
 		)
 		.to(boxClosed, { y: 0, duration: 1 })
-		.to(boyHandsDown, { delay: 2, x: -1200, duration: 3 });
+		.to(boyHandsdown, { delay: 2, x: -1200, duration: 3 });
 
 	// Short break before showing response options
 	await sleep(1000);

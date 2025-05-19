@@ -22,13 +22,13 @@ export default async ({ currentSlide, previousSlide }) => {
 	await hideYesNoChoice(choicePrefix);
 
 	// Add trial-specific animation
-	const boyHandsDown = document.getElementById(
+	const boyHandsdown = document.getElementById(
 		`${slidePrefix}-boy-handsdown`,
 	) as SvgInHtml;
 	const boyBall = document.getElementById(
 		`${slidePrefix}-boy-ball`,
 	) as SvgInHtml;
-	const boyHandsUp = document.getElementById(
+	const boyHandsup = document.getElementById(
 		`${slidePrefix}-boy-handsup`,
 	) as SvgInHtml;
 	const girl = document.getElementById(`${slidePrefix}-girl`) as SvgInHtml;
@@ -43,13 +43,13 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Initially hide some elements
 	gsap.set([boyBall, girl], { x: -1200 });
-	gsap.set([boyHandsDown, boyHandsUp, boxOpen], {
+	gsap.set([boyHandsdown, boyHandsup, boxOpen], {
 		autoAlpha: 0,
 	});
 
 	await gsap
 		.timeline()
-		.to(null, {
+		.to(boyBall, {
 			onStart: () => {
 				playPromise(
 					`./communities/${data.community}/audio/${slidePrefix}-1.mp3`,
@@ -68,7 +68,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		})
 		.to([boyBall, boxClosed], { delay: 4, autoAlpha: 0, duration: 0.1 })
 		.to(
-			[boyHandsUp, boxOpen],
+			[boyHandsup, boxOpen],
 			{
 				autoAlpha: 1,
 				duration: 0.1,
@@ -80,9 +80,9 @@ export default async ({ currentSlide, previousSlide }) => {
 			},
 			'<',
 		)
-		.to([boyHandsUp, boxOpen], { delay: 4, autoAlpha: 0, duration: 0.1 })
-		.to([boyHandsDown, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
-		.to(boyHandsDown, {
+		.to([boyHandsup, boxOpen], { delay: 4, autoAlpha: 0, duration: 0.1 })
+		.to([boyHandsdown, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
+		.to(boyHandsdown, {
 			delay: 1,
 			x: 1200,
 			duration: 3,
