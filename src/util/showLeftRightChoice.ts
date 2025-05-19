@@ -29,10 +29,11 @@ export const showLeftRightChoice = async (slidePrefix: string) => {
 	await gsap
 		.timeline()
 		.to(blurr, {
-			autoAlpha: 0.9,
+			delay: 1,
+			autoAlpha: 0.7,
 			duration: 0.6,
 		})
-		.to(subject || {}, {
+		.to(subject, {
 			autoAlpha: 1,
 			duration: 0.5,
 		})
@@ -47,7 +48,7 @@ export const showLeftRightChoice = async (slidePrefix: string) => {
 			},
 		})
 		.to(optionRight, {
-			delay: 2.5,
+			delay: 2,
 			autoAlpha: 1,
 			duration: 0.5,
 			pointerEvents: 'visible',
@@ -89,13 +90,13 @@ export const showLeftRightChoice = async (slidePrefix: string) => {
 	function handleEnded() {
 		gsap
 			.timeline()
-			.set([optionLeft, optionRight], {
+			.set([optionLeft, optionRight, subject], {
 				autoAlpha: 1,
 				pointerEvents: 'visible',
 				cursor: 'pointer',
 			})
 			.to(blurr, {
-				autoAlpha: 0.9,
+				autoAlpha: 0.7,
 				duration: 0.6,
 			});
 	}

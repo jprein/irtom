@@ -1,7 +1,6 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
-import { sleep } from '../util/helpers';
 import { hideLeftRightChoice } from '../util/hideLeftRightChoice';
 import { showLeftRightChoice } from '../util/showLeftRightChoice';
 import { play, playPromise } from '../util/audio';
@@ -46,8 +45,12 @@ export default async ({ currentSlide, previousSlide }) => {
 	await gsap
 		.timeline()
 		.to(girlHandsdown, {
+			delay: 1,
 			autoAlpha: 0,
 			duration: 0.1,
+			onStart: () => {
+				play(`./communities/${data.community}/audio/${slidePrefix}-2.mp3`);
+			},
 		})
 		.to(
 			girlHandsup,
@@ -68,15 +71,18 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 1,
 				duration: 0.1,
 				onComplete: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}-2.mp3`);
+					play(`./communities/${data.community}/audio/${slidePrefix}-3.mp3`);
 				},
 			},
 			'<',
 		)
 		.to(boyHandsdown, {
-			delay: 4,
+			delay: 2,
 			autoAlpha: 0,
 			duration: 0.1,
+			onStart: () => {
+				play(`./communities/${data.community}/audio/${slidePrefix}-4.mp3`);
+			},
 		})
 		.to(
 			boyHandsup,

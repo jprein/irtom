@@ -80,14 +80,14 @@ export default async ({ currentSlide, previousSlide }) => {
 			},
 		})
 		.to(boyStanding, {
-			delay: 9,
+			delay: 4,
 			x: 50,
 			duration: 2,
 			onStart: () => {
 				play(`./communities/${data.community}/audio/${slidePrefix}-4.mp3`);
 			},
 		})
-		.to(boyStanding, { delay: 3, autoAlpha: 0, duration: 0.1 })
+		.to(boyStanding, { delay: 5, autoAlpha: 0, duration: 0.1 })
 		.to(boyDigging, { autoAlpha: 1, duration: 0.1 }, '<')
 		.to(dirt2, { delay: 1, autoAlpha: 1, duration: 0.1 })
 		.to(treasure, { delay: 1, autoAlpha: 1, duration: 0.1 })
@@ -109,7 +109,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				play(`./communities/${data.community}/audio/${slidePrefix}-5.mp3`);
 			},
 		})
-		.to(girlHiding, { delay: 1, autoAlpha: 0, duration: 0.1 });
+		.to(girlHiding, { delay: 0.5, autoAlpha: 0, duration: 0.1 });
 
 	// Short break before showing response options
 	await sleep(1000);

@@ -74,8 +74,11 @@ procedure:
     - s-knowledgeaccess-a
     - s-knowledgeaccess-b
     - s-knowledgeaccess-c
+    # - s-diversedesires-a
+    # - s-diversedesires-b
+    # - s-diversedesires-c
     - s-falsebelief-two-a
-    - s-end
+    # - s-end
 
   english:
     - s-introduction

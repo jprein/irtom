@@ -47,7 +47,8 @@ export const showYesNoChoice = async (
 		await gsap
 			.timeline()
 			.to(blurr, {
-				autoAlpha: 0.9,
+				delay: 1,
+				autoAlpha: 0.7,
 				duration: 0.6,
 			})
 			.to(yesGroup, {
@@ -116,7 +117,7 @@ export const showYesNoChoice = async (
 		await gsap
 			.timeline()
 			.to(blurr, {
-				autoAlpha: 0.9,
+				autoAlpha: 0.7,
 				duration: 0.6,
 			})
 			.to([yesGroup, noGroup, headphones], {
@@ -158,7 +159,7 @@ export const showYesNoChoice = async (
 				cursor: 'pointer',
 			})
 			.to(blurr, {
-				autoAlpha: 0.9,
+				autoAlpha: 0.7,
 				duration: 0.6,
 			});
 	}
