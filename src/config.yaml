@@ -51,8 +51,8 @@ globals:
   defaultGender: none
   defaultDataTransfer: local
   slideGapDuration: 750 # delay for most slides before transitioning to next
-  playYesNoAudio: 2
-  playResponseFeedback: 1
+  playYesNoAudio: 3
+  playResponseFeedback: 3
   minimumTextInputLength: 4
 
 procedure:
@@ -62,6 +62,7 @@ procedure:
   # You can nest only two levels deep
   german:
     - s-introduction
+    - s-names
     - s-perspectivetaking-one-a
     - s-perspectivetaking-one-b
     - s-perspectivetaking-one-c
