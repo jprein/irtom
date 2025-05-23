@@ -3,7 +3,6 @@ import config from '../config.yaml';
 import type { SvgInHtml } from '../types';
 import { play, playPromise } from './audio';
 import { getResponse } from './getResponse';
-import { head } from 'lodash';
 
 export const showYesNoChoice = async (
 	slidePrefix: string,

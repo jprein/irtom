@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 
-export const hideLeftRightChoice = async (slidePrefix: string) => {
+export const hideTwoOptions = async (slidePrefix: string) => {
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
 	const headphones = document.getElementById(

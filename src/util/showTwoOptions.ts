@@ -4,7 +4,7 @@ import type { SvgInHtml } from '../types';
 import { play, playPromise } from './audio';
 import { getResponse } from './getResponse';
 
-export const showLeftRightChoice = async (slidePrefix: string) => {
+export const showTwoOptions = async (slidePrefix: string) => {
 	const audio = document.getElementById('audio') as HTMLMediaElement;
 
 	// Get elements for binary response format (yes/no animated nodding)
@@ -112,12 +112,17 @@ export const showLeftRightChoice = async (slidePrefix: string) => {
 	// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
 	data.procedure[data.currentSlide].response = response.id.split('-').pop();
 
-	// Check if the response is correct, and store the score (0 = incorrect, 1 = correct)
-	data.procedure[data.currentSlide].score =
-		data.procedure[data.currentSlide].response ===
-		data.procedure[data.currentSlide].correct
-			? 1
-			: 0;
+	// If the correct answer is empty, set score to empty
+	if (data.procedure[data.currentSlide].correct === '') {
+		data.procedure[data.currentSlide].score = '';
+		// Otherwise, check if the response is correct, and store the score (0 = incorrect, 1 = correct)
+	} else {
+		data.procedure[data.currentSlide].score =
+			data.procedure[data.currentSlide].response ===
+			data.procedure[data.currentSlide].correct
+				? 1
+				: 0;
+	}
 
 	// Remove Event Listeners after response
 	audio.removeEventListener('play', handlePlay);

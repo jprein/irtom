@@ -3,8 +3,8 @@ import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
 import { play, playPromise } from '../util/audio';
 import { sleep } from '../util/helpers';
-import { hideLeftRightChoice } from '../util/hideLeftRightChoice';
-import { showLeftRightChoice } from '../util/showLeftRightChoice';
+import { hideTwoOptions } from '../util/hideTwoOptions';
+import { showTwoOptions } from '../util/showTwoOptions';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -18,7 +18,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// In beginning, hide response options
-	await hideLeftRightChoice(slidePrefix);
+	await hideTwoOptions(slidePrefix);
 
 	// Trial-specific animation
 	gsap.defaults({ ease: 'none' });
@@ -115,5 +115,5 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(1000);
 
 	// Show left/right response options and store participant response
-	await showLeftRightChoice(slidePrefix);
+	await showTwoOptions(slidePrefix);
 };

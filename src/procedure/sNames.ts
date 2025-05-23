@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
-import { hideLeftRightChoice } from '../util/hideLeftRightChoice';
+import { hideTwoOptions } from '../util/hideTwoOptions';
 import { getResponse } from '../util/getResponse';
 import { play, playPromise } from '../util/audio';
 
@@ -17,7 +17,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// In beginning, hide response options
-	await hideLeftRightChoice(slidePrefix);
+	await hideTwoOptions(slidePrefix);
 
 	// Trial-specific animation
 	// Get all relevant elements
@@ -240,7 +240,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			await playPromise(
 				`./communities/${data.community}/audio/${slidePrefix}-incorrect.mp3`,
 			);
-			await hideLeftRightChoice(slidePrefix);
+			await hideTwoOptions(slidePrefix);
 			await showNames();
 			await showChoice();
 		}
