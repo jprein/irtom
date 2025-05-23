@@ -11,7 +11,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	swapSlides(currentSlide, previousSlide);
 
 	const audio = document.getElementById('audio') as HTMLMediaElement;
-	const pinda = document.getElementById('pinda') as HTMLVideoElement;
+	// const pinda = document.getElementById('pinda') as HTMLVideoElement;
 	const speaker = document.getElementById(
 		'link-s-introduction-speaker',
 	) as SvgInHtml;
@@ -29,12 +29,12 @@ export default async ({ currentSlide, previousSlide }) => {
 	parentBlock.removeAttribute('visibility');
 
 	// let preloadVideo: Response;
-	const preloadVideo = await fetch(
-		`./communities/${data.community}/video/s-introduction.${data.videoExtension}`,
-	);
+	// const preloadVideo = await fetch(
+	// 	`./communities/${data.community}/video/s-introduction.${data.videoExtension}`,
+	// );
 
-	const blob = await preloadVideo.blob();
-	const url = URL.createObjectURL(blob);
+	// const blob = await preloadVideo.blob();
+	// const url = URL.createObjectURL(blob);
 	parentBlock.setAttribute('visibility', 'hidden');
 
 	if (data.agegroup === 'adult') {
@@ -50,11 +50,16 @@ export default async ({ currentSlide, previousSlide }) => {
 		if (!config.devmode.on) startFullscreen();
 
 		await playPromise(`./communities/${data.community}/audio/pop.mp3`);
+		gsap.to([nextButton, headphones], {
+			autoAlpha: 1,
+			pointerEvents: 'visible',
+		});
 		gsap.to(speaker, { autoAlpha: 0 });
-		play(
-			`./communities/${data.community}/audio/s-introduction-next.mp3`,
-			headphones.id,
-		);
+
+		// play(
+		// 	`./communities/${data.community}/audio/s-introduction-next.mp3`,
+		// 	headphones.id,
+		// );
 
 		// when audio plays, next button and headphones cannot be clicked
 		audio.addEventListener('play', () => {
@@ -65,12 +70,12 @@ export default async ({ currentSlide, previousSlide }) => {
 		});
 
 		// when pinda plays, next buttons and headphones are hidden and cannot be clicked
-		pinda.addEventListener('play', () => {
-			gsap.to([nextButton, headphones], {
-				autoAlpha: 0,
-				pointerEvents: 'none',
-			});
-		});
+		// pinda.addEventListener('play', () => {
+		// 	gsap.to([nextButton, headphones], {
+		// 		autoAlpha: 0,
+		// 		pointerEvents: 'none',
+		// 	});
+		// });
 
 		// once audio ended, show next button and headphones again
 		audio.addEventListener('ended', () => {
@@ -88,17 +93,17 @@ export default async ({ currentSlide, previousSlide }) => {
 		});
 
 		// once pinda ended, show next button and headphones again, hide pinda
-		pinda.addEventListener('ended', () => {
-			gsap.to([nextButton, headphones], {
-				autoAlpha: 1,
-				pointerEvents: 'visible',
-			});
-			gsap.to(pinda, { autoAlpha: 0 });
-		});
+		// pinda.addEventListener('ended', () => {
+		// 	gsap.to([nextButton, headphones], {
+		// 		autoAlpha: 1,
+		// 		pointerEvents: 'visible',
+		// 	});
+		// 	gsap.to(pinda, { autoAlpha: 0 });
+		// });
 
 		// start pinda video
-		pinda.src = url;
-		pinda.play();
+		// pinda.src = url;
+		// pinda.play();
 
 		// only start timeline when media can play through
 		const communityDelay = {
