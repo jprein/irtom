@@ -37,8 +37,6 @@ declare let data: {
 	agegroup: 'child' | 'adult';
 	datatransfer: 'server' | 'local' | 'both';
 	videoExtension: 'mov' | 'webm';
-	// PROLIFIC_PID: string;
-	// coupon: string;
 	t0: Date;
 	t1: Date;
 	startTime: string;
@@ -52,6 +50,7 @@ declare let data: {
 	nextSlide: string;
 	currentProcedure: string[];
 	simpleSlideCounter: number;
+	emoji: string;
 	procedure: {
 		sIntroduction: {
 			slideNr: number;

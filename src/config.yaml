@@ -23,6 +23,7 @@ css:
       '#s-yesnochoice-yes',
       '#s-yesnochoice-no',
       '[id$=left]',
+      '[id$=center]',
       '[id$=right]',
     ]
   # will be used within the init process to to add a zoom animation on hover
@@ -36,6 +37,7 @@ css:
       '#s-yesnochoice-yes',
       '#s-yesnochoice-no',
       '[id$=left]',
+      '[id$=center]',
       '[id$=right]',
     ]
   pinda: # applies for pinda and neutral pinda videos
@@ -61,25 +63,34 @@ procedure:
   # If you create a key with a sub array everything in the sub array will be randomized
   # You can nest only two levels deep
   german:
-    - s-introduction
-    - s-names
-    - s-perspectivetaking-one-a
-    - s-perspectivetaking-one-b
-    - s-perspectivetaking-one-c
-    - s-perspectivetaking-one-d
-    - s-perspectivetaking-two-a
-    - s-perspectivetaking-two-b
-    - s-perspectivetaking-two-c
-    - s-perspectivetaking-two-d
-    - s-knowledgeaccess-a
-    - s-knowledgeaccess-b
-    - s-knowledgeaccess-c
-    - s-diversedesires-a
-    - s-diversedesires-b
-    - s-diversedesires-c
-    - s-diversedesires-d
-    - s-falsebelief-two-a
-    - s-end
+    # - s-introduction
+    - s-emojichoice
+    # - s-yesnotraining-a
+    # - s-yesnotraining-b
+    # - s-yesnotraining-c
+    # - s-yesnotraining-d
+    # - s-leftrighttraining-a
+    # - s-leftrighttraining-b
+    # - s-leftrighttraining-c
+    # - s-leftrighttraining-d
+    # - s-names
+    # - s-perspectivetaking-one-a
+    # - s-perspectivetaking-one-b
+    # - s-perspectivetaking-one-c
+    # - s-perspectivetaking-one-d
+    # - s-perspectivetaking-two-a
+    # - s-perspectivetaking-two-b
+    # - s-perspectivetaking-two-c
+    # - s-perspectivetaking-two-d
+    # - s-knowledgeaccess-a
+    # - s-knowledgeaccess-b
+    # - s-knowledgeaccess-c
+    # - s-diversedesires-a
+    # - s-diversedesires-b
+    # - s-diversedesires-c
+    # - s-diversedesires-d
+    # - s-falsebelief-two-a
+    # - s-end
 
   english:
     - s-introduction
