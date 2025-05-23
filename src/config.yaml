@@ -18,10 +18,14 @@ css:
       '#link-s-introduction-speaker',
       '[id^=link][id$=next]',
       '[id^=link][id$=headphones]',
-      '[id^=link][id$=yes]',
-      '[id^=link][id$=no]',
       '#s-yesnochoice-yes',
       '#s-yesnochoice-no',
+      '#s-yesnotraining-a-yellow-yes',
+      '#s-yesnotraining-a-blue-yes',
+      '#s-yesnotraining-a-purple-yes',
+      '#s-yesnotraining-a-yellow-no',
+      '#s-yesnotraining-a-blue-no',
+      '#s-yesnotraining-a-purple-no',
       '[id$=left]',
       '[id$=center]',
       '[id$=right]',
@@ -32,10 +36,14 @@ css:
       '#link-s-introduction-speaker',
       '[id^=link][id$=next]',
       '[id^=link][id$=headphones]',
-      '[id^=link][id$=yes]',
-      '[id^=link][id$=no]',
       '#s-yesnochoice-yes',
       '#s-yesnochoice-no',
+      '#s-yesnotraining-a-yellow-yes',
+      '#s-yesnotraining-a-blue-yes',
+      '#s-yesnotraining-a-purple-yes',
+      '#s-yesnotraining-a-yellow-no',
+      '#s-yesnotraining-a-blue-no',
+      '#s-yesnotraining-a-purple-no',
       '[id$=left]',
       '[id$=center]',
       '[id$=right]',
@@ -64,8 +72,8 @@ procedure:
   # You can nest only two levels deep
   german:
     # - s-introduction
-    - s-emojichoice
-    # - s-yesnotraining-a
+    # - s-emojichoice
+    - s-yesnotraining-a
     # - s-yesnotraining-b
     # - s-yesnotraining-c
     # - s-yesnotraining-d
@@ -74,7 +82,7 @@ procedure:
     # - s-leftrighttraining-c
     # - s-leftrighttraining-d
     # - s-names
-    # - s-perspectivetaking-one-a
+    - s-perspectivetaking-one-a
     # - s-perspectivetaking-one-b
     # - s-perspectivetaking-one-c
     # - s-perspectivetaking-one-d

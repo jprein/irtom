@@ -9,25 +9,60 @@ export const hideYesNoChoice = async (choicePrefix: string) => {
 	const headphones = document.getElementById(
 		`link-${choicePrefix}-headphones`,
 	) as SvgInHtml;
-	const yesGroup = document.getElementById(`${choicePrefix}-yes`) as SvgInHtml;
-	const yesFace = document.getElementById(
-		`${choicePrefix}-face-yes`,
+
+	// Hide all yes/no choice elements
+	const blueYes = document.getElementById(
+		`${choicePrefix}-blue-yes`,
 	) as SvgInHtml;
-	const yesFacefeatures = document.getElementById(
-		`${choicePrefix}-facefeatures-yes`,
+	const blueNo = document.getElementById(
+		`${choicePrefix}-blue-no`,
 	) as SvgInHtml;
-	const noGroup = document.getElementById(`${choicePrefix}-no`) as SvgInHtml;
-	const noFace = document.getElementById(
-		`${choicePrefix}-face-no`,
+	const yellowYes = document.getElementById(
+		`${choicePrefix}-yellow-yes`,
 	) as SvgInHtml;
-	const noFacefeatures = document.getElementById(
-		`${choicePrefix}-facefeatures-no`,
+	const yellowNo = document.getElementById(
+		`${choicePrefix}-yellow-no`,
+	) as SvgInHtml;
+	const purpleYes = document.getElementById(
+		`${choicePrefix}-purple-yes`,
+	) as SvgInHtml;
+	const purpleNo = document.getElementById(
+		`${choicePrefix}-purple-no`,
 	) as SvgInHtml;
 
-	gsap.set([yesGroup, noGroup, blurr, headphones], {
-		autoAlpha: 0,
-		pointerEvents: 'none',
-	});
+	// only get face features for choosen emoji color
+	const yesFace = document.getElementById(
+		`${choicePrefix}-${data.emoji}-face-yes`,
+	) as SvgInHtml;
+	const yesFacefeatures = document.getElementById(
+		`${choicePrefix}-${data.emoji}-facefeatures-yes`,
+	) as SvgInHtml;
+	const noFace = document.getElementById(
+		`${choicePrefix}-${data.emoji}-face-no`,
+	) as SvgInHtml;
+	const noFacefeatures = document.getElementById(
+		`${choicePrefix}-${data.emoji}-facefeatures-no`,
+	) as SvgInHtml;
+
+	// hide elements
+	gsap.set(
+		[
+			blueYes,
+			blueNo,
+			yellowYes,
+			yellowNo,
+			purpleYes,
+			purpleNo,
+			blurr,
+			headphones,
+		],
+		{
+			autoAlpha: 0,
+			pointerEvents: 'none',
+		},
+	);
+
+	// set transform origin to center for yes/no faces
 	gsap.set([yesFace, yesFacefeatures, noFace, noFacefeatures], {
 		transformOrigin: '50% 50%',
 	});

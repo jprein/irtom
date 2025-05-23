@@ -17,19 +17,29 @@ export const showYesNoChoice = async (
 	const headphones = document.getElementById(
 		`link-${choicePrefix}-headphones`,
 	) as SvgInHtml;
-	const yesGroup = document.getElementById(`${choicePrefix}-yes`) as SvgInHtml;
+	const yesGroup = document.getElementById(
+		`${choicePrefix}-${data.emoji}-yes`,
+	) as SvgInHtml;
+	const yesThumbs = document.getElementById(
+		`${choicePrefix}-${data.emoji}-thumbs-yes`,
+	) as SvgInHtml;
 	const yesFace = document.getElementById(
-		`${choicePrefix}-face-yes`,
+		`${choicePrefix}-${data.emoji}-face-yes`,
 	) as SvgInHtml;
 	const yesFacefeatures = document.getElementById(
-		`${choicePrefix}-facefeatures-yes`,
+		`${choicePrefix}-${data.emoji}-facefeatures-yes`,
 	) as SvgInHtml;
-	const noGroup = document.getElementById(`${choicePrefix}-no`) as SvgInHtml;
+	const noGroup = document.getElementById(
+		`${choicePrefix}-${data.emoji}-no`,
+	) as SvgInHtml;
+	const noThumbs = document.getElementById(
+		`${choicePrefix}-${data.emoji}-thumbs-no`,
+	) as SvgInHtml;
 	const noFace = document.getElementById(
-		`${choicePrefix}-face-no`,
+		`${choicePrefix}-${data.emoji}-face-no`,
 	) as SvgInHtml;
 	const noFacefeatures = document.getElementById(
-		`${choicePrefix}-facefeatures-no`,
+		`${choicePrefix}-${data.emoji}-facefeatures-no`,
 	) as SvgInHtml;
 
 	// Play audio
@@ -37,10 +47,8 @@ export const showYesNoChoice = async (
 
 	// for the first two slides, hide yes and no response buttons
 	if (data.simpleSlideCounter <= config.globals.playYesNoAudio) {
-		gsap.set(yesFace, { y: -3 });
-		gsap.set(yesFacefeatures, { y: -4 });
-		gsap.set(noFace, { x: 3 });
-		gsap.set(noFacefeatures, { x: 4 });
+		//first hide thumbs, later let them appear after head nodding/shaking
+		gsap.set([yesThumbs, noThumbs], { autoAlpha: 0, pointerEvents: 'none' });
 
 		// animate head shaking & nodding
 		await gsap
@@ -57,8 +65,10 @@ export const showYesNoChoice = async (
 					play(`./communities/${data.community}/audio/yes.mp3`);
 				},
 			})
+			.to(yesFace, { y: -8, duration: 0.3 })
+			.to(yesFacefeatures, { y: -20, duration: 0.3 }, '<')
 			.to(yesFace, {
-				y: 3,
+				y: 8,
 				repeat: 3,
 				yoyo: true,
 				ease: 'power1.inOut',
@@ -66,17 +76,15 @@ export const showYesNoChoice = async (
 			.to(
 				yesFacefeatures,
 				{
-					y: 4,
+					y: 20,
 					repeat: 3,
 					yoyo: true,
 					ease: 'power1.inOut',
-					onComplete: () => {
-						// reset head position
-						gsap.to([yesFace, yesFacefeatures], { y: 0, ease: 'power1.inOut' });
-					},
 				},
 				'<',
 			)
+			.to([yesFace, yesFacefeatures], { y: 0, ease: 'power1.inOut' })
+			.to(yesThumbs, { autoAlpha: 1, duration: 1 })
 			.to(noGroup, {
 				duration: 0.5,
 				autoAlpha: 1,
@@ -84,8 +92,10 @@ export const showYesNoChoice = async (
 					play(`./communities/${data.community}/audio/no.mp3`);
 				},
 			})
+			.to(noFace, { x: 8, duration: 0.3 })
+			.to(noFacefeatures, { x: 20, duration: 0.3 }, '<')
 			.to(noFace, {
-				x: -3,
+				x: -8,
 				repeat: 3,
 				yoyo: true,
 				ease: 'power1.inOut',
@@ -93,23 +103,20 @@ export const showYesNoChoice = async (
 			.to(
 				noFacefeatures,
 				{
-					x: -4,
+					x: -20,
 					repeat: 3,
 					yoyo: true,
 					ease: 'power1.inOut',
-					onComplete: () => {
-						// reset head position
-						gsap.to([noFace, noFacefeatures], { x: 0, ease: 'power1.inOut' });
-						// enable clicking response
-						gsap.to([yesGroup, noGroup, headphones], {
-							autoAlpha: 1,
-							pointerEvents: 'visible',
-							cursor: 'pointer',
-						});
-					},
 				},
 				'<',
-			);
+			)
+			.to([noFace, noFacefeatures], { x: 0, ease: 'power1.inOut' })
+			.to(noThumbs, { autoAlpha: 1, duration: 0.5 })
+			.to([yesGroup, noGroup, headphones], {
+				autoAlpha: 1,
+				pointerEvents: 'visible',
+				cursor: 'pointer',
+			});
 
 		// for all other slides, show directly yes and no response buttons
 	} else {

@@ -76,6 +76,8 @@ export const procedure = async () => {
 	}
 
 	data.simpleSlideCounter = 0;
+	// choose default emoji color
+	data.emoji = 'purple';
 
 	currentProcedure = currentProcedure.map((e: string) => _.camelCase(e));
 	data.currentProcedure = currentProcedure;

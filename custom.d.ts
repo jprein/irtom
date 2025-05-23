@@ -50,7 +50,7 @@ declare let data: {
 	nextSlide: string;
 	currentProcedure: string[];
 	simpleSlideCounter: number;
-	emoji: string;
+	emoji: 'yellow' | 'blue' | 'purple';
 	procedure: {
 		sIntroduction: {
 			slideNr: number;
