@@ -83,7 +83,20 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.procedure[data.currentSlide].response = response.id.split('-').pop();
 
 	// we also store emoji choice in the data object for easier access later on
-	data.emoji = data.procedure[data.currentSlide].response;
+	switch (data.procedure[data.currentSlide].response) {
+		case 'left':
+			data.emoji = 'blue';
+			break;
+		case 'center':
+			data.emoji = 'yellow';
+			break;
+		case 'right':
+			data.emoji = 'purple';
+			break;
+		default:
+			data.emoji = 'yellow'; // default to yellow if something goes wrong
+			break;
+	}
 
 	// play motivating feedback for first choice
 	await playPromise(

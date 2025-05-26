@@ -72,7 +72,7 @@ procedure:
   # You can nest only two levels deep
   german:
     # - s-introduction
-    # - s-emojichoice
+    - s-emojichoice
     - s-yesnotraining-a
     # - s-yesnotraining-b
     # - s-yesnotraining-c
