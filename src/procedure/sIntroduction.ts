@@ -27,6 +27,8 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
 	parentBlock.removeAttribute('visibility');
+	const blockingStateAnimation = gsap.getById('blocking-state-animation');
+	if (blockingStateAnimation) blockingStateAnimation.kill();
 
 	// let preloadVideo: Response;
 	// const preloadVideo = await fetch(

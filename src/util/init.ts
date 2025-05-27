@@ -107,16 +107,6 @@ export const init = async () => {
 	// Create dynamic extension depening on browser
 	data.videoExtension = DetectRTC.browser.isSafari ? 'mov' : 'webm';
 
-	// initialize audio sprite instance
-	// first, get the audio sprite JSON file
-	const spriteLookup = await fetch(
-		`../communities/${data.community}/combined.json`,
-	);
-	data.spriteJSON = await spriteLookup.json();
-
-	// then,create the sprite instance
-	data.sprite = await createSprite(data.spriteJSON);
-
 	// check if all translation keys have a matching foreignObject and vice versa
 	const textKeys = widowedKeyChecker();
 
@@ -200,6 +190,8 @@ export const init = async () => {
 	});
 
 	// blocking state slide
+	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
+	parentBlock.removeAttribute('visibility');
 	const bsFo = document.getElementById('s-bs')! as SvgInHtml;
 	bsFo.innerHTML = `<div id="blocking-state" style="
 	height: 100%;
@@ -215,11 +207,22 @@ export const init = async () => {
 		transformOrigin: '50% 50%',
 	});
 	gsap.to('#link-leuphana-cube', {
+		id: 'blocking-state-animation',
 		duration: 3,
 		rotation: 360,
 		repeat: -1,
 		ease: 'none',
 	});
+
+	// initialize audio sprite instance
+	// first, get the audio sprite JSON file
+	const spriteLookup = await fetch(
+		`../communities/${data.community}/combined.json`,
+	);
+	data.spriteJSON = await spriteLookup.json();
+
+	// then,create the sprite instance
+	data.sprite = await createSprite(data.spriteJSON);
 
 	if (config.devmode.on) {
 		global.translations = translations;
