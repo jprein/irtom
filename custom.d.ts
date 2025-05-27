@@ -51,6 +51,8 @@ declare let data: {
 	currentProcedure: string[];
 	simpleSlideCounter: number;
 	emoji: 'yellow' | 'blue' | 'purple';
+	sprite;
+	spriteJSON;
 	procedure: {
 		sIntroduction: {
 			slideNr: number;

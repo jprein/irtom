@@ -1,5 +1,5 @@
 import { gsap } from 'gsap';
-import { play, playPromise } from '../util/audio';
+// import { play, playPromise } from '../util/audio';
 import { swapSlides } from '../util/slideVisibility';
 import { getResponse } from '../util/getResponse';
 import { startFullscreen } from '../util/helpers';
@@ -44,12 +44,12 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set(adultQuestion, { autoAlpha: 0 });
 	}
 
-	let playingTimeline = true;
+	const playingTimeline = true;
 
 	speaker.addEventListener('click', async () => {
 		if (!config.devmode.on) startFullscreen();
 
-		await playPromise(`./communities/${data.community}/audio/pop.mp3`);
+		await data.sprite.playPromise('pop');
 		gsap.to([nextButton, headphones], {
 			autoAlpha: 1,
 			pointerEvents: 'visible',
@@ -106,45 +106,45 @@ export default async ({ currentSlide, previousSlide }) => {
 		// pinda.play();
 
 		// only start timeline when media can play through
-		const communityDelay = {
-			headphones: {
-				german: 16,
-				english: 16,
-			},
-			nextButton: {
-				german: 5,
-				english: 4,
-			},
-		};
+		// const communityDelay = {
+		// 	headphones: {
+		// 		german: 16,
+		// 		english: 16,
+		// 	},
+		// 	nextButton: {
+		// 		german: 5,
+		// 		english: 4,
+		// 	},
+		// };
 
-		gsap
-			.timeline()
-			.to(headphones, {
-				autoAlpha: 0.5,
-				delay: communityDelay.headphones[data.community],
-				duration: 0.5,
-			})
-			.to(headphones, {
-				filter: 'drop-shadow(0px 0px 14px #000)',
-				delay: 1,
-				repeat: 4,
-				yoyo: true,
-				reversed: true,
-			})
-			.to(nextButton, {
-				autoAlpha: 0.5,
-				delay: communityDelay.nextButton[data.community],
-				onComplete: () => {
-					playingTimeline = false;
-				},
-			})
-			.to(nextButton, {
-				filter: 'drop-shadow(0px 0px 14px #781633)',
-				delay: 1,
-				repeat: -1,
-				yoyo: true,
-				reversed: true,
-			});
+		// gsap
+		// 	.timeline()
+		// 	.to(headphones, {
+		// 		autoAlpha: 0.5,
+		// 		delay: communityDelay.headphones[data.community],
+		// 		duration: 0.5,
+		// 	})
+		// 	.to(headphones, {
+		// 		filter: 'drop-shadow(0px 0px 14px #000)',
+		// 		delay: 1,
+		// 		repeat: 4,
+		// 		yoyo: true,
+		// 		reversed: true,
+		// 	})
+		// 	.to(nextButton, {
+		// 		autoAlpha: 0.5,
+		// 		delay: communityDelay.nextButton[data.community],
+		// 		onComplete: () => {
+		// 			playingTimeline = false;
+		// 		},
+		// 	})
+		// 	.to(nextButton, {
+		// 		filter: 'drop-shadow(0px 0px 14px #781633)',
+		// 		delay: 1,
+		// 		repeat: -1,
+		// 		yoyo: true,
+		// 		reversed: true,
+		// 	});
 	});
 
 	await getResponse(nextButton.id);

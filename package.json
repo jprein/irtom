@@ -6,6 +6,7 @@
 	"type": "module",
 	"scripts": {
 		"alphaPinda": "cd character-animator && mkdir -p out && for i in *.mov; do ffmpeg -y -i \"$i\" -c:v libvpx-vp9 -b:v 500k -c:a libvorbis \"out/${i%.*}.webm\"; done && for i in *.mov; do avconvert --source \"$i\" --preset PresetHEVC1920x1080WithAlpha --verbose --replace --output \"out/${i%.*}.mov\"; done",
+		"audiosprite::ger": "npx audiosprite --export 'webm,mp3' --format 'howler2' --path './communities/german/' --output src/communities/german/combined src/communities/german/audio/*.mp3",
 		"build": "npm run clean && NODE_ENV=production webpack",
 		"clean": "rimraf dist",
 		"deploy": "npm run build && sh src/scripts/deploy.sh",

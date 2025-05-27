@@ -22,8 +22,9 @@ import { setMousePointer, setScaleOnHover } from './styleDefaults';
 import Toastify from 'toastify-js';
 import DetectRTC from 'detectrtc';
 import 'toastify-js/src/toastify.css';
+import { createSprite } from './createSprite';
 
-export const init = () => {
+export const init = async () => {
 	const urlParameters = getUrlParameters();
 
 	// calculate agegroup based on birthday
@@ -105,6 +106,16 @@ export const init = () => {
 	// Safari used .mov extension, other browsers use .webm
 	// Create dynamic extension depening on browser
 	data.videoExtension = DetectRTC.browser.isSafari ? 'mov' : 'webm';
+
+	// initialize audio sprite instance
+	// first, get the audio sprite JSON file
+	const spriteLookup = await fetch(
+		`../communities/${data.community}/combined.json`,
+	);
+	data.spriteJSON = await spriteLookup.json();
+
+	// then,create the sprite instance
+	data.sprite = await createSprite(data.spriteJSON);
 
 	// check if all translation keys have a matching foreignObject and vice versa
 	const textKeys = widowedKeyChecker();
