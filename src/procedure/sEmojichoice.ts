@@ -1,10 +1,9 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
-import { play, playPromise } from '../util/audio';
 import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
-import { hideThreeOptions } from '../util/hideThreeOptions';
 import { getResponse } from '../util/getResponse';
+import { hideThreeOptions } from '../util/hideThreeOptions';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -33,9 +32,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-headphones`,
 	) as SvgInHtml;
 
-	await playPromise(
-		`./communities/${data.community}/audio/${slidePrefix}-1.mp3`,
-	);
+	await data.sprite.playPromise(`${slidePrefix}-1`);
 
 	await gsap
 		.timeline()
@@ -43,19 +40,19 @@ export default async ({ currentSlide, previousSlide }) => {
 			autoAlpha: 1,
 			duration: 0.5,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-2.mp3`);
+				data.sprite.play(`${slidePrefix}-2`);
 			},
 		})
 		.to(center, {
-			delay: 2,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 			autoAlpha: 1,
 			duration: 0.5,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-3.mp3`);
+				data.sprite.play(`${slidePrefix}-3`);
 			},
 		})
 		.to(right, {
-			delay: 2,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 			autoAlpha: 1,
 			duration: 0.5,
 		});
@@ -64,7 +61,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(1000);
 
 	// Play question
-	await playPromise(`./communities/${data.community}/audio/${slidePrefix}.mp3`);
+	await data.sprite.playPromise(`${slidePrefix}`);
 
 	// enable clicking on emojis
 	await gsap.timeline().to([center, left, right, headphones], {
@@ -99,7 +96,5 @@ export default async ({ currentSlide, previousSlide }) => {
 	}
 
 	// play motivating feedback for first choice
-	await playPromise(
-		`./communities/${data.community}/audio/${slidePrefix}-feedback.mp3`,
-	);
+	await data.sprite.playPromise(`${slidePrefix}-feedback`);
 };

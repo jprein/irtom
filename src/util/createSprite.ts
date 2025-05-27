@@ -26,7 +26,6 @@ export const createSprite = async (settingsObj) => {
 
 	// Synchronous play function
 	function play(sampleName: string) {
-		console.log(sampleName);
 		if (!audioBuffer || !ctx) {
 			console.error('Audio sprite not initialized yet.');
 			return;

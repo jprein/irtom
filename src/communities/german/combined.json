@@ -1,120 +1,492 @@
 {
-	"src": [
-		"communities/german/combined.webm",
-		"communities/german/combined.mp3"
-	],
-	"sprite": {
-		"neutral-response-alright": [0, 1365.3514739229024],
-		"neutral-response-ok": [3000, 1045.3514739229029],
-		"no": [6000, 1045.3514739229029],
-		"pop": [9000, 548.571428571428],
-		"s-diversedesires-a-1": [11000, 7132.630385487527],
-		"s-diversedesires-a-2": [20000, 4383.877551020408],
-		"s-diversedesires-a-3": [26000, 1898.6848072562345],
-		"s-diversedesires-a-4": [29000, 1749.3197278911553],
-		"s-diversedesires-a-5": [32000, 1840.4761904761883],
-		"s-diversedesires-a-6": [35000, 4503.401360544217],
-		"s-diversedesires-a-7": [41000, 2218.6848072562384],
-		"s-diversedesires-a-8": [45000, 2368.0045351473923],
-		"s-diversedesires-a-left": [49000, 1045.3514739228992],
-		"s-diversedesires-a-right": [52000, 1045.3514739228992],
-		"s-diversedesires-a": [55000, 5141.337868480726],
-		"s-diversedesires-b-1": [62000, 7500],
-		"s-diversedesires-b-2": [71000, 4319.251700680269],
-		"s-diversedesires-b-3": [77000, 1984.0136054421719],
-		"s-diversedesires-b-4": [80000, 1728.0045351473916],
-		"s-diversedesires-b-5": [83000, 1870.839002267573],
-		"s-diversedesires-b-6": [86000, 3878.526077097504],
-		"s-diversedesires-b-7": [91000, 2005.3514739229001],
-		"s-diversedesires-b-8": [95000, 2069.3197278911557],
-		"s-diversedesires-b-left": [99000, 1045.3514739229063],
-		"s-diversedesires-b-right": [102000, 1045.3514739229063],
-		"s-diversedesires-b": [105000, 5952.018140589573],
-		"s-diversedesires-c-left": [112000, 1045.3514739229063],
-		"s-diversedesires-c-right": [115000, 1045.3514739229063],
-		"s-diversedesires-c": [118000, 7253.33333333333],
-		"s-diversedesires-d-1": [127000, 1962.6530612245006],
-		"s-diversedesires-d-2": [130000, 2090.680272108841],
-		"s-diversedesires-d-3-nay": [134000, 1834.6712018140465],
-		"s-diversedesires-d-3-yay": [137000, 2090.680272108841],
-		"s-diversedesires-d-4": [141000, 2346.6666666666642],
-		"s-diversedesires-d-5-nay": [145000, 1770.680272108848],
-		"s-diversedesires-d-5-yay": [148000, 1941.3378684807299],
-		"s-diversedesires-d-6": [151000, 2304.013605442179],
-		"s-diversedesires-d-left": [155000, 1045.3514739228922],
-		"s-diversedesires-d-right": [158000, 1045.3514739228922],
-		"s-diversedesires-d": [161000, 4800.000000000011],
-		"s-emojichoice-1": [167000, 5525.35147392291],
-		"s-emojichoice-2": [174000, 1642.653061224479],
-		"s-emojichoice-3": [177000, 2005.3514739229001],
-		"s-emojichoice-center": [181000, 1045.3514739228922],
-		"s-emojichoice-feedback": [184000, 4352.018140589564],
-		"s-emojichoice-left": [190000, 1045.3514739228922],
-		"s-emojichoice-right": [193000, 1045.3514739228922],
-		"s-emojichoice": [196000, 9218.390022675749],
-		"s-falsebelief-two-a-1": [207000, 6293.333333333322],
-		"s-falsebelief-two-a-2": [215000, 5930.680272108844],
-		"s-falsebelief-two-a-3": [222000, 3797.3469387755185],
-		"s-falsebelief-two-a-4": [227000, 13098.684807256233],
-		"s-falsebelief-two-a-5": [242000, 3242.6530612245015],
-		"s-falsebelief-two-a-left": [247000, 1130.6802721088332],
-		"s-falsebelief-two-a-right": [250000, 1450.6802721088548],
-		"s-falsebelief-two-a": [253000, 6570.680272108859],
-		"s-knowledgeaccess-a-1": [261000, 7552.018140589553],
-		"s-knowledgeaccess-a-2": [270000, 2752.0181405895414],
-		"s-knowledgeaccess-a-3": [274000, 3882.6530612245165],
-		"s-knowledgeaccess-a-4": [279000, 2048.004535147413],
-		"s-knowledgeaccess-a": [283000, 2944.013605442194],
-		"s-knowledgeaccess-b-1": [287000, 5866.666666666674],
-		"s-knowledgeaccess-b-2": [294000, 3754.6712018140624],
-		"s-knowledgeaccess-b-3": [299000, 1877.3469387755313],
-		"s-knowledgeaccess-b-4": [302000, 3370.6802721088707],
-		"s-knowledgeaccess-b-5": [307000, 3434.6712018140693],
-		"s-knowledgeaccess-b-left": [312000, 1045.3514739228922],
-		"s-knowledgeaccess-b-right": [315000, 1045.3514739228922],
-		"s-knowledgeaccess-b": [318000, 2730.6802721088275],
-		"s-knowledgeaccess-c-1": [322000, 7658.684807256236],
-		"s-knowledgeaccess-c-2": [331000, 1877.3469387755313],
-		"s-knowledgeaccess-c-3": [334000, 2282.6530612244937],
-		"s-knowledgeaccess-c-4": [338000, 3093.3333333333053],
-		"s-knowledgeaccess-c-5": [343000, 1984.0136054421578],
-		"s-knowledgeaccess-c-6-alternative": [346000, 2261.337868480723],
-		"s-knowledgeaccess-c-6": [350000, 4904.331065759663],
-		"s-knowledgeaccess-c-7": [356000, 2304.013605442151],
-		"s-knowledgeaccess-c-left": [360000, 1045.3514739228922],
-		"s-knowledgeaccess-c-right": [363000, 1045.3514739228922],
-		"s-knowledgeaccess-c-rooster": [366000, 1933.0612244897907],
-		"s-knowledgeaccess-c": [369000, 2666.6666666666856],
-		"s-names-1": [373000, 3775.986394557833],
-		"s-names-2": [378000, 572.290249433081],
-		"s-names-3": [380000, 892.607709750564],
-		"s-names-4": [382000, 1045.3514739228922],
-		"s-names-correct": [385000, 6869.319727891138],
-		"s-names-incorrect": [393000, 4480.000000000018],
-		"s-names-left": [399000, 1237.346938775488],
-		"s-names-right": [402000, 1045.3514739228922],
-		"s-names": [405000, 1493.3333333333394],
-		"s-perspectivetaking-one-a": [408000, 4032.018140589571],
-		"s-perspectivetaking-one-b": [414000, 5013.333333333321],
-		"s-perspectivetaking-one-c": [421000, 4544.01360544216],
-		"s-perspectivetaking-one-d": [427000, 2837.346938775511],
-		"s-perspectivetaking-two-a-left": [431000, 1429.3197278911407],
-		"s-perspectivetaking-two-a-right": [434000, 1386.666666666656],
-		"s-perspectivetaking-two-a": [437000, 6720.000000000027],
-		"s-perspectivetaking-two-b-left": [445000, 1024.0136054421782],
-		"s-perspectivetaking-two-b-right": [448000, 1045.3514739228922],
-		"s-perspectivetaking-two-b": [451000, 13546.66666666668],
-		"s-perspectivetaking-two-c-left": [466000, 1045.3514739228922],
-		"s-perspectivetaking-two-c-right": [469000, 1045.3514739228922],
-		"s-perspectivetaking-two-c": [472000, 12074.671201814055],
-		"s-perspectivetaking-two-d-left": [486000, 1173.3333333333462],
-		"s-perspectivetaking-two-d-right": [489000, 1344.0136054421714],
-		"s-perspectivetaking-two-d": [492000, 13759.99999999999],
-		"s-yesnotraining-a-1": [507000, 12693.333333333385],
-		"s-yesnotraining-a-2": [521000, 4309.319727891193],
-		"s-yesnotraining-a-correct": [527000, 5034.671201814035],
-		"s-yesnotraining-a-incorrect": [534000, 4992.018140589607],
-		"s-yesnotraining-a": [540000, 2389.3197278911202],
-		"yes": [544000, 1045.3514739228922]
-	}
+  "src": [
+    "communities/german/combined.webm",
+    "communities/german/combined.mp3"
+  ],
+  "sprite": {
+    "neutral-response-alright": [
+      0,
+      1365.3514739229024
+    ],
+    "neutral-response-ok": [
+      3000,
+      1045.3514739229029
+    ],
+    "no": [
+      6000,
+      1045.3514739229029
+    ],
+    "pop": [
+      9000,
+      548.571428571428
+    ],
+    "s-diversebeliefs-a-1": [
+      11000,
+      2645.3514739229026
+    ],
+    "s-diversebeliefs-a-2": [
+      15000,
+      7104.013605442176
+    ],
+    "s-diversebeliefs-a-left": [
+      24000,
+      2517.3469387755104
+    ],
+    "s-diversebeliefs-a-right": [
+      28000,
+      2581.3378684807267
+    ],
+    "s-diversebeliefs-b-1": [
+      32000,
+      4117.346938775512
+    ],
+    "s-diversebeliefs-b-2": [
+      38000,
+      4202.653061224489
+    ],
+    "s-diversebeliefs-b-3": [
+      44000,
+      3520.000000000003
+    ],
+    "s-diversebeliefs-b-left": [
+      49000,
+      2389.3197278911557
+    ],
+    "s-diversebeliefs-b-right": [
+      53000,
+      2410.6802721088416
+    ],
+    "s-diversedesires-a-1": [
+      57000,
+      7132.6303854875305
+    ],
+    "s-diversedesires-a-2": [
+      66000,
+      4383.877551020404
+    ],
+    "s-diversedesires-a-3": [
+      72000,
+      1898.6848072562311
+    ],
+    "s-diversedesires-a-4": [
+      75000,
+      1749.3197278911623
+    ],
+    "s-diversedesires-a-5": [
+      78000,
+      1840.4761904761954
+    ],
+    "s-diversedesires-a-6": [
+      81000,
+      4503.401360544217
+    ],
+    "s-diversedesires-a-7": [
+      87000,
+      2218.6848072562384
+    ],
+    "s-diversedesires-a-8": [
+      91000,
+      2368.0045351473923
+    ],
+    "s-diversedesires-a-left": [
+      95000,
+      1045.3514739229063
+    ],
+    "s-diversedesires-a-right": [
+      98000,
+      1045.3514739229063
+    ],
+    "s-diversedesires-a": [
+      101000,
+      5141.3378684807185
+    ],
+    "s-diversedesires-b-1": [
+      108000,
+      7500
+    ],
+    "s-diversedesires-b-2": [
+      117000,
+      4319.251700680269
+    ],
+    "s-diversedesires-b-3": [
+      123000,
+      1984.0136054421719
+    ],
+    "s-diversedesires-b-4": [
+      126000,
+      1728.0045351473916
+    ],
+    "s-diversedesires-b-5": [
+      129000,
+      1870.8390022675871
+    ],
+    "s-diversedesires-b-6": [
+      132000,
+      3878.5260770975183
+    ],
+    "s-diversedesires-b-7": [
+      137000,
+      2005.3514739229001
+    ],
+    "s-diversedesires-b-8": [
+      141000,
+      2069.3197278911557
+    ],
+    "s-diversedesires-b-left": [
+      145000,
+      1045.3514739228922
+    ],
+    "s-diversedesires-b-right": [
+      148000,
+      1045.3514739228922
+    ],
+    "s-diversedesires-b": [
+      151000,
+      5952.018140589558
+    ],
+    "s-diversedesires-c-left": [
+      158000,
+      1045.3514739228922
+    ],
+    "s-diversedesires-c-right": [
+      161000,
+      1045.3514739228922
+    ],
+    "s-diversedesires-c": [
+      164000,
+      7253.33333333333
+    ],
+    "s-diversedesires-d-1": [
+      173000,
+      1962.6530612245006
+    ],
+    "s-diversedesires-d-2": [
+      176000,
+      2090.680272108841
+    ],
+    "s-diversedesires-d-3-nay": [
+      180000,
+      1834.6712018140465
+    ],
+    "s-diversedesires-d-3-yay": [
+      183000,
+      2090.680272108841
+    ],
+    "s-diversedesires-d-4": [
+      187000,
+      2346.6666666666642
+    ],
+    "s-diversedesires-d-5-nay": [
+      191000,
+      1770.680272108848
+    ],
+    "s-diversedesires-d-5-yay": [
+      194000,
+      1941.3378684807299
+    ],
+    "s-diversedesires-d-6": [
+      197000,
+      2304.013605442179
+    ],
+    "s-diversedesires-d-left": [
+      201000,
+      1045.3514739228922
+    ],
+    "s-diversedesires-d-right": [
+      204000,
+      1045.3514739228922
+    ],
+    "s-diversedesires-d": [
+      207000,
+      4800.000000000011
+    ],
+    "s-emojichoice-1": [
+      213000,
+      5525.35147392291
+    ],
+    "s-emojichoice-2": [
+      220000,
+      1642.653061224479
+    ],
+    "s-emojichoice-3": [
+      223000,
+      2005.3514739229001
+    ],
+    "s-emojichoice-center": [
+      227000,
+      1045.3514739228922
+    ],
+    "s-emojichoice-feedback": [
+      230000,
+      4352.018140589564
+    ],
+    "s-emojichoice-left": [
+      236000,
+      1045.3514739228922
+    ],
+    "s-emojichoice-right": [
+      239000,
+      1045.3514739228922
+    ],
+    "s-emojichoice": [
+      242000,
+      9218.390022675749
+    ],
+    "s-falsebelief-two-a-1": [
+      253000,
+      6293.33333333335
+    ],
+    "s-falsebelief-two-a-2": [
+      261000,
+      5930.680272108816
+    ],
+    "s-falsebelief-two-a-3": [
+      268000,
+      3797.3469387754903
+    ],
+    "s-falsebelief-two-a-4": [
+      273000,
+      13098.684807256233
+    ],
+    "s-falsebelief-two-a-5": [
+      288000,
+      3242.6530612244733
+    ],
+    "s-falsebelief-two-a-left": [
+      293000,
+      1130.6802721088616
+    ],
+    "s-falsebelief-two-a-right": [
+      296000,
+      1450.6802721088548
+    ],
+    "s-falsebelief-two-a": [
+      299000,
+      6570.680272108859
+    ],
+    "s-knowledgeaccess-a-1": [
+      307000,
+      7552.018140589553
+    ],
+    "s-knowledgeaccess-a-2": [
+      316000,
+      2752.0181405895414
+    ],
+    "s-knowledgeaccess-a-3": [
+      320000,
+      3882.6530612245165
+    ],
+    "s-knowledgeaccess-a-4": [
+      325000,
+      2048.004535147413
+    ],
+    "s-knowledgeaccess-a": [
+      329000,
+      2944.013605442194
+    ],
+    "s-knowledgeaccess-b-1": [
+      333000,
+      5866.666666666674
+    ],
+    "s-knowledgeaccess-b-2": [
+      340000,
+      3754.6712018140624
+    ],
+    "s-knowledgeaccess-b-3": [
+      345000,
+      1877.3469387755313
+    ],
+    "s-knowledgeaccess-b-4": [
+      348000,
+      3370.6802721088707
+    ],
+    "s-knowledgeaccess-b-5": [
+      353000,
+      3434.6712018140693
+    ],
+    "s-knowledgeaccess-b-left": [
+      358000,
+      1045.3514739228922
+    ],
+    "s-knowledgeaccess-b-right": [
+      361000,
+      1045.3514739228922
+    ],
+    "s-knowledgeaccess-b": [
+      364000,
+      2730.6802721088275
+    ],
+    "s-knowledgeaccess-c-1": [
+      368000,
+      7658.684807256236
+    ],
+    "s-knowledgeaccess-c-2": [
+      377000,
+      1877.3469387755313
+    ],
+    "s-knowledgeaccess-c-3": [
+      380000,
+      2282.6530612244937
+    ],
+    "s-knowledgeaccess-c-4": [
+      384000,
+      3093.3333333333053
+    ],
+    "s-knowledgeaccess-c-5": [
+      389000,
+      1984.0136054421578
+    ],
+    "s-knowledgeaccess-c-6-alternative": [
+      392000,
+      2261.337868480723
+    ],
+    "s-knowledgeaccess-c-6": [
+      396000,
+      4904.331065759663
+    ],
+    "s-knowledgeaccess-c-7": [
+      402000,
+      2304.013605442151
+    ],
+    "s-knowledgeaccess-c-left": [
+      406000,
+      1045.3514739228922
+    ],
+    "s-knowledgeaccess-c-right": [
+      409000,
+      1045.3514739228922
+    ],
+    "s-knowledgeaccess-c-rooster": [
+      412000,
+      1933.0612244897907
+    ],
+    "s-knowledgeaccess-c": [
+      415000,
+      2666.6666666666856
+    ],
+    "s-names-1": [
+      419000,
+      3775.986394557833
+    ],
+    "s-names-2": [
+      424000,
+      572.290249433081
+    ],
+    "s-names-3": [
+      426000,
+      892.607709750564
+    ],
+    "s-names-4": [
+      428000,
+      1045.3514739228922
+    ],
+    "s-names-correct": [
+      431000,
+      6869.319727891138
+    ],
+    "s-names-incorrect": [
+      439000,
+      4480.000000000018
+    ],
+    "s-names-left": [
+      445000,
+      1237.346938775488
+    ],
+    "s-names-right": [
+      448000,
+      1045.3514739228922
+    ],
+    "s-names": [
+      451000,
+      1493.3333333333394
+    ],
+    "s-perspectivetaking-one-a": [
+      454000,
+      4032.018140589571
+    ],
+    "s-perspectivetaking-one-b": [
+      460000,
+      5013.333333333321
+    ],
+    "s-perspectivetaking-one-c": [
+      467000,
+      4544.01360544216
+    ],
+    "s-perspectivetaking-one-d": [
+      473000,
+      2837.346938775511
+    ],
+    "s-perspectivetaking-two-a-left": [
+      477000,
+      1429.3197278911407
+    ],
+    "s-perspectivetaking-two-a-right": [
+      480000,
+      1386.666666666656
+    ],
+    "s-perspectivetaking-two-a": [
+      483000,
+      6720.000000000027
+    ],
+    "s-perspectivetaking-two-b-left": [
+      491000,
+      1024.0136054421782
+    ],
+    "s-perspectivetaking-two-b-right": [
+      494000,
+      1045.3514739228922
+    ],
+    "s-perspectivetaking-two-b": [
+      497000,
+      13546.66666666668
+    ],
+    "s-perspectivetaking-two-c-left": [
+      512000,
+      1045.3514739228922
+    ],
+    "s-perspectivetaking-two-c-right": [
+      515000,
+      1045.3514739228922
+    ],
+    "s-perspectivetaking-two-c": [
+      518000,
+      12074.671201814112
+    ],
+    "s-perspectivetaking-two-d-left": [
+      532000,
+      1173.3333333332894
+    ],
+    "s-perspectivetaking-two-d-right": [
+      535000,
+      1344.0136054422283
+    ],
+    "s-perspectivetaking-two-d": [
+      538000,
+      13759.99999999999
+    ],
+    "s-yesnotraining-a-1": [
+      553000,
+      12693.333333333385
+    ],
+    "s-yesnotraining-a-2": [
+      567000,
+      4309.319727891193
+    ],
+    "s-yesnotraining-a-correct": [
+      573000,
+      5034.671201814035
+    ],
+    "s-yesnotraining-a-incorrect": [
+      580000,
+      4992.018140589607
+    ],
+    "s-yesnotraining-a": [
+      586000,
+      2389.3197278911202
+    ],
+    "yes": [
+      590000,
+      1045.3514739228922
+    ]
+  }
 }

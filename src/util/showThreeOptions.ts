@@ -1,12 +1,9 @@
 import { gsap } from 'gsap';
 import config from '../config.yaml';
 import type { SvgInHtml } from '../types';
-import { play, playPromise } from './audio';
 import { getResponse } from './getResponse';
 
 export const showThreeOptions = async (slidePrefix: string) => {
-	const audio = document.getElementById('audio') as HTMLMediaElement;
-
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
 	const headphones = document.getElementById(
@@ -26,7 +23,7 @@ export const showThreeOptions = async (slidePrefix: string) => {
 	) as SvgInHtml;
 
 	// Play audio
-	await playPromise(`./communities/${data.community}/audio/${slidePrefix}.mp3`);
+	await data.sprite.playPromise(`${slidePrefix}`);
 
 	// for all other slides, show directly yes and no response buttons
 	await gsap
@@ -47,27 +44,27 @@ export const showThreeOptions = async (slidePrefix: string) => {
 			pointerEvents: 'visible',
 			cursor: 'pointer',
 			onStart: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-left.mp3`);
+				data.sprite.play(`${slidePrefix}-left`);
 			},
 		})
 		.to(optionCenter, {
-			delay: 2,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000,
 			autoAlpha: 1,
 			duration: 0.5,
 			pointerEvents: 'visible',
 			cursor: 'pointer',
 			onStart: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-center.mp3`);
+				data.sprite.play(`${slidePrefix}-center`);
 			},
 		})
 		.to(optionRight, {
-			delay: 2,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-center`][1] / 1000,
 			autoAlpha: 1,
 			duration: 0.5,
 			pointerEvents: 'visible',
 			cursor: 'pointer',
 			onStart: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-right.mp3`);
+				data.sprite.play(`${slidePrefix}-right`);
 			},
 			onComplete: () => {
 				gsap.to(headphones, {
@@ -77,45 +74,6 @@ export const showThreeOptions = async (slidePrefix: string) => {
 				});
 			},
 		});
-
-	// if headphone is clicked, play audio again
-	play(
-		`./communities/${data.community}/audio/${slidePrefix}.mp3`,
-		`link-${slidePrefix}-headphones`,
-	);
-
-	// while audio is playing, hide yes and no response buttons
-	function handlePlay() {
-		gsap
-			.timeline()
-			.set([optionLeft, optionCenter, optionRight, subject], {
-				autoAlpha: 0,
-				pointerEvents: 'none',
-				cursor: 'default',
-			})
-			.to(blurr, {
-				autoAlpha: 0,
-				duration: 0.6,
-			});
-	}
-
-	// when audio ends, show yes and no response buttons
-	function handleEnded() {
-		gsap
-			.timeline()
-			.set([optionLeft, optionCenter, optionRight, subject], {
-				autoAlpha: 1,
-				pointerEvents: 'visible',
-				cursor: 'pointer',
-			})
-			.to(blurr, {
-				autoAlpha: 0.7,
-				duration: 0.6,
-			});
-	}
-
-	audio.addEventListener('play', handlePlay);
-	audio.addEventListener('ended', handleEnded);
 
 	// Get Response
 	const response = await getResponse([
@@ -141,17 +99,11 @@ export const showThreeOptions = async (slidePrefix: string) => {
 				: 0;
 	}
 
-	// Remove Event Listeners after response
-	audio.removeEventListener('play', handlePlay);
-	audio.removeEventListener('ended', handleEnded);
-
 	// play button response sounds only for the first trials
 	if (data.simpleSlideCounter <= config.globals.playResponseFeedback) {
 		const responseOption = ['ok', 'alright'];
 		const randomResponse =
 			responseOption[Math.floor(Math.random() * responseOption.length)];
-		await playPromise(
-			`./communities/${data.community}/audio/neutral-response-${randomResponse}.mp3`,
-		);
+		await data.sprite.playPromise(`neutral-response-${randomResponse}`);
 	}
 };

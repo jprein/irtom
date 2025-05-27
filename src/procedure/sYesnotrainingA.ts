@@ -1,6 +1,5 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
-import { play, playPromise } from '../util/audio';
 import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
 import { hideYesNoChoice } from '../util/hideYesNoChoice';
@@ -25,7 +24,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
-	const audio = document.getElementById('audio') as HTMLMediaElement;
 	const choiceSlide = document.getElementById(`${slidePrefix}`) as SvgInHtml;
 	choiceSlide.setAttribute('visibility', 'visible');
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
@@ -64,9 +62,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Define function to show names
 	async function showNames() {
 		// Play audio
-		await playPromise(
-			`./communities/${data.community}/audio/${slidePrefix}-1.mp3`,
-		);
+		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		gsap.set([yesThumbs, noThumbs], { autoAlpha: 0, pointerEvents: 'none' });
 
@@ -74,7 +70,6 @@ export default async ({ currentSlide, previousSlide }) => {
 		await gsap
 			.timeline()
 			.to(blurr, {
-				delay: 1,
 				autoAlpha: 0.7,
 				duration: 0.6,
 			})
@@ -82,7 +77,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 0.5,
 				autoAlpha: 1,
 				onStart: () => {
-					play(`./communities/${data.community}/audio/yes.mp3`);
+					data.sprite.play('yes');
 				},
 			})
 			.to(yesFace, { y: -8, duration: 0.3 })
@@ -108,15 +103,15 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 1,
 				duration: 1,
 				onComplete: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}-2.mp3`);
+					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
 			.to(noGroup, {
-				delay: 5,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				duration: 0.5,
 				autoAlpha: 1,
 				onStart: () => {
-					play(`./communities/${data.community}/audio/no.mp3`);
+					data.sprite.play('no');
 				},
 			})
 			.to(noFace, { x: 8, duration: 0.3 })
@@ -141,57 +136,28 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(noThumbs, {
 				autoAlpha: 1,
 				duration: 0.5,
-				onComplete: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}.mp3`);
-				},
-			})
-			.to([yesGroup, noGroup, headphones], {
-				delay: 2,
-				autoAlpha: 1,
-				pointerEvents: 'visible',
-				cursor: 'pointer',
 			});
 	}
 
 	async function showChoice() {
-		// if headphone is clicked, play audio again
-		play(
-			`./communities/${data.community}/audio/${slidePrefix}.mp3`,
-			`link-${slidePrefix}-headphones`,
-		);
+		// play question and show choices
+		await data.sprite.playPromise(`${slidePrefix}`);
+		gsap.to([yesGroup, noGroup, headphones], {
+			autoAlpha: 1,
+			pointerEvents: 'visible',
+			cursor: 'pointer',
+		});
 
-		// while audio is playing, hide yes and no response buttons
-		function handlePlay() {
-			gsap
-				.timeline()
-				.set([yesGroup, noGroup], {
-					autoAlpha: 0,
-					pointerEvents: 'none',
-					cursor: 'default',
-				})
-				.to(blurr, {
-					autoAlpha: 0,
-					duration: 0.6,
-				});
-		}
-
-		// when audio ends, show yes and no response buttons
-		function handleEnded() {
-			gsap
-				.timeline()
-				.set([yesGroup, noGroup], {
-					autoAlpha: 1,
-					pointerEvents: 'visible',
-					cursor: 'pointer',
-				})
-				.to(blurr, {
-					autoAlpha: 0.7,
-					duration: 0.6,
-				});
-		}
-
-		audio.addEventListener('play', handlePlay);
-		audio.addEventListener('ended', handleEnded);
+		// on headphone click, repeat trial
+		headphones.addEventListener('click', async () => {
+			gsap.to([yesGroup, noGroup, headphones], {
+				autoAlpha: 0,
+				pointerEvents: 'visible',
+				cursor: 'pointer',
+			});
+			await showNames();
+			await showChoice();
+		});
 
 		// Get Response
 		const response = await getResponse([yesGroup.id, noGroup.id]);
@@ -209,21 +175,13 @@ export default async ({ currentSlide, previousSlide }) => {
 				? true
 				: false;
 
-		// Remove Event Listeners after response
-		audio.removeEventListener('play', handlePlay);
-		audio.removeEventListener('ended', handleEnded);
-
 		// For this initial trial, we check response
 		// If correct, move on to the next trial
 		if (correct) {
-			await playPromise(
-				`./communities/${data.community}/audio/${slidePrefix}-correct.mp3`,
-			);
+			await data.sprite.playPromise(`${slidePrefix}-correct`);
 			// If incorrect, play the same again.
 		} else {
-			await playPromise(
-				`./communities/${data.community}/audio/${slidePrefix}-incorrect.mp3`,
-			);
+			await data.sprite.playPromise(`${slidePrefix}-incorrect`);
 			await hideYesNoChoice(slidePrefix);
 			await showNames();
 			await showChoice();

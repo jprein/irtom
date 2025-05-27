@@ -1,7 +1,6 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
-import { play, playPromise } from '../util/audio';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
@@ -50,16 +49,14 @@ export default async ({ currentSlide, previousSlide }) => {
 	gsap.set([boyNay, boyYay, boyNayHide, boyYayHide], { opacity: 0 });
 
 	// Play initial audio
-	await playPromise(
-		`./communities/${data.community}/audio/${slidePrefix}-1.mp3`,
-	);
+	await data.sprite.playPromise(`${slidePrefix}-1`);
 
 	// Animation sequence
 	await gsap.timeline().to(boy, {
 		x: 0,
 		duration: 3,
 		onComplete: () => {
-			play(`./communities/${data.community}/audio/${slidePrefix}-2.mp3`);
+			data.sprite.play(`${slidePrefix}-2`);
 		},
 	});
 
@@ -69,13 +66,11 @@ export default async ({ currentSlide, previousSlide }) => {
 		await gsap
 			.timeline()
 			.to(boy, {
-				delay: 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {
-					play(
-						`./communities/${data.community}/audio/${slidePrefix}-3-nay.mp3`,
-					);
+					data.sprite.play(`${slidePrefix}-3-nay`);
 				},
 			})
 			.to(
@@ -87,48 +82,48 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(boyNay, {
-				delay: 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3-nay`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}-4.mp3`);
+					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
 			// Max then tries the cracker on the right
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boy, {
-				delay: 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {
-					play(
-						`./communities/${data.community}/audio/${slidePrefix}-5-yay.mp3`,
-					);
+					data.sprite.play(`${slidePrefix}-5-yay`);
 				},
 			})
 			.to(boyYay, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boyYay, {
-				delay: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5-yay`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 				onComplete: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}-6.mp3`);
+					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(boy, { delay: 2, x: 1200, duration: 3 });
+			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				x: 1200,
+				duration: 3,
+			});
 		// For the case that Max likes the cracker but not the cucumber
 	} else {
 		await gsap
 			.timeline()
 			.to(boy, {
-				delay: 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {
-					play(
-						`./communities/${data.community}/audio/${slidePrefix}-3-yay.mp3`,
-					);
+					data.sprite.play(`${slidePrefix}-3-yay`);
 				},
 			})
 			.to(
@@ -140,35 +135,37 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(boyYay, {
-				delay: 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3-yay`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}-4.mp3`);
+					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boy, {
-				delay: 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {
-					play(
-						`./communities/${data.community}/audio/${slidePrefix}-5-nay.mp3`,
-					);
+					data.sprite.play(`${slidePrefix}-5-nay`);
 				},
 			})
 			.to(boyNay, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boyNay, {
-				delay: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5-nay`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 				onComplete: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}-6.mp3`);
+					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(boy, { delay: 2, x: 1200, duration: 3 });
+			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				x: 1200,
+				duration: 3,
+			});
 	}
 
 	await sleep(1000);
