@@ -95,9 +95,11 @@ procedure:
     # - s-knowledgeaccess-c
     # - s-diversedesires-a
     # - s-diversedesires-b
-    - s-diversedesires-c
-    - s-diversedesires-d
+    #- s-diversedesires-c
+    #- s-diversedesires-d
     # - s-falsebelief-two-a
+    - s-diversebeliefs-a
+    - s-diversebeliefs-b
     # - s-end
 
   english:
