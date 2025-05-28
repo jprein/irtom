@@ -192,16 +192,6 @@ export const init = async () => {
 	// blocking state slide
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
 	parentBlock.removeAttribute('visibility');
-	const bsFo = document.getElementById('s-bs')! as SvgInHtml;
-	bsFo.innerHTML = `<div id="blocking-state" style="
-	height: 100%;
-	width: 100%;
-	background-color: #fff;
-	opacity: 0.75;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	backdrop-filter: blur(10px);"></div>`;
 
 	gsap.set('#link-leuphana-cube', {
 		transformOrigin: '50% 50%',

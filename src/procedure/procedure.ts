@@ -8,6 +8,7 @@ import {
 	millisToMinutesAndSeconds,
 	sleep,
 } from '../util/helpers';
+import type { SvgInHtml } from '../types';
 
 export const procedure = async () => {
 	let currentProcedure = _.cloneDeep(config.procedure[data.community]);
@@ -91,6 +92,13 @@ export const procedure = async () => {
 	const pindaNeutral = document.getElementById(
 		'pinda-neutral',
 	) as HTMLVideoElement;
+
+	// hide loading spinner
+	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
+	// parentBlock.removeAttribute('visibility');
+	const blockingStateAnimation = gsap.getById('blocking-state-animation');
+	if (blockingStateAnimation) blockingStateAnimation.kill();
+	parentBlock.setAttribute('visibility', 'hidden');
 
 	// ================================================
 	// PROCEDURE LOOP

@@ -14,20 +14,15 @@ export default async ({ currentSlide, previousSlide }) => {
 	const speaker = document.getElementById(
 		'link-s-introduction-speaker',
 	) as SvgInHtml;
-	const headphones = document.getElementById(
-		'link-s-introduction-headphones',
+	const repeat = document.getElementById(
+		'link-s-introduction-repeat',
 	) as SvgInHtml;
 	const nextButton = document.getElementById(
 		'link-s-introduction-next',
 	) as SvgInHtml;
 	const childQuestion = document.getElementById('text-introChild') as SvgInHtml;
 	const adultQuestion = document.getElementById('text-introAdult') as SvgInHtml;
-	gsap.set([headphones, nextButton], { autoAlpha: 0, pointerEvents: 'none' });
-
-	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
-	parentBlock.removeAttribute('visibility');
-	const blockingStateAnimation = gsap.getById('blocking-state-animation');
-	if (blockingStateAnimation) blockingStateAnimation.kill();
+	gsap.set([repeat, nextButton], { autoAlpha: 0, pointerEvents: 'none' });
 
 	// let preloadVideo: Response;
 	// const preloadVideo = await fetch(
@@ -36,7 +31,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// const blob = await preloadVideo.blob();
 	// const url = URL.createObjectURL(blob);
-	parentBlock.setAttribute('visibility', 'hidden');
 
 	if (data.agegroup === 'adult') {
 		gsap.set(childQuestion, { autoAlpha: 0 });
@@ -51,51 +45,46 @@ export default async ({ currentSlide, previousSlide }) => {
 		if (!config.devmode.on) startFullscreen();
 
 		await data.sprite.playPromise('pop');
-		gsap.to([nextButton, headphones], {
+		gsap.to([nextButton, repeat], {
 			autoAlpha: 1,
 			pointerEvents: 'visible',
 		});
 		gsap.to(speaker, { autoAlpha: 0 });
 
-		// play(
-		// 	`./communities/${data.community}/audio/s-introduction-next.mp3`,
-		// 	headphones.id,
-		// );
-
-		// when audio plays, next button and headphones cannot be clicked
+		// when audio plays, next button and repeat cannot be clicked
 		audio.addEventListener('play', () => {
-			gsap.to([nextButton, headphones], {
+			gsap.to([nextButton, repeat], {
 				autoAlpha: 0.25,
 				pointerEvents: 'none',
 			});
 		});
 
-		// when pinda plays, next buttons and headphones are hidden and cannot be clicked
+		// when pinda plays, next buttons and repeat are hidden and cannot be clicked
 		// pinda.addEventListener('play', () => {
-		// 	gsap.to([nextButton, headphones], {
+		// 	gsap.to([nextButton, repeat], {
 		// 		autoAlpha: 0,
 		// 		pointerEvents: 'none',
 		// 	});
 		// });
 
-		// once audio ended, show next button and headphones again
+		// once audio ended, show next button and repeat again
 		audio.addEventListener('ended', () => {
 			if (playingTimeline) {
-				gsap.to([nextButton, headphones], {
+				gsap.to([nextButton, repeat], {
 					autoAlpha: 0,
 					pointerEvents: 'none',
 				});
 			} else {
-				gsap.to([nextButton, headphones], {
+				gsap.to([nextButton, repeat], {
 					autoAlpha: 1,
 					pointerEvents: 'visible',
 				});
 			}
 		});
 
-		// once pinda ended, show next button and headphones again, hide pinda
+		// once pinda ended, show next button and repeat again, hide pinda
 		// pinda.addEventListener('ended', () => {
-		// 	gsap.to([nextButton, headphones], {
+		// 	gsap.to([nextButton, repeat], {
 		// 		autoAlpha: 1,
 		// 		pointerEvents: 'visible',
 		// 	});
@@ -106,26 +95,14 @@ export default async ({ currentSlide, previousSlide }) => {
 		// pinda.src = url;
 		// pinda.play();
 
-		// only start timeline when media can play through
-		// const communityDelay = {
-		// 	headphones: {
-		// 		german: 16,
-		// 		english: 16,
-		// 	},
-		// 	nextButton: {
-		// 		german: 5,
-		// 		english: 4,
-		// 	},
-		// };
-
 		// gsap
 		// 	.timeline()
-		// 	.to(headphones, {
+		// 	.to(repeat, {
 		// 		autoAlpha: 0.5,
-		// 		delay: communityDelay.headphones[data.community],
+		// 		delay: 2,
 		// 		duration: 0.5,
 		// 	})
-		// 	.to(headphones, {
+		// 	.to(repeat, {
 		// 		filter: 'drop-shadow(0px 0px 14px #000)',
 		// 		delay: 1,
 		// 		repeat: 4,
@@ -134,7 +111,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		// 	})
 		// 	.to(nextButton, {
 		// 		autoAlpha: 0.5,
-		// 		delay: communityDelay.nextButton[data.community],
+		// 		delay: 2,
 		// 		onComplete: () => {
 		// 			playingTimeline = false;
 		// 		},
