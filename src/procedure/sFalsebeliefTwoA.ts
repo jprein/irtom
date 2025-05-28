@@ -1,7 +1,6 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
-import { play, playPromise } from '../util/audio';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
@@ -49,9 +48,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	gsap.set([girlStanding, girlHiding, boyStanding], { autoAlpha: 0 });
 
 	// Play initial audio
-	await playPromise(
-		`./communities/${data.community}/audio/${slidePrefix}-1.mp3`,
-	);
+	await data.sprite.playPromise(`${slidePrefix}-1`);
 
 	// Animation sequence
 	await gsap
@@ -64,30 +61,38 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 1,
 				duration: 0.1,
 				onComplete: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}-2.mp3`);
+					data.sprite.play(`${slidePrefix}-2`);
 				},
 			},
 			'<',
 		)
-		.to(girlStanding, { delay: 7, x: -1620, duration: 4 })
+		.to(girlStanding, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+			x: -1620,
+			duration: 4,
+		})
 		.to(boyStanding, { x: 370, duration: 2 }, '<')
 		.to(girlHiding, {
 			delay: 1.5,
 			autoAlpha: 1,
 			duration: 0.2,
 			onStart: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-3.mp3`);
+				data.sprite.play(`${slidePrefix}-3`);
 			},
 		})
 		.to(boyStanding, {
-			delay: 4,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 			x: 50,
 			duration: 2,
 			onStart: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-4.mp3`);
+				data.sprite.play(`${slidePrefix}-4`);
 			},
 		})
-		.to(boyStanding, { delay: 5, autoAlpha: 0, duration: 0.1 })
+		.to(boyStanding, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 6,
+			autoAlpha: 0,
+			duration: 0.1,
+		})
 		.to(boyDigging, { autoAlpha: 1, duration: 0.1 }, '<')
 		.to(dirt2, { delay: 1, autoAlpha: 1, duration: 0.1 })
 		.to(treasure, { delay: 1, autoAlpha: 1, duration: 0.1 })
@@ -106,7 +111,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			x: 370,
 			duration: 4,
 			onStart: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-5.mp3`);
+				data.sprite.play(`${slidePrefix}-5`);
 			},
 		})
 		.to(girlHiding, { delay: 0.5, autoAlpha: 0, duration: 0.1 });

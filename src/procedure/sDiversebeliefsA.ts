@@ -1,5 +1,4 @@
 import type { SvgInHtml } from '../types';
-import { playPromise } from '../util/audio';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';

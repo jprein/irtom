@@ -1,7 +1,6 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
-import { play, playPromise } from '../util/audio';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
@@ -41,9 +40,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	gsap.set([girlYay, girlNay, boyYay, boyNay], { opacity: 0 });
 
 	// Play initial audio
-	await playPromise(
-		`./communities/${data.community}/audio/${slidePrefix}-1.mp3`,
-	);
+	await data.sprite.playPromise(`${slidePrefix}-1`);
 
 	// Animation sequence
 	await gsap
@@ -52,10 +49,14 @@ export default async ({ currentSlide, previousSlide }) => {
 			x: 0,
 			duration: 3,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-2.mp3`);
+				data.sprite.play(`${slidePrefix}-2`);
 			},
 		})
-		.to(boy, { delay: 2, autoAlpha: 0, duration: 0.1 })
+		.to(boy, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
+			autoAlpha: 0,
+			duration: 0.1,
+		})
 		.to(
 			boyYay,
 			{
@@ -65,11 +66,11 @@ export default async ({ currentSlide, previousSlide }) => {
 			'<',
 		)
 		.to(boyYay, {
-			delay: 4,
+			delay: 3,
 			autoAlpha: 0,
 			duration: 0.1,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-3.mp3`);
+				data.sprite.play(`${slidePrefix}-3`);
 			},
 		})
 		.to(boyNay, {
@@ -77,32 +78,36 @@ export default async ({ currentSlide, previousSlide }) => {
 			duration: 0.1,
 		})
 		.to(boyNay, {
-			delay: 3,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 			autoAlpha: 0,
 			duration: 0.1,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-4.mp3`);
+				data.sprite.play(`${slidePrefix}-4`);
 			},
 		})
 		.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
 		.to(boy, {
-			delay: 2,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
 			x: -1200,
 			duration: 3,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-5.mp3`);
+				data.sprite.play(`${slidePrefix}-5`);
 			},
 		})
 
 		.to(girl, {
-			delay: 1,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 			x: 0,
 			duration: 3,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-6.mp3`);
+				data.sprite.play(`${slidePrefix}-6`);
 			},
 		})
-		.to(girl, { delay: 2, autoAlpha: 0, duration: 0.1 })
+		.to(girl, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 2,
+			autoAlpha: 0,
+			duration: 0.1,
+		})
 		.to(
 			girlYay,
 			{
@@ -112,11 +117,11 @@ export default async ({ currentSlide, previousSlide }) => {
 			'<',
 		)
 		.to(girlYay, {
-			delay: 4,
+			delay: 3,
 			autoAlpha: 0,
 			duration: 0.1,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-7.mp3`);
+				data.sprite.play(`${slidePrefix}-7`);
 			},
 		})
 		.to(girlNay, {
@@ -124,16 +129,16 @@ export default async ({ currentSlide, previousSlide }) => {
 			duration: 0.1,
 		})
 		.to(girlNay, {
-			delay: 3,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
 			autoAlpha: 0,
 			duration: 0.1,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-8.mp3`);
+				data.sprite.play(`${slidePrefix}-8`);
 			},
 		})
 		.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 		.to(girl, {
-			delay: 2,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000,
 			x: 1200,
 			duration: 3,
 		});

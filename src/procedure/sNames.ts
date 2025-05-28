@@ -3,7 +3,6 @@ import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { getResponse } from '../util/getResponse';
-import { play, playPromise } from '../util/audio';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -21,8 +20,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
-	const audio = document.getElementById('audio') as HTMLMediaElement;
-
 	const girlHandsup = document.getElementById(
 		`${slidePrefix}-girl-waving`,
 	) as SvgInHtml;
@@ -59,13 +56,12 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Define function to show names
 	async function showNames() {
-		await playPromise(
-			`./communities/${data.community}/audio/${slidePrefix}-1.mp3`,
-		);
+		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		await gsap
 			.timeline()
 			.to(girlHandsdown, {
+				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -75,13 +71,13 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 					onStart: () => {
-						play(`./communities/${data.community}/audio/${slidePrefix}-2.mp3`);
+						data.sprite.play(`${slidePrefix}-2`);
 					},
 				},
 				'<',
 			)
 			.to(girlHandsup, {
-				delay: 1.5,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -91,13 +87,13 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 					onComplete: () => {
-						play(`./communities/${data.community}/audio/${slidePrefix}-3.mp3`);
+						data.sprite.play(`${slidePrefix}-3`);
 					},
 				},
 				'<',
 			)
 			.to(boyHandsdown, {
-				delay: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 1,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -107,13 +103,13 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 					onStart: () => {
-						play(`./communities/${data.community}/audio/${slidePrefix}-4.mp3`);
+						data.sprite.play(`${slidePrefix}-4`);
 					},
 				},
 				'<',
 			)
 			.to(boyHandsup, {
-				delay: 1.5,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -130,9 +126,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	// define function to show left/right response options
 	async function showChoice() {
 		// Play audio
-		await playPromise(
-			`./communities/${data.community}/audio/${slidePrefix}.mp3`,
-		);
+		await data.sprite.playPromise(`${slidePrefix}`);
 
 		await gsap
 			.timeline()
@@ -147,19 +141,17 @@ export default async ({ currentSlide, previousSlide }) => {
 				pointerEvents: 'visible',
 				cursor: 'pointer',
 				onStart: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}-left.mp3`);
+					data.sprite.play(`${slidePrefix}-left`);
 				},
 			})
 			.to(optionRight, {
-				delay: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.5,
 				pointerEvents: 'visible',
 				cursor: 'pointer',
 				onStart: () => {
-					play(
-						`./communities/${data.community}/audio/${slidePrefix}-right.mp3`,
-					);
+					data.sprite.play(`${slidePrefix}-right`);
 				},
 				onComplete: () => {
 					gsap.to(headphones, {
@@ -169,45 +161,6 @@ export default async ({ currentSlide, previousSlide }) => {
 					});
 				},
 			});
-
-		// if headphone is clicked, play audio again
-		play(
-			`./communities/${data.community}/audio/${slidePrefix}.mp3`,
-			`link-${slidePrefix}-headphones`,
-		);
-
-		// while audio is playing, hide yes and no response buttons
-		function handlePlay() {
-			gsap
-				.timeline()
-				.set([optionLeft, optionRight], {
-					autoAlpha: 0,
-					pointerEvents: 'none',
-					cursor: 'default',
-				})
-				.to(blurr, {
-					autoAlpha: 0,
-					duration: 0.6,
-				});
-		}
-
-		// when audio ends, show yes and no response buttons
-		function handleEnded() {
-			gsap
-				.timeline()
-				.set([optionLeft, optionRight], {
-					autoAlpha: 1,
-					pointerEvents: 'visible',
-					cursor: 'pointer',
-				})
-				.to(blurr, {
-					autoAlpha: 0.7,
-					duration: 0.6,
-				});
-		}
-
-		audio.addEventListener('play', handlePlay);
-		audio.addEventListener('ended', handleEnded);
 
 		// Get Response
 		const response = await getResponse([optionLeft.id, optionRight.id]);
@@ -225,26 +178,24 @@ export default async ({ currentSlide, previousSlide }) => {
 				? true
 				: false;
 
-		// Remove Event Listeners after response
-		audio.removeEventListener('play', handlePlay);
-		audio.removeEventListener('ended', handleEnded);
-
 		// For this initial trial, we check response
 		// If correct, move on to the next trial
 		if (correct) {
-			await playPromise(
-				`./communities/${data.community}/audio/${slidePrefix}-correct.mp3`,
-			);
+			await data.sprite.playPromise(`${slidePrefix}-correct`);
 			// If incorrect, play the same again.
 		} else {
-			await playPromise(
-				`./communities/${data.community}/audio/${slidePrefix}-incorrect.mp3`,
-			);
+			await data.sprite.playPromise(`${slidePrefix}-incorrect`);
 			await hideTwoOptions(slidePrefix);
 			await showNames();
 			await showChoice();
 		}
 	}
+
+	headphones.addEventListener('click', async () => {
+		await hideTwoOptions(slidePrefix);
+		await showNames();
+		await showChoice();
+	});
 
 	// Actually running
 	await showNames();

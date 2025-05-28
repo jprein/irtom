@@ -1,5 +1,4 @@
 import { gsap } from 'gsap';
-// import { play, playPromise } from '../util/audio';
 import { swapSlides } from '../util/slideVisibility';
 import { getResponse } from '../util/getResponse';
 import { startFullscreen } from '../util/helpers';

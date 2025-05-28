@@ -1,7 +1,6 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
-import { play, playPromise } from '../util/audio';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
@@ -48,20 +47,19 @@ export default async ({ currentSlide, previousSlide }) => {
 	gsap.set(rooster, { x: 1200 });
 	gsap.set([girlHandsup, boxOpen], { autoAlpha: 0 });
 
-	// Play initial audio
-	// await playPromise(
-	// 	`./communities/${data.community}/audio/${slidePrefix}-1.mp3`,
-	// );
-
 	// Animation sequence
 	await gsap
 		.timeline()
 		.to(rooster, {
 			onStart: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-1.mp3`);
+				data.sprite.play(`${slidePrefix}-1`);
 			},
 		})
-		.to(rooster, { delay: 3, x: 0, duration: 3 })
+		.to(rooster, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 5,
+			x: 0,
+			duration: 3,
+		})
 		.to(boxOpen, { delay: 2, autoAlpha: 1, duration: 0.1 })
 		.to(rooster, { autoAlpha: 0, duration: 0.1 }, '<')
 		.to(boxOpen, { delay: 1, autoAlpha: 0, duration: 0.1 })
@@ -71,21 +69,21 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 1,
 				duration: 0.1,
 				onComplete: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}-2.mp3`);
+					data.sprite.play(`${slidePrefix}-2`);
 				},
 			},
 			'<',
 		)
 		.to(girlHandsdown, {
-			delay: 3,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 			x: 0,
 			duration: 3,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-3.mp3`);
+				data.sprite.play(`${slidePrefix}-3`);
 			},
 		})
 		.to(girlHandsdown, {
-			delay: 3,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 			autoAlpha: 0,
 			duration: 0.1,
 		})
@@ -102,10 +100,14 @@ export default async ({ currentSlide, previousSlide }) => {
 			y: -700,
 			duration: 1,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-4.mp3`);
+				data.sprite.play(`${slidePrefix}-4`);
 			},
 		})
-		.to(girlHandsup, { delay: 3, autoAlpha: 0, duration: 0.1 })
+		.to(girlHandsup, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+			autoAlpha: 0,
+			duration: 0.1,
+		})
 		.to(
 			girlHandsdown,
 			{
@@ -124,24 +126,28 @@ export default async ({ currentSlide, previousSlide }) => {
 			x: -1200,
 			duration: 3,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-5.mp3`);
+				data.sprite.play(`${slidePrefix}-5`);
 			},
 		})
 		.to(boyHandsdown, {
-			delay: 3,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 			x: 0,
 			duration: 3,
 			onComplete: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-6.mp3`);
+				data.sprite.play(`${slidePrefix}-6`);
 			},
 		})
 		.to(boyHandsdown, {
-			delay: 5,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 			onStart: () => {
-				play(`./communities/${data.community}/audio/${slidePrefix}-7.mp3`);
+				data.sprite.play(`${slidePrefix}-7`);
 			},
 		})
-		.to(boyHandsdown, { delay: 3, x: -1200, duration: 3 });
+		.to(boyHandsdown, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
+			x: -1200,
+			duration: 3,
+		});
 
 	// Short break before showing response options
 	await sleep(1000);

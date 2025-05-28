@@ -14,7 +14,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// Get response from previous slide with interactive choice
-	// response stores what participant likes (left or right), boy agent always likes the opposite
+	// response stores what participant chose (left or right)
+	// code naySide as the side that the participant chose, so the girl DOES NOT think the boy is there
+	// yaySide is opposite, so where the girl thinks the boy hides
 	const naySide = data.procedure[data.previousSlide].response;
 	const yaySide = naySide === 'left' ? 'right' : 'left';
 
@@ -37,13 +39,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	) as SvgInHtml;
 
 	// Initially hide some agent elements
-	//gsap.set(girl, { x: 1200 });
 	gsap.set([girlNay, girlYay], { autoAlpha: 0 });
 
-	// For the case that Max doesn't like the cracker but the cucumber
-	//if (naySide === 'left') {
 	await data.sprite.playPromise(`${slidePrefix}-${naySide}-nay`);
-	// Max first tries the cracker on the left
 	await gsap
 		.timeline()
 		.to(girl, {
@@ -53,7 +51,6 @@ export default async ({ currentSlide, previousSlide }) => {
 		.to(
 			girlYay,
 			{
-				//delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.1,
 			},
@@ -67,7 +64,6 @@ export default async ({ currentSlide, previousSlide }) => {
 		.to(
 			girlYay,
 			{
-				//delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 			},
