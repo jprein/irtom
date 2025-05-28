@@ -64,7 +64,7 @@ export const showYesNoChoice = async (
 		.to(yesFacefeatures, { y: -20, duration: 0.3 }, '<')
 		.to(yesFace, {
 			y: 8,
-			repeat: 3,
+			repeat: 2,
 			yoyo: true,
 			ease: 'power1.inOut',
 		})
@@ -72,14 +72,14 @@ export const showYesNoChoice = async (
 			yesFacefeatures,
 			{
 				y: 20,
-				repeat: 3,
+				repeat: 2,
 				yoyo: true,
 				ease: 'power1.inOut',
 			},
 			'<',
 		)
 		.to([yesFace, yesFacefeatures], { y: 0, ease: 'power1.inOut' })
-		.to(yesThumbs, { autoAlpha: 1, duration: 1 })
+		.to(yesThumbs, { autoAlpha: 1, duration: 1 }, '<')
 		.to(noGroup, {
 			duration: 0.5,
 			autoAlpha: 1,
@@ -91,7 +91,7 @@ export const showYesNoChoice = async (
 		.to(noFacefeatures, { x: 20, duration: 0.3 }, '<')
 		.to(noFace, {
 			x: -8,
-			repeat: 3,
+			repeat: 2,
 			yoyo: true,
 			ease: 'power1.inOut',
 		})
@@ -99,14 +99,14 @@ export const showYesNoChoice = async (
 			noFacefeatures,
 			{
 				x: -20,
-				repeat: 3,
+				repeat: 2,
 				yoyo: true,
 				ease: 'power1.inOut',
 			},
 			'<',
 		)
 		.to([noFace, noFacefeatures], { x: 0, ease: 'power1.inOut' })
-		.to(noThumbs, { autoAlpha: 1, duration: 0.5 })
+		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
 		.to([yesGroup, noGroup, headphones], {
 			autoAlpha: 1,
 			pointerEvents: 'visible',

@@ -18,8 +18,12 @@ css:
       '#link-s-introduction-speaker',
       '[id^=link][id$=next]',
       '[id^=link][id$=headphones]',
-      '#s-yesnochoice-yes',
-      '#s-yesnochoice-no',
+      '#s-yesnochoice-yellow-yes',
+      '#s-yesnochoice-blue-yes',
+      '#s-yesnochoice-purple-yes',
+      '#s-yesnochoice-yellow-no',
+      '#s-yesnochoice-blue-no',
+      '#s-yesnochoice-purple-no',
       '#s-yesnotraining-a-yellow-yes',
       '#s-yesnotraining-a-blue-yes',
       '#s-yesnotraining-a-purple-yes',
@@ -36,8 +40,12 @@ css:
       '#link-s-introduction-speaker',
       '[id^=link][id$=next]',
       '[id^=link][id$=headphones]',
-      '#s-yesnochoice-yes',
-      '#s-yesnochoice-no',
+      '#s-yesnochoice-yellow-yes',
+      '#s-yesnochoice-blue-yes',
+      '#s-yesnochoice-purple-yes',
+      '#s-yesnochoice-yellow-no',
+      '#s-yesnochoice-blue-no',
+      '#s-yesnochoice-purple-no',
       '#s-yesnotraining-a-yellow-yes',
       '#s-yesnotraining-a-blue-yes',
       '#s-yesnotraining-a-purple-yes',
@@ -72,8 +80,8 @@ procedure:
   # You can nest only two levels deep
   german:
     - s-introduction
-    # - s-emojichoice
-    # - s-yesnotraining-a
+    - s-emojichoice
+    - s-yesnotraining-a
     # - s-yesnotraining-b
     # - s-yesnotraining-c
     # - s-yesnotraining-d
@@ -81,26 +89,26 @@ procedure:
     # - s-leftrighttraining-b
     # - s-leftrighttraining-c
     # - s-leftrighttraining-d
-    # - s-names
-    # - s-perspectivetaking-one-a
-    # - s-perspectivetaking-one-b
-    # - s-perspectivetaking-one-c
-    # - s-perspectivetaking-one-d
-    # - s-perspectivetaking-two-a
-    # - s-perspectivetaking-two-b
-    # - s-perspectivetaking-two-c
-    # - s-perspectivetaking-two-d
-    # - s-knowledgeaccess-a
-    # - s-knowledgeaccess-b
-    # - s-knowledgeaccess-c
-    # - s-diversedesires-a
-    # - s-diversedesires-b
-    #- s-diversedesires-c
-    #- s-diversedesires-d
-    # - s-falsebelief-two-a
+    - s-names
+    - s-perspectivetaking-one-a
+    - s-perspectivetaking-one-b
+    - s-perspectivetaking-one-c
+    - s-perspectivetaking-one-d
+    - s-perspectivetaking-two-a
+    - s-perspectivetaking-two-b
+    - s-perspectivetaking-two-c
+    - s-perspectivetaking-two-d
+    - s-knowledgeaccess-a
+    - s-knowledgeaccess-b
+    - s-knowledgeaccess-c
+    - s-diversedesires-a
+    - s-diversedesires-b
+    - s-diversedesires-c
+    - s-diversedesires-d
     - s-diversebeliefs-a
     - s-diversebeliefs-b
-    # - s-end
+    - s-falsebelief-two-a
+    - s-end
 
   english:
     - s-introduction
