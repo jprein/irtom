@@ -251,6 +251,10 @@ export const procedure = async () => {
 		't1',
 		'totalSlides',
 		'videoExtension',
+		'hasWebcam',
+		'sprite',
+		'spriteJSON',
+		'clickedRepeat',
 	].forEach((key) => {
 		if (key in data) {
 			delete data[key];
