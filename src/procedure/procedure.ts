@@ -77,8 +77,6 @@ export const procedure = async () => {
 	}
 
 	data.simpleSlideCounter = 0;
-	// choose default emoji color
-	data.emoji = 'purple';
 
 	currentProcedure = currentProcedure.map((e: string) => _.camelCase(e));
 	data.currentProcedure = currentProcedure;
@@ -138,9 +136,59 @@ export const procedure = async () => {
 		// ACTUAL LOOP
 		// camelCased in procedure directory (e.g., sIntroduction.ts)
 		// kebab-cased arguments, as required by Illustrator slide IDs
-		await (
-			await import(`./${currentSlide}`)
-		).default({ currentSlide: currentSlideKc, previousSlide: previousSlideKc });
+
+		// Import the slide behavior dynamically
+		const runSlideBehavior = async () => {
+			await (
+				await import(`./${currentSlide}`)
+			).default({
+				currentSlide: currentSlideKc,
+				previousSlide: previousSlideKc,
+			});
+		};
+
+		// ENABLE REPEAT BUTTON
+		// If a repeat element exists on the slide, attach a listener to re-run the behavior when clicked
+		let repeatSvg = document.querySelector(
+			`#${currentSlideKc} [id$="-repeat"]`,
+		)! as SvgInHtml;
+
+		// If the repeat element is not found, try to get it from yes/no slide
+		if (!repeatSvg) {
+			repeatSvg = document.getElementById('s-yesnochoice') as SvgInHtml;
+		}
+
+		// Add event listener to repeat element
+		if (repeatSvg) {
+			// Put in function so that we can remove the event listener again
+			const handleRepeatClick = async () => {
+				console.log('Repeat button clicked, re-running slide behavior.');
+
+				// Hide previous slide to avoid short flickering of old slide
+				const slideElement = document.getElementById(previousSlideKc);
+				if (slideElement) {
+					slideElement.style.display = 'none';
+				}
+
+				// Run the slide behavior again
+				await runSlideBehavior();
+
+				// After running slide behavior, we set clickedRepeat to true
+				// this way, the original first run of the slide (which is still awaiting)
+				// will not continue to play the audio/video feedback
+				data.clickedRepeat = true;
+
+				// Remove the event listener
+				repeatSvg.removeEventListener('click', handleRepeatClick);
+			};
+
+			repeatSvg.addEventListener('click', handleRepeatClick);
+		}
+
+		// Run the slide behavior for the first time
+		// only after this first run, the repeat button will be clickable
+		await runSlideBehavior();
+
 		// ----------------------------------------------------------------------------
 
 		// POST LOOP Actions (i.e., either an await button was clicked or video ended)

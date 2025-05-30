@@ -6,8 +6,8 @@ import { getResponse } from './getResponse';
 export const showThreeOptions = async (slidePrefix: string) => {
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
-	const headphones = document.getElementById(
-		`link-${slidePrefix}-headphones`,
+	const repeat = document.getElementById(
+		`link-${slidePrefix}-repeat`,
 	) as SvgInHtml;
 	const optionLeft = document.getElementById(
 		`${slidePrefix}-left`,
@@ -41,8 +41,6 @@ export const showThreeOptions = async (slidePrefix: string) => {
 			delay: 0.5,
 			autoAlpha: 1,
 			duration: 0.5,
-			pointerEvents: 'visible',
-			cursor: 'pointer',
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-left`);
 			},
@@ -51,8 +49,6 @@ export const showThreeOptions = async (slidePrefix: string) => {
 			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000,
 			autoAlpha: 1,
 			duration: 0.5,
-			pointerEvents: 'visible',
-			cursor: 'pointer',
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-center`);
 			},
@@ -61,18 +57,15 @@ export const showThreeOptions = async (slidePrefix: string) => {
 			delay: data.spriteJSON.sprite[`${slidePrefix}-center`][1] / 1000,
 			autoAlpha: 1,
 			duration: 0.5,
-			pointerEvents: 'visible',
-			cursor: 'pointer',
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-right`);
 			},
-			onComplete: () => {
-				gsap.to(headphones, {
-					autoAlpha: 1,
-					pointerEvents: 'visible',
-					cursor: 'pointer',
-				});
-			},
+		})
+		.to([optionLeft, optionCenter, optionRight, repeat], {
+			autoAlpha: 1,
+			duration: 0.5,
+			pointerEvents: 'visible',
+			cursor: 'pointer',
 		});
 
 	// Get Response
@@ -81,6 +74,13 @@ export const showThreeOptions = async (slidePrefix: string) => {
 		optionCenter.id,
 		optionRight.id,
 	]);
+
+	// If the repeat button was clicked, exit early. Otherwise, neutral response audio gets played twice
+	if (data.clickedRepeat) {
+		// reset the flag for next use
+		data.clickedRepeat = false;
+		return;
+	}
 
 	// Response returns the clicked element.
 	// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")

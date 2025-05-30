@@ -11,8 +11,8 @@ export const showYesNoChoice = async (
 	const choiceSlide = document.getElementById(`${choicePrefix}`) as SvgInHtml;
 	choiceSlide.setAttribute('visibility', 'visible');
 	const blurr = document.getElementById(`${choicePrefix}-blurr`) as SvgInHtml;
-	const headphones = document.getElementById(
-		`link-${choicePrefix}-headphones`,
+	const repeat = document.getElementById(
+		`link-${choicePrefix}-repeat`,
 	) as SvgInHtml;
 	const yesGroup = document.getElementById(
 		`${choicePrefix}-${data.emoji}-yes`,
@@ -107,7 +107,7 @@ export const showYesNoChoice = async (
 		)
 		.to([noFace, noFacefeatures], { x: 0, ease: 'power1.inOut' })
 		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
-		.to([yesGroup, noGroup, headphones], {
+		.to([yesGroup, noGroup, repeat], {
 			autoAlpha: 1,
 			pointerEvents: 'visible',
 			cursor: 'pointer',
@@ -115,6 +115,13 @@ export const showYesNoChoice = async (
 
 	// Get Response
 	const response = await getResponse([yesGroup.id, noGroup.id]);
+
+	// If the repeat button was clicked, exit early. Otherwise, neutral response audio gets played twice
+	if (data.clickedRepeat) {
+		// reset the flag for next use
+		data.clickedRepeat = false;
+		return;
+	}
 
 	// Response returns the clicked element.
 	// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")

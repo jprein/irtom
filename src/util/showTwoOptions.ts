@@ -6,8 +6,8 @@ import { getResponse } from './getResponse';
 export const showTwoOptions = async (slidePrefix: string) => {
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
-	const headphones = document.getElementById(
-		`link-${slidePrefix}-headphones`,
+	const repeat = document.getElementById(
+		`link-${slidePrefix}-repeat`,
 	) as SvgInHtml;
 	const optionLeft = document.getElementById(
 		`${slidePrefix}-left`,
@@ -38,32 +38,34 @@ export const showTwoOptions = async (slidePrefix: string) => {
 			delay: 0.5,
 			autoAlpha: 1,
 			duration: 0.5,
-			pointerEvents: 'visible',
-			cursor: 'pointer',
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-left`);
 			},
 		})
 		.to(optionRight, {
-			delay: 2,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000,
+			autoAlpha: 1,
+			duration: 0.5,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-right`);
+			},
+		})
+		.to([optionLeft, optionRight, repeat], {
 			autoAlpha: 1,
 			duration: 0.5,
 			pointerEvents: 'visible',
 			cursor: 'pointer',
-			onStart: () => {
-				data.sprite.play(`${slidePrefix}-right`);
-			},
-			onComplete: () => {
-				gsap.to(headphones, {
-					autoAlpha: 1,
-					pointerEvents: 'visible',
-					cursor: 'pointer',
-				});
-			},
 		});
 
 	// Get Response
 	const response = await getResponse([optionLeft.id, optionRight.id]);
+
+	// If the repeat button was clicked, exit early. Otherwise, neutral response audio gets played twice
+	if (data.clickedRepeat) {
+		// reset the flag for next use
+		data.clickedRepeat = false;
+		return;
+	}
 
 	// Response returns the clicked element.
 	// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")

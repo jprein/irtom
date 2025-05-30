@@ -16,19 +16,13 @@ export default async ({ currentSlide, previousSlide }) => {
 	swapSlides(currentSlide, previousSlide);
 	data.simpleSlideCounter++;
 
-	// In beginning, hide yes/no choice
-	await hideYesNoChoice(slidePrefix);
-
-	// Short break before showing response options
-	await sleep(1000);
-
 	// Trial-specific animation
 	// Get all relevant elements
 	const choiceSlide = document.getElementById(`${slidePrefix}`) as SvgInHtml;
 	choiceSlide.setAttribute('visibility', 'visible');
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
-	const headphones = document.getElementById(
-		`link-${slidePrefix}-headphones`,
+	const repeat = document.getElementById(
+		`link-${slidePrefix}-repeat`,
 	) as SvgInHtml;
 	const yesGroup = document.getElementById(
 		`${slidePrefix}-${data.emoji}-yes`,
@@ -59,14 +53,14 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.procedure[data.currentSlide].score = 0;
 	let correct = false;
 
-	// Define function to show names
-	async function showNames() {
+	// Define animation function
+	async function showAnimation() {
 		// Play audio
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		gsap.set([yesThumbs, noThumbs], { autoAlpha: 0, pointerEvents: 'none' });
 
-		// animate head shaking & nodding
+		// Animate head shaking & nodding
 		await gsap
 			.timeline()
 			.to(blurr, {
@@ -139,28 +133,33 @@ export default async ({ currentSlide, previousSlide }) => {
 			});
 	}
 
+	// Function to show the choice options and handle the response
 	async function showChoice() {
-		// play question and show choices
+		// Play question and show choices
 		await data.sprite.playPromise(`${slidePrefix}`);
-		gsap.to([yesGroup, noGroup, headphones], {
+		await gsap.timeline().to([yesGroup, noGroup, repeat], {
 			autoAlpha: 1,
+			duration: 0.5,
 			pointerEvents: 'visible',
 			cursor: 'pointer',
 		});
 
-		// on headphone click, repeat trial
-		headphones.addEventListener('click', async () => {
-			gsap.to([yesGroup, noGroup, headphones], {
-				autoAlpha: 0,
-				pointerEvents: 'visible',
-				cursor: 'pointer',
-			});
-			await showNames();
-			await showChoice();
-		});
-
-		// Get Response
+		// Wait for participant response
 		const response = await getResponse([yesGroup.id, noGroup.id]);
+
+		// If the repeat button was clicked, exit early. Otherwise, neutral response audio gets played twice
+		if (data.clickedRepeat) {
+			// reset the flag for next use
+			data.clickedRepeat = false;
+			return;
+		}
+
+		// Remove event listener so that not multiple audios can be played
+		gsap.timeline().to([yesGroup, noGroup, repeat], {
+			autoAlpha: 1,
+			duration: 0.5,
+			pointerEvents: 'none',
+		});
 
 		// Response returns the clicked element.
 		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
@@ -183,12 +182,23 @@ export default async ({ currentSlide, previousSlide }) => {
 		} else {
 			await data.sprite.playPromise(`${slidePrefix}-incorrect`);
 			await hideYesNoChoice(slidePrefix);
-			await showNames();
+			await showAnimation();
 			await showChoice();
 		}
 	}
 
-	// Actually running
-	await showNames();
+	// In beginning, hide yes/no choice
+	await hideYesNoChoice(slidePrefix);
+
+	// Short break before showing response options
+	await sleep(1000);
+
+	// Show animation
+	await showAnimation();
+
+	// Short break before showing response options
+	await sleep(1000);
+
+	// Show response choice and store participant response
 	await showChoice();
 };

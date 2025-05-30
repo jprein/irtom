@@ -27,7 +27,7 @@
       <stop offset=".5" stop-color="#70358a"/>
     </linearGradient>
     <image id="image" width="9600" height="3600" xlink:href="floor.png"/>
-    <image id="image1" width="80" height="80" xlink:href="headphones.png"/>
+    <image id="image1" width="860" height="860" xlink:href="repeat.png"/>
   </defs>
   <g isolation="isolate">
     <g id="svg">
@@ -440,8 +440,8 @@
           <polygon points="160.51 936.88 212.24 797.79 121.79 876.73 160.51 936.88" fill="#6b6358"/>
         </g>
         <rect id="s-falsebelief-two-a-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-falsebelief-two-a-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-falsebelief-two-a-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-falsebelief-two-a-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-falsebelief-two-a-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-falsebelief-two-a-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -609,8 +609,8 @@
           <path d="M158.56,654.58c14.27,20.56,47.74,41.82,67.79,10.76-7.11,11.84-7.45,28.75-.24,40.07,15.85,20.27,41.18,17.74,53.67-7.72.61,8.31,1.38,18.71,8.13,23.79,10.21,8.66,17.01-7.33,25.03-6.69,16.35,5.43,35.08-.11,37.97-25.91,3.41,24.66,22.41,44.35,40.68,32.58,10.71-6.17,19.08-22.46,16.13-40.88,13.01,25.01,41.45,42.97,59.11,22.88,4.42-5.02-7.98-21.71-17.73-24.14,7.87-1.44,17.16-5.25,25.49-.46,8.33,4.79,18.08,7.22,27.37,3.41,2.91-1.87,6.32-5.55,7.86-10.04-2.01-1.5-3.95-3.18-5.78-5.09,3.3,1.5,4.42-5.02,6.14-3.23.8,2.92.52,5.75-.36,8.32,13.11,9.79,29.43,11.08,42.81,4.97,18.58-7.62,22.73-37.87,24.2-61.31-.35,16.92,6.05,38.92,18.95,40.77,14.62,3.64,30.06-3.4,36.55-23.55,6.36-22.31,3.77-44.42-7.98-57.73-.34.13-.68.25-1.03.39.17-.33.33-.65.49-.98-2.18-2.36-4.62-4.47-7.4-6.19,2.78,1.72,5.22,3.83,7.4,6.19,29.25-57.11-60.94-38.44-80.37-22.32,45.45-141.05-133.37-99.87-163.75-14.25-10.62-35.97-24.64-31.3-47.02-10.35-28.76-73.69-114.44-15.48-110.5,30.31,1.86,2.83,3.54,6.16,5,10.08-1.73-1.79-1.42,2.37-1.42,2.37-2.07-3.96-3.21-8.15-3.58-12.45-11.33-17.27-29.53-14.92-47.39-1.57-1.36,1.6-2.67,3.31-3.92,5.11-18.93,24.54-30.19,66.63-12.31,92.85Z" fill="#86a33d"/>
         </g>
         <rect id="s-diversebeliefs-b-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-diversebeliefs-b-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-diversebeliefs-b-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-diversebeliefs-b-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-diversebeliefs-b-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-diversebeliefs-b-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g id="s-diversebeliefs-a-stone">
@@ -748,8 +748,8 @@
           <path d="M158.56,654.58c14.27,20.56,47.74,41.82,67.79,10.76-7.11,11.84-7.45,28.75-.24,40.07,15.85,20.27,41.18,17.74,53.67-7.72.61,8.31,1.38,18.71,8.13,23.79,10.21,8.66,17.01-7.33,25.03-6.69,16.35,5.43,35.08-.11,37.97-25.91,3.41,24.66,22.41,44.35,40.68,32.58,10.71-6.17,19.08-22.46,16.13-40.88,13.01,25.01,41.45,42.97,59.11,22.88,4.42-5.02-7.98-21.71-17.73-24.14,7.87-1.44,17.16-5.25,25.49-.46,8.33,4.79,18.08,7.22,27.37,3.41,2.91-1.87,6.32-5.55,7.86-10.04-2.01-1.5-3.95-3.18-5.78-5.09,3.3,1.5,4.42-5.02,6.14-3.23.8,2.92.52,5.75-.36,8.32,13.11,9.79,29.43,11.08,42.81,4.97,18.58-7.62,22.73-37.87,24.2-61.31-.35,16.92,6.05,38.92,18.95,40.77,14.62,3.64,30.06-3.4,36.55-23.55,6.36-22.31,3.77-44.42-7.98-57.73-.34.13-.68.25-1.03.39.17-.33.33-.65.49-.98-2.18-2.36-4.62-4.47-7.4-6.19,2.78,1.72,5.22,3.83,7.4,6.19,29.25-57.11-60.94-38.44-80.37-22.32,45.45-141.05-133.37-99.87-163.75-14.25-10.62-35.97-24.64-31.3-47.02-10.35-28.76-73.69-114.44-15.48-110.5,30.31,1.86,2.83,3.54,6.16,5,10.08-1.73-1.79-1.42,2.37-1.42,2.37-2.07-3.96-3.21-8.15-3.58-12.45-11.33-17.27-29.53-14.92-47.39-1.57-1.36,1.6-2.67,3.31-3.92,5.11-18.93,24.54-30.19,66.63-12.31,92.85Z" fill="#86a33d"/>
         </g>
         <rect id="s-diversebeliefs-a-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-diversebeliefs-a-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-diversebeliefs-a-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-diversebeliefs-a-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-diversebeliefs-a-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-diversebeliefs-a-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g id="s-diversebeliefs-a-stone2" data-name="s-diversebeliefs-a-stone">
@@ -1358,8 +1358,8 @@
           </g>
         </g>
         <rect id="s-diversedesires-d-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-diversedesires-d-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-diversedesires-d-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-diversedesires-d-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-diversedesires-d-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-diversedesires-d-right">
           <rect x="1053.76" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -1936,8 +1936,8 @@
           </g>
         </g>
         <rect id="s-diversedesires-c-blurr" y="0" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-diversedesires-c-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-diversedesires-c-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-diversedesires-c-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-diversedesires-c-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-diversedesires-c-right">
           <rect x="1053.76" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -2521,16 +2521,14 @@
           </g>
         </g>
         <g id="s-diversedesires-b-plate-carrot">
-          <g id="s-diversedesires-b-plate-left">
+          <g>
+            <path d="M897.91,710.66c0,24.07-61.41,43.6-137.16,43.6s-137.17-19.53-137.17-43.6,61.41-43.6,137.17-43.6c75.75,0,137.16,19.52,137.16,43.6Z" fill="#596e77"/>
             <g>
-              <path d="M897.91,710.66c0,24.07-61.41,43.6-137.16,43.6s-137.17-19.53-137.17-43.6,61.41-43.6,137.17-43.6c75.75,0,137.16,19.52,137.16,43.6Z" fill="#596e77"/>
-              <g>
-                <path d="M935.85,693.62c0,31.25-78.15,58.33-174.96,58.33s-175.66-27.07-175.66-58.32,78.49-56.6,175.32-56.6c96.81,0,175.31,25.33,175.31,56.6Z" fill="#7894a2"/>
-                <path d="M935.75,691.19c0,31.74-78.35,57.48-174.99,57.48s-174.99-25.74-174.99-57.48,78.34-57.49,174.99-57.49c96.65,0,174.99,25.74,174.99,57.49Z" fill="#e3f1fb"/>
-                <path d="M935.75,691.19c0,31.74-78.35,57.48-174.99,57.48s-174.99-25.74-174.99-57.48,78.34-57.49,174.99-57.49c96.65,0,174.99,25.74,174.99,57.49Z" fill="#e3f1fb"/>
-                <path d="M899.66,687.37c0,25.2-62.2,45.63-138.91,45.63s-138.92-20.43-138.92-45.63,62.2-45.64,138.92-45.64c76.71,0,138.91,20.44,138.91,45.64Z" fill="#95acba"/>
-                <path d="M897.91,687.53c0,23.61-61.41,42.77-137.16,42.77s-137.17-19.15-137.17-42.76,61.41-42.75,137.17-42.75c75.75,0,137.16,19.14,137.16,42.75Z" fill="#e3f1fb"/>
-              </g>
+              <path d="M935.85,693.62c0,31.25-78.15,58.33-174.96,58.33s-175.66-27.07-175.66-58.32,78.49-56.6,175.32-56.6c96.81,0,175.31,25.33,175.31,56.6Z" fill="#7894a2"/>
+              <path d="M935.75,691.19c0,31.74-78.35,57.48-174.99,57.48s-174.99-25.74-174.99-57.48,78.34-57.49,174.99-57.49c96.65,0,174.99,25.74,174.99,57.49Z" fill="#e3f1fb"/>
+              <path d="M935.75,691.19c0,31.74-78.35,57.48-174.99,57.48s-174.99-25.74-174.99-57.48,78.34-57.49,174.99-57.49c96.65,0,174.99,25.74,174.99,57.49Z" fill="#e3f1fb"/>
+              <path d="M899.66,687.37c0,25.2-62.2,45.63-138.91,45.63s-138.92-20.43-138.92-45.63,62.2-45.64,138.92-45.64c76.71,0,138.91,20.44,138.91,45.64Z" fill="#95acba"/>
+              <path d="M897.91,687.53c0,23.61-61.41,42.77-137.16,42.77s-137.17-19.15-137.17-42.76,61.41-42.75,137.17-42.75c75.75,0,137.16,19.14,137.16,42.75Z" fill="#e3f1fb"/>
             </g>
           </g>
           <g id="s-diversedesires-b-carrot-eaten">
@@ -2574,7 +2572,7 @@
           </g>
         </g>
         <g id="s-diversedesires-b-plate-lollipop">
-          <g id="s-diversedesires-b-plate-right">
+          <g>
             <path d="M1305.79,708.55c0,24.07-61.41,43.6-137.16,43.6s-137.17-19.53-137.17-43.6,61.41-43.6,137.17-43.6c75.75,0,137.16,19.52,137.16,43.6Z" fill="#596e77"/>
             <g>
               <path d="M1343.73,691.5c0,31.25-78.15,58.33-174.96,58.33s-175.66-27.07-175.66-58.32,78.49-56.6,175.32-56.6c96.81,0,175.31,25.33,175.31,56.6Z" fill="#7894a2"/>
@@ -2608,8 +2606,8 @@
           </g>
         </g>
         <rect id="s-diversedesires-b-blurr" y="0" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-diversedesires-b-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-diversedesires-b-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-diversedesires-b-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-diversedesires-b-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-diversedesires-b-right">
           <rect x="1053.76" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -3129,8 +3127,8 @@
           </g>
         </g>
         <rect id="s-diversedesires-a-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-diversedesires-a-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-diversedesires-a-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-diversedesires-a-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-diversedesires-a-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-diversedesires-a-right">
           <rect x="1053.76" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -3458,8 +3456,8 @@
           <path d="M1312.8,686.25s-12.66,10.28-6.57,16.78c0,0,7.75,5.58,8.9-9.83,0,0,.36-5.71-2.33-6.94Z" fill="#a41724"/>
         </g>
         <rect id="s-knowledgeaccess-c-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-knowledgeaccess-c-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-knowledgeaccess-c-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-knowledgeaccess-c-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-knowledgeaccess-c-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-knowledgeaccess-c-right">
           <rect x="1053.76" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -3754,8 +3752,8 @@
           <polygon points="739.27 814.46 739.27 821.86 1008.01 821.86 1006.68 815.11 739.27 814.46" fill="#d6b900"/>
         </g>
         <rect id="s-knowledgeaccess-b-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-knowledgeaccess-b-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-knowledgeaccess-b-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-knowledgeaccess-b-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-knowledgeaccess-b-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-knowledgeaccess-b-right">
           <rect x="1053.76" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -4286,8 +4284,8 @@
           <path d="M940.39,535.14c-1.49-.47-3.59-1.31-5.87-2.7-.15-.09-.25-.24-.27-.41,1.46-2.71,3.79-4.46,5.83-8.5.13-.23.4-.35.66-.29,4.8,1.15,7.76,1.02,7.79,1.02.29-.01.55.19.61.47.21,1.03.51,1.96.83,2.63,1.82,3.75,6.29,7.85,6.34,7.89,1.27,2.22-4.14.05-7.49-1.24-3.8-1.7-6.75-2.88-7.77.73-.09.28-.37.44-.66.4ZM935.73,531.78c1.65.95,3.22,1.6,4.4,2.02,2.1-5.85,9.55-.04,13.76.74-2.09-2.22-5.08-5.53-5.81-9.09-1.02,0-3.55-.12-7.18-.95-1.86,3.27-3.7,5.49-5.17,7.28Z" fill="#5a263d"/>
         </g>
         <rect id="s-perspectivetaking-two-d-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-perspectivetaking-two-d-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-perspectivetaking-two-d-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-perspectivetaking-two-d-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-perspectivetaking-two-d-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-perspectivetaking-two-d-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -4608,8 +4606,8 @@
           <polygon points="963.43 357.38 1084.51 441.91 958.86 478.46 963.43 357.38" fill="#bdbdb0"/>
         </g>
         <rect id="s-perspectivetaking-two-c-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-perspectivetaking-two-c-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-perspectivetaking-two-c-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-perspectivetaking-two-c-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-perspectivetaking-two-c-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-perspectivetaking-two-c-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -4856,8 +4854,8 @@
           <path d="M951.49,532.61h14.07c3.93,0,7.14-2.68,7.14-5.97v-2.99c0-3.28-3.21-5.97-7.14-5.97h-14.07c-3.93,0-7.14,2.68-7.14,5.97v2.99c0,3.28,3.21,5.97,7.14,5.97Z" fill="#fbd7bd"/>
         </g>
         <rect id="s-perspectivetaking-two-b-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-perspectivetaking-two-b-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-perspectivetaking-two-b-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-perspectivetaking-two-b-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-perspectivetaking-two-b-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-perspectivetaking-two-b-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -5091,8 +5089,8 @@
           </g>
         </g>
         <rect id="s-perspectivetaking-two-a-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-perspectivetaking-two-a-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-perspectivetaking-two-a-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-perspectivetaking-two-a-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-perspectivetaking-two-a-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-perspectivetaking-two-a-right">
           <rect x="1053.76" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -5264,7 +5262,7 @@
           </g>
         </g>
         <g id="s-perspectivetaking-two-a-subject">
-          <path d="M1046.72,277.86c0-16.35-7.65-28.87-13.92-42.09-2.78-5.91-5.57-16.35-9.74-20.87-5.57-5.91-18.79-3.13-25.74-3.48-25.74-1.04-51.49.7-77.23,3.83-8,1.04-12.87-2.09-16,9.39-2.09,7.31-3.48,10.09-3.48,10.09-8,13.92-21.22,22.26-26.09,40.01-3.83,14.26-2.09,32,6.26,42.09,0-5.57.7-12.87,1.74-17.74,5.57,4.17,9.39,12.52,14.96,17.39,5.57,4.87,11.83,9.04,18.09,11.48.7-4.87-1.04-11.48,0-15.65,4.52,11.13,15.65,16,24,20.87,0-6.61-1.74-14.96,3.83-11.13,1.39,1.04,3.48,5.57,5.22,6.96s3.83,2.78,5.91,3.83c6.26,3.83,9.04,4.87,14.96,0,4.17-3.83,9.39-9.04,12.87-13.92,2.09,4.17,1.04,11.13,1.04,16,6.96,0,15.31-8.35,19.83-14.96,1.04,3.83,0,8,1.04,11.83,9.04-1.04,25.05-17.74,29.22-27.83,4.17,3.83,7.65,12.52,6.61,19.13,7.31-12.18,7.31-30.61,7.31-45.57h-.7v.35Z" fill="#8b2b0e"/>
+          <path d="M1046.72,277.86c0-16.35-7.65-28.87-13.92-42.09-2.78-5.91-5.57-16.35-9.74-20.87-5.57-5.91-18.79-3.13-25.74-3.48-25.74-1.04-51.49.7-77.23,3.83-8,1.04-12.87-2.09-16,9.39-2.09,7.31-3.48,10.09-3.48,10.09-8,13.92-21.22,22.26-26.09,40.01-3.83,14.26-2.09,32,6.26,42.09,0-5.57.7-12.87,1.74-17.74,5.57,4.17,9.39,12.52,14.96,17.39s11.83,9.04,18.09,11.48c.7-4.87-1.04-11.48,0-15.65,4.52,11.13,15.65,16,24,20.87,0-6.61-1.74-14.96,3.83-11.13,1.39,1.04,3.48,5.57,5.22,6.96s3.83,2.78,5.91,3.83c6.26,3.83,9.04,4.87,14.96,0,4.17-3.83,9.39-9.04,12.87-13.92,2.09,4.17,1.04,11.13,1.04,16,6.96,0,15.31-8.35,19.83-14.96,1.04,3.83,0,8,1.04,11.83,9.04-1.04,25.05-17.74,29.22-27.83,4.17,3.83,7.65,12.52,6.61,19.13,7.31-12.18,7.31-30.61,7.31-45.57h-.7v.35Z" fill="#8b2b0e"/>
           <path d="M947.57,348.13h0c6.61,11.83,23.31,11.48,29.22,0h0c1.39-2.44,1.74-4.87,1.74-7.65v-45.57h-33.4v45.22c0,2.78.7,5.57,2.09,8.35h.35v-.35Z" fill="#caa1a2"/>
           <path d="M1036.63,242.03c-3.13,4.87-7.65,8.35-12.18,9.04h-3.83c-1.39,12.87-5.91,24.7-12.52,34.44-12.52,18.79-31.31,30.27-45.22,29.57h-3.13c-14.96,0-32-10.44-43.83-27.48-6.61-9.39-11.48-21.22-13.57-34.09h-1.04c-4.52-.35-9.74-3.83-12.87-8.7-.7-.7-1.04-1.74-1.39-2.44-.7-1.39-1.04-2.44-1.39-3.48h0c-1.04-4.87,0-9.04,3.83-10.78h0c3.48-1.39,7.65-.35,11.48,2.44,2.78-39.31,27.48-74.1,57.75-74.79,9.39,0,18.09,2.44,26.09,7.31,18.44,11.48,32,38.96,35.14,66.79,1.74-1.74,3.83-3.13,5.91-4.17s5.57-1.39,8-.35c5.57,2.09,6.26,9.74,2.09,16.7h.7Z" fill="#d9baba"/>
           <path d="M1030.72,256.29c-1.04-11.13-2.78-30.27-3.83-38.96,0-3.13-.35-5.91-.7-9.04-1.04-22.61-8.35-47.31-25.05-59.84-11.83-9.04-22.61-1.39-35.48-4.17-24.7-4.87-53.57,5.91-66.79,29.22-8,13.92-9.39,30.27-6.61,45.92,0,0,1.74,29.57,1.04,36.53-1.04,11.83-4.17,33.4,3.13,43.83,3.48,4.87,14.26,12.87,19.48,15.65,1.04-7.65-5.91-14.61-7.31-21.92-1.74-8-1.04-16.7-1.04-25.05,0-14.96-1.39-29.57-.7-44.53v-4.52c.35-.7.7-1.39,1.04-1.74,3.83-6.26,8.35-11.83,13.57-16.7,5.57-5.22,12.18-8,18.09-12.87,5.57,4.87,10.78,10.09,17.05,13.92,7.65,4.52,18.09,8.35,26.79,9.04-1.04-2.09-3.48-4.17-5.22-6.26-.7-1.04-1.39-2.78-2.09-3.83,4.52,5.22,12.18,9.39,17.74,13.22,5.22,3.83,11.83,5.57,17.74,7.65.35-2.09-5.22-11.48-6.61-14.26,2.09,2.78,5.22,4.52,6.96,7.31,2.09,2.78,3.48,5.91,4.87,8.7h0c.7,15.31-.7,29.92-.7,44.88s.7,17.05-1.04,25.05c-1.74,7.31-8.7,14.26-7.31,21.92,5.22-2.78,16-10.78,19.48-15.65,7.31-10.09,4.17-32,3.13-43.83h.35v.35Z" fill="#8b2b0e"/>
@@ -5275,7 +5273,7 @@
             <path d="M979.93,232.64c0,3.83,2.44,7.31,5.22,7.31s5.57-3.48,5.57-7.31-2.44-7.31-5.22-7.31-5.57,3.48-5.57,7.31Z" fill="#603813"/>
             <path d="M944.44,280.99c.7.7,5.22,10.78,17.39,10.44,11.83,0,16.7-9.39,17.39-10.44" fill="none" stroke="#630" stroke-linecap="round" stroke-miterlimit="10"/>
             <path d="M970.53,260.47c0,4.87-3.83,8.7-8.7,8.7s-8.7-3.83-8.7-8.7,3.83,4.87,8.7,4.87,8.7-9.74,8.7-4.87Z" fill="#603813" isolation="isolate" opacity=".5"/>
-            <path d="M1001.15,242.72c6.96,0,12.52,5.22,12.18,11.13s-6.61,10.09-13.57,9.74c-6.96-.35-12.52-5.22-12.18-11.13s6.61-10.09,13.57-9.74Z" fill="#d9a2a0"/>
+            <path d="M1001.15,242.72c6.96,0,12.52,5.22,12.18,11.13-.35,5.91-6.61,10.09-13.57,9.74-6.96-.35-12.52-5.22-12.18-11.13s6.61-10.09,13.57-9.74Z" fill="#d9a2a0"/>
             <path d="M921.83,242.72c6.96,0,12.52,5.22,12.18,11.13-.35,5.91-6.61,10.09-13.57,9.74-6.96-.35-12.52-5.22-12.18-11.13s6.61-10.09,13.57-9.74Z" fill="#d9a2a0"/>
           </g>
         </g>
@@ -5955,8 +5953,8 @@
           </g>
         </g>
         <rect id="s-names-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-names-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-names-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-names-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-names-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-names-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -5996,8 +5994,8 @@
         </g>
       </g>
       <g id="s-leftrighttraining-d">
-        <rect id="ph-s-leftrighttraining-d-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-leftrighttraining-d-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-leftrighttraining-d-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-leftrighttraining-d-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-leftrighttraining-d-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -6037,8 +6035,8 @@
         </g>
       </g>
       <g id="s-leftrighttraining-c">
-        <rect id="ph-s-leftrighttraining-c-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-leftrighttraining-c-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-leftrighttraining-c-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-leftrighttraining-c-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-leftrighttraining-c-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -6094,8 +6092,8 @@
         </g>
       </g>
       <g id="s-leftrighttraining-b">
-        <rect id="ph-s-leftrighttraining-b-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-leftrighttraining-b-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-leftrighttraining-b-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-leftrighttraining-b-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-leftrighttraining-b-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -6151,8 +6149,8 @@
         </g>
       </g>
       <g id="s-leftrighttraining-a">
-        <rect id="ph-s-leftrighttraining-a-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-leftrighttraining-a-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-leftrighttraining-a-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-leftrighttraining-a-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-leftrighttraining-a-right">
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g>
@@ -6224,8 +6222,8 @@
       </g>
       <g id="s-yesnochoice">
         <rect id="s-yesnochoice-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-yesnochoice-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-yesnochoice-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-yesnochoice-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-yesnochoice-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-yesnochoice-purple-no">
           <rect x="1155" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
           <g>
@@ -6277,20 +6275,22 @@
         <g id="s-yesnochoice-yellow-no">
           <rect x="1155" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
           <g>
-            <g id="s-yesnochoice-yellow-face-no">
-              <path d="M1196.71,434.81c-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.82,73.05,5.72,43.34-7.27,79.36-48.68,81.72-96.07,3.47-69.66-60.52-118.49-121.22-110.62-25.12,3.25-50.99,12.85-66.93,33.98Z" fill="#ffda36"/>
-              <path d="M1353.2,442.74c-8.09-18.3-36.27-25.63-53.31-22.91-2.67.43-1.63,4.33.58,4.62,10.03,1.35,18.9,3.26,28.06,8.07,7.5,3.94,12.94,10.91,20.26,14.96,2.98,1.65,5.8-1.61,4.41-4.74Z" fill="#ffe175"/>
-              <path d="M1303.14,607.53c28.71-4.82,54.19-24.61,68.82-51.2-19.18,14.09-41.66,22.86-64.83,24.03-36.89,1.86-74.7-16.52-95.86-49.08-19.13-29.44-23.09-69.88-9.47-102.44-1.78,1.89-3.51,3.86-5.1,5.97-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.81,73.05,5.72Z" fill="#ffc52b"/>
-            </g>
-            <g id="s-yesnochoice-yellow-facefeatures-no">
-              <path d="M1294.09,540.17c-5.52,2.7-9.9,5.98-16.24,6.59-6.09.59-11.89-2.24-16.89-5.4-1-.63-2.45.68-1.69,1.72,8.39,11.48,30.36,14.45,38,.31,1.17-2.16-1.11-4.22-3.17-3.22Z" fill="#a24818"/>
-              <g>
-                <path d="M1237.37,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.92.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                <path d="M1237.22,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
+            <g>
+              <g id="s-yesnochoice-yellow-face-no">
+                <path d="M1196.71,434.81c-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.82,73.05,5.72,43.34-7.27,79.36-48.68,81.72-96.07,3.47-69.66-60.52-118.49-121.22-110.62-25.12,3.25-50.99,12.85-66.93,33.98Z" fill="#ffda36"/>
+                <path d="M1353.2,442.74c-8.09-18.3-36.27-25.63-53.31-22.91-2.67.43-1.63,4.33.58,4.62,10.03,1.35,18.9,3.26,28.06,8.07,7.5,3.94,12.94,10.91,20.26,14.96,2.98,1.65,5.8-1.61,4.41-4.74Z" fill="#ffe175"/>
+                <path d="M1303.14,607.53c28.71-4.82,54.19-24.61,68.82-51.2-19.18,14.09-41.66,22.86-64.83,24.03-36.89,1.86-74.7-16.52-95.86-49.08-19.13-29.44-23.09-69.88-9.47-102.44-1.78,1.89-3.51,3.86-5.1,5.97-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.81,73.05,5.72Z" fill="#ffc52b"/>
               </g>
-              <g>
-                <path d="M1316.06,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.91.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                <path d="M1316.42,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
+              <g id="s-yesnochoice-yellow-facefeatures-no">
+                <path d="M1294.09,540.17c-5.52,2.7-9.9,5.98-16.24,6.59-6.09.59-11.89-2.24-16.89-5.4-1-.63-2.45.68-1.69,1.72,8.39,11.48,30.36,14.45,38,.31,1.17-2.16-1.11-4.22-3.17-3.22Z" fill="#a24818"/>
+                <g>
+                  <path d="M1237.37,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.92.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
+                  <path d="M1237.22,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
+                </g>
+                <g>
+                  <path d="M1316.06,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.91.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
+                  <path d="M1316.42,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
+                </g>
               </g>
             </g>
             <path id="s-yesnochoice-yellow-thumbs-no" d="M1295.35,656.09s-4.74,5.81-10.33,7.52-9.6,12.18-10.99,15.16c-1.41,3.07-2.09,4.72-4.74,4.11s-1.23-13.78.49-16.88c1.71-3.1,2.52-4.02.96-5.48-1.56-1.46-15.92-3.37-17.43-5.91s-2.13-6.39-.3-8.26c0,0,0-4.3,1.01-6.56s3.69-3.85,3.69-3.85c0,0-1.25-6.29,4.46-8.07,0,0,.31-7.42,14.73-3.2,0,0,9.02.78,22.72,8.13l8.49,2-4.89,22.88" fill="#ffc52b"/>
@@ -6472,8 +6472,8 @@
       </g>
       <g id="s-yesnotraining-a">
         <rect id="s-yesnotraining-a-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-yesnotraining-a-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-yesnotraining-a-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-yesnotraining-a-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-yesnotraining-a-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-yesnotraining-a-purple-no">
           <rect x="1155" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
           <g>
@@ -6526,7 +6526,7 @@
           <rect x="1155" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
           <g>
             <g>
-              <g id="s-yesnotraining-a-yellow-thumbs-no">
+              <g id="s-yesnotraining-a-yellow-face-no">
                 <path d="M1196.71,434.81c-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.82,73.05,5.72,43.34-7.27,79.36-48.68,81.72-96.07,3.47-69.66-60.52-118.49-121.22-110.62-25.12,3.25-50.99,12.85-66.93,33.98Z" fill="#ffda36"/>
                 <path d="M1353.2,442.74c-8.09-18.3-36.27-25.63-53.31-22.91-2.67.43-1.63,4.33.58,4.62,10.03,1.35,18.9,3.26,28.06,8.07,7.5,3.94,12.94,10.91,20.26,14.96,2.98,1.65,5.8-1.61,4.41-4.74Z" fill="#ffe175"/>
                 <path d="M1303.14,607.53c28.71-4.82,54.19-24.61,68.82-51.2-19.18,14.09-41.66,22.86-64.83,24.03-36.89,1.86-74.7-16.52-95.86-49.08-19.13-29.44-23.09-69.88-9.47-102.44-1.78,1.89-3.51,3.86-5.1,5.97-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.81,73.05,5.72Z" fill="#ffc52b"/>
@@ -6543,7 +6543,7 @@
                 </g>
               </g>
             </g>
-            <path id="s-yesnotraining-a-yellow-thumbs-no1" data-name="s-yesnotraining-a-yellow-thumbs-no" d="M1295.35,656.09s-4.74,5.81-10.33,7.52-9.6,12.18-10.99,15.16c-1.41,3.07-2.09,4.72-4.74,4.11s-1.23-13.78.49-16.88c1.71-3.1,2.52-4.02.96-5.48-1.56-1.46-15.92-3.37-17.43-5.91s-2.13-6.39-.3-8.26c0,0,0-4.3,1.01-6.56s3.69-3.85,3.69-3.85c0,0-1.25-6.29,4.46-8.07,0,0,.31-7.42,14.73-3.2,0,0,9.02.78,22.72,8.13l8.49,2-4.89,22.88" fill="#ffc52b"/>
+            <path id="s-yesnotraining-a-yellow-thumbs-no" d="M1295.35,656.09s-4.74,5.81-10.33,7.52-9.6,12.18-10.99,15.16c-1.41,3.07-2.09,4.72-4.74,4.11s-1.23-13.78.49-16.88c1.71-3.1,2.52-4.02.96-5.48-1.56-1.46-15.92-3.37-17.43-5.91s-2.13-6.39-.3-8.26c0,0,0-4.3,1.01-6.56s3.69-3.85,3.69-3.85c0,0-1.25-6.29,4.46-8.07,0,0,.31-7.42,14.73-3.2,0,0,9.02.78,22.72,8.13l8.49,2-4.89,22.88" fill="#ffc52b"/>
           </g>
         </g>
         <g id="s-yesnotraining-a-purple-yes">
@@ -6620,8 +6620,8 @@
         </g>
       </g>
       <g id="s-emojichoice">
-        <rect id="ph-s-emojichoice-headphones" x="18.5" y="21" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-emojichoice-headphones" transform="translate(27.5 30) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-emojichoice-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-emojichoice-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <g id="s-emojichoice-right">
           <rect x="1280" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
           <g>
@@ -6681,8 +6681,8 @@
         </g>
       </g>
       <g id="s-introduction">
-        <rect id="ph-s-introduction-headphones" x="18" y="20" width="80" height="80" fill="#b8846e"/>
-        <use id="link-s-introduction-headphones" transform="translate(27 29) scale(.76)" xlink:href="#image1" isolation="isolate"/>
+        <rect id="ph-s-introduction-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <use id="link-s-introduction-repeat" transform="translate(30 30) scale(.07)" xlink:href="#image1" isolation="isolate"/>
         <rect id="ph-s-introduction-next" x="1796" y="960" width="80" height="80" fill="#b8846e"/>
         <image id="link-s-introduction-next" width="400" height="400" transform="translate(1795.75 960.25) scale(.2)" xlink:href="next.png" isolation="isolate"/>
         <rect id="ph-s-introduction-lueneluetten-logo" x="1551.4" width="326.95" height="326.95" fill="#aaa"/>

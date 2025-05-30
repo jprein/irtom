@@ -23,9 +23,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Store correct response
 	data.procedure[data.currentSlide].correct = yaySide;
 
-	// In beginning, hide response options
-	await hideTwoOptions(slidePrefix);
-
 	// Trial-specific animation
 	gsap.defaults({ ease: 'none' });
 
@@ -38,38 +35,49 @@ export default async ({ currentSlide, previousSlide }) => {
 		`${slidePrefix}-girl-${yaySide}`,
 	) as SvgInHtml;
 
-	// Initially hide some agent elements
-	gsap.set([girlNay, girlYay], { autoAlpha: 0 });
+	// Define animation function
+	async function showAnimation() {
+		// Initially hide some agent elements
+		gsap.set([girlNay, girlYay], { autoAlpha: 0 });
+		gsap.set(girl, { autoAlpha: 1 });
 
-	await data.sprite.playPromise(`${slidePrefix}-${naySide}-nay`);
-	await gsap
-		.timeline()
-		.to(girl, {
-			autoAlpha: 0,
-			duration: 0.1,
-		})
-		.to(
-			girlYay,
-			{
-				autoAlpha: 1,
-				duration: 0.1,
-			},
-			'<',
-		)
-		.to(girl, {
-			delay: 1,
-			autoAlpha: 1,
-			duration: 0.1,
-		})
-		.to(
-			girlYay,
-			{
+		await data.sprite.playPromise(`${slidePrefix}-${naySide}-nay`);
+		await gsap
+			.timeline()
+			.to(girl, {
 				autoAlpha: 0,
 				duration: 0.1,
-			},
-			'<',
-		);
+			})
+			.to(
+				girlYay,
+				{
+					autoAlpha: 1,
+					duration: 0.1,
+				},
+				'<',
+			)
+			.to(girl, {
+				delay: 1,
+				autoAlpha: 1,
+				duration: 0.1,
+			})
+			.to(
+				girlYay,
+				{
+					autoAlpha: 0,
+					duration: 0.1,
+				},
+				'<',
+			);
+	}
 
+	// In beginning, hide response options
+	await hideTwoOptions(slidePrefix);
+
+	// Show animation
+	await showAnimation();
+
+	// Short break before response choices
 	await sleep(1000);
 
 	// Show left/right response options and store participant response

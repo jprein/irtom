@@ -4,8 +4,8 @@ import type { SvgInHtml } from '../types';
 export const hideThreeOptions = async (slidePrefix: string) => {
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
-	const headphones = document.getElementById(
-		`link-${slidePrefix}-headphones`,
+	const repeat = document.getElementById(
+		`link-${slidePrefix}-repeat`,
 	) as SvgInHtml;
 	const optionLeft = document.getElementById(
 		`${slidePrefix}-left`,
@@ -26,7 +26,7 @@ export const hideThreeOptions = async (slidePrefix: string) => {
 	}
 
 	// Originally, hide response options
-	gsap.set([optionLeft, optionCenter, optionRight, blurr, headphones], {
+	gsap.set([optionLeft, optionCenter, optionRight, blurr, repeat], {
 		autoAlpha: 0,
 		pointerEvents: 'none',
 	});

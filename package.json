@@ -10,7 +10,7 @@
 		"build": "npm run clean && NODE_ENV=production webpack",
 		"clean": "rimraf dist",
 		"deploy": "npm run build && sh src/scripts/deploy.sh",
-		"fetchdata": "sh src/scripts/deploy.sh",
+		"fetchdata": "sh src/scripts/fetchdata.sh",
 		"lint": "eslint",
 		"prettier": "prettier --write \"**/*.{ts,js,json,yaml}\"",
 		"start": "webpack serve",

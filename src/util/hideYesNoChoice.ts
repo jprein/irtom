@@ -6,8 +6,8 @@ export const hideYesNoChoice = async (choicePrefix: string) => {
 	const choiceSlide = document.getElementById(`${choicePrefix}`) as SvgInHtml;
 	choiceSlide.setAttribute('visibility', 'visible');
 	const blurr = document.getElementById(`${choicePrefix}-blurr`) as SvgInHtml;
-	const headphones = document.getElementById(
-		`link-${choicePrefix}-headphones`,
+	const repeat = document.getElementById(
+		`link-${choicePrefix}-repeat`,
 	) as SvgInHtml;
 
 	// Hide all yes/no choice elements
@@ -46,16 +46,7 @@ export const hideYesNoChoice = async (choicePrefix: string) => {
 
 	// hide elements
 	gsap.set(
-		[
-			blueYes,
-			blueNo,
-			yellowYes,
-			yellowNo,
-			purpleYes,
-			purpleNo,
-			blurr,
-			headphones,
-		],
+		[blueYes, blueNo, yellowYes, yellowNo, purpleYes, purpleNo, blurr, repeat],
 		{
 			autoAlpha: 0,
 			pointerEvents: 'none',

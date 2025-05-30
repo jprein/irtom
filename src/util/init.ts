@@ -101,6 +101,8 @@ export const init = async () => {
 		procedure: {},
 		hasWebcam: DetectRTC.hasWebcam,
 		browserName: DetectRTC.browser.name,
+		clickedRepeat: false,
+		emoji: 'yellow',
 	};
 
 	// Safari used .mov extension, other browsers use .webm

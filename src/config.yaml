@@ -17,7 +17,7 @@ css:
     [
       '#link-s-introduction-speaker',
       '[id^=link][id$=next]',
-      '[id^=link][id$=headphones]',
+      '[id^=link][id$=repeat]',
       '#s-yesnochoice-yellow-yes',
       '#s-yesnochoice-blue-yes',
       '#s-yesnochoice-purple-yes',
@@ -39,7 +39,7 @@ css:
     [
       '#link-s-introduction-speaker',
       '[id^=link][id$=next]',
-      '[id^=link][id$=headphones]',
+      '[id^=link][id$=repeat]',
       '#s-yesnochoice-yellow-yes',
       '#s-yesnochoice-blue-yes',
       '#s-yesnochoice-purple-yes',
@@ -89,16 +89,16 @@ procedure:
     # - s-leftrighttraining-b
     # - s-leftrighttraining-c
     # - s-leftrighttraining-d
-    - s-names
-    - s-perspectivetaking-one-a
-    - s-perspectivetaking-one-b
-    - s-perspectivetaking-one-c
-    - s-perspectivetaking-one-d
+    # - s-names
+    # - s-perspectivetaking-one-a
+    # - s-perspectivetaking-one-b
+    # - s-perspectivetaking-one-c
+    # - s-perspectivetaking-one-d
     - s-perspectivetaking-two-a
     - s-perspectivetaking-two-b
     - s-perspectivetaking-two-c
     - s-perspectivetaking-two-d
-    - s-knowledgeaccess-a
+    # - s-knowledgeaccess-a
     - s-knowledgeaccess-b
     - s-knowledgeaccess-c
     - s-diversedesires-a

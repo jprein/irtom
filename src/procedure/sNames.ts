@@ -3,6 +3,7 @@ import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { getResponse } from '../util/getResponse';
+import { sleep } from '../util/helpers';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -14,9 +15,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
 	data.simpleSlideCounter++;
-
-	// In beginning, hide response options
-	await hideTwoOptions(slidePrefix);
 
 	// Trial-specific animation
 	// Get all relevant elements
@@ -37,8 +35,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	) as SvgInHtml;
 
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
-	const headphones = document.getElementById(
-		`link-${slidePrefix}-headphones`,
+	const repeat = document.getElementById(
+		`link-${slidePrefix}-repeat`,
 	) as SvgInHtml;
 	const optionLeft = document.getElementById(
 		`${slidePrefix}-left`,
@@ -54,8 +52,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Initially hide agents with hands up
 	gsap.set([girlHandsup, boyHandsup], { autoAlpha: 0 });
 
-	// Define function to show names
-	async function showNames() {
+	// Define animation function
+	async function showAnimation() {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		await gsap
@@ -123,7 +121,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			);
 	}
 
-	// define function to show left/right response options
+	// Define function to show left/right response options
 	async function showChoice() {
 		// Play audio
 		await data.sprite.playPromise(`${slidePrefix}`);
@@ -138,8 +136,6 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: 0.5,
 				autoAlpha: 1,
 				duration: 0.5,
-				pointerEvents: 'visible',
-				cursor: 'pointer',
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-left`);
 				},
@@ -148,22 +144,33 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.5,
-				pointerEvents: 'visible',
-				cursor: 'pointer',
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-right`);
 				},
-				onComplete: () => {
-					gsap.to(headphones, {
-						autoAlpha: 1,
-						pointerEvents: 'visible',
-						cursor: 'pointer',
-					});
-				},
+			})
+			.to([optionLeft, optionRight, repeat], {
+				autoAlpha: 1,
+				duration: 0.5,
+				pointerEvents: 'visible',
+				cursor: 'pointer',
 			});
 
 		// Get Response
 		const response = await getResponse([optionLeft.id, optionRight.id]);
+
+		// If the repeat button was clicked, exit early. Otherwise, neutral response audio gets played twice
+		if (data.clickedRepeat) {
+			// reset the flag for next use
+			data.clickedRepeat = false;
+			return;
+		}
+
+		// remove event listener so that not multiple audios can be played
+		gsap.timeline().to([optionLeft, optionRight, repeat], {
+			autoAlpha: 1,
+			duration: 0.5,
+			pointerEvents: 'none',
+		});
 
 		// Response returns the clicked element.
 		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
@@ -186,18 +193,20 @@ export default async ({ currentSlide, previousSlide }) => {
 		} else {
 			await data.sprite.playPromise(`${slidePrefix}-incorrect`);
 			await hideTwoOptions(slidePrefix);
-			await showNames();
+			await showAnimation();
 			await showChoice();
 		}
 	}
 
-	headphones.addEventListener('click', async () => {
-		await hideTwoOptions(slidePrefix);
-		await showNames();
-		await showChoice();
-	});
+	// In beginning, hide response options
+	await hideTwoOptions(slidePrefix);
 
-	// Actually running
-	await showNames();
+	// Show animation
+	await showAnimation();
+
+	// Short break before showing response options
+	await sleep(1000);
+
+	// Show response options and store participant response
 	await showChoice();
 };

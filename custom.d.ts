@@ -44,15 +44,16 @@ declare let data: {
 	completionTime: string;
 	quitBeforeEnd: boolean;
 	totalSlides: number;
-	slideCounter: number;
 	previousSlide: string;
 	currentSlide: string;
 	nextSlide: string;
 	currentProcedure: string[];
+	slideCounter: number;
 	simpleSlideCounter: number;
 	emoji: 'yellow' | 'blue' | 'purple';
 	sprite;
 	spriteJSON;
+	clickedRepeat: boolean;
 	procedure: {
 		sIntroduction: {
 			slideNr: number;

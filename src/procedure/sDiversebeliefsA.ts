@@ -16,18 +16,28 @@ export default async ({ currentSlide, previousSlide }) => {
 	swapSlides(currentSlide, previousSlide);
 	data.simpleSlideCounter++;
 
+	// Get relevant elements
+	const boy = document.getElementById(`${slidePrefix}-boy`) as SvgInHtml;
+
+	// Define animation function
+	async function showAnimation() {
+		gsap.set(boy, { autoAlpha: 1 });
+		await data.sprite.playPromise(`${slidePrefix}-1`);
+		await gsap.timeline().to(boy, {
+			autoAlpha: 0,
+			duration: 1,
+		});
+	}
+
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+
+	// Show animation
+	await showAnimation();
 
 	// Short break before showing response options
 	await sleep(1000);
 
-	const boy = document.getElementById(`${slidePrefix}-boy`) as SvgInHtml;
-	await data.sprite.playPromise(`${slidePrefix}-1`);
-	await gsap.timeline().to(boy, {
-		autoAlpha: 0,
-		duration: 1,
-	});
-
+	// Show response options
 	await showTwoOptions(slidePrefix);
 };
