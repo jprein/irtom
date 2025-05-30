@@ -73,46 +73,43 @@ export default async ({ currentSlide, previousSlide }) => {
 			cursor: 'pointer',
 		});
 
-		// Wait for participant response
-		const response = await getResponse([left.id, center.id, right.id]);
+		// Only wait for response once, namely in first run of trial
+		// When trial is repeated, skip this because we're still awaiting original getResponse
+		if (!data.clickedRepeat) {
+			// Wait for participant response
+			const response = await getResponse([left.id, center.id, right.id]);
 
-		// If the repeat button was clicked, exit early. Otherwise, neutral response audio gets played twice
-		if (data.clickedRepeat) {
-			// reset the flag for next use
-			data.clickedRepeat = false;
-			return;
+			// Remove event listener so that not multiple audios can be played
+			gsap.timeline().to([center, left, right, repeat], {
+				autoAlpha: 1,
+				duration: 0.5,
+				pointerEvents: 'none',
+			});
+
+			// Response returns the clicked element.
+			// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
+			// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
+			data.procedure[data.currentSlide].response = response.id.split('-').pop();
+
+			// We also store emoji choice in the data object for easier access later on
+			switch (data.procedure[data.currentSlide].response) {
+				case 'left':
+					data.emoji = 'blue';
+					break;
+				case 'center':
+					data.emoji = 'yellow';
+					break;
+				case 'right':
+					data.emoji = 'purple';
+					break;
+				default:
+					data.emoji = 'yellow'; // default to yellow if something goes wrong
+					break;
+			}
+
+			// Play motivating feedback for first choice
+			await data.sprite.playPromise(`${slidePrefix}-feedback`);
 		}
-
-		// Remove event listener so that not multiple audios can be played
-		gsap.timeline().to([center, left, right, repeat], {
-			autoAlpha: 1,
-			duration: 0.5,
-			pointerEvents: 'none',
-		});
-
-		// Response returns the clicked element.
-		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
-		// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
-		data.procedure[data.currentSlide].response = response.id.split('-').pop();
-
-		// We also store emoji choice in the data object for easier access later on
-		switch (data.procedure[data.currentSlide].response) {
-			case 'left':
-				data.emoji = 'blue';
-				break;
-			case 'center':
-				data.emoji = 'yellow';
-				break;
-			case 'right':
-				data.emoji = 'purple';
-				break;
-			default:
-				data.emoji = 'yellow'; // default to yellow if something goes wrong
-				break;
-		}
-
-		// Play motivating feedback for first choice
-		await data.sprite.playPromise(`${slidePrefix}-feedback`);
 	}
 
 	// In beginning, hide response options

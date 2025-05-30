@@ -58,37 +58,32 @@ export const showTwoOptions = async (slidePrefix: string) => {
 		});
 
 	// Get Response
-	const response = await getResponse([optionLeft.id, optionRight.id]);
+	if (!data.clickedRepeat) {
+		const response = await getResponse([optionLeft.id, optionRight.id]);
 
-	// If the repeat button was clicked, exit early. Otherwise, neutral response audio gets played twice
-	if (data.clickedRepeat) {
-		// reset the flag for next use
-		data.clickedRepeat = false;
-		return;
-	}
+		// Response returns the clicked element.
+		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
+		// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
+		data.procedure[data.currentSlide].response = response.id.split('-').pop();
 
-	// Response returns the clicked element.
-	// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
-	// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
-	data.procedure[data.currentSlide].response = response.id.split('-').pop();
+		// If the correct answer is empty, set score to empty
+		if (data.procedure[data.currentSlide].correct === '') {
+			data.procedure[data.currentSlide].score = '';
+			// Otherwise, check if the response is correct, and store the score (0 = incorrect, 1 = correct)
+		} else {
+			data.procedure[data.currentSlide].score =
+				data.procedure[data.currentSlide].response ===
+				data.procedure[data.currentSlide].correct
+					? 1
+					: 0;
+		}
 
-	// If the correct answer is empty, set score to empty
-	if (data.procedure[data.currentSlide].correct === '') {
-		data.procedure[data.currentSlide].score = '';
-		// Otherwise, check if the response is correct, and store the score (0 = incorrect, 1 = correct)
-	} else {
-		data.procedure[data.currentSlide].score =
-			data.procedure[data.currentSlide].response ===
-			data.procedure[data.currentSlide].correct
-				? 1
-				: 0;
-	}
-
-	// play button response sounds only for the first trials
-	if (data.simpleSlideCounter <= config.globals.playResponseFeedback) {
-		const responseOption = ['ok', 'alright'];
-		const randomResponse =
-			responseOption[Math.floor(Math.random() * responseOption.length)];
-		await data.sprite.playPromise(`neutral-response-${randomResponse}`);
+		// play button response sounds only for the first trials
+		if (data.simpleSlideCounter <= config.globals.playResponseFeedback) {
+			const responseOption = ['ok', 'alright'];
+			const randomResponse =
+				responseOption[Math.floor(Math.random() * responseOption.length)];
+			await data.sprite.playPromise(`neutral-response-${randomResponse}`);
+		}
 	}
 };

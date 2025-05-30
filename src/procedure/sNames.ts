@@ -156,45 +156,40 @@ export default async ({ currentSlide, previousSlide }) => {
 			});
 
 		// Get Response
-		const response = await getResponse([optionLeft.id, optionRight.id]);
+		if (!data.clickedRepeat) {
+			const response = await getResponse([optionLeft.id, optionRight.id]);
 
-		// If the repeat button was clicked, exit early. Otherwise, neutral response audio gets played twice
-		if (data.clickedRepeat) {
-			// reset the flag for next use
-			data.clickedRepeat = false;
-			return;
-		}
+			// remove event listener so that not multiple audios can be played
+			gsap.timeline().to([optionLeft, optionRight, repeat], {
+				autoAlpha: 1,
+				duration: 0.5,
+				pointerEvents: 'none',
+			});
 
-		// remove event listener so that not multiple audios can be played
-		gsap.timeline().to([optionLeft, optionRight, repeat], {
-			autoAlpha: 1,
-			duration: 0.5,
-			pointerEvents: 'none',
-		});
+			// Response returns the clicked element.
+			// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
+			// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
+			data.procedure[data.currentSlide].response = response.id.split('-').pop();
 
-		// Response returns the clicked element.
-		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
-		// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
-		data.procedure[data.currentSlide].response = response.id.split('-').pop();
+			// Check if the response is correct, and store the score (0 = incorrect, 1 = correct)
+			data.procedure[data.currentSlide].score += 1;
+			correct =
+				data.procedure[data.currentSlide].response ===
+				data.procedure[data.currentSlide].correct
+					? true
+					: false;
 
-		// Check if the response is correct, and store the score (0 = incorrect, 1 = correct)
-		data.procedure[data.currentSlide].score += 1;
-		correct =
-			data.procedure[data.currentSlide].response ===
-			data.procedure[data.currentSlide].correct
-				? true
-				: false;
-
-		// For this initial trial, we check response
-		// If correct, move on to the next trial
-		if (correct) {
-			await data.sprite.playPromise(`${slidePrefix}-correct`);
-			// If incorrect, play the same again.
-		} else {
-			await data.sprite.playPromise(`${slidePrefix}-incorrect`);
-			await hideTwoOptions(slidePrefix);
-			await showAnimation();
-			await showChoice();
+			// For this initial trial, we check response
+			// If correct, move on to the next trial
+			if (correct) {
+				await data.sprite.playPromise(`${slidePrefix}-correct`);
+				// If incorrect, play the same again.
+			} else {
+				await data.sprite.playPromise(`${slidePrefix}-incorrect`);
+				await hideTwoOptions(slidePrefix);
+				await showAnimation();
+				await showChoice();
+			}
 		}
 	}
 

@@ -158,36 +158,32 @@ export const procedure = async () => {
 			repeatSvg = document.getElementById('s-yesnochoice') as SvgInHtml;
 		}
 
+		// Put in function so that we can remove the event listener again
+		const handleRepeatClick = async () => {
+			console.log('Repeat button clicked, re-running slide behavior.');
+
+			// Hide previous slide to avoid short flickering of old slide
+			const slideElement = document.getElementById(previousSlideKc);
+			if (slideElement) {
+				slideElement.style.display = 'none';
+			}
+
+			// Run the slide behavior again
+			data.clickedRepeat = true;
+			await runSlideBehavior();
+			data.clickedRepeat = false;
+		};
+
 		// Add event listener to repeat element
 		if (repeatSvg) {
-			// Put in function so that we can remove the event listener again
-			const handleRepeatClick = async () => {
-				console.log('Repeat button clicked, re-running slide behavior.');
-
-				// Hide previous slide to avoid short flickering of old slide
-				const slideElement = document.getElementById(previousSlideKc);
-				if (slideElement) {
-					slideElement.style.display = 'none';
-				}
-
-				// Run the slide behavior again
-				await runSlideBehavior();
-
-				// After running slide behavior, we set clickedRepeat to true
-				// this way, the original first run of the slide (which is still awaiting)
-				// will not continue to play the audio/video feedback
-				data.clickedRepeat = true;
-
-				// Remove the event listener
-				repeatSvg.removeEventListener('click', handleRepeatClick);
-			};
-
 			repeatSvg.addEventListener('click', handleRepeatClick);
 		}
 
 		// Run the slide behavior for the first time
 		// only after this first run, the repeat button will be clickable
 		await runSlideBehavior();
+		// Remove the event listener
+		repeatSvg.removeEventListener('click', handleRepeatClick);
 
 		// ----------------------------------------------------------------------------
 
