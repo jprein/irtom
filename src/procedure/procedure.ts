@@ -155,7 +155,10 @@ export const procedure = async () => {
 
 		// If the repeat element is not found, try to get it from yes/no slide
 		if (!repeatSvg) {
-			repeatSvg = document.getElementById('s-yesnochoice') as SvgInHtml;
+			repeatSvg = document.getElementById('s-yesnochoice-repeat') as SvgInHtml;
+			repeatSvg = document.querySelector(
+				`#s-yesnochoice [id$="-repeat"]`,
+			)! as SvgInHtml;
 		}
 
 		// Put in function so that we can remove the event listener again
