@@ -122,6 +122,7 @@ export const procedure = async () => {
 			slideNr: data.slideCounter,
 			slideDuration: 0,
 			response: '',
+			repeated: 0,
 		};
 
 		// get possible response buttons (next buttons, yes/no buttons)
@@ -163,7 +164,10 @@ export const procedure = async () => {
 
 		// Put in function so that we can remove the event listener again
 		const handleRepeatClick = async () => {
-			console.log('Repeat button clicked, re-running slide behavior.');
+			data.procedure[currentSlide].repeated += 1;
+			console.log(
+				`Repeat ${currentSlide} for the ${data.procedure[currentSlide].repeated} time.`,
+			);
 
 			// Hide previous slide to avoid short flickering of old slide
 			const slideElement = document.getElementById(previousSlideKc);
