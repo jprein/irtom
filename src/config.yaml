@@ -80,8 +80,8 @@ procedure:
   # You can nest only two levels deep
   german:
     - s-introduction
-    # - s-emojichoice
-    # - s-yesnotraining-a
+    - s-emojichoice
+    - s-yesnotraining-a
     # - s-yesnotraining-b
     # - s-yesnotraining-c
     # - s-yesnotraining-d
@@ -89,25 +89,25 @@ procedure:
     # - s-leftrighttraining-b
     # - s-leftrighttraining-c
     # - s-leftrighttraining-d
-    # - s-names
+    - s-names
     - s-perspectivetaking-one-a
-    # - s-perspectivetaking-one-b
-    # - s-perspectivetaking-one-c
-    # - s-perspectivetaking-one-d
-    # - s-perspectivetaking-two-a
-    # - s-perspectivetaking-two-b
-    # - s-perspectivetaking-two-c
-    # - s-perspectivetaking-two-d
-    # - s-knowledgeaccess-a
-    # - s-knowledgeaccess-b
-    # - s-knowledgeaccess-c
-    # - s-diversedesires-a
-    # - s-diversedesires-b
-    # - s-diversedesires-c
-    # - s-diversedesires-d
-    # - s-diversebeliefs-a
-    # - s-diversebeliefs-b
-    # - s-falsebelief-two-a
+    - s-perspectivetaking-one-b
+    - s-perspectivetaking-one-c
+    - s-perspectivetaking-one-d
+    - s-perspectivetaking-two-a
+    - s-perspectivetaking-two-b
+    - s-perspectivetaking-two-c
+    - s-perspectivetaking-two-d
+    - s-knowledgeaccess-a
+    - s-knowledgeaccess-b
+    - s-knowledgeaccess-c
+    - s-diversedesires-a
+    - s-diversedesires-b
+    - s-diversedesires-c
+    - s-diversedesires-d
+    - s-diversebeliefs-a
+    - s-diversebeliefs-b
+    - s-falsebelief-two-a
     - s-end
 
   english:

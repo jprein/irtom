@@ -209,8 +209,9 @@ export const init = async () => {
 	// initialize audio sprite instance
 	// first, get the audio sprite JSON file
 	const spriteLookup = await fetch(
-		`../communities/${data.community}/combined.json`,
+		`./communities/${data.community}/combined.json`,
 	);
+
 	data.spriteJSON = await spriteLookup.json();
 
 	// then,create the sprite instance
