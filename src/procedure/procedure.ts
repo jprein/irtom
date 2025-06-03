@@ -7,6 +7,9 @@ import {
 	downloadCsv,
 	millisToMinutesAndSeconds,
 	sleep,
+	downloadWebcamVideo,
+	uploadWebcamVideo,
+	pause,
 } from '../util/helpers';
 
 export const procedure = async () => {
@@ -202,11 +205,17 @@ export const procedure = async () => {
 	// Save data depending on choice (local, server, both)
 	if (datatransfer === 'local') {
 		downloadCsv();
+		downloadWebcamVideo(data);
 	} else if (datatransfer === 'server') {
 		uploadCsv();
+		await uploadWebcamVideo(data);
+		await pause(1000);
 	} else {
 		uploadCsv();
 		downloadCsv();
+		downloadWebcamVideo(data);
+		await uploadWebcamVideo(data);
+		await pause(1000);
 	}
 
 	// users can leave page now

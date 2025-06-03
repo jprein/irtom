@@ -7,6 +7,7 @@ let community = '';
 let birthday = '';
 let gender = '';
 let datatransfer = '';
+let webcam = false;
 
 if (params.has('id')) {
 	id = params.get('id');
@@ -22,6 +23,22 @@ if (params.has('gender')) {
 }
 if (params.has('datatransfer')) {
 	datatransfer = params.get('datatransfer');
+}
+if (params.has('webcam')) {
+	webcam = params.get('webcam');
+}
+
+// WEBCAM YES OR NO?
+const webcamOptions = document.getElementsByName('input-webcam');
+console.log('webcamOptions');
+console.log(webcamOptions);
+for (const option of webcamOptions) {
+	option.onclick = () => {
+		if (option.checked) {
+			webcam = option.value;
+			console.log('webcam: ', webcam);
+		}
+	};
 }
 
 // remove all params from URL
@@ -43,7 +60,13 @@ const handleDate = (e) => {
 	} else {
 		consentText.style.display = 'block';
 		consentCheckbox.required = true;
+		consentCheckbox.onclick = handleCheckbox;
 	}
+};
+
+const handleCheckbox = (e) => {
+	console.log(e.target.value);
+	// handle checkbox for consent
 };
 
 const calculateAge = (birthday) => {
@@ -110,13 +133,13 @@ document.querySelector('form').addEventListener('submit', (e) => {
 
 	// mapping (key value lookup) for gender, input and datatransfer
 	const genderMapping = new Map()
-		.set(0, 'female')
-		.set(1, 'male')
-		.set(2, 'diverse');
+		.set(1, 'female')
+		.set(2, 'male')
+		.set(3, 'diverse');
 	const datatransferMapping = new Map()
-		.set(0, 'local')
-		.set(1, 'server')
-		.set(2, 'both');
+		.set(1, 'local')
+		.set(2, 'server')
+		.set(3, 'both');
 
 	gender = gender ? gender : genderMapping.get(genderIndex);
 	datatransfer = datatransfer
@@ -127,5 +150,5 @@ document.querySelector('form').addEventListener('submit', (e) => {
 	if (href.includes('index.html')) {
 		href = href.replace('index.html', '');
 	}
-	window.location.href = `${href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&datatransfer=${datatransfer}`;
+	window.location.href = `${href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&datatransfer=${datatransfer}&webcam=${webcam}`;
 });

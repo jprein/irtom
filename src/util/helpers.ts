@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import Toastify from 'toastify-js';
+import * as mrec from '@ccp-eva/media-recorder';
 
 // promised based timeout
 export const sleep = (ms = 2000) =>
@@ -175,6 +176,59 @@ export const uploadCsv = (
 			console.error('Error:', error);
 		});
 };
+
+export const downloadWebcamVideo = (exp) => {
+	mrec.stopRecorder();
+	// give some time to create Video Blob
+	const day = new Date().toISOString().substring(0, 10);
+	const time = new Date().toISOString().substring(11, 19);
+	setTimeout(() => mrec.downloadVideo(`irToM-${exp.id}-${day}-${time}`), 2000);
+};
+
+// ---------------------------------------------------------------------------------------------------------------------
+// ASYN PROMISIFIABLE VIDEO UPLOAD FUNCTION
+// ---------------------------------------------------------------------------------------------------------------------
+export async function uploadWebcamVideo(exp) {
+	// stop recorder and upload video
+	const blob = mrec.stopRecorder();
+
+	console.log(blob);
+
+	// show upload spinner
+	mrec.modalContent(
+		'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
+		'#E1B4B4',
+	);
+
+	await pause(2000);
+
+	const day = new Date().toISOString().substring(0, 10);
+	const time = new Date().toISOString().substring(11, 19);
+	try {
+		mrec.uploadVideo(
+			{
+				fname: `irToM-${exp.id}-${day}-${time}`,
+				uploadContent:
+					'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
+				uploadColor: '#E1B4B4',
+				successContent:
+					'<img src=\'assets/spinner-done-de.svg\' style="width: 75vw">',
+				successColor: '#D3F9D3',
+			},
+			'./data/upload_video.php',
+		);
+	} catch (error) {
+		console.error('Error uploading video:', error);
+	}
+
+	await pause(2000);
+}
+
+// ---------------------------------------------------------------------------------------------------------------------
+// FUNCTION FOR LETTING THE BROWSER PAUSE/SLEEP
+// with Promise, so that we can wait for it
+// ---------------------------------------------------------------------------------------------------------------------
+export const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // 	jsonData: any = data,
 // 	id: string = generateUserIdFilename('irtom', undefined, 'csv')
 // ) => {

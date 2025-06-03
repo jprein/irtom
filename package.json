@@ -9,11 +9,12 @@
 		"build": "npm run clean && NODE_ENV=production webpack",
 		"clean": "rimraf dist",
 		"deploy": "npm run build && sh src/scripts/deploy.sh",
-		"fetchdata": "sh src/scripts/deploy.sh",
+		"fetchdata": "sh src/scripts/fetchdata.sh",
 		"lint": "eslint",
 		"prettier": "prettier --write \"**/*.{ts,js,json,yaml}\"",
 		"start": "webpack serve",
-		"voxify": "node src/voxify/"
+		"voxify": "node src/voxify/",
+		"audiosprite::ger": "npx audiosprite --export 'webm,mp3' --format 'howler2' --path './communities/german/' --output src/communities/german/combined src/communities/german/audio/*.mp3"
 	},
 	"repository": {
 		"type": "git",
@@ -65,6 +66,7 @@
 		"yaml-loader": "^0.8.1"
 	},
 	"dependencies": {
+		"@ccp-eva/media-recorder": "^2.1.1",
 		"@types/recordrtc": "^5.6.14",
 		"detectrtc": "^1.4.1",
 		"gsap": "^3.13.0",

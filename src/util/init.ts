@@ -6,7 +6,13 @@ import config from '../config.yaml';
 import { rectToForeignObject } from './rectToForeignObject';
 import { recycleObjects } from './recycleObjects';
 import { copyAttributes } from './copyAttributes';
-import { downloadCsv, uploadCsv } from './helpers';
+import {
+	downloadCsv,
+	downloadWebcamVideo,
+	isTouchDevice,
+	uploadCsv,
+	uploadWebcamVideo,
+} from './helpers';
 import { getUrlParameters } from './getUrlParameters';
 import { widowedKeyChecker } from './widowedKeyChecker';
 import {
@@ -22,6 +28,7 @@ import { setMousePointer, setScaleOnHover } from './styleDefaults';
 import Toastify from 'toastify-js';
 import DetectRTC from 'detectrtc';
 import 'toastify-js/src/toastify.css';
+import * as mrec from '@ccp-eva/media-recorder';
 
 export const init = () => {
 	const urlParameters = getUrlParameters();
@@ -30,7 +37,7 @@ export const init = () => {
 	const birthdayMs = Date.parse(urlParameters.birthday);
 	const ageDiffMs = Date.now() - birthdayMs;
 	const ageInYears = new Date(ageDiffMs).getUTCFullYear() - 1970;
-
+	const webcam = urlParameters.webcam == 'true' ? true : false;
 	const wrapper = document.getElementById('wrapper')! as HTMLDivElement;
 	// load initial SVG file
 	wrapper.innerHTML = svgPath;
@@ -92,19 +99,30 @@ export const init = () => {
 		agegroup: ageInYears < config.globals.adultThresholdAge ? 'child' : 'adult',
 		gender: urlParameters.gender,
 		datatransfer: urlParameters.datatransfer,
+		webcam: urlParameters.webcam,
+		touchscreen: isTouchDevice(),
 		// coupon: urlParameters.coupon,
 		// PROLIFIC_PID: urlParameters.PROLIFIC_PID,
 		t0: new Date(),
 		slideCounter: 0,
 		quitBeforeEnd: false,
 		procedure: {},
-		hasWebcam: DetectRTC.hasWebcam,
-		browserName: DetectRTC.browser.name,
 	};
+	//log user testing setup
+	DetectRTC.load(() => {
+		global.data.hasWebcam = DetectRTC.hasWebcam;
+		global.data.browserName = DetectRTC.browser.name;
+		global.data.safari = DetectRTC.browser.isSafari == undefined ? false : true;
+		global.data.iOSSafari = global.data.safari && global.touchscreen;
+		// Create dynamic extension depening on browser
+		// Safari used .mov extension, other browsers use .webm
+		global.data.videoExtension = global.data.safari ? 'mov' : 'webm';
 
-	// Safari used .mov extension, other browsers use .webm
-	// Create dynamic extension depening on browser
-	data.videoExtension = DetectRTC.browser.isSafari ? 'mov' : 'webm';
+		if (webcam == true && global.data.hasWebcam == true) {
+			console.log('Webcam recording enabled');
+			initWebcamFunctionality(global.data);
+		}
+	});
 
 	// check if all translation keys have a matching foreignObject and vice versa
 	const textKeys = widowedKeyChecker();
@@ -224,8 +242,41 @@ export const init = () => {
 	}
 	// always expose download/upload functions
 	global.downloadCsv = downloadCsv;
+	global.downloadWebcamVideo = downloadWebcamVideo;
 	global.uploadCsv = uploadCsv;
+	global.uploadWebcamVideo = uploadWebcamVideo;
 	global.config = config;
 
 	if (config.devmode.on) console.log('data', data);
+};
+
+export const initWebcamFunctionality = (data: any) => {
+	// ---------------------------------------------------------------------------------------------------------------------
+	// START WEBCAM RECORDING
+	// only if not iOS Safari and if selected by user
+	// ---------------------------------------------------------------------------------------------------------------------
+
+	if (!data.iOSSafari && data.webcam) {
+		mrec.startRecorder({
+			audio: true,
+			video: {
+				frameRate: {
+					min: 3,
+					ideal: 5,
+					max: 30,
+				},
+				width: {
+					min: 160,
+					ideal: 320,
+					max: 640,
+				},
+				height: {
+					min: 120,
+					ideal: 240,
+					max: 480,
+				},
+				facingMode: 'user',
+			},
+		});
+	}
 };
