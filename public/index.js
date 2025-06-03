@@ -27,22 +27,12 @@ if (params.has('datatransfer')) {
 // remove all params from URL
 window.history.pushState({}, document.title, window.location.pathname);
 
-// show consent if adult
 const handleDate = (e) => {
 	let age = 0;
 	if (typeof e.target === 'undefined') {
 		age = calculateAge(Date.parse(e));
 	} else {
 		age = calculateAge(Date.parse(e.target.value));
-	}
-	const consentText = document.getElementById('consent');
-	const consentCheckbox = document.getElementById('input-consent');
-	if (age < 12) {
-		consentText.style.display = 'none';
-		consentCheckbox.required = false;
-	} else {
-		consentText.style.display = 'block';
-		consentCheckbox.required = true;
 	}
 };
 
@@ -90,38 +80,25 @@ document.querySelector('form').addEventListener('submit', (e) => {
 
 	// use existing data if available, else use form data
 	id = id ? id : document.getElementById('input-id').value;
-	community = community
-		? community
-		: document.getElementById('input-community').value;
+
+	// for community, gender and datatransfer, use the selected option's id
+	const communityElement = document.getElementById('input-community');
+	const communitySelected =
+		communityElement.options[communityElement.selectedIndex].id;
+	community = community ? community : communitySelected;
+
 	birthday = birthday
 		? birthday
 		: document.getElementById('input-birthday').value;
 
-	// use mappings since otherwise you may run intro translation issues when localizing landing page
-	let genderIndex = '';
-	if (!gender) {
-		genderIndex = document.getElementById('input-gender').selectedIndex;
-	}
-	let datatransferIndex = '';
-	if (!datatransfer) {
-		datatransferIndex =
-			document.getElementById('input-datatransfer').selectedIndex;
-	}
+	const genderElement = document.getElementById('input-gender');
+	const genderSelected = genderElement.options[genderElement.selectedIndex].id;
+	gender = gender ? gender : genderSelected;
 
-	// mapping (key value lookup) for gender, input and datatransfer
-	const genderMapping = new Map()
-		.set(0, 'female')
-		.set(1, 'male')
-		.set(2, 'diverse');
-	const datatransferMapping = new Map()
-		.set(0, 'local')
-		.set(1, 'server')
-		.set(2, 'both');
-
-	gender = gender ? gender : genderMapping.get(genderIndex);
-	datatransfer = datatransfer
-		? datatransfer
-		: datatransferMapping.get(datatransferIndex);
+	const datatransferElement = document.getElementById('input-datatransfer');
+	const datatransferSelected =
+		datatransferElement.options[datatransferElement.selectedIndex].id;
+	datatransfer = datatransfer ? datatransfer : datatransferSelected;
 
 	let href = window.location.href;
 	if (href.includes('index.html')) {

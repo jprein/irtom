@@ -66,9 +66,9 @@
 							</option>
 							<option id="english">Englisch</option>
 							<option id="german">Deutsch</option>
-							<!-- <option id="kikuyu">kikuyu</option> -->
-							<!-- <option id="swahili">swahili</option> -->
-							<!-- <option id="turkish">turkish</option> -->
+							<option id="kikuyu">Kikuyu</option>
+							<option id="swahili">Swahili</option>
+							<option id="turkish">Türkisch</option>
 						</select>
 						<label for="input-community" class="control-label" id="community"
 							>Gemeinschaft</label
@@ -112,9 +112,9 @@
 							<option id="chooseDatatransfer" value="" selected disabled>
 								Bitte auswählen...
 							</option>
-							<option id="download">Lokaler Download</option>
-							<option id="upload">Upload auf Leuphana Server</option>
-							<option id="downupload">
+							<option id="local">Lokaler Download</option>
+							<option id="server">Upload auf Leuphana Server</option>
+							<option id="both">
 								Lokaler Download &amp; Upload auf Leuphana Server
 							</option>
 						</select>
@@ -125,54 +125,7 @@
 							>Datentransfer</label
 						><i class="bar"></i>
 					</div>
-					<div>
-						<p id="consentID">
-							Ihre Teilnahme an der Sudie ist natürlich freiwillig. Alle in der
-							Studie erhobenen Daten werden anonymisiert auf einem Server an der
-							Leuphana University Lüneburg (Deutschland) gespeichert und nicht
-							an Dritte weitergegeben. Sie können Ihre Teilnahme zu jedem
-							Zeitpunkt abbrechen, indem sie das Browserfenster schließen. Wenn
-							Sie zu einem späteren Zeitpunkt Ihre erhobenen Daten löschen
-							lassen möchten, kontaktieren Sie uns über
-							<a href="mailto:lueneluetten@leuphana.de"
-								>lueneluetten@leuphana.de</a
-							>
-							und geben Sie dafür Name und Geburtsdatum Ihres Kindes bzw. bei
-							eigener Teilnahme von Ihnen selbst an.
-						</p>
-					</div>
-					<div id="consent">
-						<div>
-							<h2 id="consentHeading">Einwilligungserklärung</h2>
-							<p id="adultConsent">
-								Ich bin damit einverstanden, am oben genannten Projekt der
-								Leuphana Universität Lüneburg teilzunehmen und dass Tonaufnahmen
-								in anonymisierter Form zur Beantwortung wissenschaftlicher
-								Fragestellungen ausgewertet und im Rahmen wissenschaftlicher
-								Beiträge bei Forschungs-, Lehr- oder Informationsveranstaltungen
-								verwendet werden können. Ausführliche Informationen zum
-								<a
-									href="https://lueneluetten.web.leuphana.de/wordpress/wp-content/uploads/Datenschutzhinweise_LueneLuetten_11.24.pdf"
-									target="-blank"
-									>Datenschutz</a
-								>
-								habe ich erhalten.
-							</p>
-						</div>
-						<div class="checkbox">
-							<label>
-								<input
-									id="input-consent"
-									type="checkbox"
-									autocomplete="off"
-									required
-									onclick="handleCheckbox(event)"
-								/>
-								<i class="helper"></i>
-								<span id="consentYes"></span>
-							</label>
-						</div>
-					</div>
+
 					<div class="button-container">
 						<button id="start-button" type="submit" class="button">
 							<span id="startButton"></span>
