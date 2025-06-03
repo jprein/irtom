@@ -107,62 +107,15 @@
 							>Geschlecht</label
 						><i class="bar"></i>
 					</div>
-					<div id="form-webcam" class="">
-						<label
-							class="control-label"
-							autocomplete="off"
-							id="webcam"
-							>Do you want to record a webcam video?</label
-						><i class="bar"></i>
 
-						<label class="radio-label">
-						<input type="radio" name="input-webcam" value="false" checked />
-						No
-						</label>
-
-						<label class="radio-label">
-						<input type="radio" name="input-webcam" value="true" />
-						Yes
-						</label>
-
-						<br />
-						<button
-							type="button"
-							class="custom-button"
-							id="webcam-button"
-							onclick="mrec.startStream({
-							audio: false,
-							video: {
-								frameRate: {
-								min: 3,
-								ideal: 5,
-								max: 30,
-								},
-								width: {
-								min: 160,
-								ideal: 320,
-								max: 640,
-								},
-								height: {
-								min: 120,
-								ideal: 240,
-								max: 480,
-								},
-								facingMode: 'user',
-							},
-							}); mrec.openVideoPreview()"
-							>
-							<span>OPEN WEBCAM PREVIEW</span>
-							</button>
-					</div>
 					<div id="form-datatransfer" class="form-group">
 						<select id="input-datatransfer" required autocomplete="off">
 							<option id="chooseDatatransfer" value="" selected disabled>
 								Bitte auswählen...
 							</option>
-							<option id="download">Lokaler Download</option>
-							<option id="upload">Upload auf Leuphana Server</option>
-							<option id="downupload">
+							<option id="local">Lokaler Download</option>
+							<option id="server">Upload auf Leuphana Server</option>
+							<option id="both">
 								Lokaler Download &amp; Upload auf Leuphana Server
 							</option>
 						</select>
@@ -173,53 +126,51 @@
 							>Datentransfer</label
 						><i class="bar"></i>
 					</div>
-					<div>
-						<p id="consentID">
-							Ihre Teilnahme an der Sudie ist natürlich freiwillig. Alle in der
-							Studie erhobenen Daten werden anonymisiert auf einem Server an der
-							Leuphana University Lüneburg (Deutschland) gespeichert und nicht
-							an Dritte weitergegeben. Sie können Ihre Teilnahme zu jedem
-							Zeitpunkt abbrechen, indem sie das Browserfenster schließen. Wenn
-							Sie zu einem späteren Zeitpunkt Ihre erhobenen Daten löschen
-							lassen möchten, kontaktieren Sie uns über
-							<a href="mailto:lueneluetten@leuphana.de"
-								>lueneluetten@leuphana.de</a
-							>
-							und geben Sie dafür Name und Geburtsdatum Ihres Kindes bzw. bei
-							eigener Teilnahme von Ihnen selbst an.
-						</p>
+
+					<div id="form-webcam" class="form-group">
+						<select id="input-webcam" required autocomplete="off">
+							<option id="chooseWebcam" value="" selected disabled>
+								Bitte auswählen...
+							</option>
+							<option id="webcamTrue" value="true">Ja</option>
+							<option id="webcamFalse" value="false">Nein</option>
+						</select>
+						<label for="input-webcam" class="control-label" id="webcam"
+							>Webcam</label
+						><i class="bar"></i>
 					</div>
-					<div id="consent">
-						<div>
-							<h2 id="consentHeading">Einwilligungserklärung</h2>
-							<p id="adultConsent">
-								Ich bin damit einverstanden, am oben genannten Projekt der
-								Leuphana Universität Lüneburg teilzunehmen und dass Tonaufnahmen
-								in anonymisierter Form zur Beantwortung wissenschaftlicher
-								Fragestellungen ausgewertet und im Rahmen wissenschaftlicher
-								Beiträge bei Forschungs-, Lehr- oder Informationsveranstaltungen
-								verwendet werden können. Ausführliche Informationen zum
-								<a
-									href="https://lueneluetten.web.leuphana.de/wordpress/wp-content/uploads/Datenschutzhinweise_LueneLuetten_11.24.pdf"
-									target="-blank"
-									>Datenschutz</a
-								>
-								habe ich erhalten.
-							</p>
-						</div>
-						<div class="checkbox">
-							<label>
-								<input
-									id="input-consent"
-									type="checkbox"
-									autocomplete="off"
-									required
-									onclick="handleCheckbox(event)"/>
-								<i class="helper"></i>
-								<span id="consentYes"></span>
-							</label>
-						</div>
+
+					<div class="button-container">
+						<button
+							id="webcam-button"
+							type="button"
+							class="button"
+							onclick="mrec.startStream({
+													audio: false,
+													video: {
+														frameRate: {
+														min: 3,
+														ideal: 5,
+														max: 30,
+														},
+														width: {
+														min: 160,
+														ideal: 320,
+														max: 640,
+														},
+														height: {
+														min: 120,
+														ideal: 240,
+														max: 480,
+														},
+														facingMode: 'user',
+													},
+													}); mrec.openVideoPreview()"
+						>
+							<span id="webcamPreview"></span>
+						</button>
 					</div>
+
 					<div class="button-container">
 						<button id="start-button" type="submit" class="button">
 							<span id="startButton"></span>

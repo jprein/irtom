@@ -177,22 +177,20 @@ export const uploadCsv = (
 		});
 };
 
-export const downloadWebcamVideo = (exp) => {
+// Function to download the webcam video
+export async function downloadWebcamVideo(id: string) {
 	mrec.stopRecorder();
 	// give some time to create Video Blob
 	const day = new Date().toISOString().substring(0, 10);
-	const time = new Date().toISOString().substring(11, 19);
-	setTimeout(() => mrec.downloadVideo(`irToM-${exp.id}-${day}-${time}`), 2000);
-};
+	const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
+	await sleep(2000);
+	mrec.downloadVideo(`irToM-${id}-${day}-${time}`);
+}
 
-// ---------------------------------------------------------------------------------------------------------------------
-// ASYN PROMISIFIABLE VIDEO UPLOAD FUNCTION
-// ---------------------------------------------------------------------------------------------------------------------
-export async function uploadWebcamVideo(exp) {
+// Function to upload the webcam video
+export async function uploadWebcamVideo(id: string) {
 	// stop recorder and upload video
-	const blob = mrec.stopRecorder();
-
-	console.log(blob);
+	mrec.stopRecorder();
 
 	// show upload spinner
 	mrec.modalContent(
@@ -200,14 +198,15 @@ export async function uploadWebcamVideo(exp) {
 		'#E1B4B4',
 	);
 
-	await pause(2000);
+	await sleep(2000);
 
 	const day = new Date().toISOString().substring(0, 10);
-	const time = new Date().toISOString().substring(11, 19);
+	const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
+
 	try {
 		mrec.uploadVideo(
 			{
-				fname: `irToM-${exp.id}-${day}-${time}`,
+				fname: `irToM-${id}-${day}-${time}`,
 				uploadContent:
 					'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
 				uploadColor: '#E1B4B4',
@@ -221,111 +220,5 @@ export async function uploadWebcamVideo(exp) {
 		console.error('Error uploading video:', error);
 	}
 
-	await pause(2000);
+	await sleep(2000);
 }
-
-// ---------------------------------------------------------------------------------------------------------------------
-// FUNCTION FOR LETTING THE BROWSER PAUSE/SLEEP
-// with Promise, so that we can wait for it
-// ---------------------------------------------------------------------------------------------------------------------
-export const pause = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-// 	jsonData: any = data,
-// 	id: string = generateUserIdFilename('irtom', undefined, 'csv')
-// ) => {
-// 	// Extract the static fields (non-procedure fields)
-// 	const staticFields = Object.keys(jsonData).filter(key => key !== "procedure");
-
-// 	// Extract the procedure keys (dynamic rows)
-// 	const procedureKeys = Object.keys(jsonData.procedure);
-
-// 	// Prepare the CSV header
-// 	const header = [...staticFields, "slide", ...Object.keys(jsonData.procedure[procedureKeys[0]])];
-
-// 	console.log("header", header);
-
-// 	// Prepare the CSV rows
-// 	const rows = procedureKeys.map(step => {
-// 	  const procedureData = jsonData.procedure[step];
-// 	  return [
-// 		...staticFields.map(field => jsonData[field]), // Add static field values
-// 		step, // Add the procedure step name
-// 		...Object.values(procedureData) // Add procedure-specific values
-// 	  ];
-// 	});
-
-// 	// Combine header and rows into a CSV string
-// 	const csvContent = [
-// 	  header.join(","), // Header row
-// 	  ...rows.map(row => row.map(value => `"${value}"`).join(",")) // Data rows
-// 	].join("\n");
-
-// 	// Create a Blob and trigger the download
-// 	const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-// 	const hiddenElement = document.createElement('a');
-// 	hiddenElement.href = window.URL.createObjectURL(blob);
-// 	hiddenElement.download = id;
-// 	hiddenElement.click();
-// }
-
-// export const uploadCsv = (
-//     jsonData: any = data,
-//     id: string = generateUserIdFilename('irtom', undefined, 'csv')
-// ) => {
-//     // Extract the static fields (non-procedure fields)
-//     const staticFields = Object.keys(jsonData).filter(key => key !== "procedure");
-
-//     // Extract the procedure keys (dynamic rows)
-//     const procedureKeys = Object.keys(jsonData.procedure);
-
-//     // Prepare the CSV header
-//     const header = [...staticFields, "slide", ...Object.keys(jsonData.procedure[procedureKeys[0]])];
-
-// 	console.log("header", header);
-//     // Prepare the CSV rows
-//     const rows = procedureKeys.map(step => {
-//         const procedureData = jsonData.procedure[step];
-//         return [
-//             ...staticFields.map(field => jsonData[field]), // Add static field values
-//             step, // Add the procedure step name
-//             ...Object.values(procedureData) // Add procedure-specific values
-//         ];
-//     });
-
-//     // Combine header and rows into a CSV string
-//     const csvContent = [
-//         header.join(","), // Header row
-//         ...rows.map(row => row.map(value => `"${value}"`).join(",")) // Data rows
-//     ].join("\n");
-
-// 	console.log("csvContent", csvContent);
-
-//     // Send the CSV content to the server, including the `id` as part of the request
-//     fetch('./data/data.php', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'text/csv',
-//             'X-File-Name': id, // Include the file name in the headers
-//         },
-//         body: csvContent, // Send the CSV content as the body
-//     })
-//         .then((response) => response.json())
-//         .then((data) => {
-//             console.log('Success:', data);
-//             if (data.success) {
-//                 Toastify({
-//                     text: '💾 CSV uploaded successfully!',
-//                     duration: 2000,
-//                     className: 'toast-info',
-//                 }).showToast();
-//             } else {
-//                 Toastify({
-//                     text: '🤔 CSV upload failed!',
-//                     duration: 2000,
-//                     className: 'toast-error',
-//                 }).showToast();
-//             }
-//         })
-//         .catch((error) => {
-//             console.error('Error:', error);
-//         });
-// };

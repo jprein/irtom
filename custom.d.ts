@@ -36,9 +36,8 @@ declare let data: {
 	age: number;
 	agegroup: 'child' | 'adult';
 	datatransfer: 'server' | 'local' | 'both';
-	videoExtension: 'mov' | 'webm';
-	// PROLIFIC_PID: string;
-	// coupon: string;
+	webcam: boolean;
+	hasWebcam: boolean;
 	t0: Date;
 	t1: Date;
 	startTime: string;

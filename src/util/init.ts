@@ -37,7 +37,6 @@ export const init = () => {
 	const birthdayMs = Date.parse(urlParameters.birthday);
 	const ageDiffMs = Date.now() - birthdayMs;
 	const ageInYears = new Date(ageDiffMs).getUTCFullYear() - 1970;
-	const webcam = urlParameters.webcam == 'true' ? true : false;
 	const wrapper = document.getElementById('wrapper')! as HTMLDivElement;
 	// load initial SVG file
 	wrapper.innerHTML = svgPath;
@@ -114,14 +113,6 @@ export const init = () => {
 		global.data.browserName = DetectRTC.browser.name;
 		global.data.safari = DetectRTC.browser.isSafari == undefined ? false : true;
 		global.data.iOSSafari = global.data.safari && global.touchscreen;
-		// Create dynamic extension depening on browser
-		// Safari used .mov extension, other browsers use .webm
-		global.data.videoExtension = global.data.safari ? 'mov' : 'webm';
-
-		if (webcam == true && global.data.hasWebcam == true) {
-			console.log('Webcam recording enabled');
-			initWebcamFunctionality(global.data);
-		}
 	});
 
 	// check if all translation keys have a matching foreignObject and vice versa
@@ -181,52 +172,52 @@ export const init = () => {
 		};
 	}
 
-	const pinda = document.getElementById('pinda') as HTMLVideoElement;
-	const audio = document.getElementById('audio') as HTMLAudioElement;
+	// const pinda = document.getElementById('pinda') as HTMLVideoElement;
+	// const audio = document.getElementById('audio') as HTMLAudioElement;
 
-	// set pinda global styles
-	pinda.style.position = 'absolute';
-	pinda.style.height = config.css.pinda.height;
-	pinda.style.left = config.css.pinda.left;
-	pinda.style.bottom = config.css.pinda.bottom;
+	// // set pinda global styles
+	// pinda.style.position = 'absolute';
+	// pinda.style.height = config.css.pinda.height;
+	// pinda.style.left = config.css.pinda.left;
+	// pinda.style.bottom = config.css.pinda.bottom;
 
-	if (config.devmode.on) {
-		audio.addEventListener('play', () => {
-			audio.playbackRate = config.devmode.playbackRate;
-		});
-	}
-	pinda.addEventListener('play', (e: Event) => {
-		// if (config.devmode.on) {
-		// 	console.log((e.target as HTMLVideoElement).src);
-		// }
-		gsap.set(pinda, { autoAlpha: 0 });
-		gsap.to(pinda, { autoAlpha: 1 });
-		if (config.devmode.on) {
-			pinda.playbackRate = config.devmode.playbackRate;
-		}
-	});
+	// if (config.devmode.on) {
+	// 	audio.addEventListener('play', () => {
+	// 		audio.playbackRate = config.devmode.playbackRate;
+	// 	});
+	// }
+	// pinda.addEventListener('play', (e: Event) => {
+	// 	// if (config.devmode.on) {
+	// 	// 	console.log((e.target as HTMLVideoElement).src);
+	// 	// }
+	// 	gsap.set(pinda, { autoAlpha: 0 });
+	// 	gsap.to(pinda, { autoAlpha: 1 });
+	// 	if (config.devmode.on) {
+	// 		pinda.playbackRate = config.devmode.playbackRate;
+	// 	}
+	// });
 
-	// blocking state slide
-	const bsFo = document.getElementById('s-bs')! as SvgInHtml;
-	bsFo.innerHTML = `<div id="blocking-state" style="
-	height: 100%;
-	width: 100%;
-	background-color: #fff;
-	opacity: 0.75;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	backdrop-filter: blur(10px);"></div>`;
+	// // blocking state slide
+	// const bsFo = document.getElementById('s-bs')! as SvgInHtml;
+	// bsFo.innerHTML = `<div id="blocking-state" style="
+	// height: 100%;
+	// width: 100%;
+	// background-color: #fff;
+	// opacity: 0.75;
+	// display: flex;
+	// justify-content: center;
+	// align-items: center;
+	// backdrop-filter: blur(10px);"></div>`;
 
-	gsap.set('#link-leuphana-cube', {
-		transformOrigin: '50% 50%',
-	});
-	gsap.to('#link-leuphana-cube', {
-		duration: 3,
-		rotation: 360,
-		repeat: -1,
-		ease: 'none',
-	});
+	// gsap.set('#link-leuphana-cube', {
+	// 	transformOrigin: '50% 50%',
+	// });
+	// gsap.to('#link-leuphana-cube', {
+	// 	duration: 3,
+	// 	rotation: 360,
+	// 	repeat: -1,
+	// 	ease: 'none',
+	// });
 
 	if (config.devmode.on) {
 		global.translations = translations;
@@ -248,15 +239,9 @@ export const init = () => {
 	global.config = config;
 
 	if (config.devmode.on) console.log('data', data);
-};
 
-export const initWebcamFunctionality = (data: any) => {
-	// ---------------------------------------------------------------------------------------------------------------------
-	// START WEBCAM RECORDING
-	// only if not iOS Safari and if selected by user
-	// ---------------------------------------------------------------------------------------------------------------------
-
-	if (!data.iOSSafari && data.webcam) {
+	// Enable webcam recording if selected in URL parameters
+	if (data.webcam) {
 		mrec.startRecorder({
 			audio: true,
 			video: {

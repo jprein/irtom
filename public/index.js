@@ -7,7 +7,7 @@ let community = '';
 let birthday = '';
 let gender = '';
 let datatransfer = '';
-let webcam = false;
+let webcam = '';
 
 if (params.has('id')) {
 	id = params.get('id');
@@ -28,19 +28,6 @@ if (params.has('webcam')) {
 	webcam = params.get('webcam');
 }
 
-// WEBCAM YES OR NO?
-const webcamOptions = document.getElementsByName('input-webcam');
-console.log('webcamOptions');
-console.log(webcamOptions);
-for (const option of webcamOptions) {
-	option.onclick = () => {
-		if (option.checked) {
-			webcam = option.value;
-			console.log('webcam: ', webcam);
-		}
-	};
-}
-
 // remove all params from URL
 window.history.pushState({}, document.title, window.location.pathname);
 
@@ -52,21 +39,6 @@ const handleDate = (e) => {
 	} else {
 		age = calculateAge(Date.parse(e.target.value));
 	}
-	const consentText = document.getElementById('consent');
-	const consentCheckbox = document.getElementById('input-consent');
-	if (age < 12) {
-		consentText.style.display = 'none';
-		consentCheckbox.required = false;
-	} else {
-		consentText.style.display = 'block';
-		consentCheckbox.required = true;
-		consentCheckbox.onclick = handleCheckbox;
-	}
-};
-
-const handleCheckbox = (e) => {
-	console.log(e.target.value);
-	// handle checkbox for consent
 };
 
 const calculateAge = (birthday) => {
@@ -85,10 +57,6 @@ if (community) {
 	const communityElement = document.getElementById('input-community');
 	communityElement.required = false;
 	communityElement.parentNode.style.display = 'none';
-	// hide video if community is not german
-	if (community !== 'german' && community !== 'prolific-de-u') {
-		document.querySelector('video').style.display = 'none';
-	}
 }
 if (birthday) {
 	const birthdayElement = document.getElementById('input-birthday');
@@ -106,6 +74,22 @@ if (datatransfer) {
 	datatransferElement.required = false;
 	datatransferElement.parentElement.style.display = 'none';
 }
+if (webcam) {
+	const webcamElement = document.getElementById('input-webcam');
+	webcamElement.required = false;
+	webcamElement.parentElement.style.display = 'none';
+}
+
+// when webcam option false/no is selected, hide the webcam preview button
+const webcamElement = document.getElementById('input-webcam');
+webcamElement.addEventListener('change', (e) => {
+	const webcamButton = document.getElementById('webcam-button');
+	if (e.target.value === 'false') {
+		webcamButton.style.display = 'none';
+	} else {
+		webcamButton.style.display = 'inline';
+	}
+});
 
 // handle submit button
 document.querySelector('form').addEventListener('submit', (e) => {
@@ -113,42 +97,33 @@ document.querySelector('form').addEventListener('submit', (e) => {
 
 	// use existing data if available, else use form data
 	id = id ? id : document.getElementById('input-id').value;
-	community = community
-		? community
-		: document.getElementById('input-community').value;
+
+	// for community, gender and datatransfer, use the selected option's id
+	const communityElement = document.getElementById('input-community');
+	const communitySelected =
+		communityElement.options[communityElement.selectedIndex].id;
+	community = community ? community : communitySelected;
+
 	birthday = birthday
 		? birthday
 		: document.getElementById('input-birthday').value;
 
-	// use mappings since otherwise you may run intro translation issues when localizing landing page
-	let genderIndex = '';
-	if (!gender) {
-		genderIndex = document.getElementById('input-gender').selectedIndex;
-	}
-	let datatransferIndex = '';
-	if (!datatransfer) {
-		datatransferIndex =
-			document.getElementById('input-datatransfer').selectedIndex;
-	}
+	const genderElement = document.getElementById('input-gender');
+	const genderSelected = genderElement.options[genderElement.selectedIndex].id;
+	gender = gender ? gender : genderSelected;
 
-	// mapping (key value lookup) for gender, input and datatransfer
-	const genderMapping = new Map()
-		.set(1, 'female')
-		.set(2, 'male')
-		.set(3, 'diverse');
-	const datatransferMapping = new Map()
-		.set(1, 'local')
-		.set(2, 'server')
-		.set(3, 'both');
+	const datatransferElement = document.getElementById('input-datatransfer');
+	const datatransferSelected =
+		datatransferElement.options[datatransferElement.selectedIndex].id;
+	datatransfer = datatransfer ? datatransfer : datatransferSelected;
 
-	gender = gender ? gender : genderMapping.get(genderIndex);
-	datatransfer = datatransfer
-		? datatransfer
-		: datatransferMapping.get(datatransferIndex);
+	const webcamElement = document.getElementById('input-webcam');
+	const webcamSelected =
+		webcamElement.options[webcamElement.selectedIndex].value;
+	webcam = webcam ? webcam : webcamSelected;
 
 	let href = window.location.href;
-	if (href.includes('index.html')) {
-		href = href.replace('index.html', '');
-	}
+	href = href.replace('index.html', '');
+	href = href.replace('#', '');
 	window.location.href = `${href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&datatransfer=${datatransfer}&webcam=${webcam}`;
 });

@@ -9,7 +9,6 @@ import {
 	sleep,
 	downloadWebcamVideo,
 	uploadWebcamVideo,
-	pause,
 } from '../util/helpers';
 
 export const procedure = async () => {
@@ -195,7 +194,6 @@ export const procedure = async () => {
 		't0',
 		't1',
 		'totalSlides',
-		'videoExtension',
 	].forEach((key) => {
 		if (key in data) {
 			delete data[key];
@@ -205,17 +203,17 @@ export const procedure = async () => {
 	// Save data depending on choice (local, server, both)
 	if (datatransfer === 'local') {
 		downloadCsv();
-		downloadWebcamVideo(data);
+		downloadWebcamVideo(data.id);
 	} else if (datatransfer === 'server') {
 		uploadCsv();
-		await uploadWebcamVideo(data);
-		await pause(1000);
+		await uploadWebcamVideo(data.id);
+		await sleep(1000);
 	} else {
 		uploadCsv();
 		downloadCsv();
-		downloadWebcamVideo(data);
-		await uploadWebcamVideo(data);
-		await pause(1000);
+		downloadWebcamVideo(data.id);
+		await uploadWebcamVideo(data.id);
+		await sleep(1000);
 	}
 
 	// users can leave page now
