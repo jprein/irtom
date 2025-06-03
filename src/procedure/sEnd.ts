@@ -14,7 +14,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	await sleep(2000);
 
-	window.location.href = `./goodbye.html`;
+	// window.location.href = `./goodbye.html`;
 
 	// const pinda = document.getElementById('pinda') as HTMLVideoElement;
 	// pinda.src = `./communities/${data.community}/video/s-end.${data.videoExtension}`;

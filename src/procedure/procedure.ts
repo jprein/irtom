@@ -80,8 +80,15 @@ export const procedure = async () => {
 
 	currentProcedure = currentProcedure.map((e: string) => _.camelCase(e));
 	data.currentProcedure = currentProcedure;
-	console.log('Procedure for this community:');
-	console.table(currentProcedure);
+
+	if (config.devmode.on) {
+		console.group(
+			'%cProcedure for this community',
+			'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+		);
+		console.table(currentProcedure);
+		console.groupEnd();
+	}
 
 	data.totalSlides = currentProcedure.length;
 
@@ -165,9 +172,13 @@ export const procedure = async () => {
 		// Put in function so that we can remove the event listener again
 		const handleRepeatClick = async () => {
 			data.procedure[currentSlide].repeated += 1;
-			console.log(
-				`Repeat ${currentSlide} for the ${data.procedure[currentSlide].repeated} time.`,
-			);
+
+			if (config.devmode.on) {
+				console.log(
+					`%cRepeat ${currentSlide} for the ${data.procedure[currentSlide].repeated}x time.`,
+					'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+				);
+			}
 
 			// Hide previous slide to avoid short flickering of old slide
 			const slideElement = document.getElementById(previousSlideKc);
@@ -279,7 +290,7 @@ export const procedure = async () => {
 
 	console.group(
 		'%cStudy Summary',
-		'background-color: #e0005a ; color: #ffffff ; font-weight: bold ; padding: 4px ;',
+		'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
 	);
 	console.log(`The study took ${minutes} minutes and ${seconds} seconds.`);
 	console.log('Here is what we stored:');

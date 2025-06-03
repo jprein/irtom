@@ -1,4 +1,4 @@
-import { gsap } from 'gsap';
+import { gsap, selector } from 'gsap';
 import _ from 'lodash';
 import type { SvgInHtml } from '../types';
 import svgPath from '../assets/experiment-voxified.svg';
@@ -233,5 +233,31 @@ export const init = async () => {
 	global.uploadCsv = uploadCsv;
 	global.config = config;
 
-	if (config.devmode.on) console.log('data', data);
+	if (config.devmode.on) {
+		console.group(
+			'%cData object',
+			'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+		);
+		console.log(data);
+		console.groupEnd();
+	}
+
+	// in config.procedure, all communities are listed
+	// we filter all communities that are not our current community
+	const otherCommunities = Object.keys(config.procedure).filter(
+		(community) => community !== data.community,
+	);
+
+	// for all other communities, we hide the community-specific SVG elements
+	document.querySelectorAll('[id$="-boy"]').forEach((element) => {
+		element.setAttribute('visibility', 'hidden');
+	});
+
+	const selectors = otherCommunities
+		.map((community) => `[id*="${community}"]`)
+		.join(', ');
+
+	document.querySelectorAll(selectors).forEach((element) => {
+		element.setAttribute('visibility', 'hidden');
+	});
 };

@@ -24,37 +24,37 @@
       11000,
       2645.3514739229026
     ],
-    "s-diversebeliefs-a": [
-      15000,
-      7104.013605442176
-    ],
     "s-diversebeliefs-a-left": [
-      24000,
+      15000,
       2517.3469387755104
     ],
     "s-diversebeliefs-a-right": [
-      28000,
+      19000,
       2581.3378684807267
+    ],
+    "s-diversebeliefs-a": [
+      23000,
+      7104.013605442176
     ],
     "s-diversebeliefs-b-left-nay": [
       32000,
       4117.346938775512
     ],
-    "s-diversebeliefs-b-right-nay": [
-      38000,
-      4202.653061224489
-    ],
-    "s-diversebeliefs-b": [
-      44000,
-      3520.000000000003
-    ],
     "s-diversebeliefs-b-left": [
-      49000,
+      38000,
       2389.3197278911557
     ],
+    "s-diversebeliefs-b-right-nay": [
+      42000,
+      4202.653061224489
+    ],
     "s-diversebeliefs-b-right": [
-      53000,
+      48000,
       2410.6802721088416
+    ],
+    "s-diversebeliefs-b": [
+      52000,
+      3520.000000000003
     ],
     "s-diversedesires-a-1": [
       57000,
