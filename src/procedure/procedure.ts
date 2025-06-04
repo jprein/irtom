@@ -10,6 +10,7 @@ import {
 	downloadWebcamVideo,
 	uploadWebcamVideo,
 } from '../util/helpers';
+import type { SvgInHtml } from '../types';
 
 export const procedure = async () => {
 	let currentProcedure = _.cloneDeep(config.procedure[data.community]);
@@ -81,8 +82,15 @@ export const procedure = async () => {
 
 	currentProcedure = currentProcedure.map((e: string) => _.camelCase(e));
 	data.currentProcedure = currentProcedure;
-	console.log('Procedure for this community:');
-	console.table(currentProcedure);
+
+	if (config.devmode.on) {
+		console.group(
+			'%cProcedure for this community',
+			'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+		);
+		console.table(currentProcedure);
+		console.groupEnd();
+	}
 
 	data.totalSlides = currentProcedure.length;
 
@@ -91,6 +99,13 @@ export const procedure = async () => {
 	const pindaNeutral = document.getElementById(
 		'pinda-neutral',
 	) as HTMLVideoElement;
+
+	// hide loading spinner
+	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
+	// parentBlock.removeAttribute('visibility');
+	const blockingStateAnimation = gsap.getById('blocking-state-animation');
+	if (blockingStateAnimation) blockingStateAnimation.kill();
+	parentBlock.setAttribute('visibility', 'hidden');
 
 	// ================================================
 	// PROCEDURE LOOP
@@ -116,6 +131,7 @@ export const procedure = async () => {
 			slideNr: data.slideCounter,
 			slideDuration: 0,
 			response: '',
+			repeated: 0,
 		};
 
 		// get possible response buttons (next buttons, yes/no buttons)
@@ -130,9 +146,65 @@ export const procedure = async () => {
 		// ACTUAL LOOP
 		// camelCased in procedure directory (e.g., sIntroduction.ts)
 		// kebab-cased arguments, as required by Illustrator slide IDs
-		await (
-			await import(`./${currentSlide}`)
-		).default({ currentSlide: currentSlideKc, previousSlide: previousSlideKc });
+
+		// Import the slide behavior dynamically
+		const runSlideBehavior = async () => {
+			await (
+				await import(`./${currentSlide}`)
+			).default({
+				currentSlide: currentSlideKc,
+				previousSlide: previousSlideKc,
+			});
+		};
+
+		// ENABLE REPEAT BUTTON
+		// If a repeat element exists on the slide, attach a listener to re-run the behavior when clicked
+		let repeatSvg = document.querySelector(
+			`#${currentSlideKc} [id$="-repeat"]`,
+		)! as SvgInHtml;
+
+		// If the repeat element is not found, try to get it from yes/no slide
+		if (!repeatSvg) {
+			repeatSvg = document.getElementById('s-yesnochoice-repeat') as SvgInHtml;
+			repeatSvg = document.querySelector(
+				`#s-yesnochoice [id$="-repeat"]`,
+			)! as SvgInHtml;
+		}
+
+		// Put in function so that we can remove the event listener again
+		const handleRepeatClick = async () => {
+			data.procedure[currentSlide].repeated += 1;
+
+			if (config.devmode.on) {
+				console.log(
+					`%cRepeat ${currentSlide} for the ${data.procedure[currentSlide].repeated}x time.`,
+					'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+				);
+			}
+
+			// Hide previous slide to avoid short flickering of old slide
+			const slideElement = document.getElementById(previousSlideKc);
+			if (slideElement) {
+				slideElement.style.display = 'none';
+			}
+
+			// Run the slide behavior again
+			data.clickedRepeat = true;
+			await runSlideBehavior();
+			data.clickedRepeat = false;
+		};
+
+		// Add event listener to repeat element
+		if (repeatSvg) {
+			repeatSvg.addEventListener('click', handleRepeatClick);
+		}
+
+		// Run the slide behavior for the first time
+		// only after this first run, the repeat button will be clickable
+		await runSlideBehavior();
+		// Remove the event listener
+		repeatSvg.removeEventListener('click', handleRepeatClick);
+
 		// ----------------------------------------------------------------------------
 
 		// POST LOOP Actions (i.e., either an await button was clicked or video ended)
@@ -194,6 +266,11 @@ export const procedure = async () => {
 		't0',
 		't1',
 		'totalSlides',
+		'videoExtension',
+		'hasWebcam',
+		'sprite',
+		'spriteJSON',
+		'clickedRepeat',
 	].forEach((key) => {
 		if (key in data) {
 			delete data[key];
@@ -221,7 +298,7 @@ export const procedure = async () => {
 
 	console.group(
 		'%cStudy Summary',
-		'background-color: #e0005a ; color: #ffffff ; font-weight: bold ; padding: 4px ;',
+		'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
 	);
 	console.log(`The study took ${minutes} minutes and ${seconds} seconds.`);
 	console.log('Here is what we stored:');

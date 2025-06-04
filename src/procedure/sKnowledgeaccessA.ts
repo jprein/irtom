@@ -4,7 +4,6 @@ import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
 import { hideYesNoChoice } from '../util/hideYesNoChoice';
 import { showYesNoChoice } from '../util/showYesNoChoice';
-import { playPromise } from '../util/audio';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -17,9 +16,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
 	data.simpleSlideCounter++;
-
-	// In beginning, hide yes/no choice
-	await hideYesNoChoice(choicePrefix);
 
 	// Add trial-specific animation
 	const boyHandsdown = document.getElementById(
@@ -38,66 +34,83 @@ export default async ({ currentSlide, previousSlide }) => {
 	const boxClosed = document.getElementById(
 		`${slidePrefix}-box-closed`,
 	) as SvgInHtml;
+	// const repeat = document.getElementById(
+	// 	`link-${choicePrefix}-repeat`,
+	// ) as SvgInHtml;
 
 	gsap.defaults({ ease: 'none' });
 
-	// Initially hide some elements
-	gsap.set([boyBall, girl], { x: -1200 });
-	gsap.set([boyHandsdown, boyHandsup, boxOpen], {
-		autoAlpha: 0,
-	});
-
-	await gsap
-		.timeline()
-		.to(boyBall, {
-			onStart: () => {
-				playPromise(
-					`./communities/${data.community}/audio/${slidePrefix}-1.mp3`,
-				);
-			},
-		})
-		.to(boyBall, {
-			delay: 5,
-			x: 0,
-			duration: 3,
-			onComplete: () => {
-				playPromise(
-					`./communities/${data.community}/audio/${slidePrefix}-2.mp3`,
-				);
-			},
-		})
-		.to([boyBall, boxClosed], { delay: 4, autoAlpha: 0, duration: 0.1 })
-		.to(
-			[boyHandsup, boxOpen],
-			{
-				autoAlpha: 1,
-				duration: 0.1,
-				onComplete: () => {
-					playPromise(
-						`./communities/${data.community}/audio/${slidePrefix}-3.mp3`,
-					);
-				},
-			},
-			'<',
-		)
-		.to([boyHandsup, boxOpen], { delay: 4, autoAlpha: 0, duration: 0.1 })
-		.to([boyHandsdown, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
-		.to(boyHandsdown, {
-			delay: 1,
-			x: 1200,
-			duration: 3,
-			onComplete: () => {
-				playPromise(
-					`./communities/${data.community}/audio/${slidePrefix}-4.mp3`,
-				);
-			},
-		})
-		.to(girl, { autoAlpha: 1, duration: 0.1 })
-		.to(girl, {
-			delay: 2,
-			x: 0,
-			duration: 3,
+	// Define animation function
+	async function showAnimation() {
+		// Initially hide some elements
+		gsap.set([boyBall, girl], { x: -1200 });
+		gsap.set(boyBall, { autoAlpha: 1 });
+		gsap.set([boyHandsdown, boyHandsup, boxOpen], {
+			autoAlpha: 0,
 		});
+		gsap.set(boyHandsdown, { x: 0 });
+
+		await gsap
+			.timeline()
+			.to(boyBall, {
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-1`);
+				},
+			})
+			.to(boyBall, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 3,
+				x: 0,
+				duration: 3,
+				onComplete: () => {
+					data.sprite.play(`${slidePrefix}-2`);
+				},
+			})
+			.to([boyBall, boxClosed], {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to(
+				[boyHandsup, boxOpen],
+				{
+					autoAlpha: 1,
+					duration: 0.1,
+					onComplete: () => {
+						data.sprite.play(`${slidePrefix}-3`);
+					},
+				},
+				'<',
+			)
+			.to([boyHandsup, boxOpen], {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to([boyHandsdown, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(boyHandsdown, {
+				delay: 1,
+				x: 1200,
+				duration: 3,
+				onComplete: () => {
+					data.sprite.play(`${slidePrefix}-4`);
+				},
+			})
+			.to(girl, { autoAlpha: 1, duration: 0.1 })
+			.to(girl, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+				x: 0,
+				duration: 3,
+			});
+
+		// Short break before showing response options
+		await sleep(1000);
+	}
+
+	// In beginning, hide yes/no choice
+	await hideYesNoChoice(choicePrefix);
+
+	// Show animation
+	await showAnimation();
 
 	// Short break before showing response options
 	await sleep(1000);

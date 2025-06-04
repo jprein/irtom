@@ -3,8 +3,8 @@ import './css/style.css';
 import { init } from './util/init';
 import { procedure } from './procedure/procedure';
 
-// import SVG, apply initial settings, create global data object
-init();
+// import SVG, apply initial settings, create global data object, create audio sprite
+await init();
 
 // run community-specific procedure
 await procedure();

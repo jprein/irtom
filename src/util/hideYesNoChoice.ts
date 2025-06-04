@@ -6,28 +6,54 @@ export const hideYesNoChoice = async (choicePrefix: string) => {
 	const choiceSlide = document.getElementById(`${choicePrefix}`) as SvgInHtml;
 	choiceSlide.setAttribute('visibility', 'visible');
 	const blurr = document.getElementById(`${choicePrefix}-blurr`) as SvgInHtml;
-	const headphones = document.getElementById(
-		`link-${choicePrefix}-headphones`,
-	) as SvgInHtml;
-	const yesGroup = document.getElementById(`${choicePrefix}-yes`) as SvgInHtml;
-	const yesFace = document.getElementById(
-		`${choicePrefix}-face-yes`,
-	) as SvgInHtml;
-	const yesFacefeatures = document.getElementById(
-		`${choicePrefix}-facefeatures-yes`,
-	) as SvgInHtml;
-	const noGroup = document.getElementById(`${choicePrefix}-no`) as SvgInHtml;
-	const noFace = document.getElementById(
-		`${choicePrefix}-face-no`,
-	) as SvgInHtml;
-	const noFacefeatures = document.getElementById(
-		`${choicePrefix}-facefeatures-no`,
+	const repeat = document.getElementById(
+		`link-${choicePrefix}-repeat`,
 	) as SvgInHtml;
 
-	gsap.set([yesGroup, noGroup, blurr, headphones], {
-		autoAlpha: 0,
-		pointerEvents: 'none',
-	});
+	// Hide all yes/no choice elements
+	const blueYes = document.getElementById(
+		`${choicePrefix}-blue-yes`,
+	) as SvgInHtml;
+	const blueNo = document.getElementById(
+		`${choicePrefix}-blue-no`,
+	) as SvgInHtml;
+	const yellowYes = document.getElementById(
+		`${choicePrefix}-yellow-yes`,
+	) as SvgInHtml;
+	const yellowNo = document.getElementById(
+		`${choicePrefix}-yellow-no`,
+	) as SvgInHtml;
+	const purpleYes = document.getElementById(
+		`${choicePrefix}-purple-yes`,
+	) as SvgInHtml;
+	const purpleNo = document.getElementById(
+		`${choicePrefix}-purple-no`,
+	) as SvgInHtml;
+
+	// only get face features for choosen emoji color
+	const yesFace = document.getElementById(
+		`${choicePrefix}-${data.emoji}-face-yes`,
+	) as SvgInHtml;
+	const yesFacefeatures = document.getElementById(
+		`${choicePrefix}-${data.emoji}-facefeatures-yes`,
+	) as SvgInHtml;
+	const noFace = document.getElementById(
+		`${choicePrefix}-${data.emoji}-face-no`,
+	) as SvgInHtml;
+	const noFacefeatures = document.getElementById(
+		`${choicePrefix}-${data.emoji}-facefeatures-no`,
+	) as SvgInHtml;
+
+	// hide elements
+	gsap.set(
+		[blueYes, blueNo, yellowYes, yellowNo, purpleYes, purpleNo, blurr, repeat],
+		{
+			autoAlpha: 0,
+			pointerEvents: 'none',
+		},
+	);
+
+	// set transform origin to center for yes/no faces
 	gsap.set([yesFace, yesFacefeatures, noFace, noFacefeatures], {
 		transformOrigin: '50% 50%',
 	});

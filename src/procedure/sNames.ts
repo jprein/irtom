@@ -1,9 +1,9 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
-import { hideLeftRightChoice } from '../util/hideLeftRightChoice';
+import { hideTwoOptions } from '../util/hideTwoOptions';
 import { getResponse } from '../util/getResponse';
-import { play, playPromise } from '../util/audio';
+import { sleep } from '../util/helpers';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -16,13 +16,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	swapSlides(currentSlide, previousSlide);
 	data.simpleSlideCounter++;
 
-	// In beginning, hide response options
-	await hideLeftRightChoice(slidePrefix);
-
 	// Trial-specific animation
 	// Get all relevant elements
-	const audio = document.getElementById('audio') as HTMLMediaElement;
-
 	const girlHandsup = document.getElementById(
 		`${slidePrefix}-girl-waving`,
 	) as SvgInHtml;
@@ -40,8 +35,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	) as SvgInHtml;
 
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
-	const headphones = document.getElementById(
-		`link-${slidePrefix}-headphones`,
+	const repeat = document.getElementById(
+		`link-${slidePrefix}-repeat`,
 	) as SvgInHtml;
 	const optionLeft = document.getElementById(
 		`${slidePrefix}-left`,
@@ -57,15 +52,14 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Initially hide agents with hands up
 	gsap.set([girlHandsup, boyHandsup], { autoAlpha: 0 });
 
-	// Define function to show names
-	async function showNames() {
-		await playPromise(
-			`./communities/${data.community}/audio/${slidePrefix}-1.mp3`,
-		);
+	// Define animation function
+	async function showAnimation() {
+		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		await gsap
 			.timeline()
 			.to(girlHandsdown, {
+				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -75,13 +69,13 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 					onStart: () => {
-						play(`./communities/${data.community}/audio/${slidePrefix}-2.mp3`);
+						data.sprite.play(`${slidePrefix}-2`);
 					},
 				},
 				'<',
 			)
 			.to(girlHandsup, {
-				delay: 1.5,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -91,13 +85,13 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 					onComplete: () => {
-						play(`./communities/${data.community}/audio/${slidePrefix}-3.mp3`);
+						data.sprite.play(`${slidePrefix}-3`);
 					},
 				},
 				'<',
 			)
 			.to(boyHandsdown, {
-				delay: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 1,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -107,13 +101,13 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 					onStart: () => {
-						play(`./communities/${data.community}/audio/${slidePrefix}-4.mp3`);
+						data.sprite.play(`${slidePrefix}-4`);
 					},
 				},
 				'<',
 			)
 			.to(boyHandsup, {
-				delay: 1.5,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -127,12 +121,10 @@ export default async ({ currentSlide, previousSlide }) => {
 			);
 	}
 
-	// define function to show left/right response options
+	// Define function to show left/right response options
 	async function showChoice() {
 		// Play audio
-		await playPromise(
-			`./communities/${data.community}/audio/${slidePrefix}.mp3`,
-		);
+		await data.sprite.playPromise(`${slidePrefix}`);
 
 		await gsap
 			.timeline()
@@ -144,109 +136,72 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: 0.5,
 				autoAlpha: 1,
 				duration: 0.5,
-				pointerEvents: 'visible',
-				cursor: 'pointer',
 				onStart: () => {
-					play(`./communities/${data.community}/audio/${slidePrefix}-left.mp3`);
+					data.sprite.play(`${slidePrefix}-left`);
 				},
 			})
 			.to(optionRight, {
-				delay: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000,
+				autoAlpha: 1,
+				duration: 0.5,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-right`);
+				},
+			})
+			.to([optionLeft, optionRight, repeat], {
 				autoAlpha: 1,
 				duration: 0.5,
 				pointerEvents: 'visible',
 				cursor: 'pointer',
-				onStart: () => {
-					play(
-						`./communities/${data.community}/audio/${slidePrefix}-right.mp3`,
-					);
-				},
-				onComplete: () => {
-					gsap.to(headphones, {
-						autoAlpha: 1,
-						pointerEvents: 'visible',
-						cursor: 'pointer',
-					});
-				},
 			});
 
-		// if headphone is clicked, play audio again
-		play(
-			`./communities/${data.community}/audio/${slidePrefix}.mp3`,
-			`link-${slidePrefix}-headphones`,
-		);
-
-		// while audio is playing, hide yes and no response buttons
-		function handlePlay() {
-			gsap
-				.timeline()
-				.set([optionLeft, optionRight], {
-					autoAlpha: 0,
-					pointerEvents: 'none',
-					cursor: 'default',
-				})
-				.to(blurr, {
-					autoAlpha: 0,
-					duration: 0.6,
-				});
-		}
-
-		// when audio ends, show yes and no response buttons
-		function handleEnded() {
-			gsap
-				.timeline()
-				.set([optionLeft, optionRight], {
-					autoAlpha: 1,
-					pointerEvents: 'visible',
-					cursor: 'pointer',
-				})
-				.to(blurr, {
-					autoAlpha: 0.7,
-					duration: 0.6,
-				});
-		}
-
-		audio.addEventListener('play', handlePlay);
-		audio.addEventListener('ended', handleEnded);
-
 		// Get Response
-		const response = await getResponse([optionLeft.id, optionRight.id]);
+		if (!data.clickedRepeat) {
+			const response = await getResponse([optionLeft.id, optionRight.id]);
 
-		// Response returns the clicked element.
-		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
-		// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
-		data.procedure[data.currentSlide].response = response.id.split('-').pop();
+			// remove event listener so that not multiple audios can be played
+			gsap.timeline().to([optionLeft, optionRight, repeat], {
+				autoAlpha: 1,
+				duration: 0.5,
+				pointerEvents: 'none',
+			});
 
-		// Check if the response is correct, and store the score (0 = incorrect, 1 = correct)
-		data.procedure[data.currentSlide].score += 1;
-		correct =
-			data.procedure[data.currentSlide].response ===
-			data.procedure[data.currentSlide].correct
-				? true
-				: false;
+			// Response returns the clicked element.
+			// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
+			// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
+			data.procedure[data.currentSlide].response = response.id.split('-').pop();
 
-		// Remove Event Listeners after response
-		audio.removeEventListener('play', handlePlay);
-		audio.removeEventListener('ended', handleEnded);
+			// Check if the response is correct, and store the score (0 = incorrect, 1 = correct)
+			data.procedure[data.currentSlide].score += 1;
+			correct =
+				data.procedure[data.currentSlide].response ===
+				data.procedure[data.currentSlide].correct
+					? true
+					: false;
 
-		// For this initial trial, we check response
-		// If correct, move on to the next trial
-		if (correct) {
-			await playPromise(
-				`./communities/${data.community}/audio/${slidePrefix}-correct.mp3`,
-			);
-			// If incorrect, play the same again.
-		} else {
-			await playPromise(
-				`./communities/${data.community}/audio/${slidePrefix}-incorrect.mp3`,
-			);
-			await hideLeftRightChoice(slidePrefix);
-			await showNames();
-			await showChoice();
+			// For this initial trial, we check response
+			// If correct, move on to the next trial
+			if (correct) {
+				await data.sprite.playPromise(`${slidePrefix}-correct`);
+				// If incorrect, play the same again.
+			} else {
+				await data.sprite.playPromise(`${slidePrefix}-incorrect`);
+				await hideTwoOptions(slidePrefix);
+				await showAnimation();
+				await showChoice();
+			}
 		}
 	}
 
-	// Actually running
-	await showNames();
+	// In beginning, hide response options
+	await hideTwoOptions(slidePrefix);
+
+	// Show animation
+	await showAnimation();
+
+	// Short break before showing response options
+	await sleep(1000);
+
+	// Show response options and store participant response
 	await showChoice();
 };

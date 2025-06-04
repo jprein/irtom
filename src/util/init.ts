@@ -1,4 +1,4 @@
-import { gsap } from 'gsap';
+import { gsap, selector } from 'gsap';
 import _ from 'lodash';
 import type { SvgInHtml } from '../types';
 import svgPath from '../assets/experiment-voxified.svg';
@@ -29,8 +29,9 @@ import Toastify from 'toastify-js';
 import DetectRTC from 'detectrtc';
 import 'toastify-js/src/toastify.css';
 import * as mrec from '@ccp-eva/media-recorder';
+import { createSprite } from './createSprite';
 
-export const init = () => {
+export const init = async () => {
 	const urlParameters = getUrlParameters();
 
 	// calculate agegroup based on birthday
@@ -106,6 +107,10 @@ export const init = () => {
 		slideCounter: 0,
 		quitBeforeEnd: false,
 		procedure: {},
+		hasWebcam: DetectRTC.hasWebcam,
+		browserName: DetectRTC.browser.name,
+		clickedRepeat: false,
+		emoji: 'yellow',
 	};
 	//log user testing setup
 	DetectRTC.load(() => {
@@ -197,27 +202,31 @@ export const init = () => {
 	// 	}
 	// });
 
-	// // blocking state slide
-	// const bsFo = document.getElementById('s-bs')! as SvgInHtml;
-	// bsFo.innerHTML = `<div id="blocking-state" style="
-	// height: 100%;
-	// width: 100%;
-	// background-color: #fff;
-	// opacity: 0.75;
-	// display: flex;
-	// justify-content: center;
-	// align-items: center;
-	// backdrop-filter: blur(10px);"></div>`;
+	// blocking state slide
+	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
+	parentBlock.removeAttribute('visibility');
 
-	// gsap.set('#link-leuphana-cube', {
-	// 	transformOrigin: '50% 50%',
-	// });
-	// gsap.to('#link-leuphana-cube', {
-	// 	duration: 3,
-	// 	rotation: 360,
-	// 	repeat: -1,
-	// 	ease: 'none',
-	// });
+	gsap.set('#link-leuphana-cube', {
+		transformOrigin: '50% 50%',
+	});
+	gsap.to('#link-leuphana-cube', {
+		id: 'blocking-state-animation',
+		duration: 3,
+		rotation: 360,
+		repeat: -1,
+		ease: 'none',
+	});
+
+	// initialize audio sprite instance
+	// first, get the audio sprite JSON file
+	const spriteLookup = await fetch(
+		`./communities/${data.community}/combined.json`,
+	);
+
+	data.spriteJSON = await spriteLookup.json();
+
+	// then,create the sprite instance
+	data.sprite = await createSprite(data.spriteJSON);
 
 	if (config.devmode.on) {
 		global.translations = translations;
@@ -237,8 +246,6 @@ export const init = () => {
 	global.uploadCsv = uploadCsv;
 	global.uploadWebcamVideo = uploadWebcamVideo;
 	global.config = config;
-
-	if (config.devmode.on) console.log('data', data);
 
 	// Enable webcam recording if selected in URL parameters
 	if (data.webcam) {
@@ -264,4 +271,32 @@ export const init = () => {
 			},
 		});
 	}
+
+	if (config.devmode.on) {
+		console.group(
+			'%cData object',
+			'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+		);
+		console.log(data);
+		console.groupEnd();
+	}
+
+	// in config.procedure, all communities are listed
+	// we filter all communities that are not our current community
+	const otherCommunities = Object.keys(config.procedure).filter(
+		(community) => community !== data.community,
+	);
+
+	// for all other communities, we hide the community-specific SVG elements
+	document.querySelectorAll('[id$="-boy"]').forEach((element) => {
+		element.setAttribute('visibility', 'hidden');
+	});
+
+	const selectors = otherCommunities
+		.map((community) => `[id*="${community}"]`)
+		.join(', ');
+
+	document.querySelectorAll(selectors).forEach((element) => {
+		element.setAttribute('visibility', 'hidden');
+	});
 };

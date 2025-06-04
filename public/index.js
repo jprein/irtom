@@ -31,7 +31,6 @@ if (params.has('webcam')) {
 // remove all params from URL
 window.history.pushState({}, document.title, window.location.pathname);
 
-// show consent if adult
 const handleDate = (e) => {
 	let age = 0;
 	if (typeof e.target === 'undefined') {
