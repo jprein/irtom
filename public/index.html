@@ -107,6 +107,7 @@
 							>Geschlecht</label
 						><i class="bar"></i>
 					</div>
+
 					<div id="form-datatransfer" class="form-group">
 						<select id="input-datatransfer" required autocomplete="off">
 							<option id="chooseDatatransfer" value="" selected disabled>
@@ -124,6 +125,50 @@
 							id="dataTransfer"
 							>Datentransfer</label
 						><i class="bar"></i>
+					</div>
+
+					<div id="form-webcam" class="form-group">
+						<select id="input-webcam" required autocomplete="off">
+							<option id="chooseWebcam" value="" selected disabled>
+								Bitte auswählen...
+							</option>
+							<option id="webcamTrue" value="true">Ja</option>
+							<option id="webcamFalse" value="false">Nein</option>
+						</select>
+						<label for="input-webcam" class="control-label" id="webcam"
+							>Webcam</label
+						><i class="bar"></i>
+					</div>
+
+					<div class="button-container">
+						<button
+							id="webcam-button"
+							type="button"
+							class="button"
+							onclick="mrec.startStream({
+													audio: false,
+													video: {
+														frameRate: {
+														min: 3,
+														ideal: 5,
+														max: 30,
+														},
+														width: {
+														min: 160,
+														ideal: 320,
+														max: 640,
+														},
+														height: {
+														min: 120,
+														ideal: 240,
+														max: 480,
+														},
+														facingMode: 'user',
+													},
+													}); mrec.openVideoPreview()"
+						>
+							<span id="webcamPreview"></span>
+						</button>
 					</div>
 
 					<div class="button-container">
@@ -159,5 +204,6 @@
 				</p>
 			</div>
 		</div>
+		<script src="https://unpkg.com/@ccp-eva/media-recorder"></script>
 	</body>
 </html>

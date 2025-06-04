@@ -7,6 +7,7 @@ let community = '';
 let birthday = '';
 let gender = '';
 let datatransfer = '';
+let webcam = '';
 
 if (params.has('id')) {
 	id = params.get('id');
@@ -22,6 +23,9 @@ if (params.has('gender')) {
 }
 if (params.has('datatransfer')) {
 	datatransfer = params.get('datatransfer');
+}
+if (params.has('webcam')) {
+	webcam = params.get('webcam');
 }
 
 // remove all params from URL
@@ -52,10 +56,6 @@ if (community) {
 	const communityElement = document.getElementById('input-community');
 	communityElement.required = false;
 	communityElement.parentNode.style.display = 'none';
-	// hide video if community is not german
-	if (community !== 'german' && community !== 'prolific-de-u') {
-		document.querySelector('video').style.display = 'none';
-	}
 }
 if (birthday) {
 	const birthdayElement = document.getElementById('input-birthday');
@@ -73,6 +73,22 @@ if (datatransfer) {
 	datatransferElement.required = false;
 	datatransferElement.parentElement.style.display = 'none';
 }
+if (webcam) {
+	const webcamElement = document.getElementById('input-webcam');
+	webcamElement.required = false;
+	webcamElement.parentElement.style.display = 'none';
+}
+
+// when webcam option false/no is selected, hide the webcam preview button
+const webcamElement = document.getElementById('input-webcam');
+webcamElement.addEventListener('change', (e) => {
+	const webcamButton = document.getElementById('webcam-button');
+	if (e.target.value === 'false') {
+		webcamButton.style.display = 'none';
+	} else {
+		webcamButton.style.display = 'inline';
+	}
+});
 
 // handle submit button
 document.querySelector('form').addEventListener('submit', (e) => {
@@ -100,9 +116,13 @@ document.querySelector('form').addEventListener('submit', (e) => {
 		datatransferElement.options[datatransferElement.selectedIndex].id;
 	datatransfer = datatransfer ? datatransfer : datatransferSelected;
 
+	const webcamElement = document.getElementById('input-webcam');
+	const webcamSelected =
+		webcamElement.options[webcamElement.selectedIndex].value;
+	webcam = webcam ? webcam : webcamSelected;
+
 	let href = window.location.href;
-	if (href.includes('index.html')) {
-		href = href.replace('index.html', '');
-	}
-	window.location.href = `${href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&datatransfer=${datatransfer}`;
+	href = href.replace('index.html', '');
+	href = href.replace('#', '');
+	window.location.href = `${href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&datatransfer=${datatransfer}&webcam=${webcam}`;
 });

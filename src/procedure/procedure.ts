@@ -7,6 +7,8 @@ import {
 	downloadCsv,
 	millisToMinutesAndSeconds,
 	sleep,
+	downloadWebcamVideo,
+	uploadWebcamVideo,
 } from '../util/helpers';
 import type { SvgInHtml } from '../types';
 
@@ -278,11 +280,17 @@ export const procedure = async () => {
 	// Save data depending on choice (local, server, both)
 	if (datatransfer === 'local') {
 		downloadCsv();
+		downloadWebcamVideo(data.id);
 	} else if (datatransfer === 'server') {
 		uploadCsv();
+		await uploadWebcamVideo(data.id);
+		await sleep(1000);
 	} else {
 		uploadCsv();
 		downloadCsv();
+		downloadWebcamVideo(data.id);
+		await uploadWebcamVideo(data.id);
+		await sleep(1000);
 	}
 
 	// users can leave page now

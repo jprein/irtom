@@ -21,6 +21,11 @@ const languageIds = [
 	'local',
 	'server',
 	'both',
+	'webcam',
+	'chooseWebcam',
+	'webcamTrue',
+	'webcamFalse',
+	'webcamPreview',
 	'startButton',
 	'imprint',
 	'dataProtection',
@@ -132,6 +137,31 @@ const translations = {
 		de: `Lokaler Download und Upload auf Leuphana Server`,
 		en: `Local Download and Upload to Leuphana Server`,
 		es: `Descarga local y subida al servidor de Leuphana`,
+	},
+	webcam: {
+		de: `Webcam`,
+		en: `Webcam`,
+		es: `Cámara web`,
+	},
+	chooseWebcam: {
+		de: `Bitte wählen...`,
+		en: `Please select...`,
+		es: `Por favor seleccione...`,
+	},
+	webcamTrue: {
+		de: `Ja`,
+		en: `Yes`,
+		es: `Sí`,
+	},
+	webcamFalse: {
+		de: `Nein`,
+		en: `No`,
+		es: `No`,
+	},
+	webcamPreview: {
+		de: `Webcam-Vorschau`,
+		en: `Webcam Preview`,
+		es: `Vista previa de la cámara web`,
 	},
 	startButton: {
 		de: `Start`,

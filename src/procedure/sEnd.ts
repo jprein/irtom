@@ -18,12 +18,4 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// const pinda = document.getElementById('pinda') as HTMLVideoElement;
 	// pinda.src = `./communities/${data.community}/video/s-end.${data.videoExtension}`;
-
-	// pinda.addEventListener('ended', () => {
-	// 	if (data.community === 'german') {
-	// 		gsap.to(pinda, { autoAlpha: 0, duration: 2 });
-	// 		window.location.href = `./goodbye.html`;
-	// 	}
-	// 	gsap.to(pinda, { autoAlpha: 0, duration: 3 });
-	// });
 };

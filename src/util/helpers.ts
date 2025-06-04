@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import Toastify from 'toastify-js';
+import * as mrec from '@ccp-eva/media-recorder';
 
 // promised based timeout
 export const sleep = (ms = 2000) =>
@@ -175,103 +176,49 @@ export const uploadCsv = (
 			console.error('Error:', error);
 		});
 };
-// 	jsonData: any = data,
-// 	id: string = generateUserIdFilename('irtom', undefined, 'csv')
-// ) => {
-// 	// Extract the static fields (non-procedure fields)
-// 	const staticFields = Object.keys(jsonData).filter(key => key !== "procedure");
 
-// 	// Extract the procedure keys (dynamic rows)
-// 	const procedureKeys = Object.keys(jsonData.procedure);
+// Function to download the webcam video
+export async function downloadWebcamVideo(id: string) {
+	mrec.stopRecorder();
+	// give some time to create Video Blob
+	const day = new Date().toISOString().substring(0, 10);
+	const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
+	await sleep(2000);
+	mrec.downloadVideo(`irToM-${id}-${day}-${time}`);
+}
 
-// 	// Prepare the CSV header
-// 	const header = [...staticFields, "slide", ...Object.keys(jsonData.procedure[procedureKeys[0]])];
+// Function to upload the webcam video
+export async function uploadWebcamVideo(id: string) {
+	// stop recorder and upload video
+	mrec.stopRecorder();
 
-// 	console.log("header", header);
+	// show upload spinner
+	mrec.modalContent(
+		'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
+		'#E1B4B4',
+	);
 
-// 	// Prepare the CSV rows
-// 	const rows = procedureKeys.map(step => {
-// 	  const procedureData = jsonData.procedure[step];
-// 	  return [
-// 		...staticFields.map(field => jsonData[field]), // Add static field values
-// 		step, // Add the procedure step name
-// 		...Object.values(procedureData) // Add procedure-specific values
-// 	  ];
-// 	});
+	await sleep(2000);
 
-// 	// Combine header and rows into a CSV string
-// 	const csvContent = [
-// 	  header.join(","), // Header row
-// 	  ...rows.map(row => row.map(value => `"${value}"`).join(",")) // Data rows
-// 	].join("\n");
+	const day = new Date().toISOString().substring(0, 10);
+	const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
 
-// 	// Create a Blob and trigger the download
-// 	const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
-// 	const hiddenElement = document.createElement('a');
-// 	hiddenElement.href = window.URL.createObjectURL(blob);
-// 	hiddenElement.download = id;
-// 	hiddenElement.click();
-// }
+	try {
+		mrec.uploadVideo(
+			{
+				fname: `irToM-${id}-${day}-${time}`,
+				uploadContent:
+					'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
+				uploadColor: '#E1B4B4',
+				successContent:
+					'<img src=\'assets/spinner-done-de.svg\' style="width: 75vw">',
+				successColor: '#D3F9D3',
+			},
+			'./data/upload_video.php',
+		);
+	} catch (error) {
+		console.error('Error uploading video:', error);
+	}
 
-// export const uploadCsv = (
-//     jsonData: any = data,
-//     id: string = generateUserIdFilename('irtom', undefined, 'csv')
-// ) => {
-//     // Extract the static fields (non-procedure fields)
-//     const staticFields = Object.keys(jsonData).filter(key => key !== "procedure");
-
-//     // Extract the procedure keys (dynamic rows)
-//     const procedureKeys = Object.keys(jsonData.procedure);
-
-//     // Prepare the CSV header
-//     const header = [...staticFields, "slide", ...Object.keys(jsonData.procedure[procedureKeys[0]])];
-
-// 	console.log("header", header);
-//     // Prepare the CSV rows
-//     const rows = procedureKeys.map(step => {
-//         const procedureData = jsonData.procedure[step];
-//         return [
-//             ...staticFields.map(field => jsonData[field]), // Add static field values
-//             step, // Add the procedure step name
-//             ...Object.values(procedureData) // Add procedure-specific values
-//         ];
-//     });
-
-//     // Combine header and rows into a CSV string
-//     const csvContent = [
-//         header.join(","), // Header row
-//         ...rows.map(row => row.map(value => `"${value}"`).join(",")) // Data rows
-//     ].join("\n");
-
-// 	console.log("csvContent", csvContent);
-
-//     // Send the CSV content to the server, including the `id` as part of the request
-//     fetch('./data/data.php', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'text/csv',
-//             'X-File-Name': id, // Include the file name in the headers
-//         },
-//         body: csvContent, // Send the CSV content as the body
-//     })
-//         .then((response) => response.json())
-//         .then((data) => {
-//             console.log('Success:', data);
-//             if (data.success) {
-//                 Toastify({
-//                     text: '💾 CSV uploaded successfully!',
-//                     duration: 2000,
-//                     className: 'toast-info',
-//                 }).showToast();
-//             } else {
-//                 Toastify({
-//                     text: '🤔 CSV upload failed!',
-//                     duration: 2000,
-//                     className: 'toast-error',
-//                 }).showToast();
-//             }
-//         })
-//         .catch((error) => {
-//             console.error('Error:', error);
-//         });
-// };
+	await sleep(2000);
+}
