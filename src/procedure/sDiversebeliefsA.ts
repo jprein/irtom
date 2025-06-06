@@ -17,13 +17,13 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// Get relevant elements
-	const boy = document.getElementById(`${slidePrefix}-boy`) as SvgInHtml;
+	const dog = document.getElementById(`link-${slidePrefix}-dog`) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
-		gsap.set(boy, { autoAlpha: 1 });
+		gsap.set(dog, { autoAlpha: 1 });
 		await data.sprite.playPromise(`${slidePrefix}-1`);
-		await gsap.timeline().to(boy, {
+		await gsap.timeline().to(dog, {
 			autoAlpha: 0,
 			duration: 1,
 		});

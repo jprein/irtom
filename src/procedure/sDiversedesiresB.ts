@@ -20,16 +20,24 @@ export default async ({ currentSlide, previousSlide }) => {
 	gsap.defaults({ ease: 'none' });
 
 	// Get all relevant elements
-	const girl = document.getElementById(`${slidePrefix}-girl`) as SvgInHtml;
+	const girl = document.getElementById(
+		`link-${slidePrefix}-girl-${data.community}`,
+	) as SvgInHtml;
 	const girlYay = document.getElementById(
-		`${slidePrefix}-girl-yay`,
+		`link-${slidePrefix}-girl-yay-${data.community}`,
 	) as SvgInHtml;
 	const girlNay = document.getElementById(
-		`${slidePrefix}-girl-nay`,
+		`link-${slidePrefix}-girl-nay-${data.community}`,
 	) as SvgInHtml;
-	const boy = document.getElementById(`${slidePrefix}-boy`) as SvgInHtml;
-	const boyNay = document.getElementById(`${slidePrefix}-boy-nay`) as SvgInHtml;
-	const boyYay = document.getElementById(`${slidePrefix}-boy-yay`) as SvgInHtml;
+	const boy = document.getElementById(
+		`link-${slidePrefix}-boy-${data.community}`,
+	) as SvgInHtml;
+	const boyNay = document.getElementById(
+		`link-${slidePrefix}-boy-nay-${data.community}`,
+	) as SvgInHtml;
+	const boyYay = document.getElementById(
+		`link-${slidePrefix}-boy-yay-${data.community}`,
+	) as SvgInHtml;
 	const carrot = document.getElementById(`${slidePrefix}-carrot`) as SvgInHtml;
 
 	// Define animation function

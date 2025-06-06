@@ -21,16 +21,16 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Get all relevant elements
 	const girlHandsup = document.getElementById(
-		`${slidePrefix}-girl-handsup`,
+		`link-${slidePrefix}-girl-handsup-${data.community}`,
 	) as SvgInHtml;
-	const girlHandsdown = document.getElementById(
-		`${slidePrefix}-girl-handsdown`,
+	const girl = document.getElementById(
+		`link-${slidePrefix}-girl-${data.community}`,
 	) as SvgInHtml;
 	const boyHandsup = document.getElementById(
-		`${slidePrefix}-boy-handsup`,
+		`link-${slidePrefix}-boy-handsup-${data.community}`,
 	) as SvgInHtml;
-	const boyHandsdown = document.getElementById(
-		`${slidePrefix}-boy-handsdown`,
+	const boy = document.getElementById(
+		`link-${slidePrefix}-boy-${data.community}`,
 	) as SvgInHtml;
 	const boxOpen = document.getElementById(
 		`${slidePrefix}-box-open`,
@@ -42,9 +42,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
-		gsap.set(boyHandsdown, { x: -1200 });
+		gsap.set(boy, { x: -1200 });
 		gsap.set([girlHandsup, boyHandsup, boxOpen], { autoAlpha: 0 });
-		gsap.set(girlHandsdown, { x: 0, autoAlpha: 1 });
+		gsap.set(girl, { x: 0, autoAlpha: 1 });
 
 		// Play initial audio
 		await data.sprite.playPromise(`${slidePrefix}-1`);
@@ -52,7 +52,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		// Animation sequence
 		await gsap
 			.timeline()
-			.to([girlHandsdown, boxClosed], {
+			.to([girl, boxClosed], {
 				delay: 0.5,
 				autoAlpha: 0,
 				duration: 0.1,
@@ -73,8 +73,8 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 0,
 				duration: 0.1,
 			})
-			.to([girlHandsdown, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(girlHandsdown, {
+			.to([girl, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girl, {
 				delay: 0.5,
 				x: 1100,
 				duration: 3,
@@ -82,7 +82,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
-			.to(boyHandsdown, {
+			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				x: 0,
 				duration: 3,
@@ -96,12 +96,12 @@ export default async ({ currentSlide, previousSlide }) => {
 				y: -400,
 				duration: 0,
 			})
-			.to(boyHandsdown, { delay: 1, autoAlpha: 0, duration: 0.1 })
+			.to(boy, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(boyHandsup, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boxClosed, { x: 0, y: -700, duration: 1, repeat: 2, yoyo: true })
 			.to(boyHandsup, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(
-				boyHandsdown,
+				boy,
 				{
 					autoAlpha: 1,
 					duration: 0.1,
@@ -112,7 +112,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(boxClosed, { y: 0, duration: 1 })
-			.to(boyHandsdown, {
+			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 1,
 				x: -1200,
 				duration: 3,

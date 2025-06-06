@@ -19,19 +19,19 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girlHandsup = document.getElementById(
-		`${slidePrefix}-girl-waving`,
+		`link-${slidePrefix}-girl-waving-${data.community}`,
 	) as SvgInHtml;
 
-	const girlHandsdown = document.getElementById(
-		`${slidePrefix}-girl`,
+	const girl = document.getElementById(
+		`link-${slidePrefix}-girl-${data.community}`,
 	) as SvgInHtml;
 
 	const boyHandsup = document.getElementById(
-		`${slidePrefix}-boy-waving`,
+		`link-${slidePrefix}-boy-waving-${data.community}`,
 	) as SvgInHtml;
 
-	const boyHandsdown = document.getElementById(
-		`${slidePrefix}-boy`,
+	const boy = document.getElementById(
+		`link-${slidePrefix}-boy-${data.community}`,
 	) as SvgInHtml;
 
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
@@ -58,7 +58,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await gsap
 			.timeline()
-			.to(girlHandsdown, {
+			.to(girl, {
 				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
@@ -80,7 +80,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 0.1,
 			})
 			.to(
-				girlHandsdown,
+				girl,
 				{
 					autoAlpha: 1,
 					duration: 0.1,
@@ -90,7 +90,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			)
-			.to(boyHandsdown, {
+			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 1,
 				autoAlpha: 0,
 				duration: 0.1,
@@ -112,7 +112,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 0.1,
 			})
 			.to(
-				boyHandsdown,
+				boy,
 				{
 					autoAlpha: 1,
 					duration: 0.1,

@@ -15,8 +15,8 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	const optionRight = document.getElementById(
 		`${slidePrefix}-right`,
 	) as SvgInHtml;
-	const subject = document.getElementById(
-		`${slidePrefix}-subject`,
+	const subject = document.querySelector(
+		`[id*="${slidePrefix}"][id*="subject"]`,
 	) as SvgInHtml;
 
 	// Play audio
@@ -43,7 +43,7 @@ export const showTwoOptions = async (slidePrefix: string) => {
 			},
 		})
 		.to(optionRight, {
-			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000 + 0.5,
 			autoAlpha: 1,
 			duration: 0.5,
 			onStart: () => {

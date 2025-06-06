@@ -18,25 +18,24 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// Add trial-specific animation
-	const boyHandsdown = document.getElementById(
-		`${slidePrefix}-boy-handsdown`,
+	const boy = document.getElementById(
+		`link-${slidePrefix}-boy-${data.community}`,
 	) as SvgInHtml;
 	const boyBall = document.getElementById(
-		`${slidePrefix}-boy-ball`,
+		`link-${slidePrefix}-boy-ball-${data.community}`,
 	) as SvgInHtml;
 	const boyHandsup = document.getElementById(
-		`${slidePrefix}-boy-handsup`,
+		`link-${slidePrefix}-boy-handsup-${data.community}`,
 	) as SvgInHtml;
-	const girl = document.getElementById(`${slidePrefix}-girl`) as SvgInHtml;
+	const girl = document.getElementById(
+		`link-${slidePrefix}-girl-${data.community}`,
+	) as SvgInHtml;
 	const boxOpen = document.getElementById(
 		`${slidePrefix}-box-open`,
 	) as SvgInHtml;
 	const boxClosed = document.getElementById(
 		`${slidePrefix}-box-closed`,
 	) as SvgInHtml;
-	// const repeat = document.getElementById(
-	// 	`link-${choicePrefix}-repeat`,
-	// ) as SvgInHtml;
 
 	gsap.defaults({ ease: 'none' });
 
@@ -45,10 +44,10 @@ export default async ({ currentSlide, previousSlide }) => {
 		// Initially hide some elements
 		gsap.set([boyBall, girl], { x: -1200 });
 		gsap.set(boyBall, { autoAlpha: 1 });
-		gsap.set([boyHandsdown, boyHandsup, boxOpen], {
+		gsap.set([boy, boyHandsup, boxOpen], {
 			autoAlpha: 0,
 		});
-		gsap.set(boyHandsdown, { x: 0 });
+		gsap.set(boy, { x: 0 });
 
 		await gsap
 			.timeline()
@@ -86,8 +85,8 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 0,
 				duration: 0.1,
 			})
-			.to([boyHandsdown, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(boyHandsdown, {
+			.to([boy, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(boy, {
 				delay: 1,
 				x: 1200,
 				duration: 3,

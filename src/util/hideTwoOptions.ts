@@ -15,11 +15,15 @@ export const hideTwoOptions = async (slidePrefix: string) => {
 	) as SvgInHtml;
 
 	// Check if the subject element exists (visual reminder for content of test question)
-	const subject = document.getElementById(
-		`${slidePrefix}-subject`,
+	const subject = document.querySelector(
+		`[id*="${slidePrefix}"][id*="subject"]`,
 	) as SvgInHtml;
+
 	if (subject) {
-		gsap.set(subject, { autoAlpha: 0, pointerEvents: 'none' });
+		gsap.set(subject, {
+			autoAlpha: 0,
+			pointerEvents: 'none',
+		});
 	}
 
 	// Originally, hide response options

@@ -21,13 +21,13 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Get all relevant elements
 	const girlHandsup = document.getElementById(
-		`${slidePrefix}-girl-handsup`,
+		`link-${slidePrefix}-girl-handsup-${data.community}`,
 	) as SvgInHtml;
-	const girlHandsdown = document.getElementById(
-		`${slidePrefix}-girl-handsdown`,
+	const girl = document.getElementById(
+		`link-${slidePrefix}-girl-${data.community}`,
 	) as SvgInHtml;
-	const boyHandsdown = document.getElementById(
-		`${slidePrefix}-boy-handsdown`,
+	const boy = document.getElementById(
+		`link-${slidePrefix}-boy-${data.community}`,
 	) as SvgInHtml;
 	const boxOpen = document.getElementById(
 		`${slidePrefix}-box-open`,
@@ -35,32 +35,30 @@ export default async ({ currentSlide, previousSlide }) => {
 	const boxClosed = document.getElementById(
 		`${slidePrefix}-box-closed`,
 	) as SvgInHtml;
-	const rooster = document.getElementById(
-		`${slidePrefix}-rooster`,
-	) as SvgInHtml;
+	const dog = document.getElementById(`link-${slidePrefix}-dog`) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
-		gsap.set([boyHandsdown, girlHandsdown], { x: -1200 });
-		gsap.set(rooster, { x: 1200, autoAlpha: 1 });
+		gsap.set([boy, girl], { x: -1200 });
+		gsap.set(dog, { x: 1200, autoAlpha: 1 });
 		gsap.set([girlHandsup, boxOpen], { autoAlpha: 0 });
 
 		// Animation sequence
 		await gsap
 			.timeline()
-			.to(rooster, {
+			.to(dog, {
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-1`);
 				},
 			})
-			.to(rooster, {
+			.to(dog, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 5,
 				x: 0,
 				duration: 3,
 			})
 			.to(boxOpen, { delay: 2, autoAlpha: 1, duration: 0.1 })
-			.to(rooster, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(dog, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(boxOpen, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(
 				boxClosed,
@@ -73,7 +71,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			)
-			.to(girlHandsdown, {
+			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				x: 0,
 				duration: 3,
@@ -81,7 +79,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
-			.to(girlHandsdown, {
+			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
@@ -108,7 +106,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 0.1,
 			})
 			.to(
-				girlHandsdown,
+				girl,
 				{
 					autoAlpha: 1,
 					duration: 0.1,
@@ -120,7 +118,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				y: 0,
 				duration: 1,
 			})
-			.to(girlHandsdown, {
+			.to(girl, {
 				delay: 1,
 				x: -1200,
 				duration: 3,
@@ -128,7 +126,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
-			.to(boyHandsdown, {
+			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				x: 0,
 				duration: 3,
@@ -136,13 +134,13 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
-			.to(boyHandsdown, {
+			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-7`);
 				},
 			})
-			.to(boyHandsdown, {
+			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
 				x: -1200,
 				duration: 3,

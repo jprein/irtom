@@ -15,7 +15,11 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Get response from previous slide with interactive choice
 	// response stores what participant likes (left or right), boy agent always likes the opposite
-	const naySide = data.procedure[data.previousSlide].response;
+	// for dev mode, if no previous slide / response exists, default to left
+	const naySide =
+		data.previousSlide && data.procedure[data.previousSlide]
+			? data.procedure[data.previousSlide].response || 'left'
+			: 'left';
 	const yaySide = naySide === 'left' ? 'right' : 'left';
 
 	// Store correct response
@@ -25,20 +29,22 @@ export default async ({ currentSlide, previousSlide }) => {
 	gsap.defaults({ ease: 'none' });
 
 	// Get all relevant elements
-	const boy = document.getElementById(`${slidePrefix}-boy`) as SvgInHtml;
+	const boy = document.getElementById(
+		`link-${slidePrefix}-boy-${data.community}`,
+	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`${slidePrefix}-boy-nay-${naySide}`,
+		`link-${slidePrefix}-boy-nay-${naySide}-${data.community}`,
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`${slidePrefix}-boy-yay-${yaySide}`,
+		`link-${slidePrefix}-boy-yay-${yaySide}-${data.community}`,
 	) as SvgInHtml;
 
 	// also get the other (irrelevant) yay/nay agent sides to hide them
 	const boyNayHide = document.getElementById(
-		`${slidePrefix}-boy-nay-${yaySide}`,
+		`link-${slidePrefix}-boy-nay-${yaySide}-${data.community}`,
 	) as SvgInHtml;
 	const boyYayHide = document.getElementById(
-		`${slidePrefix}-boy-yay-${naySide}`,
+		`link-${slidePrefix}-boy-yay-${naySide}-${data.community}`,
 	) as SvgInHtml;
 
 	// Define animation function
