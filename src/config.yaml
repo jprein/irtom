@@ -69,9 +69,7 @@ globals:
   defaultGender: none
   defaultDataTransfer: local
   slideGapDuration: 750 # delay for most slides before transitioning to next
-  playYesNoAudio: 3
   playResponseFeedback: 3
-  minimumTextInputLength: 4
 
 procedure:
   # use exact slide ids from Illustrator for values
@@ -79,9 +77,10 @@ procedure:
   # If you create a key with a sub array everything in the sub array will be randomized
   # You can nest only two levels deep
   german:
-    - s-introduction
-    - s-emojichoice
-    - s-yesnotraining-a
+    - s-dog
+    # - s-introduction
+    # - s-emojichoice
+    # - s-yesnotraining-a
     # - s-yesnotraining-b
     # - s-yesnotraining-c
     # - s-yesnotraining-d
@@ -89,26 +88,26 @@ procedure:
     # - s-leftrighttraining-b
     # - s-leftrighttraining-c
     # - s-leftrighttraining-d
-    - s-names
-    - s-perspectivetaking-one-a
-    - s-perspectivetaking-one-b
-    - s-perspectivetaking-one-c
-    - s-perspectivetaking-one-d
-    - s-perspectivetaking-two-a
-    - s-perspectivetaking-two-b
-    - s-perspectivetaking-two-c
-    - s-perspectivetaking-two-d
-    - s-knowledgeaccess-a
-    - s-knowledgeaccess-b
-    - s-knowledgeaccess-c
-    - s-diversedesires-a
-    - s-diversedesires-b
-    - s-diversedesires-c
-    - s-diversedesires-d
-    - s-diversebeliefs-a
-    - s-diversebeliefs-b
+    # - s-names
+    # - s-perspectivetaking-one-a
+    # - s-perspectivetaking-one-b
+    # - s-perspectivetaking-one-c
+    # - s-perspectivetaking-one-d
+    # - s-perspectivetaking-two-a
+    # - s-perspectivetaking-two-b
+    # - s-perspectivetaking-two-c
+    # - s-perspectivetaking-two-d
+    # - s-knowledgeaccess-a
+    # - s-knowledgeaccess-b
+    # - s-knowledgeaccess-c
+    # - s-diversedesires-a
+    # - s-diversedesires-b
+    # - s-diversedesires-c
+    # - s-diversedesires-d
+    # - s-diversebeliefs-a
+    # - s-diversebeliefs-b
     # - s-falsebelief-two-a
-    - s-end
+    # - s-end
 
   english:
     - s-introduction

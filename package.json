@@ -14,8 +14,7 @@
 		"lint": "eslint",
 		"prettier": "prettier --write \"**/*.{ts,js,json,yaml}\"",
 		"start": "webpack serve",
-		"voxify": "node src/voxify/",
-		"audiosprite::ger": "npx audiosprite --export 'webm,mp3' --format 'howler2' --path './communities/german/' --output src/communities/german/combined src/communities/german/audio/*.mp3"
+		"voxify": "node src/voxify/"
 	},
 	"repository": {
 		"type": "git",
