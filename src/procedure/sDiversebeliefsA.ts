@@ -10,7 +10,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	const slidePrefix = 's-diversebeliefs-a';
 
 	// Store correct response
-	data.procedure[data.currentSlide].correct = 'left';
+	data.procedure[data.currentSlide].correct = '';
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
