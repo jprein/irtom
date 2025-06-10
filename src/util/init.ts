@@ -288,10 +288,6 @@ export const init = async () => {
 	);
 
 	// for all other communities, we hide the community-specific SVG elements
-	document.querySelectorAll('[id$="-boy"]').forEach((element) => {
-		element.setAttribute('visibility', 'hidden');
-	});
-
 	const selectors = otherCommunities
 		.map((community) => `[id*="${community}"]`)
 		.join(', ');

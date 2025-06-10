@@ -571,7 +571,7 @@
           </g>
         </g>
         <rect id="ph-s-diversebeliefs-b-subject-german" x="862.42" y="140.81" width="195.16" height="217.56" fill="#c92" opacity=".2"/>
-        <use id="link-s-diversebeliefs-b-subject-german" transform="translate(562.06 439.68) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
+        <use id="link-s-diversebeliefs-b-subject-german" transform="translate(881.23 149.27) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
       </g>
       <g id="s-diversebeliefs-a">
         <rect id="s-diversebeliefs-a-sky" width="1920" height="720" fill="#ddfffd"/>
@@ -1940,12 +1940,12 @@
         <g id="s-diversedesires-b-right">
           <rect x="1054.88" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <rect id="ph-s-diversedesires-b-boy-smiling-german" x="1182.59" y="429.01" width="195.16" height="221.98" fill="#c92" opacity=".2"/>
-          <use id="link-s-diversedesires-b-boy-smiling-german" transform="translate(1204.22 434.01) scale(3.39 3.21)" xlink:href="#image9" isolation="isolate"/>
+          <use id="link-s-diversedesires-b-boy-smiling-german" transform="translate(1205.01 434.01) scale(3.39 3.21)" xlink:href="#image9" isolation="isolate"/>
         </g>
         <g id="s-diversedesires-b-left">
           <rect x="416.93" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <rect id="ph-s-diversedesires-b-girl-smiling-german" x="538.5" y="431.22" width="195.16" height="217.56" fill="#c92" opacity=".2"/>
-          <use id="link-s-diversedesires-b-girl-smiling-german" transform="translate(562.06 439.68) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
+          <use id="link-s-diversedesires-b-girl-smiling-german" transform="translate(562.85 439.68) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
         </g>
         <g id="s-diversedesires-b-subject">
           <path d="M880.52,224.75s.05,0,.07.01c.31.06.62.11.92.17.04,0,.09.02.13.02.28.05.54.1.81.16.06.01.12.02.18.04.24.05.48.1.71.15.07.02.15.03.22.05.06.01.12.03.18.04-.2-.17-.41-.34-.61-.5-3.18-2.69-5.99-5.49-8.73-8.45-.34-.13-.67-.27-1.01-.41-.08-.04-.17-.07-.25-.11-.25-.11-.51-.22-.76-.33-.1-.04-.2-.09-.3-.13-.25-.11-.5-.23-.75-.34-.09-.04-.18-.09-.27-.13-.28-.14-.57-.27-.85-.41-.05-.03-.1-.05-.16-.08-.7-.35-1.4-.72-2.1-1.1-.03-.02-.06-.03-.09-.05-.31-.17-.62-.34-.93-.52-.05-.03-.11-.06-.16-.09-.3-.17-.6-.34-.89-.52-.04-.03-.09-.05-.13-.08-1.04-.61-2.05-1.24-3.03-1.89,0,0,0,0,0,0,4.36,4.05,10.53,6.49,12.81,12.38-4.17-.84-7.83-2.82-11.5-4.78,0,0,0,0,0,0,0,0,0,0,0,0,.45.37.9.73,1.35,1.09.06.05.12.1.18.14,1.16.92,2.32,1.82,3.5,2.69.27.2.54.4.81.6.25.18.51.36.76.54.18.13.36.26.54.39,3.51.5,6.67.97,9.34,1.44Z" fill="#327731"/>
@@ -2304,12 +2304,12 @@
         <g id="s-knowledgeaccess-c-right">
           <rect x="1053.72" y="401.64" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <rect id="ph-s-knowledgeaccesss-c-boy-smiling-german" x="1181.43" y="429.14" width="195.16" height="221.98" fill="#c92" opacity=".2"/>
-          <use id="link-s-knowledgeaccesss-c-boy-smiling-german" transform="translate(1204.22 434.01) scale(3.39 3.21)" xlink:href="#image9" isolation="isolate"/>
+          <use id="link-s-knowledgeaccesss-c-boy-smiling-german" transform="translate(1203.85 434.14) scale(3.39 3.21)" xlink:href="#image9" isolation="isolate"/>
         </g>
         <g id="s-knowledgeaccess-c-left">
           <rect x="415.77" y="401.64" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <rect id="ph-s-knowledgeaccess-c-girl-smiling-german" x="537.34" y="431.35" width="195.16" height="217.56" fill="#c92" opacity=".2"/>
-          <use id="link-s-knowledgeaccess-c-girl-smiling-german" transform="translate(562.06 439.68) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
+          <use id="link-s-knowledgeaccess-c-girl-smiling-german" transform="translate(561.69 439.81) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
         </g>
         <rect id="ph-s-knowledgeaccess-c-subject" x="862.42" y="110.03" width="195.16" height="248.56" fill="#c92" opacity=".2"/>
         <image id="link-s-knowledgeaccess-c-subject" width="241" height="451" transform="translate(896.61 110.03) scale(.53 .55)" xlink:href="dog_sitting.png" isolation="isolate"/>
@@ -2375,12 +2375,12 @@
         <g id="s-knowledgeaccess-b-right">
           <rect x="1055.47" y="401.88" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <rect id="ph-s-knowledgeaccesss-b-boy-smiling-german" x="1183.19" y="429.38" width="195.16" height="221.98" fill="#c92" opacity=".2"/>
-          <use id="link-s-knowledgeaccesss-b-boy-smiling-german" transform="translate(1204.22 434.01) scale(3.39 3.21)" xlink:href="#image9" isolation="isolate"/>
+          <use id="link-s-knowledgeaccesss-b-boy-smiling-german" transform="translate(1205.6 434.38) scale(3.39 3.21)" xlink:href="#image9" isolation="isolate"/>
         </g>
         <g id="s-knowledgeaccess-b-left">
           <rect x="417.53" y="401.88" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <rect id="ph-s-knowledgeaccess-b-girl-smiling-german" x="539.09" y="431.59" width="195.16" height="217.56" fill="#c92" opacity=".2"/>
-          <use id="link-s-knowledgeaccess-b-girl-smiling-german" transform="translate(562.06 439.68) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
+          <use id="link-s-knowledgeaccess-b-girl-smiling-german" transform="translate(563.44 440.05) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
         </g>
         <g id="s-knowledgeaccess-b-subject">
           <path d="M894.49,187.23c-.04-2.52-.55-5.25-1.67-8.65-2.21-6.71-6.64-18.08-1.16-24.53,7.43-8.73,12.93-3.22,22.84,5.13,9.91,8.35,36.26,5.33,67.41,12.77,31.15,7.44,47.43,15.56,58,13.47,10.57-2.09,20.85-2.91,23.22,3.43,2.36,6.34-14.18,20.04-16.71,25.72-2.54,5.68-3.36,39.32-12.58,71.01-9.22,31.7-4.78,64.4-11.63,68.66-6.85,4.27-11.75,3.61-17.63-3.96-5.88-7.57-18.45-5.93-38.04-6.75-19.59-.83-66.06-20.64-77.05-20.42s-21.28,2.93-25.69.09c-4.41-2.83-7.85-6.28-7.01-11.9.84-5.62,8.64-14.13,15.34-23.35,6.7-9.21,3.49-28.68,9.89-57.17,2.21-9.86,5.06-19.58,8.69-29,2.34-6.07,3.85-9.98,3.79-14.56Z" fill="#fff"/>
@@ -2556,12 +2556,12 @@
         <g id="s-perspectivetaking-two-d-right">
           <rect x="1056.48" y="402.05" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <rect id="ph-s-perspectivetaking-two-c-boy-smiling-german" x="1184.19" y="429.55" width="195.16" height="221.98" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-two-c-boy-smiling-german" transform="translate(1204.22 434.01) scale(3.39 3.21)" xlink:href="#image9" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-two-c-boy-smiling-german" transform="translate(1206.61 434.55) scale(3.39 3.21)" xlink:href="#image9" isolation="isolate"/>
         </g>
         <g id="s-perspectivetaking-two-d-left">
           <rect x="418.53" y="402.05" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <rect id="ph-s-perspectivetaking-two-c-girl-smiling-german" x="540.1" y="431.76" width="195.16" height="217.56" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-two-c-girl-smiling-german" transform="translate(562.06 439.68) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-two-c-girl-smiling-german" transform="translate(564.45 440.22) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
         </g>
         <g id="s-perspectivetaking-two-d-subject">
           <g>
@@ -2717,12 +2717,12 @@
         <g id="s-perspectivetaking-two-c-right">
           <rect x="1056.41" y="402.2" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <rect id="ph-s-perspectivetaking-two-c-boy-smiling-german1" data-name="ph-s-perspectivetaking-two-c-boy-smiling-german" x="1184.13" y="429.7" width="195.16" height="221.98" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-two-c-boy-smiling-german1" data-name="link-s-perspectivetaking-two-c-boy-smiling-german" transform="translate(1204.22 434.01) scale(3.39 3.21)" xlink:href="#image9" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-two-c-boy-smiling-german1" data-name="link-s-perspectivetaking-two-c-boy-smiling-german" transform="translate(1206.54 434.7) scale(3.39 3.21)" xlink:href="#image9" isolation="isolate"/>
         </g>
         <g id="s-perspectivetaking-two-c-left">
           <rect x="418.47" y="402.2" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <rect id="ph-s-perspectivetaking-two-c-girl-smiling-german1" data-name="ph-s-perspectivetaking-two-c-girl-smiling-german" x="540.03" y="431.91" width="195.16" height="217.56" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-two-c-girl-smiling-german1" data-name="link-s-perspectivetaking-two-c-girl-smiling-german" transform="translate(562.06 439.68) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-two-c-girl-smiling-german1" data-name="link-s-perspectivetaking-two-c-girl-smiling-german" transform="translate(564.38 440.37) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
         </g>
         <g id="s-perspectivetaking-two-c-subject">
           <rect x="877.23" y="216.78" width="165.53" height="112.54" fill="#ffdb5d"/>
@@ -2826,7 +2826,7 @@
           </g>
         </g>
         <rect id="ph-s-perspectivetaking-two-b-subject-german" x="865.77" y="138.48" width="195.16" height="217.56" fill="#c92" opacity=".2"/>
-        <use id="link-s-perspectivetaking-two-b-subject-german" transform="translate(562.06 439.68) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
+        <use id="link-s-perspectivetaking-two-b-subject-german" transform="translate(884.59 146.94) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
       </g>
       <g id="s-perspectivetaking-two-a">
         <rect id="ph-s-perspectivetaking-two-a-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
@@ -3193,7 +3193,7 @@
           </g>
         </g>
         <rect id="ph-s-perspectivetaking-two-a-subject-german" x="862.42" y="135.18" width="195.16" height="217.56" fill="#c92" opacity=".2"/>
-        <use id="link-s-perspectivetaking-two-a-subject-german" transform="translate(562.06 439.68) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
+        <use id="link-s-perspectivetaking-two-a-subject-german" transform="translate(881.23 143.64) scale(3.09 3.24)" xlink:href="#image17" isolation="isolate"/>
       </g>
       <g id="s-perspectivetaking-one-d">
         <rect id="ph-s-perspectivetaking-one-d-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
@@ -3203,16 +3203,16 @@
           <image id="link-s-perspectivetaking-one-d-girl-slightleft-german" width="59" height="252" transform="translate(240.6 360) scale(2.67 2.63)" xlink:href="german_girl_right.png" isolation="isolate"/>
           <g id="s-perspectivetaking-one-d-tent">
             <path d="M1124.22,737.1h298.12l-29.48-211.52-94.51-74.69s-105.25,28.46-106.73,32.39c-1.48,3.94-90.02,122.97-90.02,122.97l22.62,130.84Z" fill="#7fc0ff"/>
-            <path d="M1008.14,810.88s41.32,40.33,97.39,39.35c56.07-.98,122.1,14.76,173.2,37.38s120.95,41.32,155.38,35.42c34.43-5.9,0-198.72,0-198.72,0,0-229.22-11.81-232.17-11.81s-60.01,17.71-77.72,24.59c-17.71,6.89-116.08,73.78-116.08,73.78Z" fill="#ffe4ad"/>
+            <path d="M1008.14,810.88s41.32,40.33,97.39,39.35c56.07-.98,122.1,14.76,173.2,37.38,51.1,22.62,120.95,41.32,155.38,35.42,34.43-5.9,0-198.72,0-198.72,0,0-229.22-11.81-232.17-11.81s-60.01,17.71-77.72,24.59c-17.71,6.89-116.08,73.78-116.08,73.78Z" fill="#ffe4ad"/>
           </g>
           <rect id="ph-s-perspectivetaking-one-d-boy-crosslegged-german" x="1153.74" y="495.62" width="250" height="406.98" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-one-d-boy-crosslegged-german" transform="translate(514.36 565.12) scale(2.01 1.6)" xlink:href="#image13" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-one-d-boy-crosslegged-german" transform="translate(1153.74 495.62) scale(2.01 1.6)" xlink:href="#image13" isolation="isolate"/>
           <g id="s-perspectivetaking-one-d-tentfront">
             <path d="M970.89,838.23l354.49-647.47c1.08-1.97,3.64-2.49,5.39-1.11l4.54,3.58c1.4,1.1,1.8,3.08.94,4.65l-352.25,646.62c-.8,1.47-2.57,2.1-4.1,1.46l-7.39-3.08c-1.8-.75-2.56-2.93-1.61-4.65Z" fill="#960"/>
             <path d="M1495.21,1007.64c3.2,0,5.61-2.77,5.02-5.77l-159.41-807.93c-.44-2.19-2.7-3.59-4.97-3.07l-7.31,1.64c-2.13.48-3.49,2.47-3.09,4.52l156.74,806.63c.45,2.31,2.56,3.98,5.02,3.98h8Z" fill="#960"/>
             <path d="M1640.67,754.23l-299.18-563.76c-.93-1.75-3.03-2.45-4.78-1.58l-5.06,2.49c-1.88.93-2.63,3.29-1.62,5.17l300.79,564.33c1.02,1.9,3.46,2.39,5.09,1.01l3.94-3.33c1.24-1.05,1.59-2.86.82-4.32Z" fill="#960"/>
             <g>
-              <path d="M1490.18,941.72l4.92,31.48s-46.24-12.79-87.56-52.14c-41.31-39.35-29.51-132.81-30.49-213.47s15.81-131.82,15.81-131.82c-64.85-31.48-108.29-106.24-108.29-106.24-55.09,69.84-143.63,83.62-143.63,83.62,0,0,19.68,166.26,18.69,193.8-.98,27.55-27.55,34.43-62.96,33.44-35.42-.98-34.43,8.86-55.09,26.56-20.66,17.71-60.99,4.92-60.99,4.92l329.56-597.14h40.34l285.29,528.55-145.6,198.44Z" fill="#b6dbff"/>
+              <path d="M1490.18,941.72l4.92,31.48s-46.24-12.79-87.56-52.14c-41.31-39.35-29.51-132.81-30.49-213.47-.98-80.67,15.81-131.82,15.81-131.82-64.85-31.48-108.29-106.24-108.29-106.24-55.09,69.84-143.63,83.62-143.63,83.62,0,0,19.68,166.26,18.69,193.8-.98,27.55-27.55,34.43-62.96,33.44-35.42-.98-34.43,8.86-55.09,26.56-20.66,17.71-60.99,4.92-60.99,4.92l329.56-597.14h40.34l285.29,528.55-145.6,198.44Z" fill="#b6dbff"/>
               <polygon points="1635.78 743.28 1490.18 941.72 1350.49 214.73 1635.78 743.28" fill="#7fc0ff"/>
               <g>
                 <path d="M1395.74,569.03c-3-1.16-6.4-.65-9.46.34-6.47,2.11-12.21,6.39-16.07,11.99-.5.72-.98,1.51-1.06,2.39-.15,1.72,1.4,3.24,3.09,3.6,1.69.36,3.44-.15,5.05-.78,7.75-3.08,14.15-9.39,17.35-17.09-3.73,9.69-5.93,19.98-6.46,30.36" fill="none" stroke="#7fc0ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.08"/>
@@ -3246,7 +3246,7 @@
             <path d="M1149.43,1047.43c3.2,0,5.61-2.77,5.02-5.77l-159.41-807.93c-.44-2.19-2.7-3.59-4.97-3.07l-7.31,1.64c-2.13.48-3.49,2.47-3.09,4.52l156.74,806.63c.45,2.31,2.56,3.98,5.02,3.98h8Z" fill="#960"/>
             <path d="M1294.89,794.02L995.71,230.25c-.93-1.75-3.03-2.45-4.78-1.58l-5.06,2.49c-1.88.93-2.63,3.29-1.62,5.17l300.79,564.33c1.02,1.9,3.46,2.39,5.09,1.01l3.94-3.33c1.24-1.05,1.59-2.86.82-4.32Z" fill="#960"/>
             <g>
-              <path d="M1144.4,981.51l4.92,31.48s-46.24-12.79-87.56-52.14c-41.31-39.35-29.51-132.81-30.49-213.47s15.81-131.82,15.81-131.82c-64.85-31.48-108.29-106.24-108.29-106.24-55.09,69.84-143.63,83.62-143.63,83.62,0,0,19.68,166.26,18.69,193.8-.98,27.55-27.55,34.43-62.96,33.44-35.42-.98-34.43,8.86-55.09,26.56-20.66,17.71-60.99,4.92-60.99,4.92L964.37,254.52h40.34l285.29,528.55-145.6,198.44Z" fill="#b6dbff"/>
+              <path d="M1144.4,981.51l4.92,31.48s-46.24-12.79-87.56-52.14c-41.31-39.35-29.51-132.81-30.49-213.47-.98-80.67,15.81-131.82,15.81-131.82-64.85-31.48-108.29-106.24-108.29-106.24-55.09,69.84-143.63,83.62-143.63,83.62,0,0,19.68,166.26,18.69,193.8-.98,27.55-27.55,34.43-62.96,33.44-35.42-.98-34.43,8.86-55.09,26.56-20.66,17.71-60.99,4.92-60.99,4.92L964.37,254.52h40.34l285.29,528.55-145.6,198.44Z" fill="#b6dbff"/>
               <polygon points="1290 783.07 1144.4 981.51 1004.71 254.52 1290 783.07" fill="#7fc0ff"/>
               <g>
                 <path d="M1049.96,608.82c-3-1.16-6.4-.65-9.46.34-6.47,2.11-12.21,6.39-16.07,11.99-.5.72-.98,1.51-1.06,2.39-.15,1.72,1.4,3.24,3.09,3.6,1.69.36,3.44-.15,5.05-.78,7.75-3.08,14.15-9.39,17.35-17.09-3.73,9.69-5.93,19.98-6.46,30.36" fill="none" stroke="#7fc0ff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.08"/>
@@ -3268,9 +3268,9 @@
         <use id="link-s-perspectivetaking-one-b-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="#image" isolation="isolate"/>
         <g id="german12" data-name="german">
           <rect id="ph-s-perspectivetaking-one-b-girl-german" x="475" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-one-b-girl-german" transform="translate(1122 212.51) scale(3.42 3.28)" xlink:href="#image2" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-one-b-girl-german" transform="translate(475 212.51) scale(3.42 3.28)" xlink:href="#image2" isolation="isolate"/>
           <rect id="ph-s-perspectivetaking-one-b-boy-slightright-german" x="1122" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-one-b-boy-slightright-german" transform="translate(513.88 212.63) scale(3.53 3.28)" xlink:href="#image4" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-one-b-boy-slightright-german" transform="translate(1160.88 212.63) scale(3.53 3.28)" xlink:href="#image4" isolation="isolate"/>
         </g>
       </g>
       <g id="s-perspectivetaking-one-a">
@@ -3279,7 +3279,7 @@
         <g id="german13" data-name="german">
           <rect id="ph-s-perspectivetaking-one-a-girl-german" x="1122" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
           <use id="link-s-perspectivetaking-one-a-girl-german" transform="translate(1122 212.51) scale(3.42 3.28)" xlink:href="#image2" isolation="isolate"/>
-          <rect id="ph-s-perspectivetaking-one-a-boy-slightright-german" x="475" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
+          <rect id="ph-s-perspectivetaking-one-a-boy-slightright-german" x="510.75" y="212.63" width="251.19" height="817.37" fill="#c92" opacity=".2"/>
           <use id="link-s-perspectivetaking-one-a-boy-slightright-german" transform="translate(513.88 212.63) scale(3.53 3.28)" xlink:href="#image4" isolation="isolate"/>
         </g>
         <g id="turkish">
@@ -3296,15 +3296,15 @@
         </g>
         <g id="kikuyu">
           <rect id="ph-s-perspectivetaking-one-a-girl-kikuyu" x="1122" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-one-a-girl-kikuyu" transform="translate(1129.08 205.92) scale(3.31 3.18)" xlink:href="#image6" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-one-a-girl-kikuyu" transform="translate(1131 200.63) scale(3.31 3.18)" xlink:href="#image6" isolation="isolate"/>
           <rect id="ph-s-perspectivetaking-one-a-boy-kikuyu" x="475" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-one-a-boy-kikuyu" transform="translate(474.73 211.87) scale(3.42 3.28)" xlink:href="#image12" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-one-a-boy-kikuyu" transform="translate(475 214.14) scale(3.42 3.28)" xlink:href="#image12" isolation="isolate"/>
         </g>
         <g id="english">
           <rect id="ph-s-perspectivetaking-one-a-girl-english" x="1122" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-one-a-girl-english" transform="translate(1124.17 212.51) scale(3.42 3.28)" xlink:href="#image2" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-one-a-girl-english" transform="translate(1122 215.64) scale(3.42 3.28)" xlink:href="#image2" isolation="isolate"/>
           <rect id="ph-s-perspectivetaking-one-a-boy-english" x="475" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
-          <use id="link-s-perspectivetaking-one-a-boy-english" transform="translate(514.24 204.15) scale(1.07 1.02)" xlink:href="#image4" isolation="isolate"/>
+          <use id="link-s-perspectivetaking-one-a-boy-english" transform="translate(520 212.24) scale(3.44 3.3)" xlink:href="#image4" isolation="isolate"/>
         </g>
       </g>
       <g id="s-dog">
@@ -3314,23 +3314,23 @@
         <image id="link-s-dog-dog-lying" width="244" height="326" transform="translate(868.48 772.6) scale(.75 .72)" xlink:href="dog_lying.png" isolation="isolate"/>
         <g id="german14" data-name="german">
           <rect id="ph-s-dog-girl-german" x="548.27" y="163.45" width="325.24" height="814.36" fill="#c92" opacity=".2"/>
-          <use id="link-s-dog-girl-german" transform="translate(1124.17 212.51) scale(3.42 3.28)" xlink:href="#image2" isolation="isolate"/>
-          <rect id="ph-s-dog-girl-kneeling-german" x="603.61" y="350.87" width="336.46" height="613" fill="#c92" opacity=".2"/>
-          <image id="link-s-dog-girl-kneeling-german" width="100" height="191" transform="translate(601.3 349.18) scale(3.36 3.23)" xlink:href="german_girl_kneeling_right.png" isolation="isolate"/>
+          <use id="link-s-dog-girl-german" transform="translate(548.27 163.45) scale(3.42 3.28)" xlink:href="#image2" isolation="isolate"/>
+          <rect id="ph-s-dog-girl-kneeling-german" x="559.61" y="350.87" width="336.46" height="613" fill="#c92" opacity=".2"/>
+          <image id="link-s-dog-girl-kneeling-german" width="100" height="191" transform="translate(557.3 349.18) scale(3.36 3.23)" xlink:href="german_girl_kneeling_right.png" isolation="isolate"/>
           <rect id="ph-s-dog-boy-german" x="1051.37" y="166.05" width="320" height="815.31" fill="#c92" opacity=".2"/>
-          <use id="link-s-dog-boy-german" transform="translate(1120.51 172.96) scale(3.4 3.27)" xlink:href="#image16" isolation="isolate"/>
-          <rect id="ph-s-dog-boy-german-kneeling" x="1029.47" y="353.17" width="378.42" height="601.48" fill="#c92" opacity=".2"/>
-          <image id="link-s-dog-boy-german-kneeling" width="127" height="211" transform="translate(1029.47 351.17) scale(2.98 2.86)" xlink:href="german_boy_kneeling_left.png" isolation="isolate"/>
+          <use id="link-s-dog-boy-german" transform="translate(1051.37 166.05) scale(3.4 3.27)" xlink:href="#image16" isolation="isolate"/>
+          <rect id="ph-s-dog-boy-kneeling-german" x="1023.47" y="353.17" width="378.42" height="601.48" fill="#c92" opacity=".2"/>
+          <image id="link-s-dog-boy-kneeling-german" width="127" height="211" transform="translate(1023.47 351.17) scale(2.98 2.86)" xlink:href="german_boy_kneeling_left.png" isolation="isolate"/>
         </g>
-        <rect id="ph-s-dog-dog-walking" x="540.32" y="720" width="419.68" height="283.05" fill="#c92" opacity=".2"/>
-        <image id="link-s-dog-dog-walking" width="485" height="360" transform="translate(540.32 704.1) scale(.87 .83)" xlink:href="dog_running_left.png" isolation="isolate"/>
+        <rect id="ph-s-dog-dog-running" x="688.22" y="720" width="419.68" height="283.05" fill="#c92" opacity=".2"/>
+        <image id="link-s-dog-dog-running" width="485" height="360" transform="translate(685.32 704.1) scale(.87 .83)" xlink:href="dog_running_left.png" isolation="isolate"/>
       </g>
       <g id="s-names">
         <rect id="ph-s-names-floor" y="433.51" width="1920" height="646.49" fill="#c92" opacity=".2"/>
         <use id="link-s-names-floor" transform="translate(0 433.51) scale(.2 .18)" xlink:href="#image" isolation="isolate"/>
         <g id="german15" data-name="german">
           <rect id="ph-s-names-girl-german" x="479.13" y="177.27" width="325.24" height="814.36" fill="#c92" opacity=".2"/>
-          <use id="link-s-names-girl-german" transform="translate(1124.17 212.51) scale(3.42 3.28)" xlink:href="#image2" isolation="isolate"/>
+          <use id="link-s-names-girl-german" transform="translate(479.13 177.27) scale(3.42 3.28)" xlink:href="#image2" isolation="isolate"/>
           <rect id="ph-s-names-girl-waving-german" x="477.78" y="177.96" width="354.4" height="815.57" fill="#c92" opacity=".2"/>
           <image id="link-s-names-girl-waving-german" width="98" height="235" transform="translate(477.78 177.96) scale(3.62 3.47)" xlink:href="german_girl_waving.png" isolation="isolate"/>
           <rect id="ph-s-names-boy-german" x="1120.51" y="172.96" width="320" height="815.31" fill="#c92" opacity=".2"/>
@@ -3500,11 +3500,11 @@
           <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
           <g id="shoes">
             <g>
-              <path d="M1230.38,484.16s-8.22-2.36-11.15,4.53c-3.24,7.63-2.18,12.21,1.67,19.46,7.3,13.71,31.95,23.53,31.95,23.53l2.68-2.18s12.15,8.29,16.52,13.09,19.16,19.41,42.75,32.5c23.59,13.09,42.09,19.06,64.78,20.8,21.74,1.66,29.82-1.62,35.7-7.06,7.85-7.27,4.93-15.27,2.33-22.03-3.85-9.99-14.25-10.69-14.25-10.69l-172.98-71.95Z" fill="#54271e"/>
+              <path d="M1230.38,484.16s-8.22-2.36-11.15,4.53c-3.24,7.63-2.18,12.21,1.67,19.46,7.3,13.71,31.95,23.53,31.95,23.53l2.68-2.18s12.15,8.29,16.52,13.09c4.36,4.8,19.16,19.41,42.75,32.5,23.59,13.09,42.09,19.06,64.78,20.8,21.74,1.66,29.82-1.62,35.7-7.06,7.85-7.27,4.93-15.27,2.33-22.03-3.85-9.99-14.25-10.69-14.25-10.69l-172.98-71.95Z" fill="#54271e"/>
               <path d="M1417.61,555.67c-2.07-4.84-13-16.32-26.41-29.34-9.14-8.87-19.42-18.46-28.85-27.15-23.27-21.46-38.2-33.3-59.33-36.47-26.18-3.93-42.79-14.94-63.4-13.48-5.62.4-13.61,2.33-17.98,18.59-1.42,5.28-1.97,11.02-2.13,15.96-.1,3.17-1.73,9.23,1.36,15.42,4.08,8.18,14.55,17.5,28.59,23.89,5.53,2.51,9.98,5.25,13.98,8.21,13.87,10.29,19.21,21.61,47.13,37.91,41.23,24.07,77.97,23.1,91.63,21.09,5.3-.78,14.82-3.24,15.34-9.05l.08.03s3.48-17.45,0-25.59Z" fill="#9b482f"/>
               <path d="M1234.38,452.14c-5.83,2-9.53,8.33-4.3,15.68,5.24,7.35,22.33,17.01,35.12,20.88,12.8,3.87,25.3-.79,34.61-2.53,9.31-1.74,24.43-5.09,24.43-5.09,0,0,2.87-10.89-13.09-14.4-8.72-1.92-27.66-4.56-42.17-10.18-18.03-6.98-29.88-5.99-34.61-4.36Z" fill="#ea9942"/>
               <path d="M1378.05,513.78c-3.16,3.41-6.63,6.44-10.31,9.13-5.67-6.87-32.98-32.72-36.38-39.55-.48-.98-.84-2.02-1.13-3.1-.69-2.56-.53-5.1-.83-7.7-.01-.12-1.1-.86-1.11-.7-.18,3.1.42,9.96,2.31,13.79-16.78-3.16-36.48,10.17-55.42,8.82-11-.78-21.43-5.14-30.47-11.33-5.37-3.68-23.66-16.46-19.39-24.39-.06-.68-.94.04-1.4,1.37-3.75,10.84,26.34,29.19,32.54,31.77,10.8,4.49,22.57,5.86,34.02,3.31,4.05-.9,8.03-2.16,12.01-3.43,12.85,9.03,44.6,39.05,46.63,40.86-13.11,4.54-27.49,5.17-41.38,1.17-6.44-1.85-12.43-4.66-18.14-8.13-4.15-2.52-8.37-5.26-13.36-5.57-3.9-.25-7.99,1.54-9.96,4.51-.58.88-1.68,6.4-1.83,7.46.39.49.8,1.16,1.45,1.13.2-.95,1.23-6.89,1.76-7.67,1.6-2.36,4.53-3.89,7.64-3.84,4,.07,7.61,2.14,10.91,4.17,4.18,2.57,8.28,5.09,12.81,7.02,9.54,4.05,20,5.99,30.36,5.62,19.12-.68,37.11-9.34,50.02-23.35,0,0-.8-.92-1.36-1.37ZM1350.66,532.06c-1.81-2.3-32.69-30.69-46.41-40.84,7.66-2.44,14.37-5.04,22.33-4.23,4.02.41,7.02,3.14,9.48,5.43,3.9,3.61,9.18,9.28,12.89,12.99,5.98,5.98,11.68,12.22,17.29,18.56-4.86,3.36-10.11,6.06-15.58,8.1Z" fill="#ad633a"/>
-              <path d="M1221.63,467.82s.24,12.58,15.65,23.31c15.42,10.74,16,17.14,17.45,21.79s0,12.8,0,12.8c0,0-18.4-7.51-27.23-17.57-8.83-10.06-11.74-13.85-5.87-40.34Z" fill="#843826"/>
+              <path d="M1221.63,467.82s.24,12.58,15.65,23.31c15.42,10.74,16,17.14,17.45,21.79,1.45,4.65,0,12.8,0,12.8,0,0-18.4-7.51-27.23-17.57-8.83-10.06-11.74-13.85-5.87-40.34Z" fill="#843826"/>
               <path d="M1401.57,581.53c-13.01,3.13-31-2.05-43.58-5.2-24.39-6.11-49.15-23.27-65.44-33.53-8.8-5.54-13.07-1.02-14.53,1.28,8.25,7.76,15.11,14.95,32.55,25.13,41.23,24.07,75.41,25.49,89.06,23.4,8.08-1.24,17.39-5.56,17.9-11.36l.08.03s1.06-5.36,1.42-11.52c-3.21,3.92-11.13,10.24-17.47,11.77Z" fill="#843826"/>
               <path d="M1249.83,470.57c-4.24.91-8.26,2.68-11.74,4.64,7.6,5.47,18.37,10.84,27.12,13.48,10.18,3.08,20.17.76,28.51-1.19-19.33-9.89-32.52-19.36-43.89-16.93Z" fill="#cc7b2b"/>
               <path d="M1338.23,480.98c-5.66,7.86-13.49,11.3-22.2,14.63-1.28.49-.96,2.01.65,1.76,10.18-1.6,17.89-7.54,23.34-15.33.77-1.1-1.03-2.14-1.8-1.05Z" fill="#54271e"/>
