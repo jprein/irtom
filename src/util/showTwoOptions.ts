@@ -22,18 +22,28 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	// Play audio
 	await data.sprite.playPromise(`${slidePrefix}`);
 
-	// for all other slides, show directly yes and no response buttons
-	await gsap
-		.timeline()
-		.to(blurr, {
+	// For all other slides, show directly yes and no response buttons
+	const timeline = gsap.timeline();
+
+	// If the blurr element exists, fade it in
+	if (blurr) {
+		await timeline.to(blurr, {
 			delay: 1,
 			autoAlpha: 0.7,
 			duration: 0.6,
-		})
-		.to(subject, {
+		});
+	}
+
+	// If the subject element exists (visual reminder for content of test question),fade it in
+	if (subject) {
+		await timeline.to(subject, {
 			autoAlpha: 1,
 			duration: 0.5,
-		})
+		});
+	}
+
+	// Show response options
+	await timeline
 		.to(optionLeft, {
 			delay: 0.5,
 			autoAlpha: 1,
