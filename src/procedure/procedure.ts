@@ -171,6 +171,12 @@ export const procedure = async () => {
 			)! as SvgInHtml;
 		}
 
+		// Check whether it is a training trial where participants get feedback
+		// regex to check if the current slide contains training (case insensitive)
+		const trainingRegex = /training/i;
+		data.procedure[data.currentSlide].trainingTrial =
+			trainingRegex.test(currentSlide);
+
 		// Put in function so that we can remove the event listener again
 		const handleRepeatClick = async () => {
 			data.procedure[currentSlide].repeated += 1;
@@ -191,6 +197,19 @@ export const procedure = async () => {
 			// Run the slide behavior again
 			data.clickedRepeat = true;
 			await runSlideBehavior();
+			if (data.procedure[data.currentSlide].trainingTrial) {
+				// If correct response, play correct audio and move on to next trial
+				if (data.procedure[data.currentSlide].score === 1) {
+					await data.sprite.playPromise(`${currentSlideKc}-correct`);
+				}
+				// If incorrect response, reset score, play incorrect audio and repeat trial
+				else if (data.procedure[data.currentSlide].score === 0) {
+					data.procedure[data.currentSlide].score = null;
+					data.procedure[data.currentSlide].response = null;
+					await data.sprite.playPromise(`${currentSlideKc}-incorrect`);
+					await handleRepeatClick();
+				}
+			}
 			data.clickedRepeat = false;
 		};
 
@@ -202,6 +221,21 @@ export const procedure = async () => {
 		// Run the slide behavior for the first time
 		// only after this first run, the repeat button will be clickable
 		await runSlideBehavior();
+
+		if (data.procedure[data.currentSlide].trainingTrial) {
+			// If correct response, play correct audio and move on to next trial
+			if (data.procedure[data.currentSlide].score === 1) {
+				await data.sprite.playPromise(`${currentSlideKc}-correct`);
+			}
+			// If incorrect response, reset score, play incorrect audio and repeat trial
+			else if (data.procedure[data.currentSlide].score === 0) {
+				data.procedure[data.currentSlide].score = null;
+				data.procedure[data.currentSlide].response = null;
+				await data.sprite.playPromise(`${currentSlideKc}-incorrect`);
+				await handleRepeatClick();
+			}
+		}
+
 		// Remove the event listener
 		repeatSvg.removeEventListener('click', handleRepeatClick);
 

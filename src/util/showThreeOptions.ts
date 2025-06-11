@@ -69,7 +69,7 @@ export const showThreeOptions = async (slidePrefix: string) => {
 		});
 
 	// Get Response
-	if (!data.clickedRepeat) {
+	if (!data.clickedRepeat || data.procedure[data.currentSlide].trainingTrial) {
 		const response = await getResponse([
 			optionLeft.id,
 			optionCenter.id,

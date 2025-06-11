@@ -3318,49 +3318,49 @@
           <image id="link-s-perspectivetaking-one-a-english-boy" transform="translate(520 212.24) scale(3.44 3.3)" xlink:href="assets/german-boy-slightright-standing.svg" isolation="isolate"/>
         </g>
       </g>
-      <g id="s-dog">
-        <rect id="ph-s-dog-floor" y="433.51" width="1920" height="646.49" fill="#c92" opacity=".2"/>
-        <image id="link-s-dog-floor" transform="translate(0 433.51) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <rect id="ph-s-dog-dog-lying" x="868.48" y="772.6" width="183.04" height="234.69" fill="#c92" opacity=".2"/>
-        <image id="link-s-dog-dog-lying" width="244" height="326" transform="translate(868.48 772.6) scale(.75 .72)" xlink:href="assets/dog-lying.svg" isolation="isolate"/>
+      <g id="s-dogtraining">
+        <rect id="ph-s-dogtraining-floor" y="433.51" width="1920" height="646.49" fill="#c92" opacity=".2"/>
+        <image id="link-s-dogtraining-floor" transform="translate(0 433.51) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
+        <rect id="ph-s-dogtraining-dog-lying" x="868.48" y="772.6" width="183.04" height="234.69" fill="#c92" opacity=".2"/>
+        <image id="link-s-dogtraining-dog-lying" width="244" height="326" transform="translate(868.48 772.6) scale(.75 .72)" xlink:href="assets/dog-lying.svg" isolation="isolate"/>
         <g id="german14" data-name="german">
-          <rect id="ph-s-dog-german-girl" x="548.27" y="163.45" width="325.24" height="814.36" fill="#c92" opacity=".2"/>
-          <image id="link-s-dog-german-girl" transform="translate(548.27 163.45) scale(3.42 3.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
-          <rect id="ph-s-dog-german-girl-kneeling" x="559.61" y="350.87" width="336.46" height="613" fill="#c92" opacity=".2"/>
-          <image id="link-s-dog-german-girl-kneeling" width="100" height="191" transform="translate(557.3 349.18) scale(3.36 3.23)" xlink:href="assets/german-girl-right-kneeling.svg" isolation="isolate"/>
-          <rect id="ph-s-dog-german-boy" x="1051.37" y="166.05" width="320" height="815.31" fill="#c92" opacity=".2"/>
-          <image id="link-s-dog-german-boy" transform="translate(1051.37 166.05) scale(3.4 3.27)" xlink:href="assets/german-boy.svg" isolation="isolate"/>
-          <rect id="ph-s-dog-german-boy-kneeling" x="1023.47" y="353.17" width="378.42" height="601.48" fill="#c92" opacity=".2"/>
-          <image id="link-s-dog-german-boy-kneeling" width="127" height="211" transform="translate(1023.47 351.17) scale(2.98 2.86)" xlink:href="assets/german-boy-left-kneeling.svg" isolation="isolate"/>
+          <rect id="ph-s-dogtraining-german-girl" x="548.27" y="163.45" width="325.24" height="814.36" fill="#c92" opacity=".2"/>
+          <image id="link-s-dogtraining-german-girl" transform="translate(548.27 163.45) scale(3.42 3.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
+          <rect id="ph-s-dogtraining-german-girl-kneeling" x="559.61" y="350.87" width="336.46" height="613" fill="#c92" opacity=".2"/>
+          <image id="link-s-dogtraining-german-girl-kneeling" width="100" height="191" transform="translate(557.3 349.18) scale(3.36 3.23)" xlink:href="assets/german-girl-right-kneeling.svg" isolation="isolate"/>
+          <rect id="ph-s-dogtraining-german-boy" x="1051.37" y="166.05" width="320" height="815.31" fill="#c92" opacity=".2"/>
+          <image id="link-s-dogtraining-german-boy" transform="translate(1051.37 166.05) scale(3.4 3.27)" xlink:href="assets/german-boy.svg" isolation="isolate"/>
+          <rect id="ph-s-dogtraining-german-boy-kneeling" x="1023.47" y="353.17" width="378.42" height="601.48" fill="#c92" opacity=".2"/>
+          <image id="link-s-dogtraining-german-boy-kneeling" width="127" height="211" transform="translate(1023.47 351.17) scale(2.98 2.86)" xlink:href="assets/german-boy-left-kneeling.svg" isolation="isolate"/>
         </g>
-        <rect id="ph-s-dog-dog-running" x="688.22" y="720" width="419.68" height="283.05" fill="#c92" opacity=".2"/>
-        <image id="link-s-dog-dog-running" width="485" height="360" transform="translate(685.32 704.1) scale(.87 .83)" xlink:href="assets/dog-right-running.svg" isolation="isolate"/>
+        <rect id="ph-s-dogtraining-dog-running" x="688.22" y="720" width="419.68" height="283.05" fill="#c92" opacity=".2"/>
+        <image id="link-s-dogtraining-dog-running" width="485" height="360" transform="translate(685.32 704.1) scale(.87 .83)" xlink:href="assets/dog-right-running.svg" isolation="isolate"/>
       </g>
-      <g id="s-names">
-        <rect id="ph-s-names-floor" y="433.51" width="1920" height="646.49" fill="#c92" opacity=".2"/>
-        <image id="link-s-names-floor" transform="translate(0 433.51) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
+      <g id="s-namestraining">
+        <rect id="ph-s-namestraining-floor" y="433.51" width="1920" height="646.49" fill="#c92" opacity=".2"/>
+        <image id="link-s-namestraining-floor" transform="translate(0 433.51) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
         <g id="german15" data-name="german">
-          <rect id="ph-s-names-german-girl" x="479.13" y="177.27" width="325.24" height="814.36" fill="#c92" opacity=".2"/>
-          <image id="link-s-names-german-girl" transform="translate(479.13 177.27) scale(3.42 3.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
-          <rect id="ph-s-names-german-girl-waving" x="477.78" y="177.96" width="354.4" height="815.57" fill="#c92" opacity=".2"/>
-          <image id="link-s-names-german-girl-waving" width="98" height="235" transform="translate(477.78 177.96) scale(3.62 3.47)" xlink:href="assets/german-girl-waving.svg" isolation="isolate"/>
-          <rect id="ph-s-names-german-boy" x="1120.51" y="172.96" width="320" height="815.31" fill="#c92" opacity=".2"/>
-          <image id="link-s-names-german-boy" transform="translate(1120.51 172.96) scale(3.4 3.27)" xlink:href="assets/german-boy.svg" isolation="isolate"/>
-          <rect id="ph-s-names-german-boy-waving" x="1092.89" y="172.96" width="350.47" height="816.34" fill="#c92" opacity=".2"/>
-          <image id="link-s-names-german-boy-waving" width="95" height="228" transform="translate(1093.66 172.96) scale(3.68 3.58)" xlink:href="assets/german-boy-waving.svg" isolation="isolate"/>
+          <rect id="ph-s-namestraining-german-girl" x="479.13" y="177.27" width="325.24" height="814.36" fill="#c92" opacity=".2"/>
+          <image id="link-s-namestraining-german-girl" transform="translate(479.13 177.27) scale(3.42 3.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
+          <rect id="ph-s-namestraining-german-girl-waving" x="477.78" y="177.96" width="354.4" height="815.57" fill="#c92" opacity=".2"/>
+          <image id="link-s-namestraining-german-girl-waving" width="98" height="235" transform="translate(477.78 177.96) scale(3.62 3.47)" xlink:href="assets/german-girl-waving.svg" isolation="isolate"/>
+          <rect id="ph-s-namestraining-german-boy" x="1120.51" y="172.96" width="320" height="815.31" fill="#c92" opacity=".2"/>
+          <image id="link-s-namestraining-german-boy" transform="translate(1120.51 172.96) scale(3.4 3.27)" xlink:href="assets/german-boy.svg" isolation="isolate"/>
+          <rect id="ph-s-namestraining-german-boy-waving" x="1092.89" y="172.96" width="350.47" height="816.34" fill="#c92" opacity=".2"/>
+          <image id="link-s-namestraining-german-boy-waving" width="95" height="228" transform="translate(1093.66 172.96) scale(3.68 3.58)" xlink:href="assets/german-boy-waving.svg" isolation="isolate"/>
         </g>
-        <rect id="s-names-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-names-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
-        <image id="link-s-names-repeat" transform="translate(30 30) scale(.07)" xlink:href="assets/repeat.svg" isolation="isolate"/>
-        <g id="s-names-right">
+        <rect id="s-namestraining-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
+        <rect id="ph-s-namestraining-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <image id="link-s-namestraining-repeat" transform="translate(30 30) scale(.07)" xlink:href="assets/repeat.svg" isolation="isolate"/>
+        <g id="s-namestraining-right">
           <rect x="1054.09" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
-          <rect id="ph-s-names-german-boy-smiling" x="1181.8" y="429.01" width="195.16" height="221.98" fill="#c92" opacity=".2"/>
-          <image id="link-s-names-german-boy-smiling" transform="translate(1204.22 434.01) scale(3.39 3.21)" xlink:href="assets/german-boy-portrait-smiling.svg" isolation="isolate"/>
+          <rect id="ph-s-namestraining-german-boy-smiling" x="1181.8" y="429.01" width="195.16" height="221.98" fill="#c92" opacity=".2"/>
+          <image id="link-s-namestraining-german-boy-smiling" transform="translate(1204.22 434.01) scale(3.39 3.21)" xlink:href="assets/german-boy-portrait-smiling.svg" isolation="isolate"/>
         </g>
-        <g id="s-names-left">
+        <g id="s-namestraining-left">
           <rect x="416.14" y="401.51" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
-          <rect id="ph-s-names-german-girl-smiling" x="537.71" y="431.22" width="195.16" height="217.56" fill="#c92" opacity=".2"/>
-          <image id="link-s-names-german-girl-smiling" transform="translate(562.06 439.68) scale(3.09 3.24)" xlink:href="assets/german-girl-portrait-smiling.svg" isolation="isolate"/>
+          <rect id="ph-s-namestraining-german-girl-smiling" x="537.71" y="431.22" width="195.16" height="217.56" fill="#c92" opacity=".2"/>
+          <image id="link-s-namestraining-german-girl-smiling" transform="translate(562.06 439.68) scale(3.09 3.24)" xlink:href="assets/german-girl-portrait-smiling.svg" isolation="isolate"/>
         </g>
       </g>
       <g id="s-leftrighttraining-d">
@@ -3721,152 +3721,6 @@
       </g>
       <g id="s-yesnotraining-a">
         <rect id="s-yesnotraining-a-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
-        <rect id="ph-s-yesnotraining-a-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
-        <image id="link-s-yesnotraining-a-repeat" transform="translate(30 30) scale(.07)" xlink:href="assets/repeat.svg" isolation="isolate"/>
-        <g id="s-yesnotraining-a-purple-no">
-          <rect x="1155" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
-          <g>
-            <g>
-              <g id="s-yesnotraining-a-purple-face-no">
-                <path d="M1196.71,434.81c-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.82,73.05,5.72,43.34-7.27,79.36-48.68,81.72-96.07,3.47-69.66-60.52-118.49-121.22-110.62-25.12,3.25-50.99,12.85-66.93,33.98Z" fill="#c9f"/>
-                <path d="M1353.2,442.74c-8.09-18.3-36.27-25.63-53.31-22.91-2.67.43-1.63,4.33.58,4.62,10.03,1.35,18.9,3.26,28.06,8.07,7.5,3.94,12.94,10.91,20.26,14.96,2.98,1.65,5.8-1.61,4.41-4.74Z" fill="#e3b4ff"/>
-                <path d="M1303.14,607.53c28.71-4.82,54.19-24.61,68.82-51.2-19.18,14.09-41.66,22.86-64.83,24.03-36.89,1.86-74.7-16.52-95.86-49.08-19.13-29.44-23.09-69.88-9.47-102.44-1.78,1.89-3.51,3.86-5.1,5.97-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.81,73.05,5.72Z" fill="#bc8bc9"/>
-              </g>
-              <g id="s-yesnotraining-a-purple-facefeatures-no">
-                <path d="M1294.09,540.17c-5.52,2.7-9.9,5.98-16.24,6.59-6.09.59-11.89-2.24-16.89-5.4-1-.63-2.45.68-1.69,1.72,8.39,11.48,30.36,14.45,38,.31,1.17-2.16-1.11-4.22-3.17-3.22Z" fill="#a24818"/>
-                <g>
-                  <path d="M1237.37,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.92.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M1237.22,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-                <g>
-                  <path d="M1316.06,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.91.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M1316.42,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-              </g>
-            </g>
-            <path id="s-yesnotraining-a-purple-thumbs-no" d="M1295.35,656.09s-4.74,5.81-10.33,7.52-9.6,12.18-10.99,15.16c-1.41,3.07-2.09,4.72-4.74,4.11s-1.23-13.78.49-16.88c1.71-3.1,2.52-4.02.96-5.48-1.56-1.46-15.92-3.37-17.43-5.91s-2.13-6.39-.3-8.26c0,0,0-4.3,1.01-6.56s3.69-3.85,3.69-3.85c0,0-1.25-6.29,4.46-8.07,0,0,.31-7.42,14.73-3.2,0,0,9.02.78,22.72,8.13l8.49,2-4.89,22.88" fill="#bc8bc9"/>
-          </g>
-        </g>
-        <g id="s-yesnotraining-a-blue-no">
-          <rect x="1155" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
-          <g>
-            <g>
-              <g id="s-yesnotraining-a-blue-face-no">
-                <path d="M1196.71,434.81c-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.82,73.05,5.72,43.34-7.27,79.36-48.68,81.72-96.07,3.47-69.66-60.52-118.49-121.22-110.62-25.12,3.25-50.99,12.85-66.93,33.98Z" fill="#74caff"/>
-                <path d="M1353.2,442.74c-8.09-18.3-36.27-25.63-53.31-22.91-2.67.43-1.63,4.33.58,4.62,10.03,1.35,18.9,3.26,28.06,8.07,7.5,3.94,12.94,10.91,20.26,14.96,2.98,1.65,5.8-1.61,4.41-4.74Z" fill="#a3d2ff"/>
-                <path d="M1303.14,607.53c28.71-4.82,54.19-24.61,68.82-51.2-19.18,14.09-41.66,22.86-64.83,24.03-36.89,1.86-74.7-16.52-95.86-49.08-19.13-29.44-23.09-69.88-9.47-102.44-1.78,1.89-3.51,3.86-5.1,5.97-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.81,73.05,5.72Z" fill="#81b0de"/>
-              </g>
-              <g id="s-yesnotraining-a-blue-facefeatures-no">
-                <path d="M1294.09,540.17c-5.52,2.7-9.9,5.98-16.24,6.59-6.09.59-11.89-2.24-16.89-5.4-1-.63-2.45.68-1.69,1.72,8.39,11.48,30.36,14.45,38,.31,1.17-2.16-1.11-4.22-3.17-3.22Z" fill="#a24818"/>
-                <g>
-                  <path d="M1237.37,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.92.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M1237.22,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-                <g>
-                  <path d="M1316.06,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.91.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M1316.42,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-              </g>
-            </g>
-            <path id="s-yesnotraining-a-blue-thumbs-no" d="M1295.35,656.09s-4.74,5.81-10.33,7.52-9.6,12.18-10.99,15.16c-1.41,3.07-2.09,4.72-4.74,4.11s-1.23-13.78.49-16.88c1.71-3.1,2.52-4.02.96-5.48-1.56-1.46-15.92-3.37-17.43-5.91s-2.13-6.39-.3-8.26c0,0,0-4.3,1.01-6.56s3.69-3.85,3.69-3.85c0,0-1.25-6.29,4.46-8.07,0,0,.31-7.42,14.73-3.2,0,0,9.02.78,22.72,8.13l8.49,2-4.89,22.88" fill="#81b0de"/>
-          </g>
-        </g>
-        <g id="s-yesnotraining-a-yellow-no">
-          <rect x="1155" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
-          <g>
-            <g>
-              <g id="s-yesnotraining-a-yellow-face-no">
-                <path d="M1196.71,434.81c-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.82,73.05,5.72,43.34-7.27,79.36-48.68,81.72-96.07,3.47-69.66-60.52-118.49-121.22-110.62-25.12,3.25-50.99,12.85-66.93,33.98Z" fill="#ffda36"/>
-                <path d="M1353.2,442.74c-8.09-18.3-36.27-25.63-53.31-22.91-2.67.43-1.63,4.33.58,4.62,10.03,1.35,18.9,3.26,28.06,8.07,7.5,3.94,12.94,10.91,20.26,14.96,2.98,1.65,5.8-1.61,4.41-4.74Z" fill="#ffe175"/>
-                <path d="M1303.14,607.53c28.71-4.82,54.19-24.61,68.82-51.2-19.18,14.09-41.66,22.86-64.83,24.03-36.89,1.86-74.7-16.52-95.86-49.08-19.13-29.44-23.09-69.88-9.47-102.44-1.78,1.89-3.51,3.86-5.1,5.97-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.81,73.05,5.72Z" fill="#ffc52b"/>
-              </g>
-              <g id="s-yesnotraining-a-yellow-facefeatures-no">
-                <path d="M1294.09,540.17c-5.52,2.7-9.9,5.98-16.24,6.59-6.09.59-11.89-2.24-16.89-5.4-1-.63-2.45.68-1.69,1.72,8.39,11.48,30.36,14.45,38,.31,1.17-2.16-1.11-4.22-3.17-3.22Z" fill="#a24818"/>
-                <g>
-                  <path d="M1237.37,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.92.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M1237.22,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-                <g>
-                  <path d="M1316.06,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.91.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M1316.42,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-              </g>
-            </g>
-            <path id="s-yesnotraining-a-yellow-thumbs-no" d="M1295.35,656.09s-4.74,5.81-10.33,7.52-9.6,12.18-10.99,15.16c-1.41,3.07-2.09,4.72-4.74,4.11s-1.23-13.78.49-16.88c1.71-3.1,2.52-4.02.96-5.48-1.56-1.46-15.92-3.37-17.43-5.91s-2.13-6.39-.3-8.26c0,0,0-4.3,1.01-6.56s3.69-3.85,3.69-3.85c0,0-1.25-6.29,4.46-8.07,0,0,.31-7.42,14.73-3.2,0,0,9.02.78,22.72,8.13l8.49,2-4.89,22.88" fill="#ffc52b"/>
-          </g>
-        </g>
-        <g id="s-yesnotraining-a-purple-yes">
-          <rect x="515" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
-          <g>
-            <g>
-              <g id="s-yesnotraining-a-purple-face-yes">
-                <path d="M556.71,434.81c-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.82,73.05,5.72,43.34-7.27,79.36-48.68,81.72-96.07,3.47-69.66-60.52-118.49-121.22-110.62-25.12,3.25-50.99,12.85-66.93,33.98Z" fill="#c9f"/>
-                <path d="M713.2,442.74c-8.09-18.3-36.27-25.63-53.31-22.91-2.67.43-1.63,4.33.58,4.62,10.03,1.35,18.9,3.26,28.06,8.07,7.5,3.94,12.94,10.91,20.26,14.96,2.98,1.65,5.8-1.61,4.41-4.74Z" fill="#e3b4ff"/>
-                <path d="M663.14,607.53c28.71-4.82,54.19-24.61,68.82-51.2-19.18,14.09-41.66,22.86-64.83,24.03-36.89,1.86-74.7-16.52-95.86-49.08-19.13-29.44-23.09-69.88-9.47-102.44-1.78,1.89-3.51,3.86-5.1,5.97-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.81,73.05,5.72Z" fill="#bc8bc9"/>
-              </g>
-              <g id="s-yesnotraining-a-purple-facefeatures-yes">
-                <path d="M654.09,540.17c-5.52,2.7-9.9,5.98-16.24,6.59-6.09.59-11.89-2.24-16.89-5.4-1-.63-2.45.68-1.69,1.72,8.39,11.48,30.36,14.45,38,.31,1.17-2.16-1.11-4.22-3.17-3.22Z" fill="#a24818"/>
-                <g>
-                  <path d="M597.37,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.92.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M597.22,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-                <g>
-                  <path d="M676.06,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.91.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M676.42,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-              </g>
-            </g>
-            <path id="s-yesnotraining-a-purple-thumbs-yes" d="M653.67,650.27s-4.74-6.81-10.33-8.52c-5.59-1.71-9.6-11.18-10.99-14.16-1.41-3.07-2.09-4.72-4.74-4.11s-1.23,13.78.49,16.88,2.52,4.02.96,5.48-15.92,3.37-17.43,5.91-2.13,6.39-.3,8.26c0,0,0,4.3,1.01,6.56s3.69,3.85,3.69,3.85c0,0-1.25,6.29,4.46,8.07,0,0,.31,7.42,14.73,3.2,0,0,9.02-.78,22.72-8.13l8.49-2-4.89-22.88" fill="#bc8bc9"/>
-          </g>
-        </g>
-        <g id="s-yesnotraining-a-blue-yes">
-          <rect x="515" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
-          <g>
-            <g>
-              <g id="s-yesnotraining-a-blue-face-yes">
-                <path d="M556.71,434.81c-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.82,73.05,5.72,43.34-7.27,79.36-48.68,81.72-96.07,3.47-69.66-60.52-118.49-121.22-110.62-25.12,3.25-50.99,12.85-66.93,33.98Z" fill="#74caff"/>
-                <path d="M713.2,442.74c-8.09-18.3-36.27-25.63-53.31-22.91-2.67.43-1.63,4.33.58,4.62,10.03,1.35,18.9,3.26,28.06,8.07,7.5,3.94,12.94,10.91,20.26,14.96,2.98,1.65,5.8-1.61,4.41-4.74Z" fill="#a3d2ff"/>
-                <path d="M663.14,607.53c28.71-4.82,54.19-24.61,68.82-51.2-19.18,14.09-41.66,22.86-64.83,24.03-36.89,1.86-74.7-16.52-95.86-49.08-19.13-29.44-23.09-69.88-9.47-102.44-1.78,1.89-3.51,3.86-5.1,5.97-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.81,73.05,5.72Z" fill="#81b0de"/>
-              </g>
-              <g id="s-yesnotraining-a-blue-facefeatures-yes">
-                <path d="M654.09,540.17c-5.52,2.7-9.9,5.98-16.24,6.59-6.09.59-11.89-2.24-16.89-5.4-1-.63-2.45.68-1.69,1.72,8.39,11.48,30.36,14.45,38,.31,1.17-2.16-1.11-4.22-3.17-3.22Z" fill="#a24818"/>
-                <g>
-                  <path d="M597.37,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.92.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M597.22,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-                <g>
-                  <path d="M676.06,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.91.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M676.42,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-              </g>
-            </g>
-            <path id="s-yesnotraining-a-blue-thumbs-yes" d="M653.67,650.27s-4.74-6.81-10.33-8.52c-5.59-1.71-9.6-11.18-10.99-14.16-1.41-3.07-2.09-4.72-4.74-4.11s-1.23,13.78.49,16.88,2.52,4.02.96,5.48-15.92,3.37-17.43,5.91-2.13,6.39-.3,8.26c0,0,0,4.3,1.01,6.56s3.69,3.85,3.69,3.85c0,0-1.25,6.29,4.46,8.07,0,0,.31,7.42,14.73,3.2,0,0,9.02-.78,22.72-8.13l8.49-2-4.89-22.88" fill="#81b0de"/>
-          </g>
-        </g>
-        <g id="s-yesnotraining-a-yellow-yes">
-          <rect x="515" y="370" width="250" height="340" rx="16.08" ry="16.08" fill="#fff" opacity=".25" stroke="#969696" stroke-miterlimit="10" stroke-width="5"/>
-          <g>
-            <g>
-              <g id="s-yesnotraining-a-yellow-face-yes">
-                <path d="M556.71,434.81c-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.82,73.05,5.72,43.34-7.27,79.36-48.68,81.72-96.07,3.47-69.66-60.52-118.49-121.22-110.62-25.12,3.25-50.99,12.85-66.93,33.98Z" fill="#ffda36"/>
-                <path d="M713.2,442.74c-8.09-18.3-36.27-25.63-53.31-22.91-2.67.43-1.63,4.33.58,4.62,10.03,1.35,18.9,3.26,28.06,8.07,7.5,3.94,12.94,10.91,20.26,14.96,2.98,1.65,5.8-1.61,4.41-4.74Z" fill="#ffe175"/>
-                <path d="M663.14,607.53c28.71-4.82,54.19-24.61,68.82-51.2-19.18,14.09-41.66,22.86-64.83,24.03-36.89,1.86-74.7-16.52-95.86-49.08-19.13-29.44-23.09-69.88-9.47-102.44-1.78,1.89-3.51,3.86-5.1,5.97-12.55,16.63-17.48,38.39-20.07,59.63-2.17,17.82-2.89,36.32,2.33,53.39,7.72,25.22,28.04,44.56,51.12,53.98,23.08,9.42,48.65,9.81,73.05,5.72Z" fill="#ffc52b"/>
-              </g>
-              <g id="s-yesnotraining-a-yellow-facefeatures-yes">
-                <path d="M654.09,540.17c-5.52,2.7-9.9,5.98-16.24,6.59-6.09.59-11.89-2.24-16.89-5.4-1-.63-2.45.68-1.69,1.72,8.39,11.48,30.36,14.45,38,.31,1.17-2.16-1.11-4.22-3.17-3.22Z" fill="#a24818"/>
-                <g>
-                  <path d="M597.37,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.92.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M597.22,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-                <g>
-                  <path d="M676.06,469.95c-15.73,1.33-12.15,24.4,2.76,25.28,14.91.89,18.23-27.06-2.76-25.28Z" fill="#a24818"/>
-                  <path d="M676.42,474.43c-3.24-3.29-7.71,2.75-3.77,4.96,3.05,1.71,6.34-2.35,3.77-4.96Z" fill="#fff"/>
-                </g>
-              </g>
-            </g>
-            <path id="s-yesnotraining-a-yellow-thumbs-yes" d="M653.67,650.27s-4.74-6.81-10.33-8.52c-5.59-1.71-9.6-11.18-10.99-14.16-1.41-3.07-2.09-4.72-4.74-4.11s-1.23,13.78.49,16.88,2.52,4.02.96,5.48-15.92,3.37-17.43,5.91-2.13,6.39-.3,8.26c0,0,0,4.3,1.01,6.56s3.69,3.85,3.69,3.85c0,0-1.25,6.29,4.46,8.07,0,0,.31,7.42,14.73,3.2,0,0,9.02-.78,22.72-8.13l8.49-2-4.89-22.88" fill="#ffc52b"/>
-          </g>
-        </g>
       </g>
       <g id="s-yesnochoice">
         <rect id="s-yesnochoice-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>

@@ -68,7 +68,7 @@ export const showTwoOptions = async (slidePrefix: string) => {
 		});
 
 	// Get Response
-	if (!data.clickedRepeat) {
+	if (!data.clickedRepeat || data.procedure[data.currentSlide].trainingTrial) {
 		const response = await getResponse([optionLeft.id, optionRight.id]);
 
 		// Response returns the clicked element.

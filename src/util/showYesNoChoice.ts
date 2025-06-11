@@ -106,15 +106,22 @@ export const showYesNoChoice = async (
 			'<',
 		)
 		.to([noFace, noFacefeatures], { x: 0, ease: 'power1.inOut' })
-		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
-		.to([yesGroup, noGroup, repeat], {
-			autoAlpha: 1,
-			pointerEvents: 'visible',
-			cursor: 'pointer',
-		});
+		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<');
 
-	// Get Response
-	if (!data.clickedRepeat) {
+	// For the very first yes/no response, play extra audio
+	if (data.currentSlide === 'sYesnotrainingA') {
+		await data.sprite.playPromise(`${slidePrefix}-1`);
+	}
+
+	// Make yes/no response options clickable
+	await gsap.to([yesGroup, noGroup, repeat], {
+		autoAlpha: 1,
+		pointerEvents: 'visible',
+		cursor: 'pointer',
+	});
+
+	// Get Response (only add event listener for response if not clicked repeat; otherwise two...)
+	if (!data.clickedRepeat || data.procedure[data.currentSlide].trainingTrial) {
 		const response = await getResponse([yesGroup.id, noGroup.id]);
 
 		// Response returns the clicked element.
