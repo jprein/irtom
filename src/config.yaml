@@ -30,9 +30,9 @@ css:
       '#s-yesnotraining-a-yellow-no',
       '#s-yesnotraining-a-blue-no',
       '#s-yesnotraining-a-purple-no',
-      '[id$=left]',
-      '[id$=center]',
-      '[id$=right]',
+      '[id$=-left]',
+      '[id$=-center]',
+      '[id$=-right]',
     ]
   # will be used within the init process to to add a zoom animation on hover
   scaleOnHoverObjects:
@@ -52,9 +52,9 @@ css:
       '#s-yesnotraining-a-yellow-no',
       '#s-yesnotraining-a-blue-no',
       '#s-yesnotraining-a-purple-no',
-      '[id$=left]',
-      '[id$=center]',
-      '[id$=right]',
+      '[id$=-left]',
+      '[id$=-center]',
+      '[id$=-right]',
     ]
   pinda: # applies for pinda and neutral pinda videos
     height: '30%' # pinda height
@@ -77,8 +77,8 @@ procedure:
   # If you create a key with a sub array everything in the sub array will be randomized
   # You can nest only two levels deep
   german:
-    # - s-introduction
-    # - s-emojichoice
+    - s-introduction
+    - s-emojichoice
     - s-yesnotraining-a
     - s-yesnotraining-b
     - s-yesnotraining-c
@@ -87,27 +87,27 @@ procedure:
     - s-leftrighttraining-b
     - s-leftrighttraining-c
     - s-leftrighttraining-d
-    # - s-names
-    # - s-perspectivetaking-one-a
-    # - s-perspectivetaking-one-b
-    # - s-perspectivetaking-one-c
-    # - s-perspectivetaking-one-d
-    # - s-perspectivetaking-two-a
-    # - s-perspectivetaking-two-b
-    # - s-perspectivetaking-two-c
-    # - s-perspectivetaking-two-d
-    # - s-knowledgeaccess-a
-    # - s-knowledgeaccess-b
+    - s-names
+    - s-perspectivetaking-one-a
+    - s-perspectivetaking-one-b
+    - s-perspectivetaking-one-c
+    - s-perspectivetaking-one-d
+    - s-perspectivetaking-two-a
+    - s-perspectivetaking-two-b
+    - s-perspectivetaking-two-c
+    - s-perspectivetaking-two-d
+    - s-knowledgeaccess-a
+    - s-knowledgeaccess-b
     - s-dog
     - s-knowledgeaccess-c
-    # - s-diversedesires-a
-    # - s-diversedesires-b
-    # - s-diversedesires-c
-    # - s-diversedesires-d
+    - s-diversedesires-a
+    - s-diversedesires-b
+    - s-diversedesires-c
+    - s-diversedesires-d
     - s-diversebeliefs-a
     - s-diversebeliefs-b
     # - s-falsebelief-two-a
-    # - s-end
+    - s-end
 
   english:
     - s-introduction

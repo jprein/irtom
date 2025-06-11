@@ -19,19 +19,19 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girlHandsup = document.getElementById(
-		`link-${slidePrefix}-girl-waving-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl-waving`,
 	) as SvgInHtml;
 
 	const girl = document.getElementById(
-		`link-${slidePrefix}-girl-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
 
 	const boyHandsup = document.getElementById(
-		`link-${slidePrefix}-boy-waving-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy-waving`,
 	) as SvgInHtml;
 
 	const boy = document.getElementById(
-		`link-${slidePrefix}-boy-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy`,
 	) as SvgInHtml;
 
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;

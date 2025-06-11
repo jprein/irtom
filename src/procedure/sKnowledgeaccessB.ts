@@ -21,16 +21,16 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Get all relevant elements
 	const girlHandsup = document.getElementById(
-		`link-${slidePrefix}-girl-handsup-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl-handsup`,
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-girl-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
 	const boyHandsup = document.getElementById(
-		`link-${slidePrefix}-boy-handsup-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy-handsup`,
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-boy-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy`,
 	) as SvgInHtml;
 	const boxOpen = document.getElementById(
 		`${slidePrefix}-box-open`,

@@ -32,13 +32,13 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Get all relevant elements
 	const girl = document.getElementById(
-		`link-${slidePrefix}-girl-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
 	const girlNay = document.getElementById(
-		`link-${slidePrefix}-girl-${naySide}-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl-${naySide}-pointing`,
 	) as SvgInHtml;
 	const girlYay = document.getElementById(
-		`link-${slidePrefix}-girl-${yaySide}-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl-${yaySide}-pointing`,
 	) as SvgInHtml;
 
 	// Define animation function

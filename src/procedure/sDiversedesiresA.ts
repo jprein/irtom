@@ -21,22 +21,22 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Get all relevant elements
 	const girl = document.getElementById(
-		`link-${slidePrefix}-girl-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
 	const girlYay = document.getElementById(
-		`link-${slidePrefix}-girl-yay-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl-yay`,
 	) as SvgInHtml;
 	const girlNay = document.getElementById(
-		`link-${slidePrefix}-girl-nay-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl-nay`,
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-boy-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy`,
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-boy-nay-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy-nay`,
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-boy-yay-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy-yay`,
 	) as SvgInHtml;
 
 	// Define animation function

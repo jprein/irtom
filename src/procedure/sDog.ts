@@ -19,16 +19,16 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Add trial-specific animation
 	const boy = document.getElementById(
-		`link-${slidePrefix}-boy-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy`,
 	) as SvgInHtml;
 	const boyKneeling = document.getElementById(
-		`link-${slidePrefix}-boy-kneeling-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy-kneeling`,
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-girl-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
 	const girlKneeling = document.getElementById(
-		`link-${slidePrefix}-girl-kneeling-${data.community}`,
+		`link-${slidePrefix}-${data.community}-girl-kneeling`,
 	) as SvgInHtml;
 	const dogLying = document.getElementById(
 		`link-${slidePrefix}-dog-lying`,
@@ -59,7 +59,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 3,
 			})
 			.to([boy, girl, dogRunning], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 4,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {

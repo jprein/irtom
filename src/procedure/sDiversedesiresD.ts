@@ -30,21 +30,21 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Get all relevant elements
 	const boy = document.getElementById(
-		`link-${slidePrefix}-boy-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy`,
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-boy-nay-${naySide}-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy-${naySide}-nay`,
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-boy-yay-${yaySide}-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy-${yaySide}-yay`,
 	) as SvgInHtml;
 
 	// also get the other (irrelevant) yay/nay agent sides to hide them
 	const boyNayHide = document.getElementById(
-		`link-${slidePrefix}-boy-nay-${yaySide}-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy-${yaySide}-nay`,
 	) as SvgInHtml;
 	const boyYayHide = document.getElementById(
-		`link-${slidePrefix}-boy-yay-${naySide}-${data.community}`,
+		`link-${slidePrefix}-${data.community}-boy-${naySide}-yay`,
 	) as SvgInHtml;
 
 	// Define animation function
