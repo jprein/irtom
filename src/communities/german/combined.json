@@ -224,420 +224,408 @@
       231000,
       1962.6530612245006
     ],
-    "s-emojichoice-1": [
-      234000,
-      5525.35147392291
-    ],
-    "s-emojichoice-2": [
-      241000,
-      1642.653061224479
-    ],
-    "s-emojichoice-3": [
-      244000,
-      2005.3514739229001
-    ],
     "s-emojichoice-center": [
-      248000,
+      234000,
       1045.3514739228922
     ],
     "s-emojichoice-feedback": [
-      251000,
+      237000,
       4352.018140589564
     ],
     "s-emojichoice-left": [
-      257000,
+      243000,
       1045.3514739228922
     ],
     "s-emojichoice-right": [
-      260000,
-      1045.3514739228922
+      246000,
+      11146.643990929704
     ],
     "s-emojichoice": [
-      263000,
-      9218.390022675749
+      259000,
+      8500.725623582752
     ],
     "s-falsebelief-two-a-1": [
-      274000,
+      269000,
       6293.33333333335
     ],
     "s-falsebelief-two-a-2": [
-      282000,
+      277000,
       5930.680272108816
     ],
     "s-falsebelief-two-a-3": [
-      289000,
+      284000,
       3797.3469387754903
     ],
     "s-falsebelief-two-a-4": [
-      294000,
+      289000,
       13098.684807256233
     ],
     "s-falsebelief-two-a-5": [
-      309000,
+      304000,
       3242.6530612244733
     ],
     "s-falsebelief-two-a-left": [
-      314000,
+      309000,
       1130.6802721088616
     ],
     "s-falsebelief-two-a-right": [
-      317000,
+      312000,
       1450.6802721088548
     ],
     "s-falsebelief-two-a": [
-      320000,
+      315000,
       6570.680272108859
     ],
     "s-knowledgeaccess-a-1": [
-      328000,
+      323000,
       7552.018140589553
     ],
     "s-knowledgeaccess-a-2": [
-      337000,
+      332000,
       2752.0181405895414
     ],
     "s-knowledgeaccess-a-3": [
-      341000,
+      336000,
       3882.6530612245165
     ],
     "s-knowledgeaccess-a-4": [
-      346000,
+      341000,
       2048.004535147413
     ],
     "s-knowledgeaccess-a": [
-      350000,
+      345000,
       2944.013605442194
     ],
     "s-knowledgeaccess-b-1": [
-      354000,
+      349000,
       5866.666666666674
     ],
     "s-knowledgeaccess-b-2": [
-      361000,
+      356000,
       3754.6712018140624
     ],
     "s-knowledgeaccess-b-3": [
-      366000,
+      361000,
       1877.3469387755313
     ],
     "s-knowledgeaccess-b-4": [
-      369000,
+      364000,
       3370.6802721088707
     ],
     "s-knowledgeaccess-b-5": [
-      374000,
+      369000,
       3434.6712018140693
     ],
     "s-knowledgeaccess-b-left": [
-      379000,
+      374000,
       1045.3514739228922
     ],
     "s-knowledgeaccess-b-right": [
-      382000,
+      377000,
       1045.3514739228922
     ],
     "s-knowledgeaccess-b": [
-      385000,
+      380000,
       2730.6802721088275
     ],
     "s-knowledgeaccess-c-1": [
-      389000,
+      384000,
       7658.684807256236
     ],
     "s-knowledgeaccess-c-2": [
-      398000,
+      393000,
       1877.3469387755313
     ],
     "s-knowledgeaccess-c-3": [
-      401000,
+      396000,
       2282.6530612244937
     ],
     "s-knowledgeaccess-c-4": [
-      405000,
+      400000,
       3093.3333333333053
     ],
     "s-knowledgeaccess-c-5": [
-      410000,
+      405000,
       1984.0136054421578
     ],
     "s-knowledgeaccess-c-6": [
-      413000,
+      408000,
       2923.0385487528565
     ],
     "s-knowledgeaccess-c-7": [
-      417000,
+      412000,
       2304.013605442151
     ],
     "s-knowledgeaccess-c-left": [
-      421000,
+      416000,
       1045.3514739228922
     ],
     "s-knowledgeaccess-c-right": [
-      424000,
+      419000,
       1045.3514739228922
     ],
     "s-knowledgeaccess-c-rooster": [
-      427000,
+      422000,
       1933.0612244897907
     ],
     "s-knowledgeaccess-c": [
-      430000,
+      425000,
       2666.6666666666856
     ],
     "s-leftrighttraining-a-correct": [
-      434000,
+      429000,
       2026.6666666666424
     ],
     "s-leftrighttraining-a-incorrect": [
-      438000,
+      433000,
       2752.0181405895414
     ],
     "s-leftrighttraining-a-left": [
-      442000,
+      437000,
       1215.9863945578309
     ],
     "s-leftrighttraining-a-right": [
-      445000,
+      440000,
       1215.9863945578309
     ],
     "s-leftrighttraining-a": [
-      448000,
+      443000,
       1813.3333333333326
     ],
     "s-leftrighttraining-b-correct": [
-      451000,
+      446000,
       2026.6666666666424
     ],
     "s-leftrighttraining-b-incorrect": [
-      455000,
+      450000,
       2752.0181405895414
     ],
     "s-leftrighttraining-b-left": [
-      459000,
+      454000,
       1215.9863945578309
     ],
     "s-leftrighttraining-b-right": [
-      462000,
+      457000,
       1215.9863945578309
     ],
     "s-leftrighttraining-b": [
-      465000,
+      460000,
       1728.00453514742
     ],
     "s-leftrighttraining-c-correct": [
-      468000,
+      463000,
       2026.6666666666424
     ],
     "s-leftrighttraining-c-incorrect": [
-      472000,
+      467000,
       2752.0181405895414
     ],
     "s-leftrighttraining-c-left": [
-      476000,
+      471000,
       1215.9863945578309
     ],
     "s-leftrighttraining-c-right": [
-      479000,
+      474000,
       1215.9863945578309
     ],
     "s-leftrighttraining-c": [
-      482000,
+      477000,
       2090.680272108841
     ],
     "s-leftrighttraining-d-correct": [
-      486000,
+      481000,
       2026.6666666666424
     ],
     "s-leftrighttraining-d-incorrect": [
-      490000,
+      485000,
       2752.0181405895414
     ],
     "s-leftrighttraining-d-left": [
-      494000,
+      489000,
       1215.9863945578309
     ],
     "s-leftrighttraining-d-right": [
-      497000,
+      492000,
       1215.9863945578309
     ],
     "s-leftrighttraining-d": [
-      500000,
+      495000,
       2005.3514739229286
     ],
     "s-leftrighttraining-e-correct": [
-      504000,
+      499000,
       2026.6666666666424
     ],
     "s-leftrighttraining-e-incorrect": [
-      508000,
+      503000,
       2752.0181405895414
     ],
     "s-namestraining-1": [
-      512000,
-      3775.9863945577763
+      507000,
+      3775.986394557833
     ],
     "s-namestraining-2": [
-      517000,
+      512000,
       572.290249433081
     ],
     "s-namestraining-3": [
-      519000,
+      514000,
       892.607709750564
     ],
     "s-namestraining-4": [
-      521000,
+      516000,
       1045.3514739228922
     ],
     "s-namestraining-correct": [
-      524000,
+      519000,
       6869.319727891138
     ],
     "s-namestraining-incorrect": [
-      532000,
+      527000,
       4480.000000000018
     ],
     "s-namestraining-left": [
-      538000,
+      533000,
       1237.346938775545
     ],
     "s-namestraining-right": [
-      541000,
+      536000,
       1045.3514739228922
     ],
     "s-namestraining": [
-      544000,
+      539000,
       1493.3333333333394
     ],
     "s-perspectivetaking-one-a": [
-      547000,
+      542000,
       4032.018140589571
     ],
     "s-perspectivetaking-one-b": [
-      553000,
+      548000,
       5013.333333333321
     ],
     "s-perspectivetaking-one-c": [
-      560000,
+      555000,
       4544.01360544216
     ],
     "s-perspectivetaking-one-d": [
-      566000,
+      561000,
       2837.346938775454
     ],
     "s-perspectivetaking-two-a-left": [
-      570000,
+      565000,
       1429.3197278911975
     ],
     "s-perspectivetaking-two-a-right": [
-      573000,
+      568000,
       1386.666666666656
     ],
     "s-perspectivetaking-two-a": [
-      576000,
+      571000,
       6720.000000000027
     ],
     "s-perspectivetaking-two-b-left": [
-      584000,
+      579000,
       1024.0136054421782
     ],
     "s-perspectivetaking-two-b-right": [
-      587000,
+      582000,
       1045.3514739228922
     ],
     "s-perspectivetaking-two-b": [
-      590000,
+      585000,
       13546.666666666624
     ],
     "s-perspectivetaking-two-c-left": [
-      605000,
+      600000,
       1045.3514739228922
     ],
     "s-perspectivetaking-two-c-right": [
-      608000,
+      603000,
       1045.3514739228922
     ],
     "s-perspectivetaking-two-c": [
-      611000,
+      606000,
       12074.671201814112
     ],
     "s-perspectivetaking-two-d-left": [
-      625000,
+      620000,
       1173.3333333332894
     ],
     "s-perspectivetaking-two-d-right": [
-      628000,
+      623000,
       1344.0136054422283
     ],
     "s-perspectivetaking-two-d": [
-      631000,
+      626000,
       13759.99999999999
     ],
     "s-yesnotraining-a-1": [
-      646000,
+      641000,
       2000
     ],
     "s-yesnotraining-a-correct": [
-      649000,
+      644000,
       5034.671201814035
     ],
     "s-yesnotraining-a-incorrect": [
-      656000,
+      651000,
       4992.018140589607
     ],
     "s-yesnotraining-a": [
-      662000,
+      657000,
       9308.888888888872
     ],
     "s-yesnotraining-b-correct": [
-      673000,
+      668000,
       2026.6666666666424
     ],
     "s-yesnotraining-b-incorrect": [
-      677000,
+      672000,
       2752.0181405895983
     ],
     "s-yesnotraining-b": [
-      681000,
+      676000,
       1984.0136054422146
     ],
     "s-yesnotraining-c-correct": [
-      684000,
+      679000,
       2026.6666666666424
     ],
     "s-yesnotraining-c-incorrect": [
-      688000,
+      683000,
       2752.0181405895983
     ],
     "s-yesnotraining-c": [
-      692000,
+      687000,
       1578.6848072561952
     ],
     "s-yesnotraining-d-correct": [
-      695000,
+      690000,
       2026.6666666666424
     ],
     "s-yesnotraining-d-incorrect": [
-      699000,
+      694000,
       2752.0181405895983
     ],
     "s-yesnotraining-d": [
-      703000,
+      698000,
       1600.0000000000227
     ],
     "s-yesnotraining-e-correct": [
-      706000,
+      701000,
       2026.6666666666424
     ],
     "s-yesnotraining-e-incorrect": [
-      710000,
+      705000,
       2752.0181405895983
     ],
     "s-yesnotraining-e": [
-      714000,
+      709000,
       1792.0181405895619
     ],
     "yes": [
-      717000,
+      712000,
       1045.3514739228922
     ]
   }

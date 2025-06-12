@@ -110,6 +110,7 @@ export const init = async () => {
 		hasWebcam: DetectRTC.hasWebcam,
 		browserName: DetectRTC.browser.name,
 		clickedRepeat: false,
+		incorrectResponse: false,
 		emoji: 'yellow',
 	};
 	//log user testing setup

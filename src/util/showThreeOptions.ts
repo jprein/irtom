@@ -25,18 +25,26 @@ export const showThreeOptions = async (slidePrefix: string) => {
 	// Play audio
 	await data.sprite.playPromise(`${slidePrefix}`);
 
-	// for all other slides, show directly yes and no response buttons
-	await gsap
-		.timeline()
-		.to(blurr, {
+	// If the blurr element exists, fade it in
+	const timeline = gsap.timeline();
+	if (blurr) {
+		await timeline.to(blurr, {
 			delay: 1,
 			autoAlpha: 0.7,
 			duration: 0.6,
-		})
-		.to(subject, {
+		});
+	}
+
+	// If the subject element exists (visual reminder for content of test question),fade it in
+	if (subject) {
+		await timeline.to(subject, {
 			autoAlpha: 1,
 			duration: 0.5,
-		})
+		});
+	}
+
+	// for all other slides, show directly yes and no response buttons
+	await timeline
 		.to(optionLeft, {
 			delay: 0.5,
 			autoAlpha: 1,
@@ -46,7 +54,7 @@ export const showThreeOptions = async (slidePrefix: string) => {
 			},
 		})
 		.to(optionCenter, {
-			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000 + 0.5,
 			autoAlpha: 1,
 			duration: 0.5,
 			onStart: () => {
@@ -54,7 +62,7 @@ export const showThreeOptions = async (slidePrefix: string) => {
 			},
 		})
 		.to(optionRight, {
-			delay: data.spriteJSON.sprite[`${slidePrefix}-center`][1] / 1000,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-center`][1] / 1000 + 0.5,
 			autoAlpha: 1,
 			duration: 0.5,
 			onStart: () => {
@@ -62,6 +70,7 @@ export const showThreeOptions = async (slidePrefix: string) => {
 			},
 		})
 		.to([optionLeft, optionCenter, optionRight, repeat], {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-right`][1] / 1000,
 			autoAlpha: 1,
 			duration: 0.5,
 			pointerEvents: 'visible',
@@ -69,7 +78,7 @@ export const showThreeOptions = async (slidePrefix: string) => {
 		});
 
 	// Get Response
-	if (!data.clickedRepeat || data.procedure[data.currentSlide].trainingTrial) {
+	if (!data.clickedRepeat || data.incorrectResponse) {
 		const response = await getResponse([
 			optionLeft.id,
 			optionCenter.id,

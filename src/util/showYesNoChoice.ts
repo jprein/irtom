@@ -121,7 +121,7 @@ export const showYesNoChoice = async (
 	});
 
 	// Get Response (only add event listener for response if not clicked repeat; otherwise two...)
-	if (!data.clickedRepeat || data.procedure[data.currentSlide].trainingTrial) {
+	if (!data.clickedRepeat || data.incorrectResponse) {
 		const response = await getResponse([yesGroup.id, noGroup.id]);
 
 		// Response returns the clicked element.

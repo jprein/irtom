@@ -55,6 +55,7 @@ declare let data: {
 	sprite;
 	spriteJSON;
 	clickedRepeat: boolean;
+	incorrectResponse: boolean;
 	procedure: {
 		sIntroduction: {
 			slideNr: number;

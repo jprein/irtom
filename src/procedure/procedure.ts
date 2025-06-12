@@ -131,7 +131,8 @@ export const procedure = async () => {
 			slideNr: data.slideCounter,
 			slideDuration: 0,
 			response: '',
-			repeated: 0,
+			repeatOnClick: 0,
+			repeatIncorrect: 0,
 		};
 
 		// get possible response buttons (next buttons, yes/no buttons)
@@ -178,12 +179,23 @@ export const procedure = async () => {
 			trainingRegex.test(currentSlide);
 
 		// Put in function so that we can remove the event listener again
-		const handleRepeatClick = async () => {
-			data.procedure[currentSlide].repeated += 1;
+		const handleRepeatClick = async (arg?: boolean | MouseEvent) => {
+			// If invoked as an event listener, arg will be a MouseEvent.
+			// In that case, we consider incorrectTraining to be false.
+			data.incorrectResponse = typeof arg === 'boolean' ? arg : false;
 
-			if (config.devmode.on) {
+			if (data.incorrectResponse) {
+				data.procedure[currentSlide].repeatIncorrect += 1;
+				data.incorrectResponse = true;
 				console.log(
-					`%cRepeat ${currentSlide} for the ${data.procedure[currentSlide].repeated}x time.`,
+					`%cRepeat ${currentSlide}. Reason: Incorrect response with feedback for the ${data.procedure[currentSlide].repeatIncorrect}x time.`,
+					'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+				);
+			} else {
+				data.procedure[currentSlide].repeatOnClick += 1;
+				data.clickedRepeat = true;
+				console.log(
+					`%cRepeat ${currentSlide}. Reason: Clicked repeat for the ${data.procedure[currentSlide].repeatOnClick}x time.`,
 					'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
 				);
 			}
@@ -195,7 +207,7 @@ export const procedure = async () => {
 			}
 
 			// Run the slide behavior again
-			data.clickedRepeat = true;
+			// data.clickedRepeat = true;
 			await runSlideBehavior();
 			if (data.procedure[data.currentSlide].trainingTrial) {
 				// If correct response, play correct audio and move on to next trial
@@ -207,10 +219,16 @@ export const procedure = async () => {
 					data.procedure[data.currentSlide].score = null;
 					data.procedure[data.currentSlide].response = null;
 					await data.sprite.playPromise(`${currentSlideKc}-incorrect`);
-					await handleRepeatClick();
+					await handleRepeatClick(true);
 				}
 			}
-			data.clickedRepeat = false;
+
+			// Reset flags for next use
+			if (data.incorrectResponse) {
+				data.incorrectResponse = false;
+			} else {
+				data.clickedRepeat = false;
+			}
 		};
 
 		// Add event listener to repeat element
@@ -222,6 +240,7 @@ export const procedure = async () => {
 		// only after this first run, the repeat button will be clickable
 		await runSlideBehavior();
 
+		// For training trials, we need to check the response. Repeat trial if incorrect.
 		if (data.procedure[data.currentSlide].trainingTrial) {
 			// If correct response, play correct audio and move on to next trial
 			if (data.procedure[data.currentSlide].score === 1) {
@@ -232,7 +251,7 @@ export const procedure = async () => {
 				data.procedure[data.currentSlide].score = null;
 				data.procedure[data.currentSlide].response = null;
 				await data.sprite.playPromise(`${currentSlideKc}-incorrect`);
-				await handleRepeatClick();
+				await handleRepeatClick(true);
 			}
 		}
 
@@ -305,6 +324,7 @@ export const procedure = async () => {
 		'sprite',
 		'spriteJSON',
 		'clickedRepeat',
+		'incorrectResponse',
 	].forEach((key) => {
 		if (key in data) {
 			delete data[key];

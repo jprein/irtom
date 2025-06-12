@@ -22,10 +22,8 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	// Play audio
 	await data.sprite.playPromise(`${slidePrefix}`);
 
-	// For all other slides, show directly yes and no response buttons
-	const timeline = gsap.timeline();
-
 	// If the blurr element exists, fade it in
+	const timeline = gsap.timeline();
 	if (blurr) {
 		await timeline.to(blurr, {
 			delay: 1,
@@ -68,7 +66,7 @@ export const showTwoOptions = async (slidePrefix: string) => {
 		});
 
 	// Get Response
-	if (!data.clickedRepeat || data.procedure[data.currentSlide].trainingTrial) {
+	if (!data.clickedRepeat || data.incorrectResponse) {
 		const response = await getResponse([optionLeft.id, optionRight.id]);
 
 		// Response returns the clicked element.
