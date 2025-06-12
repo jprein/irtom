@@ -296,4 +296,7 @@ export const init = async () => {
 	document.querySelectorAll(selectors).forEach((element) => {
 		element.setAttribute('visibility', 'hidden');
 	});
+
+	// set default GSAP easing to 'none' for all animations
+	gsap.defaults({ ease: 'none' });
 };

@@ -496,136 +496,160 @@
       539000,
       1493.3333333333394
     ],
-    "s-perspectivetaking-one-a": [
+    "s-parentstraining-1": [
       542000,
+      6703.378684807262
+    ],
+    "s-parentstraining-2": [
+      550000,
+      1395.0793650793685
+    ],
+    "s-parentstraining-3": [
+      553000,
+      1395.0566893423684
+    ],
+    "s-parentstraining-correct": [
+      556000,
+      6504.716553287949
+    ],
+    "s-parentstraining-incorrect": [
+      564000,
+      2789.818594104304
+    ],
+    "s-parentstraining": [
+      568000,
+      2058.7755102041
+    ],
+    "s-perspectivetaking-one-a": [
+      572000,
       4032.018140589571
     ],
     "s-perspectivetaking-one-b": [
-      548000,
+      578000,
       5013.333333333321
     ],
     "s-perspectivetaking-one-c": [
-      555000,
+      585000,
       4544.01360544216
     ],
     "s-perspectivetaking-one-d": [
-      561000,
+      591000,
       2837.346938775454
     ],
     "s-perspectivetaking-two-a-left": [
-      565000,
+      595000,
       1429.3197278911975
     ],
     "s-perspectivetaking-two-a-right": [
-      568000,
+      598000,
       1386.666666666656
     ],
     "s-perspectivetaking-two-a": [
-      571000,
+      601000,
       6720.000000000027
     ],
     "s-perspectivetaking-two-b-left": [
-      579000,
+      609000,
       1024.0136054421782
     ],
     "s-perspectivetaking-two-b-right": [
-      582000,
+      612000,
       1045.3514739228922
     ],
     "s-perspectivetaking-two-b": [
-      585000,
+      615000,
       13546.666666666624
     ],
     "s-perspectivetaking-two-c-left": [
-      600000,
+      630000,
       1045.3514739228922
     ],
     "s-perspectivetaking-two-c-right": [
-      603000,
+      633000,
       1045.3514739228922
     ],
     "s-perspectivetaking-two-c": [
-      606000,
+      636000,
       12074.671201814112
     ],
     "s-perspectivetaking-two-d-left": [
-      620000,
+      650000,
       1173.3333333332894
     ],
     "s-perspectivetaking-two-d-right": [
-      623000,
+      653000,
       1344.0136054422283
     ],
     "s-perspectivetaking-two-d": [
-      626000,
+      656000,
       13759.99999999999
     ],
     "s-yesnotraining-a-1": [
-      641000,
+      671000,
       2000
     ],
     "s-yesnotraining-a-correct": [
-      644000,
+      674000,
       5034.671201814035
     ],
     "s-yesnotraining-a-incorrect": [
-      651000,
+      681000,
       4992.018140589607
     ],
     "s-yesnotraining-a": [
-      657000,
+      687000,
       9308.888888888872
     ],
     "s-yesnotraining-b-correct": [
-      668000,
+      698000,
       2026.6666666666424
     ],
     "s-yesnotraining-b-incorrect": [
-      672000,
+      702000,
       2752.0181405895983
     ],
     "s-yesnotraining-b": [
-      676000,
+      706000,
       1984.0136054422146
     ],
     "s-yesnotraining-c-correct": [
-      679000,
+      709000,
       2026.6666666666424
     ],
     "s-yesnotraining-c-incorrect": [
-      683000,
+      713000,
       2752.0181405895983
     ],
     "s-yesnotraining-c": [
-      687000,
+      717000,
       1578.6848072561952
     ],
     "s-yesnotraining-d-correct": [
-      690000,
+      720000,
       2026.6666666666424
     ],
     "s-yesnotraining-d-incorrect": [
-      694000,
+      724000,
       2752.0181405895983
     ],
     "s-yesnotraining-d": [
-      698000,
+      728000,
       1600.0000000000227
     ],
     "s-yesnotraining-e-correct": [
-      701000,
+      731000,
       2026.6666666666424
     ],
     "s-yesnotraining-e-incorrect": [
-      705000,
+      735000,
       2752.0181405895983
     ],
     "s-yesnotraining-e": [
-      709000,
+      739000,
       1792.0181405895619
     ],
     "yes": [
-      712000,
+      742000,
       1045.3514739228922
     ]
   }

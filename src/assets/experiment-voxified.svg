@@ -3336,10 +3336,26 @@
         <rect id="ph-s-dogtraining-dog-running" x="688.22" y="720" width="419.68" height="283.05" fill="#c92" opacity=".2"/>
         <image id="link-s-dogtraining-dog-running" width="485" height="360" transform="translate(685.32 704.1) scale(.87 .83)" xlink:href="assets/dog-right-running.svg" isolation="isolate"/>
       </g>
+      <g id="s-parentstraining">
+        <rect id="ph-s-parentstraining-floor" y="433.51" width="1920" height="646.49" fill="#c92" opacity=".2"/>
+        <image id="link-s-parentstraining-floor" transform="translate(0 433.51) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
+        <g id="german15" data-name="german">
+          <rect id="ph-s-parentstraining-german-girl" x="844.99" y="477.56" width="228.11" height="568.89" fill="#c92" opacity=".2"/>
+          <image id="link-s-parentstraining-german-girl" transform="translate(479.13 177.27) scale(3.42 3.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
+          <rect id="ph-s-parentstraining-german-woman" x="502.66" y="163.73" width="272.64" height="844.02" fill="#c92" opacity=".2"/>
+          <image id="link-s-parentstraining-german-woman" width="93" height="300" transform="translate(502.66 163.73) scale(2.93 2.81)" xlink:href="assets/german-woman-standing.svg" isolation="isolate"/>
+          <rect id="ph-s-parentstraining-german-woman-waving" x="388.49" y="167.54" width="386.1" height="844.02" fill="#c92" opacity=".2"/>
+          <image id="link-s-parentstraining-german-woman-waving" width="132" height="300" transform="translate(389.05 162.94) scale(2.93 2.81)" xlink:href="assets/german-woman-waving.svg" isolation="isolate"/>
+          <rect id="ph-s-parentstraining-german-man" x="1150.75" y="76.47" width="256.57" height="926.03" fill="#c92" opacity=".2"/>
+          <image id="link-s-parentstraining-german-man" width="76" height="286" transform="translate(1150.75 76.47) scale(3.38 3.24)" xlink:href="assets/german-man-standing.svg" isolation="isolate"/>
+          <rect id="ph-s-parentstraining-german-man-waving" x="1154.04" y="73.82" width="354.35" height="926.03" fill="#c92" opacity=".2"/>
+          <image id="link-s-parentstraining-german-man-waving" width="105" height="286" transform="translate(1153.65 73.86) scale(3.38 3.24)" xlink:href="assets/german-man-waving.svg" isolation="isolate"/>
+        </g>
+      </g>
       <g id="s-namestraining">
         <rect id="ph-s-namestraining-floor" y="433.51" width="1920" height="646.49" fill="#c92" opacity=".2"/>
         <image id="link-s-namestraining-floor" transform="translate(0 433.51) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german15" data-name="german">
+        <g id="german16" data-name="german">
           <rect id="ph-s-namestraining-german-girl" x="479.13" y="177.27" width="325.24" height="814.36" fill="#c92" opacity=".2"/>
           <image id="link-s-namestraining-german-girl" transform="translate(479.13 177.27) scale(3.42 3.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-namestraining-german-girl-waving" x="477.78" y="177.96" width="354.4" height="815.57" fill="#c92" opacity=".2"/>
