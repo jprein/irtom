@@ -34,10 +34,6 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-${data.community}-boy`,
 	) as SvgInHtml;
 
-	// Set initial state for response variables
-	data.procedure[data.currentSlide].score = 0;
-	// let correct = false;
-
 	// Initially hide agents with hands up
 	gsap.set([girlHandsup, boyHandsup], { autoAlpha: 0 });
 

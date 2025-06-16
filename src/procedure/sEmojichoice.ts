@@ -11,7 +11,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	swapSlides(currentSlide, previousSlide);
 	data.simpleSlideCounter++;
 
-	// Store correct response
+	// There is no correct response / no score
 	data.procedure[data.currentSlide].correct = '';
 	data.procedure[data.currentSlide].score = '';
 

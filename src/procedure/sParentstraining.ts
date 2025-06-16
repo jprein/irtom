@@ -35,10 +35,6 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-${data.community}-man`,
 	) as SvgInHtml;
 
-	// Set initial state for response variables
-	data.procedure[data.currentSlide].score = 0;
-	// let correct = false;
-
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide waving elements and position characters off-screen
