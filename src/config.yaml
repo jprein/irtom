@@ -77,7 +77,7 @@ procedure:
   # If you create a key with a sub array everything in the sub array will be randomized
   # You can nest only two levels deep
   german:
-    # - s-introduction
+    - s-introduction
     # - s-emojichoice
     # - s-yesnotraining-a
     # - s-yesnotraining-b
@@ -105,9 +105,10 @@ procedure:
     # - s-diversedesires-b
     # - s-diversedesires-c
     # - s-diversedesires-d
+    - s-diversedesires-e
     # - s-diversebeliefs-a
     # - s-diversebeliefs-b
-    - s-parentstraining
+    # - s-parentstraining
     # - s-falsebelief-two-a
     - s-end
 
