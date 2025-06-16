@@ -99,10 +99,8 @@ export const init = async () => {
 		agegroup: ageInYears < config.globals.adultThresholdAge ? 'child' : 'adult',
 		gender: urlParameters.gender,
 		datatransfer: urlParameters.datatransfer,
-		webcam: urlParameters.webcam,
+		webcam: urlParameters.webcam === 'true', // convert to boolean
 		touchscreen: isTouchDevice(),
-		// coupon: urlParameters.coupon,
-		// PROLIFIC_PID: urlParameters.PROLIFIC_PID,
 		t0: new Date(),
 		slideCounter: 0,
 		quitBeforeEnd: false,
@@ -118,7 +116,7 @@ export const init = async () => {
 		global.data.hasWebcam = DetectRTC.hasWebcam;
 		global.data.browserName = DetectRTC.browser.name;
 		global.data.safari = DetectRTC.browser.isSafari == undefined ? false : true;
-		global.data.iOSSafari = global.data.safari && global.touchscreen;
+		global.data.iOSSafari = global.data.safari && global.data.touchscreen;
 	});
 
 	// check if all translation keys have a matching foreignObject and vice versa
