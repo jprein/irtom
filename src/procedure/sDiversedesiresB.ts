@@ -17,8 +17,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// Trial-specific animation
-	gsap.defaults({ ease: 'none' });
-
 	// Get all relevant elements
 	const girl = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl`,

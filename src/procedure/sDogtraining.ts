@@ -37,8 +37,6 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-dog-running`,
 	) as SvgInHtml;
 
-	gsap.defaults({ ease: 'none' });
-
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some elements

@@ -26,8 +26,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.procedure[data.currentSlide].correct = yaySide;
 
 	// Trial-specific animation
-	gsap.defaults({ ease: 'none' });
-
 	// Get all relevant elements
 	const boy = document.getElementById(
 		`link-${slidePrefix}-${data.community}-boy`,

@@ -17,8 +17,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// Trial-specific animation
-	gsap.defaults({ ease: 'none' });
-
 	// Get all relevant elements
 	const girlDigging = document.getElementById(
 		`${slidePrefix}-girl-digging`,
