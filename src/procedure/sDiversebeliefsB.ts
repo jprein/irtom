@@ -21,7 +21,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		data.previousSlide && data.procedure[data.previousSlide]
 			? data.procedure[data.previousSlide].response || 'left'
 			: 'left';
-	// yaySide is opposite, so where the girl thinks the boy hides
+	// yaySide is opposite, so where the girl thinks the dog hides
 	const yaySide = naySide === 'left' ? 'right' : 'left';
 
 	// Store correct response
@@ -47,7 +47,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		// await data.sprite.playPromise(`${slidePrefix}-${naySide}-nay`);
 		await gsap
 			.timeline()
 			.to(girl, {
