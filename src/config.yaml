@@ -109,9 +109,10 @@ procedure:
     # - s-diversebeliefs-a
     # - s-diversebeliefs-b
     # - s-parentstraining
+    - s-falsebelief-col-a
     # - s-falsebelief-two-a
-    - s-falsebelief-two-b
-    - s-end
+    # - s-falsebelief-two-b
+    # - s-end
 
   english:
     - s-introduction
