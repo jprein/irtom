@@ -61,9 +61,26 @@ export default {
 	plugins: [
 		new CopyPlugin({
 			patterns: [
+				// Copy everything from public directory into dist folder
 				{ from: 'public/', to: './' },
-				{ from: 'src/assets/', to: './assets/' },
-				{ from: 'src/communities/', to: './communities/' },
+				// For assets, only copy SVG files (not png or ai).
+				// Set the context so the folder structure isn't preserved
+				{
+					context: 'src/assets',
+					from: '*.svg',
+					to: 'assets/',
+				},
+				// For audios, copy only combined.json and combined.mp3/webm files
+				{
+					from: 'src/communities/*/combined.@(json|mp3|webm)',
+					to({ absoluteFilename }) {
+						// This will put each file into a folder with its community name in dist
+						const community = absoluteFilename
+							.split('src/communities/')[1]
+							.split('/')[0];
+						return `communities/${community}/[name][ext]`;
+					},
+				},
 			],
 		}),
 		new HtmlWebpackPlugin({
@@ -83,7 +100,7 @@ export default {
 		hot: true, // enable hot reload
 		compress: true, // enable gzip compression
 		historyApiFallback: true, // enable HTML5 history API
-		// devMiddleware: { writeToDisk: true }, // todo why was it in here?
+		// devMiddleware: { writeToDisk: true }, // this creates the dist folder also for dev mode
 	},
 	experiments: {
 		topLevelAwait: true,
