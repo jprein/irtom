@@ -106,11 +106,12 @@ procedure:
     # - s-diversedesires-c
     # - s-diversedesires-d
     # - s-diversedesires-e
-    - s-diversebeliefs-a
-    - s-diversebeliefs-b
-    - s-diversebeliefs-c
+    # - s-diversebeliefs-a
+    # - s-diversebeliefs-b
+    # - s-diversebeliefs-c
     # - s-parentstraining
     # - s-falsebelief-col-a
+    - s-falsebelief-col-b
     # - s-falsebelief-two-a
     # - s-falsebelief-two-b
     # - s-end

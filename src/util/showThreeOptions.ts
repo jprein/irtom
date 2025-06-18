@@ -18,8 +18,8 @@ export const showThreeOptions = async (slidePrefix: string) => {
 	const optionRight = document.getElementById(
 		`${slidePrefix}-right`,
 	) as SvgInHtml;
-	const subject = document.getElementById(
-		`${slidePrefix}-subject`,
+	const subject = document.querySelector(
+		`[id*="${slidePrefix}"][id*="subject"]`,
 	) as SvgInHtml;
 
 	// Play audio
