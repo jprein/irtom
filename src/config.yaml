@@ -111,7 +111,8 @@ procedure:
     # - s-diversebeliefs-c
     # - s-parentstraining
     # - s-falsebelief-col-a
-    - s-falsebelief-col-b
+    # - s-falsebelief-col-b
+    - s-falsebelief-uc-a
     # - s-falsebelief-two-a
     # - s-falsebelief-two-b
     # - s-end
