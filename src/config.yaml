@@ -112,7 +112,8 @@ procedure:
     # - s-parentstraining
     # - s-falsebelief-col-a
     # - s-falsebelief-col-b
-    - s-falsebelief-uc-a
+    # - s-falsebelief-uc-a
+    - s-falsebelief-ui-b
     # - s-falsebelief-two-a
     # - s-falsebelief-two-b
     # - s-end

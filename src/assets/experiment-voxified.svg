@@ -2,6 +2,30 @@
 <svg voxified="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1920 1080">
   <!-- Generator: Adobe Illustrator 29.5.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 141)  -->
   <defs>
+    <clipPath id="clippath">
+      <rect x="179.98" y="363.44" width="115.5" height="140.48" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-1">
+      <rect x="424.11" y="363.44" width="115.5" height="140.48" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-2">
+      <rect x="179.98" y="592.57" width="115.5" height="140.48" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-3">
+      <rect x="422.19" y="592.57" width="115.5" height="140.48" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-4">
+      <rect x="530.94" y="517.75" width="31.17" height="37.91" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-5">
+      <rect x="596.81" y="517.75" width="31.17" height="37.91" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-6">
+      <rect x="530.94" y="579.58" width="31.17" height="37.91" fill="none"/>
+    </clipPath>
+    <clipPath id="clippath-7">
+      <rect x="596.29" y="579.58" width="31.17" height="37.91" fill="none"/>
+    </clipPath>
     <linearGradient id="linear-gradient" x1="1008.62" y1="370.2" x2="1029.08" y2="370.2" gradientTransform="translate(1699.43 -322.04) rotate(90) scale(1 1.49)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#ffd9af"/>
       <stop offset=".17" stop-color="#f6f6f6"/>
@@ -15,7 +39,7 @@
       <feComposite in2="blur" operator="in"/>
       <feComposite in="SourceGraphic"/>
     </filter>
-    <clipPath id="clippath">
+    <clipPath id="clippath-8">
       <path d="M1252.88,685.39s-10.78-1.32-25.98-28.59c-15.2-27.27-10.68-37.21-10.68-37.21-13.84,3.51-21,10.33-21,10.33-4.34,10.04,4.24,29.08,9.8,39.07,5.48,9.84,17.22,27.27,28.04,28.85,0,0,9.54-2.53,19.81-12.46Z" fill="#e73e63"/>
     </clipPath>
     <linearGradient id="linear-gradient1" x1="859.84" y1="510" x2="1060.16" y2="510" gradientUnits="userSpaceOnUse">
@@ -26,16 +50,16 @@
       <stop offset=".5" stop-color="#579032"/>
       <stop offset=".5" stop-color="#70358a"/>
     </linearGradient>
-    <clipPath id="clippath-1">
+    <clipPath id="clippath-9">
       <rect x="834.89" y="215.14" width="35.69" height="43.4" fill="none"/>
     </clipPath>
-    <clipPath id="clippath-2">
+    <clipPath id="clippath-10">
       <rect x="910.32" y="215.14" width="35.69" height="43.4" fill="none"/>
     </clipPath>
-    <clipPath id="clippath-3">
+    <clipPath id="clippath-11">
       <rect x="834.89" y="285.93" width="35.69" height="43.4" fill="none"/>
     </clipPath>
-    <clipPath id="clippath-4">
+    <clipPath id="clippath-12">
       <rect x="909.72" y="285.93" width="35.69" height="43.4" fill="none"/>
     </clipPath>
     <image id="image" width="9600" height="3600" xlink:href="assets/floor.svg"/>
@@ -554,10 +578,161 @@
           </g>
         </g>
       </g>
+      <g id="s-falsebelief-ui-b">
+        <rect id="s-falsebelief-ui-b-sky" width="1920" height="745.39" fill="#ddfffd"/>
+        <rect id="s-falsebelief-ui-b-gras" y="740.36" width="1920" height="339.64" fill="#663"/>
+        <g id="s-falsebelief-ui-b-hut">
+          <polygon points="1748.06 653.55 1748.06 904.23 1442.22 904.23 1442.22 653.55 1444.5 652.15 1463.29 640.67 1463.47 640.59 1468.82 637.31 1518.54 606.93 1537.31 595.45 1537.49 595.36 1542.84 592.08 1595.14 560.13 1647.47 592.08 1652.78 595.36 1652.97 595.45 1671.76 606.93 1721.49 637.31 1726.8 640.59 1726.99 640.67 1745.78 652.15 1748.06 653.55" fill="#9c3d21"/>
+          <rect x="1433.51" y="882.47" width="323.25" height="21.75" fill="#743e41"/>
+          <path d="M1675.5,882.47c-.18-95.07-3.12-172.04-83.79-172.04s-83.61,76.97-83.79,172.04h167.58Z" fill="#4a3f3e"/>
+          <polygon points="1783.9 646.85 1600.54 531.32 1410.99 646.85 1426.58 666.49 1597.44 562.35 1768.3 666.49 1783.9 646.85" fill="#834042"/>
+        </g>
+        <g id="s-falsebelief-ui-b-house">
+          <g>
+            <rect x="451.19" y="374.57" width="694.11" height="432.75" fill="#cebb89"/>
+            <g>
+              <rect x="796.07" y="522.82" width="194.63" height="286.84" fill="#9c3d21"/>
+              <rect x="809.99" y="537.26" width="166.79" height="268.61" fill="#ba7652"/>
+              <circle cx="835.51" cy="666.9" r="10.68" fill="#9c3d21"/>
+            </g>
+          </g>
+          <g>
+            <rect x="942.5" y="151.28" width="126.51" height="99.54" fill="#e1d1a0"/>
+            <rect x="929.4" y="131.36" width="152.72" height="28.89" fill="#9c3d21"/>
+          </g>
+          <polygon points="1176.03 414.8 154.75 414.8 222.67 227.98 1114.91 227.98 1176.03 414.8" fill="#9c3d21"/>
+          <polygon points="359.78 62.14 71.62 326.91 71.62 566.95 71.62 808.4 647.97 808.4 647.97 566.95 647.97 566.95 647.97 326.91 359.78 62.14" fill="#e1d1a0"/>
+          <polygon points="682.41 377.45 359.77 81.05 37.18 377.45 14.51 351.73 359.52 39.19 701.73 353.64 682.41 377.45" fill="#9c3d21"/>
+          <rect x="166.51" y="347.06" width="142.45" height="173.25" fill="#fff"/>
+          <g clip-path="url(#clippath)">
+            <rect x="179.98" y="363.44" width="115.5" height="140.48" fill="#5d7399"/>
+            <g>
+              <rect x="171.51" y="424.9" width="132.44" height="11.56" fill="#fff"/>
+              <rect x="231.95" y="280.02" width="11.56" height="301.33" fill="#fff"/>
+            </g>
+          </g>
+          <rect x="410.64" y="347.06" width="142.44" height="173.25" fill="#fff"/>
+          <g clip-path="url(#clippath-1)">
+            <rect x="424.11" y="363.44" width="115.5" height="140.48" fill="#5d7399"/>
+            <rect x="415.64" y="424.9" width="132.44" height="11.56" fill="#fff"/>
+            <rect x="476.08" y="280.02" width="11.56" height="301.33" fill="#fff"/>
+          </g>
+          <rect x="166.51" y="576.19" width="142.45" height="173.24" fill="#fff"/>
+          <g clip-path="url(#clippath-2)">
+            <rect x="179.98" y="592.57" width="115.5" height="140.49" fill="#5d7399"/>
+            <g>
+              <rect x="171.51" y="654.03" width="132.44" height="11.56" fill="#fff"/>
+              <rect x="231.95" y="509.15" width="11.56" height="301.33" fill="#fff"/>
+            </g>
+          </g>
+          <rect x="410.64" y="576.19" width="142.44" height="173.24" fill="#fff"/>
+          <g clip-path="url(#clippath-3)">
+            <rect x="424.11" y="592.57" width="115.5" height="140.49" fill="#5d7399"/>
+            <g>
+              <rect x="413.72" y="654.03" width="132.44" height="11.56" fill="#fff"/>
+              <rect x="474.16" y="509.15" width="11.56" height="301.33" fill="#fff"/>
+            </g>
+          </g>
+          <rect x="38.29" y="807.32" width="1137.75" height="24.99" fill="#253437"/>
+        </g>
+        <g id="s-falsebelief-ui-b-housesound">
+          <path d="M772.18,621.1c-.18-.2-.39-.38-.62-.53-6.42-4.16-14.39-3.68-19.87,1.18-4.84,4.3-6.56,11.19-4.37,17.54.38,1.1,1.49,1.96,2.48,1.93.98-.04,1.48-.96,1.11-2.07-1.71-4.98-.22-10.49,3.78-14.04,4.42-3.92,10.89-4.47,15.73-1.34,1.02.66,2.08.47,2.4-.42.25-.67-.04-1.58-.64-2.25Z" fill="#3a3b3c"/>
+          <path d="M773.27,612.25c-.18-.2-.39-.38-.62-.53-9-5.84-20.71-5.1-28.47,1.79-6.98,6.19-9.48,16.07-6.34,25.18.38,1.1,1.49,1.96,2.48,1.93.98-.04,1.48-.96,1.11-2.07-2.65-7.71-.39-16.21,5.75-21.66,6.79-6.03,16.79-6.82,24.33-1.94,1.02.66,2.08.47,2.4-.42.25-.67-.04-1.58-.64-2.25h-.01Z" fill="#3a3b3c"/>
+          <path d="M774.01,603.5c.6.68.89,1.58.64,2.28-.32.89-1.41,1.08-2.43.42-10.25-6.65-23.69-5.73-32.68,2.25-8.1,7.19-11.03,18.56-7.44,28.98.38,1.12-.12,2.05-1.12,2.07-1.01.04-2.12-.84-2.5-1.94-4.07-11.81-.9-24.57,8.04-32.51,9.96-8.84,25.13-9.71,36.87-2.09.24.14.44.34.63.55h-.02Z" fill="#3a3b3c"/>
+        </g>
+        <rect id="ph-s-falsebelief-ui-b-dog-lying" x="1509.15" y="788.79" width="159.21" height="107.66" fill="#c92" opacity=".2"/>
+        <image id="link-s-falsebelief-ui-b-dog-lying" transform="translate(1509.06 788.79) scale(.35)" xlink:href="assets/dog-left-lying.svg" isolation="isolate"/>
+        <rect id="ph-s-falsebelief-ui-b-dog-standing" x="1129.24" y="853.98" width="134.94" height="178.26" fill="#c92" opacity=".2"/>
+        <image id="link-s-falsebelief-ui-b-dog-standing" width="321" height="451" transform="translate(1129.24 853.98) scale(.39)" xlink:href="assets/dog-slightleft-standing.svg" isolation="isolate"/>
+        <rect id="ph-s-falsebelief-ui-b-dog-running" x="1139.7" y="876.86" width="205.62" height="154.74" fill="#c92" opacity=".2"/>
+        <image id="link-s-falsebelief-ui-b-dog-running" transform="translate(1140.48 877.97) scale(.42)" xlink:href="assets/dog-right-running.svg" isolation="isolate"/>
+        <rect id="ph-s-falsebelief-ui-b-dog-barking" x="1099.43" y="826.25" width="159.93" height="205.02" fill="#c92" opacity=".2"/>
+        <image id="link-s-falsebelief-ui-b-dog-barking" width="514" height="650" transform="translate(1099.43 826.25) scale(.31)" xlink:href="assets/dog-slightleft-barking.svg" isolation="isolate"/>
+        <g id="german1" data-name="german">
+          <rect id="ph-s-falsebelief-ui-b-german-girl" x="892.05" y="645.05" width="144.88" height="382.21" fill="#c92" opacity=".2"/>
+          <image id="link-s-falsebelief-ui-b-german-girl" transform="translate(891.83 643.26) scale(1.53 1.55)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
+          <rect id="ph-s-falsebelief-ui-b-german-girl-filming" x="906.64" y="697.6" width="166.36" height="299.16" fill="#c92" opacity=".2"/>
+          <image id="link-s-falsebelief-ui-b-german-girl-filming" width="115" height="204" transform="translate(906.64 697.6) scale(1.45 1.47)" xlink:href="assets/german-girl-filming.svg" isolation="isolate"/>
+          <rect id="ph-s-falsebelief-ui-b-german-boy" x="1220" y="637.21" width="147.68" height="389.58" fill="#c92" opacity=".2"/>
+          <image id="link-s-falsebelief-ui-b-german-boy" transform="translate(1220.97 634.92) scale(1.55 1.57)" xlink:href="assets/german-boy.svg" isolation="isolate"/>
+          <rect id="ph-s-falsebelief-ui-b-german-girl-watchingfilm" x="914.05" y="641" width="149.12" height="390.53" fill="#c92" opacity=".2"/>
+          <image id="link-s-falsebelief-ui-b-german-girl-watchingfilm" width="96" height="248" transform="translate(914.05 641) scale(1.55 1.57)" xlink:href="assets/german-girl-watchingfilm.svg" isolation="isolate"/>
+        </g>
+        <g id="s-falsebelief-ui-b-phonesound">
+          <path d="M1074.18,831.06c.21-.15.42-.35.59-.56,4.79-5.96,5.12-13.94.85-19.88-3.78-5.25-10.46-7.66-17-6.14-1.13.27-2.1,1.28-2.17,2.27-.06.98.8,1.57,1.94,1.31,5.13-1.2,10.45.85,13.58,5.18,3.45,4.8,3.34,11.28-.27,15.78-.76.94-.68,2.02.17,2.43.64.31,1.57.12,2.31-.41Z" fill="#3a3b3c"/>
+          <path d="M1082.88,833.04c.21-.15.42-.35.59-.56,6.73-8.36,7.18-20.08,1.12-28.5-5.45-7.57-15.02-11.06-24.4-8.87-1.13.27-2.1,1.28-2.17,2.27-.06.98.8,1.57,1.94,1.31,7.93-1.85,16.16,1.26,20.96,7.93,5.31,7.37,5.07,17.4-.54,24.4-.76.94-.68,2.02.17,2.43.64.31,1.57.12,2.31-.41h.02Z" fill="#3a3b3c"/>
+          <path d="M1091.51,834.67c-.73.53-1.66.72-2.33.41-.85-.41-.93-1.51-.17-2.46,7.66-9.52,8.11-22.98,1.09-32.74-6.33-8.79-17.34-12.86-28.07-10.35-1.15.27-2.02-.33-1.95-1.32.07-1.01,1.05-2.03,2.19-2.28,12.16-2.85,24.54,1.6,31.52,11.31,7.78,10.81,7.1,25.98-1.68,36.89-.17.22-.38.41-.61.57v-.02Z" fill="#3a3b3c"/>
+        </g>
+        <rect id="s-falsebelief-ui-b-blurr" width="1920" height="1080" fill="#fff" opacity=".7"/>
+        <rect id="ph-s-falsebelief-ui-b-repeat" x="20" y="20" width="80" height="80" fill="#b8846e"/>
+        <image id="link-s-falsebelief-ui-b-repeat" transform="translate(30 30) scale(.07)" xlink:href="assets/repeat.svg" isolation="isolate"/>
+        <g id="s-falsebelief-ui-b-right">
+          <rect x="1054.09" y="399.34" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
+          <g>
+            <polygon points="1350.69 512.71 1350.69 631.53 1205.72 631.53 1205.72 512.71 1206.8 512.04 1215.71 506.6 1215.8 506.56 1218.33 505.01 1241.9 490.61 1250.79 485.17 1250.88 485.13 1253.41 483.57 1278.2 468.43 1303.01 483.57 1305.53 485.13 1305.62 485.17 1314.52 490.61 1338.09 505.01 1340.61 506.56 1340.7 506.6 1349.61 512.04 1350.69 512.71" fill="#9c3d21"/>
+            <rect x="1201.6" y="621.22" width="153.22" height="10.31" fill="#743e41"/>
+            <path d="M1316.3,621.22c-.09-45.06-1.48-81.55-39.72-81.55s-39.63,36.48-39.71,81.55h79.43Z" fill="#4a3f3e"/>
+            <polygon points="1367.68 509.53 1280.76 454.77 1190.92 509.53 1198.31 518.84 1279.3 469.48 1360.28 518.84 1367.68 509.53" fill="#834042"/>
+          </g>
+        </g>
+        <g id="s-falsebelief-ui-b-left">
+          <rect x="416.14" y="399.8" width="451.07" height="276.98" fill="#fff" stroke="#c4c4c4" stroke-miterlimit="10" stroke-width="3"/>
+          <g>
+            <g>
+              <rect x="604.12" y="520.75" width="187.29" height="116.77" fill="#cebb89"/>
+              <g>
+                <rect x="697.18" y="560.75" width="52.52" height="77.4" fill="#9c3d21"/>
+                <rect x="700.93" y="564.65" width="45" height="72.48" fill="#ba7652"/>
+                <circle cx="707.82" cy="599.63" r="2.88" fill="#9c3d21"/>
+              </g>
+            </g>
+            <g>
+              <rect x="736.69" y="460.5" width="34.14" height="26.86" fill="#e1d1a0"/>
+              <rect x="733.15" y="455.13" width="41.21" height="7.79" fill="#9c3d21"/>
+            </g>
+            <polygon points="799.7 531.61 524.13 531.61 542.46 481.2 783.21 481.2 799.7 531.61" fill="#9c3d21"/>
+            <polygon points="579.46 436.45 501.7 507.89 501.7 572.66 501.7 637.81 657.22 637.81 657.22 572.66 657.22 572.66 657.22 507.89 579.46 436.45" fill="#e1d1a0"/>
+            <polygon points="666.51 521.53 579.45 441.55 492.41 521.53 486.29 514.59 579.38 430.26 671.72 515.11 666.51 521.53" fill="#9c3d21"/>
+            <rect x="527.31" y="513.33" width="38.44" height="46.75" fill="#fff"/>
+            <g clip-path="url(#clippath-4)">
+              <rect x="530.94" y="517.75" width="31.17" height="37.91" fill="#5d7399"/>
+              <g>
+                <rect x="528.65" y="534.33" width="35.74" height="3.12" fill="#fff"/>
+                <rect x="544.96" y="495.24" width="3.12" height="81.31" fill="#fff"/>
+              </g>
+            </g>
+            <rect x="593.18" y="513.33" width="38.44" height="46.75" fill="#fff"/>
+            <g clip-path="url(#clippath-5)">
+              <rect x="596.81" y="517.75" width="31.17" height="37.91" fill="#5d7399"/>
+              <rect x="594.53" y="534.33" width="35.74" height="3.12" fill="#fff"/>
+              <rect x="610.84" y="495.24" width="3.12" height="81.31" fill="#fff"/>
+            </g>
+            <rect x="527.31" y="575.16" width="38.44" height="46.75" fill="#fff"/>
+            <g clip-path="url(#clippath-6)">
+              <rect x="530.94" y="579.57" width="31.17" height="37.91" fill="#5d7399"/>
+              <g>
+                <rect x="528.65" y="596.16" width="35.74" height="3.12" fill="#fff"/>
+                <rect x="544.96" y="557.07" width="3.12" height="81.31" fill="#fff"/>
+              </g>
+            </g>
+            <rect x="593.18" y="575.16" width="38.44" height="46.75" fill="#fff"/>
+            <g clip-path="url(#clippath-7)">
+              <rect x="596.81" y="579.57" width="31.17" height="37.91" fill="#5d7399"/>
+              <g>
+                <rect x="594.01" y="596.16" width="35.74" height="3.12" fill="#fff"/>
+                <rect x="610.32" y="557.07" width="3.12" height="81.31" fill="#fff"/>
+              </g>
+            </g>
+            <rect x="492.71" y="637.52" width="307" height="6.74" fill="#253437"/>
+          </g>
+        </g>
+        <rect id="ph-s-falsebelief-ui-b-german-subject" x="887.72" y="131.24" width="139.13" height="217.56" fill="#c92" opacity=".2"/>
+        <image id="link-s-falsebelief-ui-b-german-subject" transform="translate(887.72 134.15) scale(3.09 3.25)" xlink:href="assets/german-boy-portrait-smiling.svg" isolation="isolate"/>
+      </g>
       <g id="s-falsebelief-uc-a">
         <rect id="ph-s-falsebelief-uc-a-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-falsebelief-uc-a-floor" transform="translate(4.37 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german1" data-name="german">
+        <g id="german2" data-name="german">
           <rect id="ph-s-falsebelief-uc-a-german-girl-cookies" x="821.84" y="204.37" width="270.31" height="864.09" fill="#c92" opacity=".2"/>
           <image id="link-s-falsebelief-uc-a-german-girl-cookies" width="75" height="249" transform="translate(830.51 204.37) scale(3.44 3.45)" xlink:href="assets/german-girl-cookies.svg"/>
           <rect id="ph-s-falsebelief-uc-a-german-girl-bandaids" x="822.88" y="218.75" width="270.08" height="847.57" fill="#c92" opacity=".2"/>
@@ -775,7 +950,7 @@
             <path d="M772.14,627.18c.28.13.52.29.65.54,0,.02.02.03.03.05.11.24.11.56.02.81-.08.17-.21.33-.35.46-.05,0-.1,0-.16,0-.03,0-.07,0-.1,0-.15,0-.31,0-.46,0-.08,0-.16,0-.24,0-.12,0-.23,0-.35,0-.04,0-.07,0-.11,0q-.25,0-.35-.07c-.05-.05-.1-.11-.14-.17-.02-.03-.04-.05-.06-.08-.16-.28-.18-.59-.1-.89.13-.32.42-.55.77-.69.29-.11.69-.09.97.02Z" fill="#dba07e"/>
             <path d="M761.89,627.24s.05.03.07.04c.29.18.43.4.54.68.03.39-.03.71-.33,1.02-.08.06-.13.06-.24.07-.03,0-.07,0-.1,0-.04,0-.07,0-.11,0-.04,0-.07,0-.11,0-.08,0-.16,0-.24,0-.12,0-.24,0-.36,0-.08,0-.15,0-.23,0-.04,0-.07,0-.11,0q-.25,0-.35-.07c-.1-.1-.17-.2-.23-.32-.01-.02-.02-.05-.04-.07-.11-.26-.12-.58.02-.83.1-.17.21-.33.38-.44.02-.01.04-.02.06-.04.4-.24.97-.27,1.38-.04Z" fill="#dba07e"/>
             <path d="M746.49,636.19c.11.08.2.18.28.29.01.02.03.03.04.05.15.21.18.49.15.73-.1.31-.28.56-.58.75-.34.16-.65.21-1.03.13-.31-.08-.56-.24-.74-.48,0-.07,0-.13.02-.2t0-.06c.02-.14.06-.28.1-.41.03-.09.05-.17.07-.26,0-.03.02-.06.02-.09.02-.07.03-.14.05-.21q.06-.26.17-.35c.46-.21,1.04-.14,1.46.11Z" fill="#dba07e"/>
-            <path d="M746.28,630.67l.07.04c.15.08.3.18.39.31-.01.09-.05.13-.11.19-.02.02-.03.03-.05.05-.02.02-.03.03-.05.05-.02.02-.03.03-.05.05-.04.04-.09.08-.13.12-.05-.06-.11-.12-.16-.19-.11-.12-.26-.17-.44-.2-.2,0-.35.05-.52.15-.15.13-.18.26-.19.44,0,.19.1.3.25.44.11.07.21.1.34.14-.1.16-.19.31-.31.46-.35-.07-.57-.25-.77-.51-.17-.26-.17-.61-.1-.9.14-.32.38-.54.73-.68.33-.11.77-.11,1.08.05Z" fill="#dba07e"/>
+            <path d="M746.28,630.67s.05.02.07.04c.15.08.3.18.39.31-.01.09-.05.13-.11.19-.02.02-.03.03-.05.05-.02.02-.03.03-.05.05-.02.02-.03.03-.05.05-.04.04-.09.08-.13.12-.05-.06-.11-.12-.16-.19-.11-.12-.26-.17-.44-.2-.2,0-.35.05-.52.15-.15.13-.18.26-.19.44,0,.19.1.3.25.44.11.07.21.1.34.14-.1.16-.19.31-.31.46-.35-.07-.57-.25-.77-.51-.17-.26-.17-.61-.1-.9.14-.32.38-.54.73-.68.33-.11.77-.11,1.08.05Z" fill="#dba07e"/>
             <path d="M825.08,645.64c.14.11.23.23.26.39,0,.2-.03.33-.18.48-.13.11-.27.17-.44.19-.2,0-.36-.06-.51-.17-.15-.15-.24-.28-.23-.49.03-.18.13-.32.29-.43.25-.15.58-.13.82.02Z" fill="#fefdfc"/>
             <path d="M824.94,652.06c.18.09.32.24.39.41.02.22-.01.35-.16.54-.12.12-.27.17-.44.19-.21,0-.36-.03-.52-.15-.16-.16-.24-.28-.23-.49.03-.15.12-.29.24-.39.03-.01.05-.03.08-.04.03-.02.05-.03.08-.05.18-.06.39-.07.58-.01Z" fill="#fefdfc"/>
             <path d="M761.53,633.07c.17.09.32.22.38.38.03.15.03.3-.05.44-.13.16-.26.27-.48.31-.21.03-.35,0-.52-.1-.17-.14-.27-.27-.29-.48,0-.18.08-.31.22-.44.21-.17.49-.21.75-.11Z" fill="#fefdfd"/>
@@ -1400,7 +1575,7 @@
       <g id="s-falsebelief-col-b">
         <rect id="ph-s-falsebelief-col-b-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-falsebelief-col-b-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german2" data-name="german">
+        <g id="german3" data-name="german">
           <rect id="ph-s-falsebelief-col-b-german-girl" x="1103.65" y="205.65" width="201.83" height="536.16" fill="#c92" opacity=".2"/>
           <image id="link-s-falsebelief-col-b-german-girl" transform="translate(1103.04 206.22) scale(2.13 2.16)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-falsebelief-col-b-german-girl-handsup" x="1073.5" y="204.11" width="266.85" height="538.48" fill="#c92" opacity=".2"/>
@@ -1625,7 +1800,7 @@
         </g>
         <rect id="ph-s-falsebelief-col-a-dog-lying" x="1170.43" y="752.69" width="189.89" height="128.41" fill="#c92" opacity=".2"/>
         <image id="link-s-falsebelief-col-a-dog-lying" transform="translate(1170.32 752.69) scale(.42)" xlink:href="assets/dog-left-lying.svg" isolation="isolate"/>
-        <g id="german3" data-name="german">
+        <g id="german4" data-name="german">
           <rect id="ph-s-falsebelief-col-a-german-girl" x="871.94" y="551.88" width="176.12" height="464.62" fill="#c92" opacity=".2"/>
           <image id="link-s-falsebelief-col-a-german-girl" transform="translate(871.67 549.7) scale(1.86 1.89)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-falsebelief-col-a-german-girl-kneeling" x="1000.43" y="539.5" width="171.59" height="376.94" fill="#c92" opacity=".2"/>
@@ -1688,7 +1863,7 @@
           <path d="M510.17,636.07c-1.73-1.79-2.84,4.73-6.14,3.23,1.84,1.9,3.77,3.59,5.78,5.09.88-2.57,1.16-5.4.36-8.32Z" fill="#436630"/>
           <path d="M158.56,626.74c14.27,20.56,47.74,41.82,67.79,10.76-7.11,11.84-7.45,28.75-.24,40.07,15.85,20.27,41.18,17.74,53.67-7.72.61,8.31,1.38,18.71,8.13,23.79,10.21,8.66,17.01-7.33,25.03-6.69,16.35,5.43,35.08-.11,37.97-25.91,3.41,24.66,22.41,44.35,40.68,32.58,10.71-6.17,19.08-22.46,16.13-40.88,13.01,25.01,41.45,42.97,59.11,22.88,4.42-5.02-7.98-21.71-17.73-24.14,7.87-1.44,17.16-5.25,25.49-.46,8.33,4.79,18.08,7.22,27.37,3.41,2.91-1.87,6.32-5.55,7.86-10.04-2.01-1.5-3.95-3.18-5.78-5.09,3.3,1.5,4.42-5.02,6.14-3.23.8,2.92.52,5.75-.36,8.32,13.11,9.79,29.43,11.08,42.81,4.97,18.58-7.62,22.73-37.87,24.2-61.31-.35,16.92,6.05,38.92,18.95,40.77,14.62,3.64,30.06-3.4,36.55-23.55,6.36-22.31,3.77-44.42-7.98-57.73-.34.13-.68.25-1.03.39.17-.33.33-.65.49-.98-2.18-2.36-4.62-4.47-7.4-6.19,2.78,1.72,5.22,3.83,7.4,6.19,29.25-57.11-60.94-38.44-80.37-22.32,45.45-141.05-133.37-99.87-163.75-14.25-10.62-35.97-24.64-31.3-47.02-10.35-28.76-73.69-114.44-15.48-110.5,30.31,1.86,2.83,3.54,6.16,5,10.08-1.73-1.79-1.42,2.37-1.42,2.37-2.07-3.96-3.21-8.15-3.58-12.45-11.33-17.27-29.53-14.92-47.39-1.57-1.36,1.6-2.67,3.31-3.92,5.11-18.93,24.54-30.19,66.63-12.31,92.85Z" fill="#86a33d"/>
         </g>
-        <g id="german4" data-name="german">
+        <g id="german5" data-name="german">
           <rect id="ph-s-diversebeliefs-c-german-boy" x="799.36" y="140.68" width="321.29" height="847.57" fill="#c92" opacity=".2"/>
           <image id="link-s-diversebeliefs-c-german-boy" transform="translate(801.47 135.69) scale(3.37 3.42)" xlink:href="assets/german-boy.svg" isolation="isolate"/>
           <rect id="ph-s-diversebeliefs-c-german-boy-left-pointing" x="823.1" y="151.23" width="226.37" height="848.77" fill="#c92" opacity=".2"/>
@@ -1765,7 +1940,7 @@
           <path d="M510.17,656.07c-1.73-1.79-2.84,4.73-6.14,3.23,1.84,1.9,3.77,3.59,5.78,5.09.88-2.57,1.16-5.4.36-8.32Z" fill="#436630"/>
           <path d="M158.56,646.74c14.27,20.56,47.74,41.82,67.79,10.76-7.11,11.84-7.45,28.75-.24,40.07,15.85,20.27,41.18,17.74,53.67-7.72.61,8.31,1.38,18.71,8.13,23.79,10.21,8.66,17.01-7.33,25.03-6.69,16.35,5.43,35.08-.11,37.97-25.91,3.41,24.66,22.41,44.35,40.68,32.58,10.71-6.17,19.08-22.46,16.13-40.88,13.01,25.01,41.45,42.97,59.11,22.88,4.42-5.02-7.98-21.71-17.73-24.14,7.87-1.44,17.16-5.25,25.49-.46,8.33,4.79,18.08,7.22,27.37,3.41,2.91-1.87,6.32-5.55,7.86-10.04-2.01-1.5-3.95-3.18-5.78-5.09,3.3,1.5,4.42-5.02,6.14-3.23.8,2.92.52,5.75-.36,8.32,13.11,9.79,29.43,11.08,42.81,4.97,18.58-7.62,22.73-37.87,24.2-61.31-.35,16.92,6.05,38.92,18.95,40.77,14.62,3.64,30.06-3.4,36.55-23.55,6.36-22.31,3.77-44.42-7.98-57.73-.34.13-.68.25-1.03.39.17-.33.33-.65.49-.98-2.18-2.36-4.62-4.47-7.4-6.19,2.78,1.72,5.22,3.83,7.4,6.19,29.25-57.11-60.94-38.44-80.37-22.32,45.45-141.05-133.37-99.87-163.75-14.25-10.62-35.97-24.64-31.3-47.02-10.35-28.76-73.69-114.44-15.48-110.5,30.31,1.86,2.83,3.54,6.16,5,10.08-1.73-1.79-1.42,2.37-1.42,2.37-2.07-3.96-3.21-8.15-3.58-12.45-11.33-17.27-29.53-14.92-47.39-1.57-1.36,1.6-2.67,3.31-3.92,5.11-18.93,24.54-30.19,66.63-12.31,92.85Z" fill="#86a33d"/>
         </g>
-        <g id="german5" data-name="german">
+        <g id="german6" data-name="german">
           <rect id="ph-s-diversebeliefs-b-german-girl" x="799.36" y="140.68" width="321.29" height="847.57" fill="#c92" opacity=".2"/>
           <image id="link-s-diversebeliefs-b-german-girl" transform="translate(798.87 136.69) scale(3.39 3.44)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-diversebeliefs-b-german-girl-left-pointing" x="801.91" y="136.69" width="258.58" height="863.31" fill="#c92" opacity=".2"/>
@@ -1893,7 +2068,7 @@
       <g id="s-diversedesires-e">
         <rect id="ph-s-diversedesires-e-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-diversedesires-e-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german6" data-name="german">
+        <g id="german7" data-name="german">
           <rect id="ph-s-diversedesires-e-german-boy" x="800.09" y="38.58" width="315.26" height="850" fill="#c92" opacity=".2"/>
           <image id="link-s-diversedesires-e-german-boy" transform="translate(800.09 38.58) scale(3.35 3.4)" xlink:href="assets/german-boy.svg" isolation="isolate"/>
           <rect id="ph-s-diversedesires-e-german-boy-yay" x="849.45" y="37.86" width="268.56" height="851.88" fill="#c92" opacity=".2"/>
@@ -2124,7 +2299,7 @@
       <g id="s-diversedesires-d">
         <rect id="ph-s-diversedesires-d-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-diversedesires-d-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german7" data-name="german">
+        <g id="german8" data-name="german">
           <rect id="ph-s-diversedesires-d-german-boy" x="801.48" y="51.31" width="315.26" height="850" fill="#c92" opacity=".2"/>
           <image id="link-s-diversedesires-d-german-boy" transform="translate(801.48 51.31) scale(3.35 3.4)" xlink:href="assets/german-boy.svg" isolation="isolate"/>
           <rect id="ph-s-diversedesires-d-german-boy-left-nay" x="816.86" y="64.31" width="259.97" height="834.45" fill="#c92" opacity=".2"/>
@@ -3264,7 +3439,7 @@
       <g id="s-diversedesires-b">
         <rect id="ph-s-diversedesires-b-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-diversedesires-b-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german8" data-name="german">
+        <g id="german9" data-name="german">
           <rect id="ph-s-diversedesires-b-german-girl" x="800.74" y="48.64" width="321.29" height="847.57" fill="#c92" opacity=".2"/>
           <image id="link-s-diversedesires-b-german-girl" transform="translate(797.97 44.66) scale(3.39 3.44)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-diversedesires-b-german-girl-nay" x="806.2" y="62.22" width="280" height="819.78" fill="#c92" opacity=".2"/>
@@ -3453,7 +3628,7 @@
               <g filter="url(#drop-shadow-1)">
                 <g>
                   <path d="M1252.88,685.39s-10.78-1.32-25.98-28.59c-15.2-27.27-10.68-37.21-10.68-37.21-13.84,3.51-21,10.33-21,10.33-4.34,10.04,4.24,29.08,9.8,39.07,5.48,9.84,17.22,27.27,28.04,28.85,0,0,9.54-2.53,19.81-12.46Z" fill="#e73e63"/>
-                  <g clip-path="url(#clippath)">
+                  <g clip-path="url(#clippath-8)">
                     <path d="M1224.19,616.4c-4.13-2.88-8.35-3.22-13.26-2.78-5.38.47-10.22,1.57-15.15,3.79-4.88,2.2-9.35,4.98-13.85,7.85-4.09,2.61-8.5,5.07-11.59,8.89-1.08,1.34.29,3.04,1.83,2.3,8.5-4.07,17.21-7.82,26.08-11.04,8.41-3.05,17.06-4.71,25.7-6.87,1.07-.27,1.01-1.61.24-2.14Z" fill="#ad2f4a"/>
                     <path d="M1225.18,621.86c.82-1.11.32-2.77-.53-3.67-2.91-3.04-9.04-2.43-12.87-2.23-5,.26-9.89,1.45-14.61,3.08-4.78,1.65-9.38,3.88-13.77,6.37-4.52,2.56-7.96,5.99-11.01,10.12-2,2.71,1.48,6.87,4.5,5.65,4.01-1.62,7.89-3.31,11.59-5.58,3.77-2.31,7.72-4.29,11.86-5.84,4.18-1.57,8.66-2.83,13.05-3.67,4.06-.77,9.12-.6,11.8-4.22Z" fill="#ad2f4a"/>
                     <path d="M1239.18,706.83c3.52-1.96,6.94-4.04,10.01-6.67,2.87-2.46,5.36-5.39,7.26-8.65.89-1.52,1.72-3.15,2.29-4.82.47-1.38.41-2.82.88-4.19.61-1.76-1.42-3.56-3.11-2.97-2.68.93-4.3,2.93-6.51,4.57-2.83,2.11-5.75,4.25-8.81,6.01-3.01,1.73-6.02,3.41-9.14,4.94-3.68,1.81-7.57,3.21-10.65,6-5.3,4.81.56,12.87,6.8,11.26,3.86-1,7.51-3.53,10.97-5.46Z" fill="#ad2f4a"/>
@@ -3513,7 +3688,7 @@
       <g id="s-diversedesires-a">
         <rect id="ph-s-diversedesires-a-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-diversedesires-a-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german9" data-name="german">
+        <g id="german10" data-name="german">
           <rect id="ph-s-diversedesires-a-german-girl" x="799.36" y="41.13" width="321.29" height="847.57" fill="#c92" opacity=".2"/>
           <image id="link-s-diversedesires-a-german-girl" transform="translate(796.59 37.15) scale(3.39 3.44)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-diversedesires-a-german-girl-nay" x="804.82" y="54.71" width="280" height="819.78" fill="#c92" opacity=".2"/>
@@ -3790,7 +3965,7 @@
       <g id="s-knowledgeaccess-c">
         <rect id="ph-s-knowledgeaccess-c-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-knowledgeaccess-c-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german10" data-name="german">
+        <g id="german11" data-name="german">
           <rect id="ph-s-knowledgeaccess-c-german-girl" x="827.95" y="31.68" width="297.45" height="790.18" fill="#c92" opacity=".2"/>
           <image id="link-s-knowledgeaccess-c-german-girl" transform="translate(827.04 32.53) scale(3.14 3.18)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-knowledgeaccess-c-german-girl-handsup" x="787.83" y="35.63" width="387.44" height="778.58" fill="#c92" opacity=".2"/>
@@ -3847,7 +4022,7 @@
       <g id="s-knowledgeaccess-b">
         <rect id="ph-s-knowledgeaccess-b-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-knowledgeaccess-b-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german11" data-name="german">
+        <g id="german12" data-name="german">
           <rect id="ph-s-knowledgeaccess-b-german-girl" x="872.7" y="31.93" width="297.45" height="790.18" fill="#c92" opacity=".2"/>
           <image id="link-s-knowledgeaccess-b-german-girl" transform="translate(871.8 32.77) scale(3.14 3.18)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-knowledgeaccess-b-german-girl-handsup" x="832.59" y="35.88" width="387.44" height="778.58" fill="#c92" opacity=".2"/>
@@ -3931,7 +4106,7 @@
       <g id="s-knowledgeaccess-a">
         <rect id="ph-s-knowledgeaccess-a-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-knowledgeaccess-a-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german12" data-name="german">
+        <g id="german13" data-name="german">
           <rect id="ph-s-knowledgeaccess-a-german-girl" x="864.77" y="37.44" width="297.45" height="790.18" fill="#c92" opacity=".2"/>
           <image id="link-s-knowledgeaccess-a-german-girl" transform="translate(863.87 38.28) scale(3.14 3.18)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-knowledgeaccess-a-german-boy" x="864.27" y="37.44" width="297.45" height="790.18" fill="#c92" opacity=".2"/>
@@ -3979,7 +4154,7 @@
       <g id="s-perspectivetaking-two-d">
         <rect id="ph-s-perspectivetaking-two-d-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-perspectivetaking-two-d-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german13" data-name="german">
+        <g id="german14" data-name="german">
           <rect id="ph-s-perspectivetaking-two-d-german-girl-sitting" x="414.2" y="176.17" width="363.76" height="742.17" fill="#c92" opacity=".2"/>
           <image id="link-s-perspectivetaking-two-d-german-girl-sitting" transform="translate(412.25 178.55) scale(3.45 3.46)" xlink:href="assets/german-girl-right-sitting.svg" isolation="isolate"/>
           <rect id="ph-s-perspectivetaking-two-d-german-boy-sitting" x="1137.49" y="176.88" width="363.76" height="742.17" fill="#c92" opacity=".2"/>
@@ -4164,7 +4339,7 @@
       <g id="s-perspectivetaking-two-c">
         <rect id="ph-s-perspectivetaking-two-c-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-perspectivetaking-two-c-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german14" data-name="german">
+        <g id="german15" data-name="german">
           <rect id="ph-s-perspectivetaking-two-c-german-girl-sitting" x="417.49" y="173.51" width="363.76" height="742.17" fill="#c92" opacity=".2"/>
           <image id="link-s-perspectivetaking-two-c-german-girl-sitting" transform="translate(415.54 175.89) scale(3.45 3.46)" xlink:href="assets/german-girl-right-sitting.svg" isolation="isolate"/>
           <rect id="ph-s-perspectivetaking-two-c-german-boy-sitting" x="1140.78" y="174.22" width="363.76" height="742.17" fill="#c92" opacity=".2"/>
@@ -4280,7 +4455,7 @@
       <g id="s-perspectivetaking-two-b">
         <rect id="ph-s-perspectivetaking-two-b-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-perspectivetaking-two-b-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german15" data-name="german">
+        <g id="german16" data-name="german">
           <rect id="ph-s-perspectivetaking-two-b-german-girl-sitting" x="418.66" y="178.99" width="363.76" height="742.17" fill="#c92" opacity=".2"/>
           <image id="link-s-perspectivetaking-two-b-german-girl-sitting" transform="translate(416.71 181.37) scale(3.45 3.46)" xlink:href="assets/german-girl-right-sitting.svg" isolation="isolate"/>
           <rect id="ph-s-perspectivetaking-two-b-german-boy-sitting" x="1141.95" y="179.7" width="363.76" height="742.17" fill="#c92" opacity=".2"/>
@@ -4683,7 +4858,7 @@
       <g id="s-perspectivetaking-one-d">
         <rect id="ph-s-perspectivetaking-one-d-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-perspectivetaking-one-d-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german16" data-name="german">
+        <g id="german17" data-name="german">
           <rect id="ph-s-perspectivetaking-one-d-german-girl-slightleft" x="226.73" y="359.88" width="185.57" height="663.27" fill="#c92" opacity=".2"/>
           <image id="link-s-perspectivetaking-one-d-german-girl-slightleft" width="59" height="252" transform="translate(240.6 360) scale(2.67 2.63)" xlink:href="assets/german-girl-right-standing.svg" isolation="isolate"/>
           <g id="s-perspectivetaking-one-d-tent">
@@ -4717,7 +4892,7 @@
       <g id="s-perspectivetaking-one-c">
         <rect id="ph-s-perspectivetaking-one-c-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-perspectivetaking-one-c-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german17" data-name="german">
+        <g id="german18" data-name="german">
           <rect id="ph-s-perspectivetaking-one-c-german-girl-slightleft" x="1147.35" y="141.86" width="134.86" height="482.03" fill="#c92" opacity=".2"/>
           <image id="link-s-perspectivetaking-one-c-german-girl-slightleft" width="69" height="248" transform="translate(1147.35 141.86) scale(1.95 1.94)" xlink:href="assets/german-girl-slightleft-standing.svg" isolation="isolate"/>
           <g id="s-perspectivetaking-one-c-tent">
@@ -4751,7 +4926,7 @@
       <g id="s-perspectivetaking-one-b">
         <rect id="ph-s-perspectivetaking-one-b-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-perspectivetaking-one-b-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german18" data-name="german">
+        <g id="german19" data-name="german">
           <rect id="ph-s-perspectivetaking-one-b-german-girl" x="475" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
           <image id="link-s-perspectivetaking-one-b-german-girl" transform="translate(475 212.51) scale(3.42 3.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-perspectivetaking-one-b-german-boy-slightright" x="1122" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
@@ -4761,7 +4936,7 @@
       <g id="s-perspectivetaking-one-a">
         <rect id="ph-s-perspectivetaking-one-a-floor" y="430" width="1920" height="650" fill="#c92" opacity=".2"/>
         <image id="link-s-perspectivetaking-one-a-floor" transform="translate(0 430) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german19" data-name="german">
+        <g id="german20" data-name="german">
           <rect id="ph-s-perspectivetaking-one-a-german-girl" x="1122" y="212.63" width="325.24" height="817.37" fill="#c92" opacity=".2"/>
           <image id="link-s-perspectivetaking-one-a-german-girl" transform="translate(1122 212.51) scale(3.42 3.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-perspectivetaking-one-a-german-boy-slightright" x="510.75" y="212.63" width="251.19" height="817.37" fill="#c92" opacity=".2"/>
@@ -4797,7 +4972,7 @@
         <image id="link-s-dogtraining-floor" transform="translate(0 433.51) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
         <rect id="ph-s-dogtraining-dog-lying" x="868.48" y="772.6" width="183.04" height="234.69" fill="#c92" opacity=".2"/>
         <image id="link-s-dogtraining-dog-lying" width="244" height="326" transform="translate(868.48 772.6) scale(.75 .72)" xlink:href="assets/dog-lying.svg" isolation="isolate"/>
-        <g id="german20" data-name="german">
+        <g id="german21" data-name="german">
           <rect id="ph-s-dogtraining-german-girl" x="548.27" y="163.45" width="325.24" height="814.36" fill="#c92" opacity=".2"/>
           <image id="link-s-dogtraining-german-girl" transform="translate(548.27 163.45) scale(3.42 3.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-dogtraining-german-girl-kneeling" x="559.61" y="350.87" width="336.46" height="613" fill="#c92" opacity=".2"/>
@@ -4813,7 +4988,7 @@
       <g id="s-parentstraining">
         <rect id="ph-s-parentstraining-floor" y="433.51" width="1920" height="646.49" fill="#c92" opacity=".2"/>
         <image id="link-s-parentstraining-floor" transform="translate(0 433.51) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german21" data-name="german">
+        <g id="german22" data-name="german">
           <rect id="ph-s-parentstraining-german-girl" x="844.99" y="477.56" width="228.11" height="568.89" fill="#c92" opacity=".2"/>
           <image id="link-s-parentstraining-german-girl" transform="translate(846.9 477.56) scale(2.38 2.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-parentstraining-german-woman" x="502.66" y="163.73" width="272.64" height="844.02" fill="#c92" opacity=".2"/>
@@ -4829,7 +5004,7 @@
       <g id="s-namestraining">
         <rect id="ph-s-namestraining-floor" y="433.51" width="1920" height="646.49" fill="#c92" opacity=".2"/>
         <image id="link-s-namestraining-floor" transform="translate(0 433.51) scale(.2 .18)" xlink:href="assets/floor.svg" isolation="isolate"/>
-        <g id="german22" data-name="german">
+        <g id="german23" data-name="german">
           <rect id="ph-s-namestraining-german-girl" x="479.13" y="177.27" width="325.24" height="814.36" fill="#c92" opacity=".2"/>
           <image id="link-s-namestraining-german-girl" transform="translate(479.13 177.27) scale(3.42 3.28)" xlink:href="assets/german-girl.svg" isolation="isolate"/>
           <rect id="ph-s-namestraining-german-girl-waving" x="477.78" y="177.96" width="354.4" height="815.57" fill="#c92" opacity=".2"/>
@@ -5146,7 +5321,7 @@
           <polygon points="890.44 122.05 801.41 203.85 801.41 278.02 801.41 352.61 979.48 352.61 979.48 278.02 979.48 278.02 979.48 203.85 890.44 122.05" fill="#e1d1a0"/>
           <polygon points="990.12 219.47 890.44 127.9 790.78 219.47 777.37 204.88 890.44 100.99 1003.52 204.88 990.12 219.47" fill="#9c3d21"/>
           <rect x="830.73" y="210.08" width="44.01" height="53.53" fill="#fff"/>
-          <g clip-path="url(#clippath-1)">
+          <g clip-path="url(#clippath-9)">
             <rect x="834.89" y="215.14" width="35.69" height="43.4" fill="#5d7399"/>
             <g>
               <rect x="832.28" y="234.13" width="40.92" height="3.57" fill="#fff"/>
@@ -5154,13 +5329,13 @@
             </g>
           </g>
           <rect x="906.16" y="210.08" width="44.01" height="53.53" fill="#fff"/>
-          <g clip-path="url(#clippath-2)">
+          <g clip-path="url(#clippath-10)">
             <rect x="910.32" y="215.14" width="35.68" height="43.4" fill="#5d7399"/>
             <rect x="907.7" y="234.13" width="40.92" height="3.57" fill="#fff"/>
             <rect x="926.37" y="189.37" width="3.57" height="93.1" fill="#fff"/>
           </g>
           <rect x="830.73" y="280.87" width="44.01" height="53.52" fill="#fff"/>
-          <g clip-path="url(#clippath-3)">
+          <g clip-path="url(#clippath-11)">
             <rect x="834.89" y="285.93" width="35.69" height="43.4" fill="#5d7399"/>
             <g>
               <rect x="832.28" y="304.92" width="40.92" height="3.57" fill="#fff"/>
@@ -5168,7 +5343,7 @@
             </g>
           </g>
           <rect x="906.16" y="280.87" width="44.01" height="53.52" fill="#fff"/>
-          <g clip-path="url(#clippath-4)">
+          <g clip-path="url(#clippath-12)">
             <rect x="910.32" y="285.93" width="35.68" height="43.4" fill="#5d7399"/>
             <g>
               <rect x="907.11" y="304.92" width="40.92" height="3.57" fill="#fff"/>
