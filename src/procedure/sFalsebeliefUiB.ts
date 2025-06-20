@@ -42,26 +42,15 @@ export default async ({ currentSlide, previousSlide }) => {
 	const dogRunning = document.getElementById(
 		`link-${slidePrefix}-dog-running`,
 	) as SvgInHtml;
-	const houseSound = document.getElementById(
-		`${slidePrefix}-housesound`,
-	) as SvgInHtml;
-	const phoneSound = document.getElementById(
-		`${slidePrefix}-phonesound`,
+	const housewall = document.getElementById(
+		`${slidePrefix}-housewall`,
 	) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
 		gsap.set(
-			[
-				girlWatchingfilm,
-				girlFilming,
-				dogLying,
-				dogBarking,
-				dogRunning,
-				houseSound,
-				phoneSound,
-			],
+			[girlWatchingfilm, girlFilming, dogLying, dogBarking, dogRunning],
 			{
 				autoAlpha: 0,
 				x: 0,
@@ -70,6 +59,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set([girl, dogStanding], {
 			autoAlpha: 1,
 			x: 0,
+			y: 0,
 		});
 		gsap.set(boy, { autoAlpha: 1, x: -1400 });
 
@@ -150,14 +140,14 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 0.1,
 			})
 			.to(
-				[girlWatchingfilm, phoneSound],
+				[girlWatchingfilm],
 				{
 					autoAlpha: 1,
 					duration: 0.1,
 				},
 				'<',
 			)
-			.to([girlWatchingfilm, phoneSound], {
+			.to([girlWatchingfilm], {
 				delay: 3,
 				autoAlpha: 0,
 				duration: 0.1,
@@ -166,12 +156,13 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 2,
-				x: -70,
-				y: -80,
-				duration: 1,
+				x: -170,
+				y: -100,
+				scale: 0.8,
+				duration: 2,
 			})
 			.to(girl, {
-				delay: 2,
+				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
 				onComplete: () => data.sprite.playPromise(`${slidePrefix}-6`),
@@ -182,12 +173,12 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 5,
 				onComplete: () => data.sprite.playPromise(`${slidePrefix}-7`),
 			})
-			.to(houseSound, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000 - 1,
-				autoAlpha: 1,
-				duration: 0.1,
+			.to(housewall, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000 - 2,
+				autoAlpha: 0.5,
+				duration: 0.5,
 			})
-			.to(houseSound, { delay: 2, autoAlpha: 0, duration: 0.1 });
+			.to(housewall, { delay: 2, autoAlpha: 1, duration: 0.5 });
 	}
 
 	// In beginning, hide response options
