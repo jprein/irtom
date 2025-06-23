@@ -101,11 +101,11 @@ procedure:
     # - s-knowledgeaccess-b
     # - s-dogtraining
     # - s-knowledgeaccess-c
+    # - s-diversedesires-e
     # - s-diversedesires-a
     # - s-diversedesires-b
     # - s-diversedesires-c
     # - s-diversedesires-d
-    # - s-diversedesires-e
     # - s-diversebeliefs-a
     # - s-diversebeliefs-b
     # - s-diversebeliefs-c
@@ -113,10 +113,12 @@ procedure:
     # - s-falsebelief-col-a
     # - s-falsebelief-col-b
     # - s-falsebelief-uc-a
-    - s-falsebelief-ui-b
+    # - s-aspectuality-a
+    - s-aspectuality-b
+    # - s-falsebelief-ui-b
     # - s-falsebelief-two-a
     # - s-falsebelief-two-b
-    # - s-end
+    - s-end
 
   english:
     - s-introduction
