@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { gsap } from 'gsap';
 import config from '../config.yaml';
-import { stop } from '../util/audio';
+import { stop } from '../../src/util/audio';
 import {
 	uploadCsv,
 	downloadCsv,
@@ -9,8 +9,11 @@ import {
 	sleep,
 	downloadWebcamVideo,
 	uploadWebcamVideo,
-} from '../util/helpers';
-import type { SvgInHtml } from '../types';
+} from '../../src/util/helpers';
+import type { SvgInHtml } from '../../src/types';
+
+// register all slide modules in this folder
+const slideModules = import.meta.glob('./s*.ts');
 
 export const procedure = async () => {
 	let currentProcedure = _.cloneDeep(config.procedure[data.community]);
@@ -148,12 +151,25 @@ export const procedure = async () => {
 		// kebab-cased arguments, as required by Illustrator slide IDs
 
 		// Import the slide behavior dynamically
+		// const runSlideBehavior = async () => {
+		// 	await (
+		// 		await import(`./${currentSlide}`)
+		// 	).default({
+		// 		currentSlide: currentSlideKc,
+		// 		previousSlide: previousSlideKc,
+		// 	});
+		// };
+
 		const runSlideBehavior = async () => {
-			await (
-				await import(`./${currentSlide}`)
-			).default({
-				currentSlide: currentSlideKc,
-				previousSlide: previousSlideKc,
+			const modulePath = `./${currentSlide}.ts`;
+			const loader = slideModules[modulePath];
+			if (!loader) {
+				throw new Error(`Slide not found: ${modulePath}`);
+			}
+			const slideModule = await loader();
+			await slideModule.default({
+				currentSlide: _.kebabCase(currentSlide),
+				previousSlide: _.kebabCase(previousSlide),
 			});
 		};
 

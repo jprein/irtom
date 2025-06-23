@@ -1,0 +1,32 @@
+{
+  "src": [
+    "communities/kikuyu/combined.webm",
+    "communities/kikuyu/combined.mp3"
+  ],
+  "sprite": {
+    "neutral-response-alright": [
+      0,
+      1045.3514739229024
+    ],
+    "neutral-response-ok": [
+      3000,
+      1024.0136054421764
+    ],
+    "no": [
+      6000,
+      1045.3514739229029
+    ],
+    "pop": [
+      9000,
+      548.571428571428
+    ],
+    "s-perspectivetaking-one-a": [
+      11000,
+      1237.3469387755094
+    ],
+    "yes": [
+      14000,
+      1024.0136054421764
+    ]
+  }
+}

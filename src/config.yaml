@@ -82,13 +82,13 @@ procedure:
     - s-introduction
     - s-emojichoice
     - s-yesnotraining-a
-    # - s-yesnotraining-b
-    # - s-yesnotraining-c
-    # - s-yesnotraining-d
-    # - s-leftrighttraining-a
-    # - s-leftrighttraining-b
-    # - s-leftrighttraining-c
-    # - s-leftrighttraining-d
+    - s-yesnotraining-b
+    - s-yesnotraining-c
+    - s-yesnotraining-d
+    - s-leftrighttraining-a
+    - s-leftrighttraining-b
+    - s-leftrighttraining-c
+    - s-leftrighttraining-d
     - s-names
     - s-perspectivetaking-one-a
     - s-perspectivetaking-one-b
@@ -107,7 +107,7 @@ procedure:
     - s-diversedesires-d
     - s-diversebeliefs-a
     - s-diversebeliefs-b
-    # - s-falsebelief-two-a
+    - s-falsebelief-two-a
     - s-end
 
   english:

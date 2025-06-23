@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="32x32"
+			href="./favicon-32x32.png"
+		/>
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="16x16"
+			href="./favicon-16x16.png"
+		/>
+		<link rel="icon" href="./favicon.ico" />
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="./apple-touch-icon.png"
+		/>
+		<title>irToM</title>
+		<link rel="stylesheet" href="index.css" />
+		<script type="module" defer src="./translations-index.js"></script>
+		<script type="module" defer src="./index.js"></script>
+	</head>
+	<body>
+		<div id="root">
+			<div class="container">
+				<img id="irtom-logo" src="favicon.svg" alt="irToM Logo" />
+
+				<!-- <video controls width="100%" src="movie.mp4">
+					Your browser does not support the video tag.
+				</video> -->
+
+				<form>
+					<h1 id="heading">Soziale Entwicklung von Kindern</h1>
+					<p id="leuphana" style="text-align: center; margin-bottom: 30px">
+						Leuphana Universität Lüneburg, Entwicklungspsychologie, und
+						Max-Planck-Institut für evolutionäre Anthropologie, Vergleichende
+						Kulturpsychologie<br />
+					</p>
+					<hr />
+					<!-- regex to allow case insensitive alpha numeric inputs including spaces, ß and äöü: /[0-9a-z-_äöüß ]/i -->
+					<div id="form-id" class="form-group">
+						<input
+							id="input-id"
+							type="text"
+							required
+							maxlength="30"
+							autocomplete="off"
+							onkeydown="return /[0-9a-z-_äöüß ]/i.test(event.key)"
+						/>
+						<label for="input-id" class="control-label" id="idLabel"
+							>Vor- und Nachname oder ID</label
+						><i class="bar"></i>
+					</div>
+					<div id="form-community" class="form-group">
+						<select id="input-community" required autocomplete="off">
+							<option id="chooseCommunity" value="" selected disabled>
+								Bitte auswählen...
+							</option>
+							<option id="english">Englisch</option>
+							<option id="german">Deutsch</option>
+							<option id="kikuyu">Kikuyu</option>
+							<option id="swahili">Swahili</option>
+							<option id="turkish">Türkisch</option>
+						</select>
+						<label for="input-community" class="control-label" id="community"
+							>Gemeinschaft</label
+						><i class="bar"></i>
+					</div>
+					<div id="form-birthday" style="margin-top: -15px">
+						<label
+							for="input-birthday"
+							style="font-size: 0.8rem; color: gray"
+							id="birthday"
+							>Geburtstag</label
+						><br />
+						<input
+							type="date"
+							id="input-birthday"
+							name="birthday"
+							autocomplete="off"
+							required
+						/>
+					</div>
+					<div id="form-gender" class="form-group">
+						<select id="input-gender" autocomplete="off" required>
+							<option id="chooseGender" value="" selected disabled>
+								Bitte auswählen...
+							</option>
+							<option id="female">weiblich</option>
+							<option id="male">männlich</option>
+							<option id="diverse">divers</option>
+						</select>
+						<label
+							for="input-gender"
+							class="control-label"
+							autocomplete="off"
+							id="gender"
+							>Geschlecht</label
+						><i class="bar"></i>
+					</div>
+
+					<div id="form-datatransfer" class="form-group">
+						<select id="input-datatransfer" required autocomplete="off">
+							<option id="chooseDatatransfer" value="" selected disabled>
+								Bitte auswählen...
+							</option>
+							<option id="local">Lokaler Download</option>
+							<option id="server">Upload auf Leuphana Server</option>
+							<option id="both">
+								Lokaler Download &amp; Upload auf Leuphana Server
+							</option>
+						</select>
+						<label
+							for="input-datatransfer"
+							class="control-label"
+							id="dataTransfer"
+							>Datentransfer</label
+						><i class="bar"></i>
+					</div>
+
+					<div id="form-webcam" class="form-group">
+						<select id="input-webcam" required autocomplete="off">
+							<option id="chooseWebcam" value="" selected disabled>
+								Bitte auswählen...
+							</option>
+							<option id="webcamTrue" value="true">Ja</option>
+							<option id="webcamFalse" value="false">Nein</option>
+						</select>
+						<label for="input-webcam" class="control-label" id="webcam"
+							>Webcam</label
+						><i class="bar"></i>
+					</div>
+
+					<div class="button-container">
+						<button
+							id="webcam-button"
+							type="button"
+							class="button"
+							onclick="mrec.startStream({
+													audio: false,
+													video: {
+														frameRate: {
+														min: 3,
+														ideal: 5,
+														max: 30,
+														},
+														width: {
+														min: 160,
+														ideal: 320,
+														max: 640,
+														},
+														height: {
+														min: 120,
+														ideal: 240,
+														max: 480,
+														},
+														facingMode: 'user',
+													},
+													}); mrec.openVideoPreview()"
+						>
+							<span id="webcamPreview"></span>
+						</button>
+					</div>
+
+					<div class="button-container">
+						<button id="start-button" type="submit" class="button">
+							<span id="startButton"></span>
+						</button>
+					</div>
+				</form>
+				<hr />
+				<p class="imprint">
+					<a
+						href="https://devpsy.web.leuphana.de/imprint.html"
+						target="_blank"
+						id="imprint"
+						>Impressum</a
+					>
+					/
+					<a
+						href="https://lueneluetten.web.leuphana.de/wordpress/wp-content/uploads/Datenschutzhinweise_LueneLuetten_11.24.pdf"
+						target="_blank"
+						id="dataProtection"
+						>Datenschutz</a
+					>
+				</p>
+				<p id="freepikAttribution" class="imprint">
+					Grafiken und Designelemente auf dieser Website enthalten Ressourcen
+					von Freepik, die unter der freien Lizenz von
+					<a href="https://www.freepik.com/" target="_blank" id="freepik"
+						>Freepik</a
+					>
+					mit der erforderlichen Namensnennung verwendet werden. Einige Inhalte
+					können bearbeitet oder angepasst worden sein.
+				</p>
+			</div>
+		</div>
+		<script src="https://unpkg.com/@ccp-eva/media-recorder"></script>
+	</body>
+</html>

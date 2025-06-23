@@ -1,8 +1,8 @@
-import type { SvgInHtml } from '../types';
-import { sleep } from '../util/helpers';
-import { hideTwoOptions } from '../util/hideTwoOptions';
-import { showTwoOptions } from '../util/showTwoOptions';
-import { swapSlides } from '../util/slideVisibility';
+import type { SvgInHtml } from '../../src/types';
+import { sleep } from '../../src/util/helpers';
+import { hideTwoOptions } from '../../src/util/hideTwoOptions';
+import { showTwoOptions } from '../../src/util/showTwoOptions';
+import { swapSlides } from '../../src/util/slideVisibility';
 import { gsap } from 'gsap';
 
 export default async ({ currentSlide, previousSlide }) => {

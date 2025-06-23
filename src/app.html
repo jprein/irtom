@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
@@ -23,8 +23,7 @@
 			href="./apple-touch-icon.png"
 		/>
 		<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-		<link rel="manifest" href="site.webmanifest" />
-		<title><%= htmlWebpackPlugin.options.title %></title>
+		<title>irToM</title>
 	</head>
 	<body>
 		<div id="root">
@@ -33,6 +32,7 @@
 			<video id="fsplayer" autoplay playsinline></video>
 			<audio id="audio" autoplay></audio>
 			<div id="wrapper"></div>
+			<script type="module" src="./app.ts"></script>
 		</div>
 	</body>
 </html>
