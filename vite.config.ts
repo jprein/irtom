@@ -16,26 +16,25 @@ const slides = fg.sync('src/procedure/*.ts').reduce((entries, file) => {
 	return entries;
 }, {});
 
-// Custom plugin to remove PNG files in the assets folder after build (we only need SVGs)
-const removePngPlugin = {
-	name: 'remove-png',
+// Custom plugin to remove PNG files, .ai files, and community mp3s that are not needed after build
+// for faster loading and deployment
+const removeUnwantedFilesPlugin = {
+	name: 'remove-unwanted-files',
 	async closeBundle() {
-		const files = await fg('dist/assets/*.png', { absolute: true });
-		await Promise.all(files.map((file) => fs.unlink(file)));
-	},
-};
-
-// Custom Plugin to remove community-specific mp3 audios after build (we only need combined.mp3)
-const removeCommunityAudioPlugin = {
-	name: 'remove-community-audio',
-	async closeBundle() {
-		// Match directories like dist/communities/*/audio
-		const dirs = await fg('dist/communities/*/audio', {
+		// Remove PNG files in assets
+		const pngFiles = await fg('dist/assets/*.png', { absolute: true });
+		// Remove .ai files anywhere in dist
+		const aiFiles = await fg('dist/**/*.ai', { absolute: true });
+		// Remove community audio directories (e.g. dist/communities/*/audio)
+		const audioDirs = await fg('dist/communities/*/audio', {
 			onlyDirectories: true,
 			absolute: true,
 		});
+		// Delete unwanted files
+		await Promise.all([...pngFiles, ...aiFiles].map((file) => fs.unlink(file)));
+		// Remove unwanted directories recursively
 		await Promise.all(
-			dirs.map((dir) => fs.rm(dir, { recursive: true, force: true })),
+			audioDirs.map((dir) => fs.rm(dir, { recursive: true, force: true })),
 		);
 	},
 };
@@ -134,9 +133,8 @@ export default defineConfig({
 				globPatterns: ['**/*.{js,ts,css,html,svg,png,ico,mp3,webm,json,yaml}'],
 			},
 		}),
-		// Custom plugins to remove unwanted files after build
-		removePngPlugin,
-		removeCommunityAudioPlugin,
+		// Use the combined cleanup plugin
+		removeUnwantedFilesPlugin,
 	],
 
 	resolve: {
