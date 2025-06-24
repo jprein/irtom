@@ -24,7 +24,7 @@
 
 		/* If NOT transpiling with TypeScript: */
 		"module": "Preserve",
-		// "noEmit": true, /* This should be enabled but somewhow the webpack live server needs the tsc emitted files */
+		"noEmit": true /* Prevents TypeScript from overwriting existing JS files */,
 
 		/* If your code runs in the DOM: */
 		"lib": ["esnext", "dom", "dom.iterable"],

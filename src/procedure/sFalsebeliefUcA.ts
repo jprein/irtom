@@ -1,5 +1,3 @@
-import { gsap } from 'gsap';
-import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import { translations } from '../translations';
 import Toastify from 'toastify-js';
-import config from '../config.yaml';
 
 export const widowedKeyChecker = () => {
 	// get all foreignObjects whose ids starts with 'text-'
