@@ -15,7 +15,7 @@
 		"dev": "bun vite",
 		"build": "bun vite build",
 		"preview": "bun vite preview",
-		"deploy": "npm run build && sh src/scripts/deploy.sh"
+		"deploy": "bun run build && sh src/scripts/deploy.sh"
 	},
 	"repository": {
 		"type": "git",
