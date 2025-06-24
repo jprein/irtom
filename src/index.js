@@ -61,7 +61,7 @@ if (birthday) {
 	const birthdayElement = document.getElementById('input-birthday');
 	birthdayElement.required = false;
 	birthdayElement.parentNode.style.display = 'none';
-	handleDate(birthday);
+	//handleDate(birthday);
 }
 if (gender) {
 	const genderElement = document.getElementById('input-gender');
@@ -121,8 +121,20 @@ document.querySelector('form').addEventListener('submit', (e) => {
 		webcamElement.options[webcamElement.selectedIndex].value;
 	webcam = webcam ? webcam : webcamSelected;
 
-	let href = window.location.href;
-	href = href.replace('index.html', '');
-	href = href.replace('#', '');
-	window.location.href = `${href}app.html?id=${id}&community=${community}&birthday=${birthday}&gender=${gender}&datatransfer=${datatransfer}&webcam=${webcam}`;
+	// Store data in local storage
+	const studyChoices = {
+		id: id,
+		community: community,
+		birthday: birthday,
+		gender: gender,
+		datatransfer: datatransfer,
+		webcam: webcam,
+	};
+
+	localStorage.setItem('storedChoices', JSON.stringify(studyChoices));
+
+	// let href = window.location.href;
+	// href = href.replace('index.html', '');
+	// href = href.replace('#', '');
+	window.location.href = `./app.html`;
 });

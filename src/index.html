@@ -22,11 +22,10 @@
 			sizes="180x180"
 			href="./apple-touch-icon.png"
 		/>
-		<link rel="manifest" href="site.webmanifest" />
 		<title>irToM</title>
 		<link rel="stylesheet" href="index.css" />
-		<script defer src="./translations-index.js"></script>
-		<script defer src="./index.js"></script>
+		<script type="module" defer src="./translations-index.js"></script>
+		<script type="module" defer src="./index.js"></script>
 	</head>
 	<body>
 		<div id="root">
@@ -87,7 +86,6 @@
 							name="birthday"
 							autocomplete="off"
 							required
-							onchange="handleDate(event)"
 						/>
 					</div>
 					<div id="form-gender" class="form-group">

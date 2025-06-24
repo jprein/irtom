@@ -1,7 +1,7 @@
-import { swapSlides } from '../util/slideVisibility';
-import { sleep } from '../util/helpers';
-import { hideThreeOptions } from '../util/hideThreeOptions';
-import { showThreeOptions } from '../util/showThreeOptions';
+import { swapSlides } from '../../src/util/slideVisibility';
+import { sleep } from '../../src/util/helpers';
+import { hideThreeOptions } from '../../src/util/hideThreeOptions';
+import { showThreeOptions } from '../../src/util/showThreeOptions';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide

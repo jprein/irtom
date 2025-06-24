@@ -1,7 +1,8 @@
-import { gsap, selector } from 'gsap';
+import { gsap } from 'gsap';
 import _ from 'lodash';
 import type { SvgInHtml } from '../types';
-import svgPath from '../assets/experiment-voxified.svg';
+//import svgPath from '../../public/assets/experiment-voxified.svg?raw';
+import svgPath from '../../public/assets/experiment-voxified.svg?raw';
 import config from '../config.yaml';
 import { rectToForeignObject } from './rectToForeignObject';
 import { recycleObjects } from './recycleObjects';
@@ -13,7 +14,6 @@ import {
 	uploadCsv,
 	uploadWebcamVideo,
 } from './helpers';
-import { getUrlParameters } from './getUrlParameters';
 import { widowedKeyChecker } from './widowedKeyChecker';
 import {
 	showSingleSlide,
@@ -32,10 +32,19 @@ import * as mrec from '@ccp-eva/media-recorder';
 import { createSprite } from './createSprite';
 
 export const init = async () => {
-	const urlParameters = getUrlParameters();
+	//const urlParameters = getUrlParameters();
+
+	const storedChoices = localStorage.getItem('storedChoices');
+	let studyChoices;
+
+	if (storedChoices) {
+		studyChoices = JSON.parse(storedChoices);
+	} else {
+		console.error('No data found in local storage');
+	}
 
 	// calculate agegroup based on birthday
-	const birthdayMs = Date.parse(urlParameters.birthday);
+	const birthdayMs = Date.parse(studyChoices.birthday);
 	const ageDiffMs = Date.now() - birthdayMs;
 	const ageInYears = new Date(ageDiffMs).getUTCFullYear() - 1970;
 	const wrapper = document.getElementById('wrapper')! as HTMLDivElement;
@@ -88,18 +97,17 @@ export const init = async () => {
 
 	// transform all rect nodes to foreignObject nodes
 	recycleObjects();
-
 	// initialzie global data object (see custom.d.ts)
 	const global = globalThis as any;
 	global.data = {
-		id: urlParameters.id,
-		community: urlParameters.community,
-		birthday: urlParameters.birthday,
+		id: studyChoices.id,
+		community: studyChoices.community,
+		birthday: studyChoices.birthday,
 		age: ageInYears,
 		agegroup: ageInYears < config.globals.adultThresholdAge ? 'child' : 'adult',
-		gender: urlParameters.gender,
-		datatransfer: urlParameters.datatransfer,
-		webcam: urlParameters.webcam === 'true', // convert to boolean
+		gender: studyChoices.gender,
+		datatransfer: studyChoices.datatransfer,
+		webcam: studyChoices.webcam == 'true' ? true : false,
 		touchscreen: isTouchDevice(),
 		t0: new Date(),
 		slideCounter: 0,
@@ -117,6 +125,31 @@ export const init = async () => {
 		global.data.browserName = DetectRTC.browser.name;
 		global.data.safari = DetectRTC.browser.isSafari == undefined ? false : true;
 		global.data.iOSSafari = global.data.safari && global.data.touchscreen;
+
+		// Enable webcam recording if selected in URL parameters
+		if (global.data.hasWebcam && global.data.webcam && !global.data.iOSSafari) {
+			mrec.startRecorder({
+				audio: true,
+				video: {
+					frameRate: {
+						min: 3,
+						ideal: 5,
+						max: 30,
+					},
+					width: {
+						min: 160,
+						ideal: 320,
+						max: 640,
+					},
+					height: {
+						min: 120,
+						ideal: 240,
+						max: 480,
+					},
+					facingMode: 'user',
+				},
+			});
+		}
 	});
 
 	// check if all translation keys have a matching foreignObject and vice versa
@@ -245,31 +278,6 @@ export const init = async () => {
 	global.uploadCsv = uploadCsv;
 	global.uploadWebcamVideo = uploadWebcamVideo;
 	global.config = config;
-
-	// Enable webcam recording if selected in URL parameters
-	if (data.webcam) {
-		mrec.startRecorder({
-			audio: true,
-			video: {
-				frameRate: {
-					min: 3,
-					ideal: 5,
-					max: 30,
-				},
-				width: {
-					min: 160,
-					ideal: 320,
-					max: 640,
-				},
-				height: {
-					min: 120,
-					ideal: 240,
-					max: 480,
-				},
-				facingMode: 'user',
-			},
-		});
-	}
 
 	if (config.devmode.on) {
 		console.group(

@@ -1,9 +1,9 @@
 import { gsap } from 'gsap';
-import type { SvgInHtml } from '../types';
-import { swapSlides } from '../util/slideVisibility';
-import { sleep } from '../util/helpers';
-import { hideYesNoChoice } from '../util/hideYesNoChoice';
-import { showYesNoChoice } from '../util/showYesNoChoice';
+import type { SvgInHtml } from '../../src/types';
+import { swapSlides } from '../../src/util/slideVisibility';
+import { sleep } from '../../src/util/helpers';
+import { hideYesNoChoice } from '../../src/util/hideYesNoChoice';
+import { showYesNoChoice } from '../../src/util/showYesNoChoice';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide

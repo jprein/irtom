@@ -7,14 +7,15 @@
 	"scripts": {
 		"alphaPinda": "cd character-animator && mkdir -p out && for i in *.mov; do ffmpeg -y -i \"$i\" -c:v libvpx-vp9 -b:v 500k -c:a libvorbis \"out/${i%.*}.webm\"; done && for i in *.mov; do avconvert --source \"$i\" --preset PresetHEVC1920x1080WithAlpha --verbose --replace --output \"out/${i%.*}.mov\"; done",
 		"audiosprite": "sh src/scripts/audiosprite.sh",
-		"build": "npm run clean && NODE_ENV=production webpack",
 		"clean": "rimraf dist",
-		"deploy": "npm run build && sh src/scripts/deploy.sh",
 		"fetchdata": "sh src/scripts/fetchdata.sh",
 		"lint": "eslint",
 		"prettier": "prettier --write \"**/*.{ts,js,json,yaml}\"",
-		"start": "webpack serve",
-		"voxify": "node src/voxify/"
+		"voxify": "node src/voxify/",
+		"dev": "bun vite",
+		"build": "bun vite build",
+		"preview": "bun vite preview",
+		"deploy": "npm run build && sh src/scripts/deploy.sh"
 	},
 	"repository": {
 		"type": "git",
@@ -41,17 +42,16 @@
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.21.0",
+		"@rollup/plugin-dynamic-import-vars": "^2.1.5",
 		"@types/lodash": "^4.17.15",
 		"@types/toastify-js": "^1.12.3",
 		"autoprefixer": "^10.4.20",
-		"copy-webpack-plugin": "^13.0.0",
 		"css-loader": "^7.1.2",
 		"eslint": "^9.21.0",
 		"eslint-config-prettier": "^10.1.5",
 		"eslint-plugin-prettier": "^5.4.0",
 		"globals": "^16.0.0",
 		"html-loader": "^5.1.0",
-		"html-webpack-plugin": "^5.6.3",
 		"jsdom": "^26.0.0",
 		"prettier": "^3.5.3",
 		"rimraf": "^6.0.1",
@@ -60,19 +60,25 @@
 		"ts-loader": "^9.5.2",
 		"typescript": "^5.7.3",
 		"typescript-eslint": "^8.24.1",
-		"webpack": "^5.98.0",
-		"webpack-cli": "^6.0.1",
-		"webpack-dev-server": "^5.2.0",
+		"vite": "^6.3.5",
+		"vite-plugin-dynamic-import": "^1.6.0",
+		"vite-plugin-pwa": "^1.0.0",
 		"yaml-loader": "^0.8.1"
 	},
 	"dependencies": {
 		"@ccp-eva/media-recorder": "^2.1.1",
+		"@rollup/plugin-yaml": "^4.1.2",
 		"@types/recordrtc": "^5.6.14",
+		"@vite-pwa/assets-generator": "^1.0.0",
+		"@vitejs/plugin-vue": "^5.2.4",
+		"audiosprite": "^0.7.2",
 		"detectrtc": "^1.4.1",
 		"gsap": "^3.13.0",
 		"lodash": "^4.17.21",
 		"recordrtc": "^5.6.2",
 		"svgson": "^5.3.1",
-		"toastify-js": "^1.12.0"
+		"toastify-js": "^1.12.0",
+		"vite-plugin-svgo": "^2.0.0",
+		"vite-plugin-svgr": "^4.3.0"
 	}
 }

@@ -9,7 +9,7 @@
 		/* Base Options: */
 		"esModuleInterop": true,
 		"skipLibCheck": true,
-		"target": "es2022",
+		"target": "esnext",
 		"allowJs": true,
 		"resolveJsonModule": true,
 		"moduleDetection": "force",
@@ -27,7 +27,7 @@
 		// "noEmit": true, /* This should be enabled but somewhow the webpack live server needs the tsc emitted files */
 
 		/* If your code runs in the DOM: */
-		"lib": ["es2022", "dom", "dom.iterable"],
+		"lib": ["esnext", "dom", "dom.iterable"],
 		/* Other options: */
 		"forceConsistentCasingInFileNames": true,
 		"noImplicitReturns": true

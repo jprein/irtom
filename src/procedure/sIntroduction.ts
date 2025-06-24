@@ -1,9 +1,9 @@
 import { gsap } from 'gsap';
-import { swapSlides } from '../util/slideVisibility';
-import { getResponse } from '../util/getResponse';
-import { startFullscreen } from '../util/helpers';
+import { swapSlides } from '../../src/util/slideVisibility';
+import { getResponse } from '../../src/util/getResponse';
+import { startFullscreen } from '../../src/util/helpers';
 import config from '../config.yaml';
-import type { SvgInHtml } from '../types';
+import type { SvgInHtml } from '../../src/types';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// show slide
