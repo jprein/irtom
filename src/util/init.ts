@@ -32,15 +32,47 @@ import * as mrec from '@ccp-eva/media-recorder';
 import { createSprite } from './createSprite';
 
 export const init = async () => {
-	//const urlParameters = getUrlParameters();
-
+	// get study choices from local storage
 	const storedChoices = localStorage.getItem('storedChoices');
 	let studyChoices;
 
+	// If we find data in local storage, set studyChoices to that data
 	if (storedChoices) {
 		studyChoices = JSON.parse(storedChoices);
 	} else {
-		console.error('No data found in local storage');
+		console.log(
+			'No data found in local storage. Creating a studyChoices object.',
+		);
+	}
+
+	// Define default values for all required keys
+	const defaultValues = {
+		id: 'testID',
+		community: 'german',
+		webcam: 'false',
+		birthday: '2100-01-01',
+		gender: 'none',
+		datatransfer: 'local',
+	};
+
+	// Check if studyChoices contains all required keys.
+	// If not, set defaults for missing keys
+	if (studyChoices) {
+		Object.keys(defaultValues).forEach((key) => {
+			if (!Object.prototype.hasOwnProperty.call(studyChoices, key)) {
+				studyChoices[key] = defaultValues[key];
+				console.log(
+					`Key "${key}" was missing. Set default value: "${defaultValues[key]}"`,
+				);
+			}
+		});
+	} else {
+		console.log(
+			'Setting the studyChoices object to default values:',
+			JSON.stringify(defaultValues),
+		);
+		// Create a new object with default values
+		studyChoices = { ...defaultValues };
 	}
 
 	// calculate agegroup based on birthday
