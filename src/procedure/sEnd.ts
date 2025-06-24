@@ -1,4 +1,3 @@
-import { gsap } from 'gsap';
 import { swapSlides } from '../../src/util/slideVisibility';
 import { exitFullscreen } from '../../src/util/helpers';
 import config from '../config.yaml';

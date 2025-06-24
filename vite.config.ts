@@ -5,15 +5,39 @@ import svg from 'vite-plugin-svgr';
 import path from 'path';
 import fg from 'fast-glob';
 import { fileURLToPath } from 'url';
+import fs from 'fs/promises';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const slides = fg
-	.sync('src/procedure/*.ts') // find all your slide files
-	.reduce((entries, file) => {
-		const name = path.basename(file, '.ts'); // e.g. "sIntroduction"
-		entries[name] = path.resolve(__dirname, file);
-		return entries;
-	}, {});
+// Collect all TypeScript files in the procedure directory, e.g. "sIntroduction"
+const slides = fg.sync('src/procedure/*.ts').reduce((entries, file) => {
+	const name = path.basename(file, '.ts');
+	entries[name] = path.resolve(__dirname, file);
+	return entries;
+}, {});
+
+// Custom plugin to remove PNG files, .ai files, and community mp3s that are not needed after build
+// for faster loading and deployment
+const removeUnwantedFilesPlugin = {
+	name: 'remove-unwanted-files',
+	async closeBundle() {
+		// Remove PNG files in assets
+		const pngFiles = await fg('dist/assets/*.png', { absolute: true });
+		// Remove .ai files anywhere in dist
+		const aiFiles = await fg('dist/**/*.ai', { absolute: true });
+		// Remove community audio directories (e.g. dist/communities/*/audio)
+		const audioDirs = await fg('dist/communities/*/audio', {
+			onlyDirectories: true,
+			absolute: true,
+		});
+		// Delete unwanted files
+		await Promise.all([...pngFiles, ...aiFiles].map((file) => fs.unlink(file)));
+		// Remove unwanted directories recursively
+		await Promise.all(
+			audioDirs.map((dir) => fs.rm(dir, { recursive: true, force: true })),
+		);
+	},
+};
 
 export default defineConfig({
 	// mode: mode, // Set the mode to development or production
@@ -109,6 +133,8 @@ export default defineConfig({
 				globPatterns: ['**/*.{js,ts,css,html,svg,png,ico,mp3,webm,json,yaml}'],
 			},
 		}),
+		// Use the combined cleanup plugin
+		removeUnwantedFilesPlugin,
 	],
 
 	resolve: {

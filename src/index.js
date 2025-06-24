@@ -31,21 +31,6 @@ if (params.has('webcam')) {
 // remove all params from URL
 window.history.pushState({}, document.title, window.location.pathname);
 
-const handleDate = (e) => {
-	let age = 0;
-	if (typeof e.target === 'undefined') {
-		age = calculateAge(Date.parse(e));
-	} else {
-		age = calculateAge(Date.parse(e.target.value));
-	}
-};
-
-const calculateAge = (birthday) => {
-	const ageDiffMs = Date.now() - birthday;
-	const ageDate = new Date(ageDiffMs);
-	return ageDate.getUTCFullYear() - 1970;
-};
-
 // hide form fields for form data where URL params already existed
 if (id) {
 	const idElement = document.getElementById('input-id');
@@ -61,7 +46,6 @@ if (birthday) {
 	const birthdayElement = document.getElementById('input-birthday');
 	birthdayElement.required = false;
 	birthdayElement.parentNode.style.display = 'none';
-	//handleDate(birthday);
 }
 if (gender) {
 	const genderElement = document.getElementById('input-gender');
