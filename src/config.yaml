@@ -113,10 +113,11 @@ procedure:
     # - s-falsebelief-col-a
     # - s-falsebelief-col-b
     # - s-falsebelief-uc-a
+    - s-falsebelief-uc-b
     # - s-aspectuality-a
     # - s-aspectuality-b
     # - s-falsebelief-ui-b
-    - s-falsebelief-two-a
+    # - s-falsebelief-two-a
     - s-end
 
   english:
