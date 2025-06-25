@@ -184,7 +184,7 @@ export async function downloadWebcamVideo(id: string) {
 	const day = new Date().toISOString().substring(0, 10);
 	const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
 	await sleep(2000);
-	mrec.downloadVideo(`irToM-${id}-${day}-${time}`);
+	mrec.downloadVideo(`irtom-${id}-${day}-${time}`);
 }
 
 // Function to upload the webcam video
@@ -206,7 +206,7 @@ export async function uploadWebcamVideo(id: string) {
 	try {
 		mrec.uploadVideo(
 			{
-				fname: `irToM-${id}-${day}-${time}`,
+				fname: `irtom-${id}-${day}-${time}`,
 				uploadContent:
 					'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
 				uploadColor: '#E1B4B4',
