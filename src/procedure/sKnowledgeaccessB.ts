@@ -10,7 +10,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	const slidePrefix = 's-knowledgeaccess-b';
 
 	// Store correct response
-	data.procedure[data.currentSlide].correct = 'right';
+	data.procedure[data.currentSlide].correct = 'left';
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
