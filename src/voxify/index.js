@@ -7,7 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // original svg file from Illustrator
-const svgPath = path.resolve(__dirname, '../assets/experiment.svg');
+const svgPath = path.resolve(__dirname, '../../public/assets/experiment.svg');
 
 // load svg file
 const svgPlainText = await fs.readFile(svgPath, 'utf8');
@@ -49,7 +49,8 @@ voxSvg = voxSvg.replace(/#image\d*/g, (match) => {
 
 // fs.writeFile(path.resolve(__dirname, '../assets/experiment-voxified.svg'), stringify(svgDom));
 fs.writeFile(
-	path.resolve(__dirname, '../assets/experiment-voxified.svg'),
+	// path.resolve(__dirname, '../assets/experiment-voxified.svg'),
+	path.resolve(__dirname, '../../public/assets/experiment-voxified.svg'),
 	voxSvg,
 );
 
