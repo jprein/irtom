@@ -38,16 +38,23 @@ const imageIdUrlMapping = images.reduce((acc, curr) => {
 	return acc;
 }, {});
 
-// console.log(imageIdUrlMapping);
+console.log(imageIdUrlMapping);
 
-// replace all instances of the voxSVG #image number with the actual url
-voxSvg = voxSvg.replace(/#image\d*/g, (match) => {
-	const id = match.slice(1);
-	console.log(id, '=>', imageIdUrlMapping[id]);
-	return imageIdUrlMapping[id];
+//replace all instances of the voxSVG #image number with the actual url
+//imageIdUrlMapping;
+// voxSvg = voxSvg.replace(/#image\d*/g, (match) => {
+// 	const id = match.slice(1);
+// 	console.log(id, '=>', imageIdUrlMapping[id]);
+// 	return imageIdUrlMapping[id];
+// });
+
+Object.keys(imageIdUrlMapping).forEach((id) => {
+	console.log('current Id:' + id);
+	voxSvg = voxSvg.replaceAll(`"#${id}"`, `"${imageIdUrlMapping[id]}"`);
+	console.log(`${id} => ${imageIdUrlMapping[id]}`);
 });
 
-// fs.writeFile(path.resolve(__dirname, '../assets/experiment-voxified.svg'), stringify(svgDom));
+//fs.writeFile(path.resolve(__dirname, '../assets/experiment-voxified.svg'), stringify(svgDom));
 fs.writeFile(
 	// path.resolve(__dirname, '../assets/experiment-voxified.svg'),
 	path.resolve(__dirname, '../../public/assets/experiment-voxified.svg'),
