@@ -116,8 +116,10 @@ procedure:
     # - s-falsebelief-uc-b
     # - s-aspectuality-a
     # - s-aspectuality-b
-    - s-falsebelief-ui-a
-    - s-pretense-a
+    # - s-falsebelief-ui-a
+    # - s-pretense-a
+    # - s-pretense-b
+    - s-appearance-reality-a
     # - s-falsebelief-ui-b
     # - s-falsebelief-two-a
     # - s-end

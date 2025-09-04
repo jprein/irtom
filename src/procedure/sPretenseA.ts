@@ -1,9 +1,9 @@
+import { gsap } from 'gsap';
 import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
-import gsap from 'gsap';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
