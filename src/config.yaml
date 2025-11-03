@@ -76,53 +76,75 @@ procedure:
   # The order defines the experiment order
   # If you create a key with a sub array everything in the sub array will be randomized
   # You can nest only two levels deep
+  # german:
+  #   - s-introduction
+  #   - s-emojichoice
+  #   - s-yesnotraining-a
+  #   - s-yesnotraining-b
+  #   - s-yesnotraining-c
+  #   - s-yesnotraining-d
+  #   - s-yesnotraining-e
+  #   - s-leftrighttraining-a
+  #   - s-leftrighttraining-b
+  #   - s-leftrighttraining-c
+  #   - s-leftrighttraining-d
+  #   - s-namestraining
+  #   - s-dogtraining
+  #   - s-perspectivetaking-one-a
+  #   - s-perspectivetaking-one-b
+  #   - s-perspectivetaking-one-c
+  #   - s-perspectivetaking-one-d
+  #   - s-perspectivetaking-two-a
+  #   - s-perspectivetaking-two-b
+  #   - s-perspectivetaking-two-c
+  #   - s-perspectivetaking-two-d
+  #   - s-parentstraining
+  #   - s-knowledgeaccess-a
+  #   - s-knowledgeaccess-b
+  #   - s-knowledgeaccess-c
+  #   - s-knowledgeaccess-d
+  #   - s-diversedesires-a
+  #   - s-diversedesires-b
+  #   - s-diversedesires-c
+  #   - s-diversedesires-d
+  #   - s-diversedesires-e
+  #   - s-diversebeliefs-a
+  #   - s-diversebeliefs-b
+  #   - s-diversebeliefs-c
+  #   - s-end
+
   german:
-    # - s-introduction
-    # - s-emojichoice
-    # - s-yesnotraining-a
-    # - s-yesnotraining-b
-    # - s-yesnotraining-c
-    # - s-yesnotraining-d
-    # - s-yesnotraining-e
-    # - s-leftrighttraining-a
-    # - s-leftrighttraining-b
-    # - s-leftrighttraining-c
-    # - s-leftrighttraining-d
-    # - s-namestraining
-    # - s-perspectivetaking-one-a
-    # - s-perspectivetaking-one-b
-    # - s-perspectivetaking-one-c
-    # - s-perspectivetaking-one-d
-    # - s-perspectivetaking-two-a
-    # - s-perspectivetaking-two-b
-    # - s-perspectivetaking-two-c
-    # - s-perspectivetaking-two-d
-    # - s-knowledgeaccess-a
-    # - s-knowledgeaccess-b
-    # - s-dogtraining
-    # - s-knowledgeaccess-c
-    # - s-diversedesires-e
-    # - s-diversedesires-a
-    # - s-diversedesires-b
-    # - s-diversedesires-c
-    # - s-diversedesires-d
-    # - s-diversebeliefs-a
-    # - s-diversebeliefs-b
-    # - s-diversebeliefs-c
-    # - s-parentstraining
-    # - s-falsebelief-col-a
-    # - s-falsebelief-col-b
-    # - s-falsebelief-uc-a
-    # - s-falsebelief-uc-b
-    # - s-aspectuality-a
-    # - s-aspectuality-b
-    # - s-falsebelief-ui-a
-    # - s-pretense-a
-    # - s-pretense-b
-    - s-appearance-reality-a
-    # - s-falsebelief-ui-b
-    # - s-falsebelief-two-a
-    # - s-end
+    - s-introduction
+    - s-emojichoice
+    - s-yesnotraining-a
+    - s-yesnotraining-b
+    - s-yesnotraining-c
+    - s-yesnotraining-d
+    - s-yesnotraining-e
+    - s-leftrighttraining-a
+    - s-leftrighttraining-b
+    - s-leftrighttraining-c
+    - s-leftrighttraining-d
+    - s-namestraining
+    - s-dogtraining
+    - s-parentstraining
+    - s-falsebelief-col-a
+    - s-falsebelief-col-b
+    - s-falsebelief-uc-a
+    - s-falsebelief-uc-b
+    - s-falsebelief-ui-a
+    - s-falsebelief-ui-b
+    - s-aspectuality-a
+    - s-aspectuality-b
+    - s-appearanceReality-a
+    - s-appearanceReality-b
+    - s-pretense-a
+    - s-pretense-b
+    # - s-deception-a
+    - s-deception-b
+    - s-falsebelief-two-a
+    - s-falsebelief-two-b
+    - s-end
 
   english:
     - s-introduction
