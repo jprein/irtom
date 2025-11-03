@@ -25,13 +25,20 @@ const removeUnwantedFilesPlugin = {
 		const pngFiles = await fg('dist/assets/*.png', { absolute: true });
 		// Remove .ai files anywhere in dist
 		const aiFiles = await fg('dist/**/*.ai', { absolute: true });
+		const experimentFiles = await fg('dist/**/experiment.svg', {
+			absolute: true,
+		});
 		// Remove community audio directories (e.g. dist/communities/*/audio)
 		const audioDirs = await fg('dist/communities/*/audio', {
 			onlyDirectories: true,
 			absolute: true,
 		});
 		// Delete unwanted files
-		await Promise.all([...pngFiles, ...aiFiles].map((file) => fs.unlink(file)));
+		await Promise.all(
+			[...pngFiles, ...aiFiles, ...experimentFiles].map((file) =>
+				fs.unlink(file),
+			),
+		);
 		// Remove unwanted directories recursively
 		await Promise.all(
 			audioDirs.map((dir) => fs.rm(dir, { recursive: true, force: true })),
@@ -49,7 +56,7 @@ export default defineConfig({
 		outDir: '../dist',
 		emptyOutDir: true,
 		assetsDir: 'assets',
-		hunkSizeWarningLimit: 1000,
+		chunkSizeWarningLimit: 1000,
 		rollupOptions: {
 			// 1) make each slide its own entry, so Rollup emits it with your entryFileNames pattern
 			input: {
@@ -118,7 +125,7 @@ export default defineConfig({
 			},
 
 			injectManifest: {
-				globPatterns: ['**/*.{js,ts,css,html,svg,png,ico,mp3,webm,json,yaml}'],
+				globPatterns: ['**/*.{js,ts,css,html,svg,ico,mp3,webm,json,yaml}'],
 				maximumFileSizeToCacheInBytes: 300000000,
 			},
 
@@ -130,7 +137,7 @@ export default defineConfig({
 			},
 			// to cache images and pdfs, serve them offline
 			workbox: {
-				globPatterns: ['**/*.{js,ts,css,html,svg,png,ico,mp3,webm,json,yaml}'],
+				globPatterns: ['**/*.{js,ts,css,html,svg,ico,mp3,webm,json,yaml}'],
 			},
 		}),
 		// Use the combined cleanup plugin

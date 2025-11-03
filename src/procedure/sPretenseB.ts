@@ -39,6 +39,12 @@ export default async ({ currentSlide, previousSlide }) => {
 	const boyBucket = document.getElementById(
 		`${slidePrefix}-bucket-boy`,
 	) as SvgInHtml;
+	const brickAfter = document.getElementById(
+		`${slidePrefix}-bricks-after`,
+	) as SvgInHtml;
+	const brickBefore = document.getElementById(
+		`${slidePrefix}-bricks-before`,
+	) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
@@ -51,13 +57,15 @@ export default async ({ currentSlide, previousSlide }) => {
 				boyBucket,
 				girlBucket,
 				girlBucketWithBricks,
+				brickAfter,
+				brickBefore,
 			],
 			{
 				autoAlpha: 0,
 				x: 0,
 			},
 		);
-		gsap.set([boyKneeling, girlKneeling, boyBucket, girlBucket], {
+		gsap.set([boyKneeling, girlKneeling, boyBucket, girlBucket, brickBefore], {
 			autoAlpha: 1,
 			x: 0,
 		});
@@ -72,12 +80,12 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
-			.to(girlBrick, {
+			.to([girlBrick, brickAfter], {
 				autoAlpha: 1,
 				duration: 0.5,
 			})
 			.to(
-				girlKneeling,
+				[girlKneeling, brickBefore],
 				{
 					autoAlpha: 0,
 					duration: 0.5,
