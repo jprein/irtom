@@ -342,26 +342,30 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			)
-			.to([boyLaughing, girlFrontAngry], {
-				delay: 1,
-				autoAlpha: 0,
-				duration: 0.5,
+			// .to([boyLaughing, girlFrontAngry], {
+			// 	delay: 1,
+			// 	autoAlpha: 0,
+			// 	duration: 0.5,
+			// })
+			.to([girl], {
+				x: +1600,
 			})
-			.to(
-				[boy, girl],
-				{
-					autoAlpha: 1,
-					duration: 0.5,
-				},
-				'<',
-			)
-			.to(boy, {
+			.to([boy], {
+				x: -1200,
+			})
+			.to([girl], {
+				autoAlpha: 1,
+			})
+			.to([boy], {
+				autoAlpha: 1,
+			})
+			.to(boyLaughing, {
 				delay: 1,
 				x: +1200,
 				duration: 3,
 			})
 			.to(
-				girl,
+				girlFrontAngry,
 				{
 					x: -1200,
 					duration: 3,
