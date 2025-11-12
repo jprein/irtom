@@ -78,6 +78,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		gsap.set([boy], { autoAlpha: 1, x: +1200 });
 		gsap.set([women], { autoAlpha: 1, x: +1200 });
+		gsap.set([women, womenPointing, womenCake], { height: '925px' });
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
@@ -159,7 +160,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(women, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
@@ -181,17 +182,49 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 3,
 			})
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
+			.to(
+				girlAngry,
+				{
+					autoAlpha: 1,
+					duration: 0.5,
+				},
+				'<',
+			)
+			.to(
+				girl,
+				{
+					autoAlpha: 0,
+					duration: 0.5,
+				},
+				'<',
+			)
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-7`);
 				},
 			})
+			.to(
+				girl,
+				{
+					autoAlpha: 1,
+					duration: 0.5,
+				},
+				'<',
+			)
+			.to(
+				girlAngry,
+				{
+					autoAlpha: 0,
+					duration: 0.5,
+				},
+				'<',
+			)
 			.to(boy, {
 				x: 0,
 				duration: 3,
@@ -213,7 +246,13 @@ export default async ({ currentSlide, previousSlide }) => {
 					duration: 0.5,
 				},
 				'<',
-			);
+			)
+			.to(girlSpeaking, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-9`][1] / 1000 + 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-9`);
+				},
+			});
 
 		await sleep(2000);
 	}

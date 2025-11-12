@@ -114,20 +114,23 @@ procedure:
   #   - s-end
 
   german:
-    - s-introduction
-    - s-emojichoice
-    - s-yesnotraining-a
-    - s-yesnotraining-b
-    - s-yesnotraining-c
-    - s-yesnotraining-d
-    - s-yesnotraining-e
-    - s-leftrighttraining-a
-    - s-leftrighttraining-b
-    - s-leftrighttraining-c
-    - s-leftrighttraining-d
-    - s-namestraining
-    - s-dogtraining
-    - s-parentstraining
+    # - s-introduction
+    # - s-emojichoice
+    # - s-yesnotraining-a
+    # - s-yesnotraining-b
+    # - s-yesnotraining-c
+    # - s-yesnotraining-d
+    # - s-yesnotraining-e
+    # - s-leftrighttraining-a
+    # - s-leftrighttraining-b
+    # - s-leftrighttraining-c
+    # - s-leftrighttraining-d
+    # - s-namestraining
+    # - s-dogtraining
+    # - s-parentstraining
+    - s-diversebeliefs-a
+    - s-diversebeliefs-b
+    - s-diversebeliefs-c
     - s-falsebelief-col-a
     - s-falsebelief-col-b
     - s-falsebelief-uc-a
@@ -140,7 +143,7 @@ procedure:
     - s-appearanceReality-b
     - s-pretense-a
     - s-pretense-b
-    # - s-deception-a
+    - s-deception-a
     - s-deception-b
     - s-falsebelief-two-a
     - s-falsebelief-two-b

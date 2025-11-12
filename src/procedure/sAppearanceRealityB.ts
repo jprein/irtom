@@ -47,6 +47,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		gsap.set([dogRunning, girl], { autoAlpha: 1, x: -1200 });
 		gsap.set(boy, { autoAlpha: 1, x: -100 });
+		gsap.set([hole, holeHidden], { y: -100 });
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
