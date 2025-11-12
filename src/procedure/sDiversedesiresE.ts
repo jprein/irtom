@@ -30,7 +30,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
-		gsap.set(boy, { x: 1200 });
+		//gsap.set(boy, { x: 1200 });
 		gsap.set([boyYay, boyNay], { opacity: 0 });
 
 		// Play initial audio
@@ -40,9 +40,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		await gsap
 			.timeline()
 			.to(boy, {
-				x: 0,
-				duration: 3,
-				onComplete: () => {
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
@@ -60,7 +58,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(boyNay, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 + 1,
 				autoAlpha: 0,
 				duration: 0.1,
 			})

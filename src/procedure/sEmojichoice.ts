@@ -28,6 +28,13 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Show left/right response options and store participant response
 	await showThreeOptions(slidePrefix);
 
+	if (data.procedure[data.currentSlide].response === 'left')
+		data.emoji = 'blue';
+	else if (data.procedure[data.currentSlide].response === 'center')
+		data.emoji = 'yellow';
+	else if (data.procedure[data.currentSlide].response === 'right')
+		data.emoji = 'purple';
+
 	// Play motivating feedback for first choice
 	await data.sprite.playPromise(`${slidePrefix}-feedback`);
 };
