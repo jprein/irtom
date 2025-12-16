@@ -106,46 +106,6 @@ export const showYesNoChoice = async (
 			'<',
 		)
 		.to([noFace, noFacefeatures], { x: 0, ease: 'power1.inOut' })
-		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
-		.to(yesFace, { y: -8, duration: 0.3 })
-		.to(yesFacefeatures, { y: -20, duration: 0.3 }, '<')
-		.to(yesFace, {
-			y: 8,
-			repeat: 2,
-			yoyo: true,
-			ease: 'power1.inOut',
-		})
-		.to(
-			yesFacefeatures,
-			{
-				y: 20,
-				repeat: 2,
-				yoyo: true,
-				ease: 'power1.inOut',
-			},
-			'<',
-		)
-		.to([yesFace, yesFacefeatures], { y: 0, ease: 'power1.inOut' })
-		.to(yesThumbs, { autoAlpha: 1, duration: 1 }, '<')
-		.to(noFace, { x: 8, duration: 0.3 })
-		.to(noFacefeatures, { x: 20, duration: 0.3 }, '<')
-		.to(noFace, {
-			x: -8,
-			repeat: 2,
-			yoyo: true,
-			ease: 'power1.inOut',
-		})
-		.to(
-			noFacefeatures,
-			{
-				x: -20,
-				repeat: 2,
-				yoyo: true,
-				ease: 'power1.inOut',
-			},
-			'<',
-		)
-		.to([noFace, noFacefeatures], { x: 0, ease: 'power1.inOut' })
 		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<');
 
 	// For the very first yes/no response, play extra audio

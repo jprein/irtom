@@ -2,6 +2,7 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideThreeOptions } from '../../src/util/hideThreeOptions';
 import { showThreeOptions } from '../../src/util/showThreeOptions';
+import { hideNextOption, showNextOption } from '../util/hideNextOption';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -21,7 +22,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideThreeOptions(slidePrefix);
-
+	await hideNextOption(slidePrefix);
 	// Short break before showing response options
 	await sleep(1000);
 
@@ -37,4 +38,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Play motivating feedback for first choice
 	await data.sprite.playPromise(`${slidePrefix}-feedback`);
+
+	await showNextOption(slidePrefix);
 };
