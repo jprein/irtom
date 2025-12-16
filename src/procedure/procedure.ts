@@ -11,6 +11,7 @@ import {
 	uploadWebcamVideo,
 } from '../../src/util/helpers';
 import type { SvgInHtml } from '../../src/types';
+import { addSpinner, hideSpinner } from '../util/leuphanaSpinner';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
@@ -114,6 +115,10 @@ export const procedure = async () => {
 	// PROCEDURE LOOP
 	// ================================================
 	for (const [index, slide] of currentProcedure.entries()) {
+		// if (index > 0) {
+		// 	await sleep(1000);
+		// 	await hideSpinner();
+		// }
 		// get previous, current and next slide
 		const previousSlide = currentProcedure[index - 1];
 		const currentSlide = slide;
@@ -310,6 +315,8 @@ export const procedure = async () => {
 			// stop any audio/video playback if it is still playing anything
 			stop();
 		}
+
+		// await addSpinner();
 	}
 
 	// save general variables for response log

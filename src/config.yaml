@@ -117,10 +117,10 @@ procedure:
     # - s-introduction
     # - s-emojichoice
     # - s-yesnotraining-a
-    # - s-yesnotraining-b
-    # - s-yesnotraining-c
-    # - s-yesnotraining-d
-    # - s-yesnotraining-e
+    - s-yesnotraining-b
+    - s-yesnotraining-c
+    - s-yesnotraining-d
+    - s-yesnotraining-e
     # - s-leftrighttraining-a
     # - s-leftrighttraining-b
     # - s-leftrighttraining-c
@@ -128,26 +128,26 @@ procedure:
     # - s-namestraining
     # - s-dogtraining
     # - s-parentstraining
-    - s-diversebeliefs-a
-    - s-diversebeliefs-b
-    - s-diversebeliefs-c
-    - s-falsebelief-col-a
-    - s-falsebelief-col-b
-    - s-falsebelief-uc-a
-    - s-falsebelief-uc-b
-    - s-falsebelief-ui-a
-    - s-falsebelief-ui-b
-    - s-aspectuality-a
-    - s-aspectuality-b
-    - s-appearanceReality-a
-    - s-appearanceReality-b
-    - s-pretense-a
-    - s-pretense-b
-    - s-deception-a
-    - s-deception-b
-    - s-falsebelief-two-a
-    - s-falsebelief-two-b
-    - s-end
+    # - s-diversebeliefs-a
+    # - s-diversebeliefs-b
+    # - s-diversebeliefs-c
+    # - s-falsebelief-col-a
+    # - s-falsebelief-col-b
+    # - s-falsebelief-uc-a
+    # - s-falsebelief-uc-b
+    # - s-falsebelief-ui-a
+    # - s-falsebelief-ui-b
+    # - s-aspectuality-a
+    # - s-aspectuality-b
+    # - s-appearanceReality-a
+    # - s-appearanceReality-b
+    # - s-pretense-a
+    # - s-pretense-b
+    # - s-deception-a
+    # - s-deception-b
+    # - s-falsebelief-two-a
+    # - s-falsebelief-two-b
+    # - s-end
 
   english:
     - s-introduction
