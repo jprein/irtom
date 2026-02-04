@@ -290,6 +290,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(1000);
 
 	// Show yes/no choice and store participant response
-	await showTwoOptions(slidePrefix);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

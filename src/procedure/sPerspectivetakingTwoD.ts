@@ -29,9 +29,9 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	await showAnimation();
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

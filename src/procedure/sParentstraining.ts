@@ -133,7 +133,10 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(1000);
 
 	// Show response options and store participant response
-	await showYesNoChoice(slidePrefix, choicePrefix);
-	await playCorrectIncorrectResponse(currentSlide);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = showYesNoChoice(slidePrefix, choicePrefix);
+
+	if (!stopBlockingState) {
+		await playCorrectIncorrectResponse(currentSlide);
+		await showBlockingState(slidePrefix);
+	}
 };

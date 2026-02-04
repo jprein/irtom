@@ -27,10 +27,10 @@ export default async ({ currentSlide, previousSlide }) => {
 	await hideThreeOptions(slidePrefix);
 	await hideBlockingState(slidePrefix);
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showThreeOptions(slidePrefix);
+	const stopBlockingState = await showThreeOptions(slidePrefix);
 
 	if (data.procedure[data.currentSlide].response === 'left')
 		data.emoji = 'blue';
@@ -42,5 +42,5 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Play motivating feedback for first choice
 	await data.sprite.playPromise(`${slidePrefix}-feedback`);
 
-	await showBlockingState(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };
