@@ -4,6 +4,11 @@ import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
 import { hideYesNoChoice } from '../util/hideYesNoChoice';
 import { showYesNoChoice } from '../util/showYesNoChoice';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
+import { playCorrectIncorrectResponse } from '../util/playCorrectIncorrectResponse';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -79,6 +84,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide yes/no choice
 	await hideYesNoChoice(choicePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
@@ -88,4 +94,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Show yes/no choice and store participant response
 	await showYesNoChoice(slidePrefix, choicePrefix);
+	await playCorrectIncorrectResponse(currentSlide);
+	await showBlockingState(slidePrefix);
 };

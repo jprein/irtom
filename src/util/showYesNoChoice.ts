@@ -46,67 +46,62 @@ export const showYesNoChoice = async (
 	gsap.set([yesThumbs, noThumbs], { autoAlpha: 0, pointerEvents: 'none' });
 
 	// animate head shaking & nodding
-	await gsap
-		.timeline()
-		.to(blurr, {
-			delay: 1,
-			autoAlpha: 0.7,
-			duration: 0.6,
-		})
+	const tl = gsap.timeline({
+		defaults: { ease: 'power1.inOut' },
+	});
+
+	// 1) blur + show yesGroup (keep durations explicit where needed)
+	tl.to(blurr, { delay: 1, autoAlpha: 0.7, duration: 0.3 })
 		.to(yesGroup, {
-			duration: 0.5,
 			autoAlpha: 1,
-			onStart: () => {
-				data.sprite.play('yes');
-			},
+			duration: 0.5,
+			onStart: () => data.sprite.play('yes'),
 		})
-		.to(yesFace, { y: -8, duration: 0.3 })
-		.to(yesFacefeatures, { y: -20, duration: 0.3 }, '<')
-		.to(yesFace, {
-			y: 8,
-			repeat: 2,
+
+		// 2) YES: move face + features together using a single call each phase
+		// phase A: jump up
+		.to([yesFace, yesFacefeatures], {
+			y: (i) => (i === 0 ? -8 : -20),
+			duration: 0.3,
+			ease: 'none',
+		})
+
+		// phase B: yoyo bounce (one tween instead of two)
+		.to([yesFace, yesFacefeatures], {
+			y: (i) => (i === 0 ? 8 : 20),
+			duration: 0.3,
+			repeat: 1,
 			yoyo: true,
-			ease: 'power1.inOut',
 		})
-		.to(
-			yesFacefeatures,
-			{
-				y: 20,
-				repeat: 2,
-				yoyo: true,
-				ease: 'power1.inOut',
-			},
-			'<',
-		)
-		.to([yesFace, yesFacefeatures], { y: 0, ease: 'power1.inOut' })
-		.to(yesThumbs, { autoAlpha: 1, duration: 1 }, '<')
+
+		// phase C: reset + show thumbs at same time
+		.to([yesFace, yesFacefeatures], { y: 0, duration: 0.2 })
+		.to(yesThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
+
+		// 3) NO group
 		.to(noGroup, {
-			duration: 0.5,
 			autoAlpha: 1,
-			onStart: () => {
-				data.sprite.play('no');
-			},
+			duration: 0.5,
+			onStart: () => data.sprite.play('no'),
 		})
-		.to(noFace, { x: 8, duration: 0.3 })
-		.to(noFacefeatures, { x: 20, duration: 0.3 }, '<')
-		.to(noFace, {
-			x: -8,
-			repeat: 2,
+
+		// NO: left/right together
+		.to([noFace, noFacefeatures], {
+			x: (i) => (i === 0 ? 8 : 20),
+			duration: 0.3,
+			ease: 'none',
+		})
+		.to([noFace, noFacefeatures], {
+			x: (i) => (i === 0 ? -8 : -20),
+			duration: 0.3,
+			repeat: 1,
 			yoyo: true,
-			ease: 'power1.inOut',
 		})
-		.to(
-			noFacefeatures,
-			{
-				x: -20,
-				repeat: 2,
-				yoyo: true,
-				ease: 'power1.inOut',
-			},
-			'<',
-		)
-		.to([noFace, noFacefeatures], { x: 0, ease: 'power1.inOut' })
+		.to([noFace, noFacefeatures], { x: 0, duration: 0.2 })
 		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<');
+
+	// If you truly need to await completion:
+	await tl.then();
 
 	// For the very first yes/no response, play extra audio
 	if (data.currentSlide === 'sYesnotrainingA') {

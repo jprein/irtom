@@ -4,6 +4,10 @@ import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -43,17 +47,19 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
-		gsap.set([boyLeft, boyRight, manCook, manCookCut, bubble], {
+		gsap.set([boyLeft, boyRight, manCook, bubble, manCookCut], {
 			autoAlpha: 0,
 			x: 0,
 		});
-		gsap.set([man], {
+		gsap.set([manCook], {
 			autoAlpha: 1,
-			x: 0,
+			x: -400,
 			y: 0,
 			scale: 1,
 		});
 		gsap.set(boy, { autoAlpha: 1, x: -1200 });
+		gsap.set(man, { scale: 0.7, autoAlpha: 0 });
+		gsap.set([boyLeft, boyRight], { x: +200 });
 
 		// Play initial audio
 		await data.sprite.playPromise(`${slidePrefix}-1`);
@@ -61,29 +67,23 @@ export default async ({ currentSlide, previousSlide }) => {
 		// Animation sequence
 		await gsap
 			.timeline()
-			.to([bubble, manCookCut], { autoAlpha: 1, duration: 0.1 })
-			.to([bubble, manCookCut], {
-				delay: 2,
-				autoAlpha: 0,
-				duration: 0.1,
-				onComplete: () => {
+			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 + 1,
+				x: +200,
+				duration: 2,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
-			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
-				x: 0,
-				duration: 3,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-3`);
-				},
-			})
-			.to(man, {
+			.to(manCook, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
-				x: 710,
+				//x: 710,
 				y: 50,
 				scale: 0.6,
-				duration: 3,
+				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-3`);
+				},
 			})
 			.to(
 				boy,
@@ -93,44 +93,68 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<+=0.5',
 			)
-			.to(boyRight, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(man, {
+			.to(boyLeft, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(manCook, {
 				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
-				onComplete: () => {
+			})
+			.to(boyLeft, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
+				autoAlpha: 1,
+				duration: 0.1,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
-			.to(manCook, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+			.to(man, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.1,
-				onComplete: () => {
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
-			.to(manCook, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
-				x: -950,
-				duration: 3,
+			.to(man, {
+				delay: 1,
+				scale: 1,
+				duration: 2,
 			})
-			.to(boyRight, { autoAlpha: 0, duration: 0.1 }, '-=0.5')
-			.to(boyLeft, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(manCook, { delay: 1, autoAlpha: 0, duration: 0.1 })
-			.to(boyLeft, { delay: 1, autoAlpha: 0, duration: 0.1 })
+			.to(man, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-6`);
+				},
+			})
+			.to(man, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000 + 2,
+				scale: 0.7,
+				x: 970,
+				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-7`);
+				},
+			})
+			.to(boyRight, { autoAlpha: 1, duration: 0.1 }, '-=0.5')
+			.to(boyLeft, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(man, { delay: 1, autoAlpha: 0, duration: 0.1 })
+			.to(boyRight, { delay: 0, autoAlpha: 0, duration: 0.1 })
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<');
+
+		await sleep(2000);
 	}
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
 	await showTwoOptions(slidePrefix);
+	await showBlockingState(slidePrefix);
 };

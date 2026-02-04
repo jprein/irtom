@@ -4,6 +4,7 @@ import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
 import { swapSlides } from '../../src/util/slideVisibility';
 import { gsap } from 'gsap';
+import { hideBlockingState } from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -31,6 +32,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
@@ -40,4 +42,5 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Show response options
 	await showTwoOptions(slidePrefix);
+	//await showBlockingState(slidePrefix);
 };

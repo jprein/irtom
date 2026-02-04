@@ -4,6 +4,10 @@ import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -131,114 +135,125 @@ export default async ({ currentSlide, previousSlide }) => {
 		});
 
 		gsap.set([girl], { autoAlpha: 1, x: -1200 });
+		gsap.set([boy], { autoAlpha: 1, x: 0 });
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		await gsap
 			.timeline()
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
 			.to([boy, vinegar], {
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[boyWithVineger],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to([boyWithVineger], {
 				delay: 1,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[boy, vinegarAfter],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to([boy, water], {
 				delay: 1,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[boyWithWater],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to([boyWithWater], {
 				delay: 1,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[boy, waterAfter],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
 			.to([fridgeEmpty, boyWithBottles], {
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[fridgeClosed, boy, waterAfter, vinegarAfter],
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
-			.to(boyWithBottles, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-4`);
-				},
-			})
 			.to([fridgeOpen, boy], {
+				delay: 1,
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[fridgeEmpty, boyWithBottles],
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to([fridgeClosed], {
-				delay: 2,
+				delay: 1,
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[fridgeOpen],
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
+				},
+				'<',
+			)
+			.to(girl, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-4`);
+				},
+			})
+			.to(
+				[girl],
+				{
+					x: 0,
+					autoAlpha: 1,
+					duration: 2,
 				},
 				'<',
 			)
@@ -248,105 +263,86 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
-			.to(
-				[girl],
-				{
-					x: 0,
-					autoAlpha: 1,
-					duration: 3,
-				},
-				'<',
-			)
-			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-6`);
-				},
-			})
 			.to([boy, blueCup], {
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[boyWithCup],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to([boyWithCup, girl], {
 				delay: 1,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[boy, girlDrinking],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 				onStart: () => {
-					data.sprite.play(`${slidePrefix}-7`);
+					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
 			.to([girlDrinking], {
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[girlRightNay, blueCup],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(girlRightNay, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 1,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-8`);
-				},
-			})
-			.to(girlRightNay, {
+				delay: 2,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				girlFrontAngry,
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-9`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000 - 2,
 				onStart: () => {
-					data.sprite.play(`${slidePrefix}-9`);
+					data.sprite.play(`${slidePrefix}-7`);
 				},
 			})
 			.to(boy, {
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				boyLaughing,
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
-			// .to([boyLaughing, girlFrontAngry], {
-			// 	delay: 1,
-			// 	autoAlpha: 0,
-			// 	duration: 0.5,
-			// })
+			.to(boyLaughing, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 + 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-8`);
+				},
+			})
 			.to([girl], {
 				x: +1600,
 			})
@@ -362,20 +358,20 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(boyLaughing, {
 				delay: 1,
 				x: +1200,
-				duration: 3,
+				duration: 2,
 			})
 			.to(
 				girlFrontAngry,
 				{
 					x: -1200,
-					duration: 3,
+					duration: 2,
 				},
 				'<',
 			)
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-10`][1] / 1000 - 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-9`][1] / 1000,
 				onStart: () => {
-					data.sprite.play(`${slidePrefix}-10`);
+					data.sprite.play(`${slidePrefix}-9`);
 				},
 			})
 			.to(
@@ -395,127 +391,132 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(boy, {
 				delay: 1,
 				x: -400,
-				duration: 3,
+				duration: 2,
 			})
 			.to(
 				girl,
 				{
 					x: +400,
-					duration: 3,
+					duration: 2,
 				},
 				'<',
 			)
+			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-10`][1] / 1000,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-10`);
+				},
+			})
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-11`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-11`);
 				},
 			})
-			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-12`][1] / 1000,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-12`);
-				},
-			})
 			.to([girl, purpleCup], {
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[girlFrontCup],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to([girlFrontCup], {
 				delay: 1,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[girlBackCup],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to([fridgeClosed], {
 				delay: 1,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[fridgeOpen],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(girlBackCup, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-13`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-12`][1] / 1000,
+				//delay: 1,
 				onStart: () => {
-					data.sprite.play(`${slidePrefix}-13`);
+					data.sprite.play(`${slidePrefix}-12`);
 				},
 			})
 			.to([fridgeOpen], {
 				delay: 1,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[fridgeClosed],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to([girlBackCup], {
 				delay: 1,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[girlFrontCup],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
-			.to(girlFrontCup, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-14`][1] / 1000,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-14`);
-				},
-			})
 			.to([girlFrontCup], {
+				delay: 1,
 				autoAlpha: 0,
 			})
 			.to(
 				[girlCup],
 				{
 					x: -300,
+					duration: 0.1,
+				},
+				'<',
+			)
+			.to(
+				[girlCup],
+				{
 					autoAlpha: 1,
 				},
 				'<',
 			);
 
-		await sleep(2000);
+		await sleep(1000);
 	}
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
 	await showTwoOptions(slidePrefix);
+	await showBlockingState(slidePrefix);
 };

@@ -4,6 +4,10 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -19,7 +23,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girlHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-handsup`,
+		`link-${slidePrefix}-${data.community}-girl-kneeling`,
 	) as SvgInHtml;
 	const girl = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl`,
@@ -51,11 +55,18 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(dog, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 5,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000,
 				x: 0,
-				duration: 3,
+				duration: 1.5,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-2`);
+				},
 			})
-			.to(boxOpen, { delay: 2, autoAlpha: 1, duration: 0.1 })
+			.to(boxOpen, {
+				delay: 2,
+				autoAlpha: 1,
+				duration: 0.1,
+			})
 			.to(dog, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(boxOpen, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(
@@ -63,22 +74,19 @@ export default async ({ currentSlide, previousSlide }) => {
 				{
 					autoAlpha: 1,
 					duration: 0.1,
-					onComplete: () => {
-						data.sprite.play(`${slidePrefix}-2`);
-					},
 				},
 				'<',
 			)
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				x: 0,
-				duration: 3,
-				onComplete: () => {
+				duration: 2,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -91,10 +99,9 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(boxClosed, {
-				x: 50,
-				y: -700,
-				duration: 1,
-				onComplete: () => {
+				x: 0,
+				duration: 0.3,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
@@ -119,16 +126,16 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girl, {
 				delay: 1,
 				x: -1200,
-				duration: 3,
-				onComplete: () => {
+				duration: 2,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				x: 0,
-				duration: 3,
-				onComplete: () => {
+				duration: 2,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
@@ -138,15 +145,26 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-7`);
 				},
 			})
+			.to(boxClosed, {
+				delay: data.spriteJSON.sprite[`dog`][1] / 1000,
+				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`dog`);
+				},
+			})
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
 				x: -1200,
-				duration: 3,
+				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-9`);
+				},
 			});
 	}
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
@@ -156,4 +174,5 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Show left/right response options and store participant response
 	await showTwoOptions(slidePrefix);
+	await showBlockingState(slidePrefix);
 };

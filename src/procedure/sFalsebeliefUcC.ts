@@ -3,7 +3,7 @@ import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
-import { gsap } from 'gsap';
+import gsap from 'gsap';
 import {
 	hideBlockingState,
 	showBlockingState,
@@ -11,10 +11,10 @@ import {
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
-	const slidePrefix = 's-falsebelief-uc-a';
+	const slidePrefix = 's-falsebelief-uc-c';
 
 	// Store correct response
-	data.procedure[data.currentSlide].correct = 'right';
+	data.procedure[data.currentSlide].correct = 'left';
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
@@ -22,106 +22,76 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
-	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
-	) as SvgInHtml;
-	const girlWithShoes = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-shoes`,
-	) as SvgInHtml;
-	const girlWithBook = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-book`,
-	) as SvgInHtml;
 	const boy = document.getElementById(
 		`link-${slidePrefix}-${data.community}-boy`,
+	) as SvgInHtml;
+	const girl = document.getElementById(
+		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
 	const boxClosed = document.getElementById(
 		`${slidePrefix}-box-closed`,
 	) as SvgInHtml;
-	const boxOpenShoes = document.getElementById(
-		`${slidePrefix}-box-shoes`,
-	) as SvgInHtml;
-	const boxOpenBook = document.getElementById(
-		`${slidePrefix}-box-book`,
+	const boxOpen = document.getElementById(
+		`${slidePrefix}-box-open`,
 	) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
-		gsap.set(
-			[
-				girl,
-				girlWithShoes,
-				girlWithBook,
-				boy,
-				boxClosed,
-				boxOpenShoes,
-				boxOpenBook,
-			],
-			{
-				autoAlpha: 0,
-				x: 0,
-			},
-		);
-		gsap.set([girlWithBook, boxClosed, boy], {
+		gsap.set([girl, boy, boxClosed, boxOpen], {
+			autoAlpha: 0,
+			x: 0,
+		});
+
+		gsap.set([boy, girl, boxClosed], {
 			autoAlpha: 1,
 			x: 0,
 		});
-		gsap.set(girlWithBook, { x: -1200 });
 		gsap.set(boy, { x: 1200 });
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		await gsap
 			.timeline()
-			.to(girlWithBook, {
-				x: 0,
-				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
+			.to(girl, {
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
 			.to(boxClosed, {
-				duration: 0.1,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-3`);
-				},
+				duration: 0.1,
 			})
 			.to(
-				boxOpenShoes,
+				boxOpen,
 				{
 					autoAlpha: 1,
 					duration: 0.1,
 				},
 				'<',
 			)
-			.to([girlWithShoes, boxOpenBook], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
-				autoAlpha: 1,
-				duration: 0.1,
+			.to(girl, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-3`);
+				},
+			})
+			.to(girl, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
 			.to(
-				[girlWithBook, boxOpenShoes],
+				boxClosed,
 				{
-					autoAlpha: 0,
+					autoAlpha: 1,
 					duration: 0.1,
 				},
 				'<',
 			)
-			.to(boxClosed, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 + 3,
-				autoAlpha: 1,
-				duration: 0.1,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-5`);
-				},
-			})
 			.to(
-				boxOpenBook,
+				boxOpen,
 				{
 					autoAlpha: 0,
 					duration: 0.1,
@@ -129,7 +99,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(
-				girlWithShoes,
+				girl,
 				{
 					x: -1200,
 					duration: 2,
@@ -137,16 +107,13 @@ export default async ({ currentSlide, previousSlide }) => {
 				'=+2',
 			)
 			.to(boy, {
-				autoAlpha: 1,
 				x: 0,
 				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				onStart: () => {
-					data.sprite.play(`${slidePrefix}-6`);
+					data.sprite.play(`${slidePrefix}-5`);
 				},
 			});
-
-		await sleep(2000);
 	}
 
 	// In beginning, hide response options

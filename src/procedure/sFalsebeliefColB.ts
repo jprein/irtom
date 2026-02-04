@@ -2,8 +2,12 @@ import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
-import { hideThreeOptions } from '../util/hideThreeOptions';
-import { showThreeOptions } from '../util/showThreeOptions';
+import { hideTwoOptions } from '../util/hideTwoOptions';
+import { showTwoOptions } from '../util/showTwoOptions';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -94,12 +98,12 @@ export default async ({ currentSlide, previousSlide }) => {
 			.timeline()
 			// first, animate man moving teddy into central box B
 			.to(manTeddy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
 			.to([manTeddy, boxBClosed], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -108,25 +112,22 @@ export default async ({ currentSlide, previousSlide }) => {
 				{
 					autoAlpha: 1,
 					duration: 0.1,
-					onComplete: () => {
-						data.sprite.play(`${slidePrefix}-3`);
-					},
 				},
 				'<',
 			)
 			.to([manHandsup, boxBOpen], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 2,
 				autoAlpha: 0,
 				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-3`);
+				},
 			})
 			.to([man, boxBClosed], { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(man, {
 				delay: 1,
 				x: 1200,
-				duration: 3,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-4`);
-				},
+				duration: 2,
 			})
 			// second, animate girl taking teddy from central box B and moving it to right box C
 			.to(girl, {
@@ -134,6 +135,9 @@ export default async ({ currentSlide, previousSlide }) => {
 				x: -220,
 				y: 100,
 				duration: 1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-4`);
+				},
 			})
 			.to([girlTeddy, girlHandsup], { x: -220, y: 100, duration: 0 })
 			.to([girl, boxBClosed], {
@@ -155,23 +159,26 @@ export default async ({ currentSlide, previousSlide }) => {
 				{
 					autoAlpha: 1,
 					duration: 0.1,
-					onComplete: () => {
-						data.sprite.play(`${slidePrefix}-5`);
-					},
 				},
 				'<',
 			)
 			.to(girlTeddy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				x: 360,
 				duration: 2,
-				onComplete: () => {
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-5`);
+				},
+			})
+			.to([girl, girlHandsup], {
+				x: 360,
+				duration: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
-			.to([girl, girlHandsup], { x: 360, duration: 0 })
 			.to([girlTeddy, boxCClosed], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 + 0.5,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -187,25 +194,25 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-7`);
-				},
 			})
 			.to([girl, boxCClosed], { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
 				x: 1200,
 				duration: 2,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-8`);
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-7`);
 				},
 			})
 			// third, animate boy taking teddy from right box C and moving it to left box A
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 2,
 				x: 860,
 				y: 100,
-				duration: 4,
+				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-8`);
+				},
 			})
 			.to([boyTeddy, boyHandsup], { x: 860, y: 100, duration: 0 })
 			.to([boy, boxCClosed], {
@@ -227,25 +234,25 @@ export default async ({ currentSlide, previousSlide }) => {
 				{
 					autoAlpha: 1,
 					duration: 0.1,
-					onComplete: () => {
-						data.sprite.play(`${slidePrefix}-9`);
-					},
 				},
 				'<',
 			)
 			.to(boyTeddy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-9`][1] / 1000 - 1,
 				x: -360,
-				duration: 4,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-10`);
+				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-9`);
 				},
 			})
 			.to([boy, boyHandsup], { x: -360, duration: 0 })
 			.to([boyTeddy, boxAClosed], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-10`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-10`][1] / 1000 - 1,
 				autoAlpha: 0,
 				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-10`);
+				},
 			})
 			.to(
 				[boyHandsup, boxAOpen],
@@ -259,20 +266,22 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-11`);
-				},
 			})
 			.to([boy, boxAClosed], { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-11`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-11`][1] / 1000 + 1,
 				x: -1200,
 				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-11`);
+				},
 			});
+		await sleep(500);
 	}
 
 	// In beginning, hide yes/no choice
-	await hideThreeOptions(slidePrefix);
+	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
@@ -281,5 +290,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(1000);
 
 	// Show yes/no choice and store participant response
-	await showThreeOptions(slidePrefix);
+	await showTwoOptions(slidePrefix);
+	await showBlockingState(slidePrefix);
 };

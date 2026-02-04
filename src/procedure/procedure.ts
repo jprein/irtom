@@ -11,7 +11,6 @@ import {
 	uploadWebcamVideo,
 } from '../../src/util/helpers';
 import type { SvgInHtml } from '../../src/types';
-import { addSpinner, hideSpinner } from '../util/leuphanaSpinner';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
@@ -233,13 +232,13 @@ export const procedure = async () => {
 			if (data.procedure[data.currentSlide].trainingTrial) {
 				// If correct response, play correct audio and move on to next trial
 				if (data.procedure[data.currentSlide].score === 1) {
-					await data.sprite.playPromise(`${currentSlideKc}-correct`);
+					//await data.sprite.playPromise(`${currentSlideKc}-correct`);
 				}
 				// If incorrect response, reset score, play incorrect audio and repeat trial
 				else if (data.procedure[data.currentSlide].score === 0) {
-					data.procedure[data.currentSlide].score = null;
-					data.procedure[data.currentSlide].response = null;
-					await data.sprite.playPromise(`${currentSlideKc}-incorrect`);
+					//data.procedure[data.currentSlide].score = null;
+					//data.procedure[data.currentSlide].response = null;
+					//await data.sprite.playPromise(`${currentSlideKc}-incorrect`);
 					await handleRepeatClick(true);
 				}
 			}
@@ -265,13 +264,13 @@ export const procedure = async () => {
 		if (data.procedure[data.currentSlide].trainingTrial) {
 			// If correct response, play correct audio and move on to next trial
 			if (data.procedure[data.currentSlide].score === 1) {
-				await data.sprite.playPromise(`${currentSlideKc}-correct`);
+				//await data.sprite.playPromise(`${currentSlideKc}-correct`);
 			}
 			// If incorrect response, reset score, play incorrect audio and repeat trial
 			else if (data.procedure[data.currentSlide].score === 0) {
-				data.procedure[data.currentSlide].score = null;
-				data.procedure[data.currentSlide].response = null;
-				await data.sprite.playPromise(`${currentSlideKc}-incorrect`);
+				//data.procedure[data.currentSlide].score = null;
+				//data.procedure[data.currentSlide].response = null;
+				//await data.sprite.playPromise(`${currentSlideKc}-incorrect`);
 				await handleRepeatClick(true);
 			}
 		}
@@ -315,8 +314,6 @@ export const procedure = async () => {
 			// stop any audio/video playback if it is still playing anything
 			stop();
 		}
-
-		// await addSpinner();
 	}
 
 	// save general variables for response log
@@ -381,6 +378,5 @@ export const procedure = async () => {
 	console.log('Here is what we stored:');
 	console.log(data);
 	console.groupEnd();
-
 	console.log('Procedure loop done');
 };

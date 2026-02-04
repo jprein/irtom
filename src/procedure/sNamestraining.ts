@@ -4,6 +4,11 @@ import { swapSlides } from '../util/slideVisibility';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import { sleep } from '../util/helpers';
+import { playCorrectIncorrectResponse } from '../util/playCorrectIncorrectResponse';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -76,7 +81,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -108,13 +113,16 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show response options and store participant response
 	await showTwoOptions(slidePrefix);
+	await playCorrectIncorrectResponse(currentSlide);
+	await showBlockingState(slidePrefix);
 };

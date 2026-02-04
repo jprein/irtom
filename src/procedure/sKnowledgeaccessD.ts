@@ -4,6 +4,10 @@ import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -22,10 +26,10 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-${data.community}-girl-pot`,
 	) as SvgInHtml;
 	const mother = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman-doctor`,
+		`link-${slidePrefix}-${data.community}-woman-doctor-nomask`,
 	) as SvgInHtml;
 	const father = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-cook`,
+		`link-${slidePrefix}-${data.community}-man-cook-nomask`,
 	) as SvgInHtml;
 
 	// Define animation function
@@ -55,7 +59,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				mother,
 				{
 					x: 0,
-					duration: 3,
+					duration: 2,
 				},
 				'<',
 			)
@@ -69,7 +73,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				father,
 				{
 					x: 0,
-					duration: 3,
+					duration: 2,
 				},
 				'<',
 			)
@@ -81,13 +85,14 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(girl, {
 				x: 0,
-				duration: 3,
+				duration: 2,
 			});
 
-		await sleep(2000);
+		await sleep(500);
 	}
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
@@ -97,4 +102,5 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Show left/right response options and store participant response
 	await showTwoOptions(slidePrefix);
+	await showBlockingState(slidePrefix);
 };

@@ -4,6 +4,10 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -57,7 +61,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		// Animation sequence
 		await gsap.timeline().to(boy, {
 			x: 0,
-			duration: 3,
+			duration: 2,
 			onComplete: () => {
 				data.sprite.play(`${slidePrefix}-2`);
 			},
@@ -115,7 +119,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				.to(boy, {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 					x: 1200,
-					duration: 3,
+					duration: 2,
 				});
 			// For the case that Max likes the cracker but not the cucumber
 		} else {
@@ -167,13 +171,14 @@ export default async ({ currentSlide, previousSlide }) => {
 				.to(boy, {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 					x: 1200,
-					duration: 3,
+					duration: 2,
 				});
 		}
 	}
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
@@ -183,4 +188,5 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Show left/right response options and store participant response
 	await showTwoOptions(slidePrefix);
+	await showBlockingState(slidePrefix);
 };

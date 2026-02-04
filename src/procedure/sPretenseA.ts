@@ -4,6 +4,10 @@ import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -47,46 +51,45 @@ export default async ({ currentSlide, previousSlide }) => {
 		await gsap
 			.timeline()
 			.to(boyFront, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
 			.to(boyFront, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				boyWithCycle,
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(girlFront, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
 			.to(girlFront, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				girlWithSpringBike,
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			);
-
-		await sleep(2000);
 	}
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
@@ -96,4 +99,5 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Show left/right response options and store participant response
 	await showTwoOptions(slidePrefix);
+	await showBlockingState(slidePrefix);
 };

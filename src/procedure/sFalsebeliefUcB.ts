@@ -4,6 +4,10 @@ import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
 import gsap from 'gsap';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -85,28 +89,27 @@ export default async ({ currentSlide, previousSlide }) => {
 		await gsap
 			.timeline()
 			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
 				x: 0,
-				duration: 3,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
+				duration: 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
 			.to([cookieBoxClosed, puzzleBoxClosed], {
-				delay: 3,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[cookieBoxWithCookies, puzzleBoxWithPuzzle],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
@@ -115,7 +118,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				[boyWithPuzzleAndCookie, cookieBoxEmpty, puzzleBoxEmpty],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
@@ -123,39 +126,34 @@ export default async ({ currentSlide, previousSlide }) => {
 				[boy, cookieBoxWithCookies, puzzleBoxWithPuzzle],
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
-			.to(boyWithPuzzleAndCookie, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-4`);
-				},
-			})
 			.to([boyWithPuzzleAndCookie, cookieBoxEmpty, puzzleBoxEmpty], {
+				delay: 1,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[boy, cookieBoxWithPuzzle, puzzleBoxWithCookies],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
-			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 + 3,
+			.to(boyWithPuzzleAndCookie, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 + 2,
 				onStart: () => {
-					data.sprite.play(`${slidePrefix}-5`);
+					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
 			.to(
 				[cookieBoxWithPuzzle, puzzleBoxWithCookies],
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
@@ -163,7 +161,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				[cookieBoxClosed, puzzleBoxClosed],
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
@@ -171,32 +169,34 @@ export default async ({ currentSlide, previousSlide }) => {
 				boy,
 				{
 					x: 1200,
-					duration: 3,
-					delay: 3,
+					duration: 2,
+					delay: 2,
 				},
-				'<',
+				'=+1',
 			)
 			.to(girl, {
 				x: 0,
-				duration: 3,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				duration: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				onStart: () => {
-					data.sprite.play(`${slidePrefix}-6`);
+					data.sprite.play(`${slidePrefix}-5`);
 				},
 			});
 
-		await sleep(2000);
+		await sleep(1000);
 	}
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
 	await showTwoOptions(slidePrefix);
+	await showBlockingState(slidePrefix);
 };

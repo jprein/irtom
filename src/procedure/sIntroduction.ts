@@ -44,7 +44,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	speaker.addEventListener('click', async () => {
 		if (!config.devmode.on) startFullscreen();
 
-		await data.sprite.playPromise('pop');
+		await data.sprite.playPromise('s-introduction');
 		gsap.to([nextButton, repeat], {
 			autoAlpha: 1,
 			pointerEvents: 'visible',
