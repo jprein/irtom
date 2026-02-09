@@ -121,7 +121,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 1,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
@@ -167,9 +167,8 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			});
 
-		await sleep(500);
-
 		await tl.then();
+		await sleep(500);
 		tl.kill();
 	}
 

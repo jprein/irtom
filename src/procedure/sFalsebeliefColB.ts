@@ -275,9 +275,9 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-11`);
 				},
 			});
-		await sleep(500);
 
 		await tl.then();
+		await sleep(500);
 		tl.kill();
 	}
 

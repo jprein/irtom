@@ -106,10 +106,9 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			});
 
+		await tl.then();
 		// Short break before showing response options
 		await sleep(500);
-
-		await tl.then();
 		tl.kill();
 	}
 

@@ -205,9 +205,8 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, { delay: 1, x: -1200, duration: 2 });
 
-		await sleep(500);
-
 		await tl.then();
+		await sleep(500);
 		tl.kill();
 	}
 

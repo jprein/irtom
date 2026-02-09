@@ -407,7 +407,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-11`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-11`][1] / 1000 - 1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-11`);
 				},
@@ -483,18 +483,18 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			)
-			.to([girlFrontCup], {
-				delay: 1,
-				autoAlpha: 0,
-			})
 			.to(
 				[girlCup],
 				{
 					x: -300,
-					duration: 0.1,
+					duuration: 0.1,
 				},
 				'<',
 			)
+			.to([girlFrontCup], {
+				delay: 1,
+				autoAlpha: 0,
+			})
 			.to(
 				[girlCup],
 				{
@@ -503,9 +503,8 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			);
 
-		await sleep(500);
-
 		await tl.then();
+		await sleep(500);
 		tl.kill();
 	}
 	// In beginning, hide response options

@@ -120,9 +120,8 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 2,
 			});
 
-		await sleep(500);
-
 		await tl.then();
+		await sleep(500);
 		tl.kill();
 	}
 

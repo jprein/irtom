@@ -35,19 +35,19 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-${data.community}-girl-ball`,
 	) as SvgInHtml;
 	const girlBallRight = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-ball-right`,
+		`link-${slidePrefix}-${data.community}-girl-ball-rights`,
 	) as SvgInHtml;
 	const girlBallLeft = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-ball-left`,
+		`link-${slidePrefix}-${data.community}-girl-ball-lefts`,
 	) as SvgInHtml;
 	const girlTowel = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl-ball-towl`,
 	) as SvgInHtml;
 	const girlTowelRight = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-towl-right`,
+		`link-${slidePrefix}-${data.community}-girl-towl-rights`,
 	) as SvgInHtml;
 	const girlTowelLeft = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-towl-left`,
+		`link-${slidePrefix}-${data.community}-girl-towl-lefts`,
 	) as SvgInHtml;
 	const boxClosed = document.getElementById(
 		`${slidePrefix}-box-closed`,
@@ -400,9 +400,8 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			);
 
-		await sleep(500);
-
 		await tl.then();
+		await sleep(500);
 		tl.kill();
 	}
 

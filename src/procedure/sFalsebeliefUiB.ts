@@ -222,9 +222,8 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(phonesound, { delay: 2, autoAlpha: 0, duration: 0.1 });
 
-		await sleep(500);
-
 		await tl.then();
+		await sleep(500);
 		tl.kill();
 	}
 

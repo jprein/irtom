@@ -42,7 +42,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	const playingTimeline = true;
 
 	speaker.addEventListener('click', async () => {
-		if (!config.devmode.on) startFullscreen();
+		if (!config.devmode.on) startFullscreen(data.isIOS);
+		//startFullscreen(data.isIOS);
 
 		await data.sprite.playPromise('s-introduction');
 		gsap.to([nextButton, repeat], {

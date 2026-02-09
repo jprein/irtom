@@ -87,9 +87,8 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 2,
 			});
 
-		await sleep(1000);
-
 		await tl.then();
+		await sleep(1000);
 		tl.kill();
 	}
 	// In beginning, hide response options
