@@ -135,7 +135,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(500);
 
 	// Show response options and store participant response
-	const stopBlockingState = showYesNoChoice(slidePrefix, choicePrefix);
+	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
 
 	if (!stopBlockingState) {
 		await playCorrectIncorrectResponse(currentSlide);
