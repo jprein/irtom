@@ -11,6 +11,7 @@ import {
 	uploadWebcamVideo,
 } from '../../src/util/helpers';
 import type { SvgInHtml } from '../../src/types';
+import { stopRecording } from '../util/mediaRecorderServices';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
@@ -351,19 +352,25 @@ export const procedure = async () => {
 		}
 	});
 
+	try {
+		await stopRecording();
+	} catch (e) {
+		console.warn('Failed to stop recording, continuing anyway:', e);
+	}
+
 	// Save data depending on choice (local, server, both)
 	if (datatransfer === 'local') {
 		downloadCsv();
-		downloadWebcamVideo(data.id);
+		downloadWebcamVideo(data.webcam, data.id);
 	} else if (datatransfer === 'server') {
 		uploadCsv();
-		await uploadWebcamVideo(data.id);
+		await uploadWebcamVideo(data.webcam, data.id);
 		await sleep(1000);
 	} else {
 		uploadCsv();
 		downloadCsv();
-		downloadWebcamVideo(data.id);
-		await uploadWebcamVideo(data.id);
+		downloadWebcamVideo(data.webcam, data.id);
+		await uploadWebcamVideo(data.webcam, data.id);
 		await sleep(1000);
 	}
 

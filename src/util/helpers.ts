@@ -1,7 +1,10 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import Toastify from 'toastify-js';
-import * as mrec from '@ccp-eva/media-recorder';
+import {
+	downloadLastRecording,
+	uploadLastRecordingInChunks,
+} from './mediaRecorderServices';
 
 // promised based timeout
 export const sleep = (ms = 2000) =>
@@ -178,47 +181,80 @@ export const uploadCsv = (
 };
 
 // Function to download the webcam video
-export async function downloadWebcamVideo(id: string) {
-	mrec.stopRecorder();
-	// give some time to create Video Blob
-	const day = new Date().toISOString().substring(0, 10);
-	const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
-	await sleep(2000);
-	mrec.downloadVideo(`irtom-${id}-${day}-${time}`);
+export async function downloadWebcamVideo(webcam: boolean, id: string) {
+	// mrec.stopRecorder();
+	// // give some time to create Video Blob
+	// const day = new Date().toISOString().substring(0, 10);
+	// const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
+	// await sleep(2000);
+	// mrec.downloadVideo(`irtom-${id}-${day}-${time}`);
+	try {
+		if (webcam === true) {
+			// give some time to create Video Blob
+
+			const day = new Date().toISOString().substring(0, 10);
+			const time = new Date().toISOString().substring(11, 19);
+			// save video on server
+
+			// save video locally
+			setTimeout(() => {
+				downloadLastRecording(`irtom-${id}-${day}-${time}`);
+			}, 2000);
+		}
+	} catch (error) {
+		console.error('Error downloading video:', error);
+	}
 }
 
 // Function to upload the webcam video
-export async function uploadWebcamVideo(id: string) {
-	// stop recorder and upload video
-	mrec.stopRecorder();
-
-	// show upload spinner
-	mrec.modalContent(
-		'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
-		'#E1B4B4',
-	);
-
-	await sleep(2000);
-
-	const day = new Date().toISOString().substring(0, 10);
-	const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
+export async function uploadWebcamVideo(webcam: boolean, id: string) {
+	// // stop recorder and upload video
+	// mrec.stopRecorder();
+	// // show upload spinner
+	// mrec.modalContent(
+	// 	'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
+	// 	'#E1B4B4',
+	// );
+	// await sleep(2000);
+	// const day = new Date().toISOString().substring(0, 10);
+	// const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
+	// try {
+	// 	mrec.uploadVideo(
+	// 		{
+	// 			fname: `irtom-${id}-${day}-${time}`,
+	// 			uploadContent:
+	// 				'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
+	// 			uploadColor: '#E1B4B4',
+	// 			successContent:
+	// 				'<img src=\'assets/spinner-done-de.svg\' style="width: 75vw">',
+	// 			successColor: '#D3F9D3',
+	// 		},
+	// 		'./data/upload_video.php',
+	// 	);
+	// } catch (error) {
+	// 	console.error('Error uploading video:', error);
+	// }
+	// await sleep(2000);
 
 	try {
-		mrec.uploadVideo(
-			{
-				fname: `irtom-${id}-${day}-${time}`,
-				uploadContent:
-					'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
-				uploadColor: '#E1B4B4',
-				successContent:
-					'<img src=\'assets/spinner-done-de.svg\' style="width: 75vw">',
-				successColor: '#D3F9D3',
-			},
-			'./data/upload_video.php',
-		);
+		if (webcam === true) {
+			// give some time to create Video Blob
+
+			const day = new Date().toISOString().substring(0, 10);
+			const time = new Date()
+				.toISOString()
+				.substring(11, 19)
+				.replaceAll(':', '-');
+			try {
+				await uploadLastRecordingInChunks('./data/upload_video.php', {
+					filename: `irtom-${id}-${day}-${time}`,
+				});
+			} catch (err) {
+				console.log('Error is in upload video', err);
+			}
+		}
 	} catch (error) {
 		console.error('Error uploading video:', error);
 	}
-
 	await sleep(2000);
 }
