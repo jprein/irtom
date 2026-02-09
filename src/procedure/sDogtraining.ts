@@ -49,13 +49,13 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set(dogRunning, { x: -1200 });
 		gsap.set([boy, girl, dogRunning], { autoAlpha: 1 });
 
-		await gsap
-			.timeline()
-			.to(dogRunning, {
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-1`);
-				},
-			})
+		const tl = await gsap.timeline();
+
+		tl.to(dogRunning, {
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
+			},
+		})
 			.to(dogRunning, {
 				delay: 1,
 				x: 0,
@@ -80,6 +80,9 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		// Short break before showing response options
 		await sleep(data.spriteJSON.sprite[`${slidePrefix}-2`][1]);
+
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide yes/no choice
@@ -90,7 +93,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show yes/no choice and store participant response
 	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);

@@ -51,13 +51,13 @@ export default async ({ currentSlide, previousSlide }) => {
 		});
 		gsap.set(boy, { x: 0 });
 
-		await gsap
-			.timeline()
-			.to(boyBall, {
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-1`);
-				},
-			})
+		const tl = await gsap.timeline();
+
+		tl.to(boyBall, {
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
+			},
+		})
 			.to(boyBall, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000,
 				x: 0,
@@ -107,7 +107,10 @@ export default async ({ currentSlide, previousSlide }) => {
 			});
 
 		// Short break before showing response options
-		await sleep(1000);
+		await sleep(500);
+
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide yes/no choice

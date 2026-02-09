@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../../src/types';
 import { swapSlides } from '../../src/util/slideVisibility';
@@ -48,13 +49,12 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(girl, {
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-${naySide}-nay`);
-				},
-			})
+		const tl = await gsap.timeline();
+		tl.to(girl, {
+			onComplete: () => {
+				data.sprite.play(`${slidePrefix}-${naySide}-nay`);
+			},
+		})
 			.to(
 				girl,
 				{
@@ -86,6 +86,11 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			);
+
+		await sleep(500);
+		
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide response options
@@ -96,7 +101,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	await showAnimation();
 
 	// Short break before response choices
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
 	await showTwoOptions(slidePrefix);

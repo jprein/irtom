@@ -46,13 +46,12 @@ export default async ({ currentSlide, previousSlide }) => {
 	async function showAnimation() {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(girl, {
-				delay: 1,
-				autoAlpha: 0,
-				duration: 0.1,
-			})
+		const tl = await gsap.timeline();
+		tl.to(girl, {
+			delay: 1,
+			autoAlpha: 0,
+			duration: 0.1,
+		})
 			.to(
 				girlHandsup,
 				{
@@ -109,6 +108,11 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			);
+
+		await sleep(500);
+
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide response options

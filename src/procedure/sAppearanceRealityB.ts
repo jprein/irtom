@@ -55,15 +55,15 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		//await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(boy, {
-				x: -100,
-				duration: 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-1`);
-				},
-			})
+		const tl = await gsap.timeline();
+
+		tl.to(boy, {
+			x: -100,
+			duration: 2,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
+			},
+		})
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
 				onStart: () => {
@@ -130,7 +130,10 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 3,
 			});
 
-		await sleep(1000);
+		await sleep(500);
+
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide response options

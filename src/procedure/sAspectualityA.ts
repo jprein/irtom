@@ -65,16 +65,16 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap
-			.timeline()
-			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 + 1,
-				x: +200,
-				duration: 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+
+		tl.to(boy, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 + 1,
+			x: +200,
+			duration: 2,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(manCook, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				//x: 710,
@@ -141,7 +141,10 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(boyRight, { delay: 0, autoAlpha: 0, duration: 0.1 })
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<');
 
-		await sleep(2000);
+		await sleep(500);
+
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide response options

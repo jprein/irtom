@@ -70,16 +70,16 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(girlWithBook, {
-				x: 0,
-				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+
+		tl.to(girlWithBook, {
+			x: 0,
+			duration: 2,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(boxClosed, {
 				duration: 0.1,
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 1,
@@ -146,7 +146,10 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			});
 
-		await sleep(2000);
+		await sleep(500);
+
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide response options
@@ -157,7 +160,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
 	const stopBlockingState = await showTwoOptions(slidePrefix);

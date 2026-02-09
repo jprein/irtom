@@ -52,21 +52,20 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap
-			.timeline()
-			// .to(girl, {
-			// 	x: 0,
-			// 	duration: 2,
-			// })
-			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
-				x: 0,
-				autoAlpha: 1,
-				duration: 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+		// .to(girl, {
+		// 	x: 0,
+		// 	duration: 2,
+		// })
+		tl.to(girl, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+			x: 0,
+			autoAlpha: 1,
+			duration: 2,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
 				autoAlpha: 1,
@@ -167,6 +166,11 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-11`);
 				},
 			});
+
+		await sleep(500);
+
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide response options

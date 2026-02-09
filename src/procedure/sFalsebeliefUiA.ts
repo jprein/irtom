@@ -87,16 +87,16 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(girlFront, {
-				x: +1200,
-				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+
+		tl.to(girlFront, {
+			x: +1200,
+			duration: 2,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(womanApron, {
 				x: -500,
 				duration: 2,
@@ -246,7 +246,10 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 0.1,
 			});
 
-		await sleep(1000);
+		await sleep(500);
+
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide response options

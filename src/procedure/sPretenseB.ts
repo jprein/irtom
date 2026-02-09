@@ -76,13 +76,12 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(girlBrick, {
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+		tl.to(girlBrick, {
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to([girlBrick, brickAfter], {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 1,
@@ -140,6 +139,11 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			);
+
+		await sleep(500);
+
+		await tl.then();
+		tl.kill();
 	}
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);

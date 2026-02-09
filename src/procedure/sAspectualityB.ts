@@ -97,16 +97,16 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap
-			.timeline()
-			.to([girl, ball], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
-				autoAlpha: 0,
-				duration: 0.1,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+
+		tl.to([girl, ball], {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+			autoAlpha: 0,
+			duration: 0.1,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(
 				[girlBall],
 				{
@@ -400,7 +400,10 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			);
 
-		await sleep(1000);
+		await sleep(500);
+
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide response options
