@@ -46,7 +46,8 @@ export const moveToCenterAnchor = (svg: SvgInHtml, x?: number, y?: number) => {
 	}
 };
 
-export const startFullscreen = () => {
+export const startFullscreen = (isIOS: boolean) => {
+	if (isIOS) return;
 	const elem = document.documentElement as HTMLElement & {
 		mozRequestFullScreen(): Promise<void>;
 		webkitRequestFullscreen(): Promise<void>;
@@ -63,7 +64,8 @@ export const startFullscreen = () => {
 	}
 };
 
-export const exitFullscreen = () => {
+export const exitFullscreen = (isIOS: boolean) => {
+	if (isIOS) return;
 	const elem = document as Document & {
 		mozCancelFullScreen(): Promise<void>;
 		webkitExitFullscreen(): Promise<void>;
@@ -235,26 +237,32 @@ export async function uploadWebcamVideo(webcam: boolean, id: string) {
 	// 	console.error('Error uploading video:', error);
 	// }
 	// await sleep(2000);
+	if (webcam === true) {
+		// give some time to create Video Blob
 
-	try {
-		if (webcam === true) {
-			// give some time to create Video Blob
+		const day = new Date().toISOString().substring(0, 10);
+		const time = new Date()
+			.toISOString()
+			.substring(11, 19)
+			.replaceAll(':', '-');
+		try {
+			await uploadLastRecordingInChunks('./data/upload_video.php', {
+				filename: `irtom-${id}-${day}-${time}`,
+			});
 
-			const day = new Date().toISOString().substring(0, 10);
-			const time = new Date()
-				.toISOString()
-				.substring(11, 19)
-				.replaceAll(':', '-');
-			try {
-				await uploadLastRecordingInChunks('./data/upload_video.php', {
-					filename: `irtom-${id}-${day}-${time}`,
-				});
-			} catch (err) {
-				console.log('Error is in upload video', err);
-			}
+			Toastify({
+				text: '💾 Video uploaded successfully!',
+				duration: 2000,
+				className: 'toast-info',
+			}).showToast();
+		} catch (err) {
+			console.log('Error uploading video:', err);
+			Toastify({
+				text: '🤔 Video upload failed!',
+				duration: 2000,
+				className: 'toast-error',
+			}).showToast();
 		}
-	} catch (error) {
-		console.error('Error uploading video:', error);
 	}
 	await sleep(2000);
 }

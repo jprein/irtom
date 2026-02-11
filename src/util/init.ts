@@ -159,11 +159,15 @@ export const init = async () => {
 	DetectRTC.load(async () => {
 		global.data.hasWebcam = DetectRTC.hasWebcam;
 		global.data.browserName = DetectRTC.browser.name;
+		global.data.osName = DetectRTC.osName;
 		global.data.safari = DetectRTC.browser.isSafari == undefined ? false : true;
-		global.data.iOSSafari = global.data.safari && global.data.touchscreen;
-
+		//global.data.isIOS = global.data.safari && global.data.touchscreen;
+		global.data.isIOS =
+			/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+			(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 		// Enable webcam recording if selected in URL parameters
-		if (global.data.hasWebcam && global.data.webcam && !global.data.iOSSafari) {
+		//if (global.data.hasWebcam && global.data.webcam && !global.data.iOSSafari) {
+		if (global.data.hasWebcam && global.data.webcam && !global.data.isIOS) {
 			// !responseLog.meta.iOSSafari &&
 			if (!isMediaRecorderSupported()) {
 				console.log('MediaRecorder is not supported in this browser.');

@@ -179,6 +179,13 @@ export const procedure = async () => {
 			});
 		};
 
+		// Prefetch next slide module to reduce transition latency on slower devices.
+		if (nextSlide) {
+			const nextModulePath = `./${nextSlide}.ts`;
+			const nextLoader = slideModules[nextModulePath];
+			if (nextLoader) void nextLoader();
+		}
+
 		// ENABLE REPEAT BUTTON
 		// If a repeat element exists on the slide, attach a listener to re-run the behavior when clicked
 		let repeatSvg = document.querySelector(
@@ -351,11 +358,29 @@ export const procedure = async () => {
 			delete data[key];
 		}
 	});
+	debugger;
+	// const parentBlockLast = document.getElementById(
+	// 	's-blocking-state',
+	// ) as SvgInHtml;
+	// parentBlockLast.removeAttribute('visibility');
 
-	try {
-		await stopRecording();
-	} catch (e) {
-		console.warn('Failed to stop recording, continuing anyway:', e);
+	// gsap.set('#link-leuphana-cube', {
+	// 	transformOrigin: '50% 50%',
+	// });
+	// gsap.to('#link-leuphana-cube', {
+	// 	id: 'blocking-state-animation-last',
+	// 	duration: 3,
+	// 	rotation: 360,
+	// 	repeat: -1,
+	// 	ease: 'none',
+	// });
+
+	if (data.webcam == true) {
+		try {
+			await stopRecording({ stopStream: true });
+		} catch (e) {
+			console.warn('Failed to stop recording, continuing anyway:', e);
+		}
 	}
 
 	// Save data depending on choice (local, server, both)
@@ -376,6 +401,12 @@ export const procedure = async () => {
 
 	// users can leave page now
 	window.onbeforeunload = null;
+
+	// const blockingStateAnimationLast = gsap.getById(
+	// 	'blocking-state-animation-last',
+	// );
+	// if (blockingStateAnimationLast) blockingStateAnimationLast.kill();
+	// parentBlockLast.setAttribute('visibility', 'hidden');
 
 	console.group(
 		'%cStudy Summary',

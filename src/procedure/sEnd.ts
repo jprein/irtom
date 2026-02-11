@@ -8,7 +8,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	swapSlides(currentSlide, previousSlide);
 
 	if (!config.devmode.on) {
-		exitFullscreen();
+		exitFullscreen(data.isIOS);
 	}
 
 	await sleep(2000);
