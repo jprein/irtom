@@ -1,9 +1,11 @@
+/* eslint-disable prettier/prettier */
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../../src/types';
 import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
+import { hideBlockingState, showBlockingState } from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -43,26 +45,26 @@ export default async ({ currentSlide, previousSlide }) => {
 	async function showAnimation() {
 		// Initially hide some agent elements
 		gsap.set([girlNay, girlYay], { autoAlpha: 0 });
-		gsap.set(girl, { autoAlpha: 1, x: -1200 });
+		gsap.set(girl, { autoAlpha: 1, x: 0 });
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(girl, {
-				delay: 0.5,
-				x: 0,
-				duration: 3,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-${naySide}-nay`);
+		const tl = await gsap.timeline();
+		tl.to(girl, {
+			onComplete: () => {
+				data.sprite.play(`${slidePrefix}-${naySide}-nay`);
+			},
+		})
+			.to(
+				girl,
+				{
+					delay:
+						data.spriteJSON.sprite[`${slidePrefix}-${naySide}-nay`][1] / 1000,
+					autoAlpha: 0,
+					duration: 0.1,
 				},
-			})
-			.to(girl, {
-				delay:
-					data.spriteJSON.sprite[`${slidePrefix}-${naySide}-nay`][1] / 1000,
-				autoAlpha: 0,
-				duration: 0.1,
-			})
+				'<',
+			)
 			.to(
 				girlYay,
 				{
@@ -84,17 +86,24 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			);
+
+			
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before response choices
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if(!stopBlockingState) await showBlockingState(slidePrefix);
 };

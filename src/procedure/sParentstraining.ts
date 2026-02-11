@@ -4,6 +4,11 @@ import { swapSlides } from '../util/slideVisibility';
 import { hideYesNoChoice } from '../util/hideYesNoChoice';
 import { showYesNoChoice } from '../util/showYesNoChoice';
 import { sleep } from '../util/helpers';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
+import { playCorrectIncorrectResponse } from '../util/playCorrectIncorrectResponse';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -42,13 +47,12 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set(woman, { x: -1200 });
 		gsap.set(man, { x: 1200 });
 
-		await gsap
-			.timeline()
-			.to(woman, {
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-1`);
-				},
-			})
+		const tl = await gsap.timeline();
+		tl.to(woman, {
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
+			},
+		})
 			.to(woman, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 3.5,
 				x: 0,
@@ -115,17 +119,26 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			);
+		await sleep(500);
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide response options
 	await hideYesNoChoice(choicePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show response options and store participant response
-	await showYesNoChoice(slidePrefix, choicePrefix);
+	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
+
+	if (!stopBlockingState) {
+		await playCorrectIncorrectResponse(currentSlide);
+		await showBlockingState(slidePrefix);
+	}
 };

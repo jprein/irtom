@@ -1,6 +1,11 @@
 import { swapSlides } from '../util/slideVisibility';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
+import { playCorrectIncorrectResponse } from '../util/playCorrectIncorrectResponse';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -15,7 +20,13 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+
+	if (!stopBlockingState) {
+		await playCorrectIncorrectResponse(currentSlide);
+		await showBlockingState(slidePrefix);
+	}
 };

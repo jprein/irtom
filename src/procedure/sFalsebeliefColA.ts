@@ -4,6 +4,10 @@ import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -48,15 +52,14 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap
-			.timeline()
-			.to(dogRunning, {
-				x: 0,
-				duration: 3,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+		tl.to(dogRunning, {
+			x: 0,
+			duration: 2,
+			onComplete: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(dogRunning, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 + 1,
 				autoAlpha: 0,
@@ -90,7 +93,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(dogLying, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 3,
 				autoAlpha: 0,
 				duration: 0.5,
 			})
@@ -99,7 +102,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girl, {
 				delay: 1,
 				x: -1200,
-				duration: 3,
+				duration: 2,
 				onComplete: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
@@ -134,17 +137,23 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 0,
 				duration: 0.1,
 			});
+
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

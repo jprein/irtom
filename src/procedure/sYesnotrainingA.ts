@@ -2,7 +2,11 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideYesNoChoice } from '../../src/util/hideYesNoChoice';
 import { showYesNoChoice } from '../../src/util/showYesNoChoice';
-import { hideNextOption, showNextOption } from '../util/hideNextOption';
+import { playCorrectIncorrectResponse } from '../util/playCorrectIncorrectResponse';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -18,12 +22,15 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide yes/no choice
 	await hideYesNoChoice(choicePrefix);
-	await hideNextOption(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
-	await showYesNoChoice(slidePrefix, choicePrefix);
+	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
 
-	await showNextOption(slidePrefix);
+	if (!stopBlockingState) {
+		await playCorrectIncorrectResponse(currentSlide);
+		await showBlockingState(slidePrefix);
+	}
 };

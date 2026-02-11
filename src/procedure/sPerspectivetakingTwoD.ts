@@ -2,6 +2,10 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -14,12 +18,20 @@ export default async ({ currentSlide, previousSlide }) => {
 	swapSlides(currentSlide, previousSlide);
 	data.simpleSlideCounter++;
 
+	// Define animation function
+	async function showAnimation() {
+		await data.sprite.playPromise(`${slidePrefix}-1`);
+	}
+
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
+	await showAnimation();
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

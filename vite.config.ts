@@ -33,6 +33,10 @@ const removeUnwantedFilesPlugin = {
 			onlyDirectories: true,
 			absolute: true,
 		});
+		const oldAudioDirs = await fg('dist/communities/*/oldaudio', {
+			onlyDirectories: true,
+			absolute: true,
+		});
 		// Delete unwanted files
 		await Promise.all(
 			[...pngFiles, ...aiFiles, ...experimentFiles].map((file) =>
@@ -42,6 +46,9 @@ const removeUnwantedFilesPlugin = {
 		// Remove unwanted directories recursively
 		await Promise.all(
 			audioDirs.map((dir) => fs.rm(dir, { recursive: true, force: true })),
+		);
+		await Promise.all(
+			oldAudioDirs.map((dir) => fs.rm(dir, { recursive: true, force: true })),
 		);
 	},
 };

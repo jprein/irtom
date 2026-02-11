@@ -28,8 +28,12 @@ import { setMousePointer, setScaleOnHover } from './styleDefaults';
 import Toastify from 'toastify-js';
 import DetectRTC from 'detectrtc';
 import 'toastify-js/src/toastify.css';
-import * as mrec from '@ccp-eva/media-recorder';
 import { createSprite } from './createSprite';
+import {
+	initMedia,
+	isMediaRecorderSupported,
+	startRecording,
+} from './mediaRecorderServices';
 
 export const init = async () => {
 	// get study choices from local storage
@@ -152,7 +156,7 @@ export const init = async () => {
 		emoji: 'yellow',
 	};
 	//log user testing setup
-	DetectRTC.load(() => {
+	DetectRTC.load(async () => {
 		global.data.hasWebcam = DetectRTC.hasWebcam;
 		global.data.browserName = DetectRTC.browser.name;
 		global.data.safari = DetectRTC.browser.isSafari == undefined ? false : true;
@@ -160,27 +164,29 @@ export const init = async () => {
 
 		// Enable webcam recording if selected in URL parameters
 		if (global.data.hasWebcam && global.data.webcam && !global.data.iOSSafari) {
-			mrec.startRecorder({
-				audio: true,
-				video: {
-					frameRate: {
-						min: 3,
-						ideal: 5,
-						max: 30,
-					},
-					width: {
-						min: 160,
-						ideal: 320,
-						max: 640,
-					},
-					height: {
-						min: 120,
-						ideal: 240,
-						max: 480,
-					},
-					facingMode: 'user',
-				},
-			});
+			// !responseLog.meta.iOSSafari &&
+			if (!isMediaRecorderSupported()) {
+				console.log('MediaRecorder is not supported in this browser.');
+			} else {
+				try {
+					console.log('Requesting camera/microphone...');
+					await initMedia({
+						audio: true,
+						video: {
+							frameRate: { min: 1, ideal: 5, max: 10 },
+							width: { min: 640, ideal: 640, max: 640 }, // keep it small
+							height: { min: 480, ideal: 480, max: 480 },
+							facingMode: 'user',
+						},
+					});
+					console.log('Camera ready. You can start recording.');
+
+					startRecording();
+					console.log('Recording started.');
+				} catch (error) {
+					console.error('Failed to access camera/microphone:', error);
+				}
+			}
 		}
 	});
 

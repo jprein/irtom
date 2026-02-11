@@ -1,13 +1,18 @@
 import { gsap } from 'gsap';
 import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
-import { hideTwoOptions } from '../util/hideTwoOptions';
-import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
+import { showYesNoChoice } from '../util/showYesNoChoice';
+import { hideYesNoChoice } from '../util/hideYesNoChoice';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
 	const slidePrefix = 's-deception-a';
+	const choicePrefix = 's-yesnochoice';
 
 	// Store correct response
 	data.procedure[data.currentSlide].correct = 'right';
@@ -42,37 +47,17 @@ export default async ({ currentSlide, previousSlide }) => {
 	const cake = document.getElementById(
 		`${slidePrefix}-cake-plate`,
 	) as SvgInHtml;
-	const fridgeClosed = document.getElementById(
-		`${slidePrefix}-fridge-closed`,
-	) as SvgInHtml;
-	const fridgeOpenWithCake = document.getElementById(
-		`${slidePrefix}-fridge-cake`,
-	) as SvgInHtml;
-	const fridgeOpen = document.getElementById(
-		`${slidePrefix}-fridge-open`,
-	) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
 		gsap.set(
-			[
-				girl,
-				womenCake,
-				girlSpeaking,
-				womenPointing,
-				boy,
-				cake,
-				fridgeClosed,
-				fridgeOpen,
-				fridgeOpenWithCake,
-				girlAngry,
-			],
+			[girl, womenCake, girlSpeaking, womenPointing, boy, cake, girlAngry],
 			{
 				autoAlpha: 0,
 			},
 		);
 
-		gsap.set([girl, women, boy, cake, fridgeClosed], {
+		gsap.set([girl, women, boy, cake], {
 			autoAlpha: 1,
 		});
 
@@ -82,19 +67,18 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(women, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+		tl.to(women, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(
 				women,
 				{
 					x: 0,
-					duration: 3,
+					duration: 2,
 				},
 				'<',
 			)
@@ -106,128 +90,111 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(womenPointing, {
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				women,
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
-			.to(women, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+			.to(girl, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 + 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
-			.to(womenCake, {
-				autoAlpha: 1,
-				duration: 0.5,
-			})
 			.to(
-				[womenPointing, cake],
+				women,
 				{
-					autoAlpha: 0,
-					duration: 0.5,
+					autoAlpha: 1,
+					duration: 0.1,
 				},
 				'<',
 			)
-			.to(fridgeOpen, {
-				autoAlpha: 1,
-				duration: 0.5,
-			})
 			.to(
-				fridgeClosed,
+				womenPointing,
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
-			.to([fridgeOpenWithCake, women], {
-				delay: 2,
-				autoAlpha: 1,
-				duration: 0.5,
-			})
 			.to(
-				[fridgeOpen, womenCake],
+				girlAngry,
 				{
-					autoAlpha: 0,
-					duration: 0.5,
+					autoAlpha: 1,
+					duration: 0.1,
 				},
 				'<',
 			)
-			.to(women, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-5`);
-				},
-			})
-			.to([fridgeClosed, women], {
-				autoAlpha: 1,
-				duration: 0.5,
-			})
 			.to(
-				[womenPointing, fridgeOpenWithCake],
+				girl,
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(women, {
 				x: +1200,
-				duration: 3,
+				duration: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 + 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-5`);
+				},
 			})
+			.to(
+				girlAngry,
+				{
+					x: -1200,
+					duration: 2,
+				},
+				'<',
+			)
+			.to(
+				girl,
+				{
+					x: -1200,
+					duration: 0.1,
+				},
+				'<',
+			)
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 1,
+				autoAlpha: 1,
+				duration: 0.1,
+			})
+			.to(
+				cake,
+				{
+					autoAlpha: 0,
+					duration: 0.1,
+				},
+				'<',
+			)
+			.to(girl, {
+				x: 0,
+				duration: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 3,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
 			.to(
-				girlAngry,
+				boy,
 				{
-					autoAlpha: 1,
-					duration: 0.5,
-				},
-				'<',
-			)
-			.to(
-				girl,
-				{
-					autoAlpha: 0,
-					duration: 0.5,
+					x: 0,
+					duration: 2,
 				},
 				'<',
 			)
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000 + 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-7`);
 				},
-			})
-			.to(
-				girl,
-				{
-					autoAlpha: 1,
-					duration: 0.5,
-				},
-				'<',
-			)
-			.to(
-				girlAngry,
-				{
-					autoAlpha: 0,
-					duration: 0.5,
-				},
-				'<',
-			)
-			.to(boy, {
-				x: 0,
-				duration: 3,
 			})
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000,
@@ -237,13 +204,13 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(girlSpeaking, {
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				girl,
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
@@ -252,19 +219,35 @@ export default async ({ currentSlide, previousSlide }) => {
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-9`);
 				},
-			});
+			})
+			.to(girlSpeaking, {
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to(
+				girl,
+				{
+					autoAlpha: 1,
+					duration: 0.1,
+				},
+				'<',
+			);
 
-		await sleep(2000);
+		await tl.then();
+		await sleep(1000);
+		tl.kill();
 	}
 	// In beginning, hide response options
-	await hideTwoOptions(slidePrefix);
+	await hideYesNoChoice(choicePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

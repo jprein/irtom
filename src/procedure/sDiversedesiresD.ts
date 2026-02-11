@@ -4,6 +4,10 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -55,9 +59,10 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap.timeline().to(boy, {
+		const tl = await gsap.timeline();
+		tl.to(boy, {
 			x: 0,
-			duration: 3,
+			duration: 2,
 			onComplete: () => {
 				data.sprite.play(`${slidePrefix}-2`);
 			},
@@ -66,16 +71,14 @@ export default async ({ currentSlide, previousSlide }) => {
 		// For the case that Max doesn't like the cracker but the cucumber
 		if (naySide === 'left') {
 			// Max first tries the cracker on the left
-			await gsap
-				.timeline()
-				.to(boy, {
-					delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
-					autoAlpha: 0,
-					duration: 0.1,
-					onStart: () => {
-						data.sprite.play(`${slidePrefix}-3-nay`);
-					},
-				})
+			tl.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+				autoAlpha: 0,
+				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-3-nay`);
+				},
+			})
 				.to(
 					boyNay,
 					{
@@ -115,20 +118,18 @@ export default async ({ currentSlide, previousSlide }) => {
 				.to(boy, {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 					x: 1200,
-					duration: 3,
+					duration: 2,
 				});
 			// For the case that Max likes the cracker but not the cucumber
 		} else {
-			await gsap
-				.timeline()
-				.to(boy, {
-					delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
-					autoAlpha: 0,
-					duration: 0.1,
-					onStart: () => {
-						data.sprite.play(`${slidePrefix}-3-yay`);
-					},
-				})
+			tl.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+				autoAlpha: 0,
+				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-3-yay`);
+				},
+			})
 				.to(
 					boyYay,
 					{
@@ -167,20 +168,26 @@ export default async ({ currentSlide, previousSlide }) => {
 				.to(boy, {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 					x: 1200,
-					duration: 3,
+					duration: 2,
 				});
 		}
+
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

@@ -4,6 +4,10 @@ import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -44,56 +48,59 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
+		const tl = await gsap.timeline();
+		tl.to(boyFront, {
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(boyFront, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
-			.to(boyFront, {
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				boyWithCycle,
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(girlFront, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
 			.to(girlFront, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 0,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				girlWithSpringBike,
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			);
 
-		await sleep(2000);
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

@@ -4,6 +4,7 @@ import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
 
 export const showTwoOptions = async (slidePrefix: string) => {
+	let stopBlockingState = true;
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
 	const repeat = document.getElementById(
@@ -39,35 +40,60 @@ export const showTwoOptions = async (slidePrefix: string) => {
 			duration: 0.5,
 		});
 	}
-
-	// Show response options
-	await timeline
-		.to(optionLeft, {
-			delay: 0.5,
-			autoAlpha: 1,
-			duration: 0.5,
-			onStart: () => {
-				data.sprite.play(`${slidePrefix}-left`);
-			},
-		})
-		.to(optionRight, {
-			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000 + 0.5,
-			autoAlpha: 1,
-			duration: 0.5,
-			onStart: () => {
-				data.sprite.play(`${slidePrefix}-right`);
-			},
-		})
-		.to([optionLeft, optionRight, repeat], {
-			autoAlpha: 1,
-			duration: 0.5,
-			pointerEvents: 'visible',
-			cursor: 'pointer',
-		});
+	if (
+		slidePrefix.startsWith('s-leftrighttraining') ||
+		slidePrefix.startsWith('s-namestraining')
+	) {
+		// Show response options
+		await timeline
+			.to(optionLeft, {
+				delay: 0.3,
+				autoAlpha: 1,
+				duration: 0.3,
+			})
+			.to(optionRight, {
+				delay: 1,
+				autoAlpha: 1,
+				duration: 0.3,
+			})
+			.to([optionLeft, optionRight, repeat], {
+				autoAlpha: 1,
+				duration: 0.3,
+				pointerEvents: 'visible',
+				cursor: 'pointer',
+			});
+		// leftrighttraining-specific logic
+	} else {
+		// Show response options
+		await timeline
+			.to(optionLeft, {
+				delay: 0.3,
+				autoAlpha: 1,
+				duration: 0.3,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-left`);
+				},
+			})
+			.to(optionRight, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000 + 0.3,
+				autoAlpha: 1,
+				duration: 0.3,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-right`);
+				},
+			})
+			.to([optionLeft, optionRight, repeat], {
+				autoAlpha: 1,
+				duration: 0.3,
+				pointerEvents: 'visible',
+				cursor: 'pointer',
+			});
+	}
 
 	// Get Response
 	if (!data.clickedRepeat || data.incorrectResponse) {
 		const response = await getResponse([optionLeft.id, optionRight.id]);
+		stopBlockingState = false;
 
 		// Response returns the clicked element.
 		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
@@ -94,4 +120,5 @@ export const showTwoOptions = async (slidePrefix: string) => {
 			await data.sprite.playPromise(`neutral-response-${randomResponse}`);
 		}
 	}
+	return stopBlockingState;
 };

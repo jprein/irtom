@@ -4,6 +4,10 @@ import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -42,15 +46,22 @@ export default async ({ currentSlide, previousSlide }) => {
 	const dogRunning = document.getElementById(
 		`link-${slidePrefix}-dog-running`,
 	) as SvgInHtml;
-	const housewall = document.getElementById(
-		`${slidePrefix}-housewall`,
+	const phonesound = document.getElementById(
+		`${slidePrefix}-phonesound`,
 	) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
 		gsap.set(
-			[girlWatchingfilm, girlFilming, dogLying, dogBarking, dogRunning],
+			[
+				girlWatchingfilm,
+				girlFilming,
+				dogLying,
+				dogBarking,
+				dogRunning,
+				phonesound,
+			],
 			{
 				autoAlpha: 0,
 				x: 0,
@@ -67,31 +78,39 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap
-			.timeline()
-			.to(girl, { autoAlpha: 0, duration: 0.1 })
+		const tl = await gsap.timeline();
+
+		tl.to(girl, { autoAlpha: 0, duration: 0.1 })
 			.to(
 				girlFilming,
 				{
 					autoAlpha: 1,
 					duration: 0.1,
-					onComplete: () => data.sprite.playPromise(`${slidePrefix}-2`),
 				},
 				'<',
 			)
-			.to(dogStanding, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
-				autoAlpha: 0,
+			.to(dogBarking, {
+				delay: data.spriteJSON.sprite[`dog`][1] / 1000,
+				autoAlpha: 1,
 				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`dog`);
+				},
 			})
-			.to(dogBarking, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(
+				dogStanding,
+				{
+					autoAlpha: 0,
+					duration: 0.1,
+				},
+				'<',
+			)
 			.to(dogBarking, { delay: 1.5, autoAlpha: 0, duration: 0.1 })
 			.to(
 				dogStanding,
 				{
 					autoAlpha: 1,
 					duration: 0.1,
-					onComplete: () => data.sprite.playPromise(`${slidePrefix}-3`),
 				},
 				'<',
 			)
@@ -108,14 +127,17 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(
 				dogStanding,
 				{
-					delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
+					delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
 					autoAlpha: 0,
 					duration: 0.1,
+					onStart: () => {
+						data.sprite.play(`${slidePrefix}-2`);
+					},
 				},
 				'<',
 			)
 			.to(dogRunning, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(dogRunning, { x: 300, duration: 2 })
+			.to(dogRunning, { x: 300, duration: 1.5 })
 			.to(dogRunning, {
 				autoAlpha: 0,
 				duration: 0.1,
@@ -132,64 +154,90 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: 1.5,
 				autoAlpha: 0,
 				duration: 0.1,
-				onComplete: () => data.sprite.playPromise(`${slidePrefix}-4`),
 			})
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
-				autoAlpha: 0,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-3`);
+				},
+			})
+			.to(girlWatchingfilm, {
+				autoAlpha: 1,
 				duration: 0.1,
+				delay: data.spriteJSON.sprite[`dog`][1] / 1000 + 2,
+				onStart: () => {
+					data.sprite.play(`dog`);
+				},
 			})
 			.to(
-				[girlWatchingfilm],
+				[girl],
 				{
-					autoAlpha: 1,
+					autoAlpha: 0,
 					duration: 0.1,
 				},
 				'<',
 			)
 			.to([girlWatchingfilm], {
-				delay: 3,
+				delay: 2,
 				autoAlpha: 0,
 				duration: 0.1,
-				onComplete: () => data.sprite.playPromise(`${slidePrefix}-5`),
 			})
 			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
 				x: -170,
 				y: -100,
 				scale: 0.8,
 				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-4`);
+				},
 			})
 			.to(girl, {
 				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
-				onComplete: () => data.sprite.playPromise(`${slidePrefix}-6`),
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				x: 0,
-				duration: 5,
-				onComplete: () => data.sprite.playPromise(`${slidePrefix}-7`),
+				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-5`);
+				},
 			})
-			.to(housewall, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000 - 2,
-				autoAlpha: 0.5,
-				duration: 0.5,
+			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-6`);
+				},
 			})
-			.to(housewall, { delay: 2, autoAlpha: 1, duration: 0.5 });
+			.to(phonesound, {
+				autoAlpha: 1,
+				duration: 0.1,
+				delay: data.spriteJSON.sprite[`dog`][1] / 1000 + 2,
+				onStart: () => {
+					data.sprite.play(`dog`);
+				},
+			})
+			.to(phonesound, { delay: 2, autoAlpha: 0, duration: 0.1 });
+
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

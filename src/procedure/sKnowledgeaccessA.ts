@@ -4,6 +4,10 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideYesNoChoice } from '../../src/util/hideYesNoChoice';
 import { showYesNoChoice } from '../../src/util/showYesNoChoice';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -47,18 +51,18 @@ export default async ({ currentSlide, previousSlide }) => {
 		});
 		gsap.set(boy, { x: 0 });
 
-		await gsap
-			.timeline()
+		const tl = await gsap.timeline();
+
+		tl.to(boyBall, {
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
+			},
+		})
 			.to(boyBall, {
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-1`);
-				},
-			})
-			.to(boyBall, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000,
 				x: 0,
-				duration: 3,
-				onComplete: () => {
+				duration: 2,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
@@ -87,8 +91,8 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(boy, {
 				delay: 1,
 				x: 1200,
-				duration: 3,
-				onComplete: () => {
+				duration: 2,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
@@ -96,22 +100,29 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
 				x: 0,
-				duration: 3,
+				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-5`);
+				},
 			});
 
+		await tl.then();
 		// Short break before showing response options
-		await sleep(1000);
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide yes/no choice
 	await hideYesNoChoice(choicePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show yes/no choice and store participant response
-	await showYesNoChoice(slidePrefix, choicePrefix);
+	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

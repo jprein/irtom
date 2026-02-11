@@ -4,6 +4,10 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -22,19 +26,19 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
 	const girlYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-yay`,
+		`link-${slidePrefix}-${data.community}-girl-left-yay`,
 	) as SvgInHtml;
 	const girlNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-nay`,
+		`link-${slidePrefix}-${data.community}-girl-right-nay`,
 	) as SvgInHtml;
 	const boy = document.getElementById(
 		`link-${slidePrefix}-${data.community}-boy`,
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-nay`,
+		`link-${slidePrefix}-${data.community}-boy-left-nay`,
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-yay`,
+		`link-${slidePrefix}-${data.community}-boy-right-yay`,
 	) as SvgInHtml;
 
 	// Define animation function
@@ -48,116 +52,137 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap
-			.timeline()
-			.to(boy, {
-				x: 0,
-				duration: 3,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
-			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
-				autoAlpha: 0,
+		const tl = await gsap.timeline();
+		// .to(girl, {
+		// 	x: 0,
+		// 	duration: 2,
+		// })
+		tl.to(girl, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+			x: 0,
+			autoAlpha: 1,
+			duration: 2,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
+			.to(girl, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
+				autoAlpha: 1,
 				duration: 0.1,
-			})
-			.to(
-				boyYay,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(boyYay, {
-				delay: 3,
-				autoAlpha: 0,
-				duration: 0.1,
-				onComplete: () => {
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
-			.to(boyNay, {
+			.to(girlNay, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 + 1,
 				autoAlpha: 1,
 				duration: 0.1,
-			})
-			.to(boyNay, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
-				autoAlpha: 0,
-				duration: 0.1,
-				onComplete: () => {
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
-			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
-				x: -1200,
-				duration: 3,
-				onComplete: () => {
+			.to(girl, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(girlNay, {
+				delay: 2,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girlYay, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
+				autoAlpha: 1,
+				duration: 0.1,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
-
-			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
-				x: 0,
-				duration: 3,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-6`);
-				},
-			})
-			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 2,
-				autoAlpha: 0,
-				duration: 0.1,
-			})
-			.to(
-				girlYay,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(girl, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girlYay, {
-				delay: 3,
+				delay: 2,
+				duration: 0.1,
 				autoAlpha: 0,
-				duration: 0.1,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-7`);
-				},
-			})
-			.to(girlNay, {
-				autoAlpha: 1,
-				duration: 0.1,
-			})
-			.to(girlNay, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
-				autoAlpha: 0,
-				duration: 0.1,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-8`);
-				},
 			})
 			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				x: -1200,
+				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-6`);
+				},
+			})
+			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
+				x: 0,
+				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-7`);
+				},
+			})
+			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 1,
+				autoAlpha: 1,
+				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-8`);
+				},
+			})
+			.to(boyNay, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-9`][1] / 1000 + 2,
+				autoAlpha: 1,
+				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-9`);
+				},
+			})
+			.to(boy, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(boyNay, {
+				delay: 2,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(boyYay, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-10`][1] / 1000,
+				autoAlpha: 1,
+				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-10`);
+				},
+			})
+			.to(boy, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(boyYay, {
+				delay: 2,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-11`][1] / 1000,
 				x: 1200,
-				duration: 3,
+				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-11`);
+				},
 			});
+
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

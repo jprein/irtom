@@ -21,7 +21,7 @@ export const showNextOption = async (slidePrefix: string) => {
 	await gsap.timeline().set([nextButton], {
 		delay: 1,
 		autoAlpha: 1,
-		duration: 0.5,
+		duration: 0.1,
 		pointerEvents: 'visible',
 		cursor: 'pointer',
 	});

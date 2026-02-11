@@ -4,6 +4,10 @@ import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
 import gsap from 'gsap';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -72,82 +76,85 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(girlBrick, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+		tl.to(girlBrick, {
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to([girlBrick, brickAfter], {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[girlKneeling, brickBefore],
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to([girlKneeling, girlBucketWithBricks], {
 				delay: 2,
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				[girlBrick, girlBucket],
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(boyKneeling, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
 			.to(boyNoBrick, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				boyKneeling,
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(boyKneeling, {
-				delay: 3,
+				delay: 2,
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 			})
 			.to(
 				boyNoBrick,
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			);
 
-		await sleep(2000);
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

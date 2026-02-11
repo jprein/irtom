@@ -3,14 +3,18 @@ import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
-import gsap from 'gsap';
+import { gsap } from 'gsap';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
 	const slidePrefix = 's-falsebelief-uc-a';
 
 	// Store correct response
-	data.procedure[data.currentSlide].correct = 'left';
+	data.procedure[data.currentSlide].correct = 'right';
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
@@ -66,25 +70,19 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(girlWithBook, {
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
-			.to(
-				girlWithBook,
-				{
-					x: 0,
-					duration: 3,
-					delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
-				},
-				'<',
-			)
+		const tl = await gsap.timeline();
+
+		tl.to(girlWithBook, {
+			x: 0,
+			duration: 2,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(boxClosed, {
-				duration: 0.5,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
+				duration: 0.1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 1,
 				autoAlpha: 0,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
@@ -94,46 +92,30 @@ export default async ({ currentSlide, previousSlide }) => {
 				boxOpenShoes,
 				{
 					autoAlpha: 1,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
-			.to(girlWithShoes, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+			.to([girlWithShoes, boxOpenBook], {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
 			.to(
-				girlWithBook,
+				[girlWithBook, boxOpenShoes],
 				{
 					autoAlpha: 0,
-					duration: 0.5,
-				},
-				'<',
-			)
-			.to(
-				boxOpenBook,
-				{
-					autoAlpha: 1,
-					duration: 0.5,
-				},
-				'<',
-			)
-			.to(
-				boxOpenShoes,
-				{
-					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
 			.to(boxClosed, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 + 3,
 				autoAlpha: 1,
-				duration: 0.5,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
@@ -142,7 +124,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				boxOpenBook,
 				{
 					autoAlpha: 0,
-					duration: 0.5,
+					duration: 0.1,
 				},
 				'<',
 			)
@@ -150,32 +132,36 @@ export default async ({ currentSlide, previousSlide }) => {
 				girlWithShoes,
 				{
 					x: -1200,
-					duration: 3,
+					duration: 2,
 				},
-				'<',
+				'=+2',
 			)
 			.to(boy, {
 				autoAlpha: 1,
 				x: 0,
-				duration: 3,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 + 2,
+				duration: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
 			});
 
-		await sleep(2000);
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
+	await hideBlockingState(slidePrefix);
 
 	// Show animation
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };
