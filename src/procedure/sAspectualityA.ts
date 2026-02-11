@@ -60,21 +60,22 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set(boy, { autoAlpha: 1, x: -1200 });
 		gsap.set(man, { scale: 0.7, autoAlpha: 0 });
 		gsap.set([boyLeft, boyRight], { x: +200 });
+		gsap.set(man, { x: 0 });
 
 		// Play initial audio
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap
-			.timeline()
-			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 + 1,
-				x: +200,
-				duration: 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+
+		tl.to(boy, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 + 1,
+			x: +200,
+			duration: 2,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(manCook, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				//x: 710,
@@ -141,7 +142,9 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(boyRight, { delay: 0, autoAlpha: 0, duration: 0.1 })
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<');
 
-		await sleep(2000);
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
@@ -155,6 +158,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

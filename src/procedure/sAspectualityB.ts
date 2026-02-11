@@ -35,19 +35,19 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-${data.community}-girl-ball`,
 	) as SvgInHtml;
 	const girlBallRight = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-ball-right`,
+		`link-${slidePrefix}-${data.community}-girl-ball-rights`,
 	) as SvgInHtml;
 	const girlBallLeft = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-ball-left`,
+		`link-${slidePrefix}-${data.community}-girl-ball-lefts`,
 	) as SvgInHtml;
 	const girlTowel = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl-ball-towl`,
 	) as SvgInHtml;
 	const girlTowelRight = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-towl-right`,
+		`link-${slidePrefix}-${data.community}-girl-towl-rights`,
 	) as SvgInHtml;
 	const girlTowelLeft = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-towl-left`,
+		`link-${slidePrefix}-${data.community}-girl-towl-lefts`,
 	) as SvgInHtml;
 	const boxClosed = document.getElementById(
 		`${slidePrefix}-box-closed`,
@@ -97,16 +97,16 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap
-			.timeline()
-			.to([girl, ball], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
-				autoAlpha: 0,
-				duration: 0.1,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+
+		tl.to([girl, ball], {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+			autoAlpha: 0,
+			duration: 0.1,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(
 				[girlBall],
 				{
@@ -400,7 +400,9 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			);
 
-		await sleep(1000);
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
@@ -414,6 +416,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

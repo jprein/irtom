@@ -29,7 +29,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-${data.community}-woman-doctor-nomask`,
 	) as SvgInHtml;
 	const father = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-cook-nomask`,
+		`link-${slidePrefix}-${data.community}-man-cook-no-pot`,
 	) as SvgInHtml;
 
 	// Define animation function
@@ -47,14 +47,13 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(mother, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 5,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+		tl.to(mother, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 5,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(
 				mother,
 				{
@@ -88,7 +87,9 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 2,
 			});
 
-		await sleep(500);
+		await tl.then();
+		await sleep(1000);
+		tl.kill();
 	}
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
@@ -101,6 +102,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(1000);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

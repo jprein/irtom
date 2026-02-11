@@ -47,13 +47,12 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set(woman, { x: -1200 });
 		gsap.set(man, { x: 1200 });
 
-		await gsap
-			.timeline()
-			.to(woman, {
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-1`);
-				},
-			})
+		const tl = await gsap.timeline();
+		tl.to(woman, {
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
+			},
+		})
 			.to(woman, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 3.5,
 				x: 0,
@@ -120,6 +119,9 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			);
+		await sleep(500);
+		await tl.then();
+		tl.kill();
 	}
 
 	// In beginning, hide response options
@@ -130,10 +132,13 @@ export default async ({ currentSlide, previousSlide }) => {
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show response options and store participant response
-	await showYesNoChoice(slidePrefix, choicePrefix);
-	await playCorrectIncorrectResponse(currentSlide);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
+
+	if (!stopBlockingState) {
+		await playCorrectIncorrectResponse(currentSlide);
+		await showBlockingState(slidePrefix);
+	}
 };

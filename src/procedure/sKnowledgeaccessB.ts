@@ -52,13 +52,13 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap
-			.timeline()
-			.to([girl, boxClosed], {
-				delay: 0.5,
-				autoAlpha: 0,
-				duration: 0.1,
-			})
+		const tl = await gsap.timeline();
+
+		tl.to([girl, boxClosed], {
+			delay: 0.5,
+			autoAlpha: 0,
+			duration: 0.1,
+		})
 			.to(
 				[girlHandsup, boxOpen],
 				{
@@ -120,7 +120,9 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 2,
 			});
 
+		await tl.then();
 		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
@@ -134,6 +136,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

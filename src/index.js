@@ -1,3 +1,4 @@
+import mrec from '@ccp-eva/media-recorder';
 // check if URL Params already exist and store them
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);

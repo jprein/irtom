@@ -111,14 +111,13 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(womanStanding, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+		tl.to(womanStanding, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(womanSpeaking, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
 				onStart: () => {
@@ -357,7 +356,9 @@ export default async ({ currentSlide, previousSlide }) => {
 				x: 0,
 			});
 
-		await sleep(1000);
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide yes/no choice
@@ -371,6 +372,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showYesNoChoice(slidePrefix, choicePrefix);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

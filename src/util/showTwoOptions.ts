@@ -4,6 +4,7 @@ import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
 
 export const showTwoOptions = async (slidePrefix: string) => {
+	let stopBlockingState = true;
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
 	const repeat = document.getElementById(
@@ -92,6 +93,7 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	// Get Response
 	if (!data.clickedRepeat || data.incorrectResponse) {
 		const response = await getResponse([optionLeft.id, optionRight.id]);
+		stopBlockingState = false;
 
 		// Response returns the clicked element.
 		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
@@ -118,4 +120,5 @@ export const showTwoOptions = async (slidePrefix: string) => {
 			await data.sprite.playPromise(`neutral-response-${randomResponse}`);
 		}
 	}
+	return stopBlockingState;
 };

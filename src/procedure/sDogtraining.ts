@@ -49,20 +49,20 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set(dogRunning, { x: -1200 });
 		gsap.set([boy, girl, dogRunning], { autoAlpha: 1 });
 
-		await gsap
-			.timeline()
-			.to(dogRunning, {
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-1`);
-				},
-			})
+		const tl = await gsap.timeline();
+
+		tl.to(dogRunning, {
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
+			},
+		})
 			.to(dogRunning, {
 				delay: 1,
 				x: 0,
 				duration: 3,
 			})
 			.to([boy, girl, dogRunning], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 4,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 + 1,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {
@@ -78,8 +78,11 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			);
 
+		await tl.then();
 		// Short break before showing response options
-		await sleep(data.spriteJSON.sprite[`${slidePrefix}-2`][1]);
+		await sleep(3000);
+
+		tl.kill();
 	}
 
 	// In beginning, hide yes/no choice
@@ -90,10 +93,12 @@ export default async ({ currentSlide, previousSlide }) => {
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show yes/no choice and store participant response
-	await showYesNoChoice(slidePrefix, choicePrefix);
-	await playCorrectIncorrectResponse(currentSlide);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
+	if (!stopBlockingState) {
+		await playCorrectIncorrectResponse(currentSlide);
+		await showBlockingState(slidePrefix);
+	}
 };

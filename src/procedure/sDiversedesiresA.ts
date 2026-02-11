@@ -52,21 +52,20 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		// Animation sequence
-		await gsap
-			.timeline()
-			// .to(girl, {
-			// 	x: 0,
-			// 	duration: 2,
-			// })
-			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
-				x: 0,
-				autoAlpha: 1,
-				duration: 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+		// .to(girl, {
+		// 	x: 0,
+		// 	duration: 2,
+		// })
+		tl.to(girl, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+			x: 0,
+			autoAlpha: 1,
+			duration: 2,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
 				autoAlpha: 1,
@@ -122,7 +121,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 1,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
@@ -167,6 +166,10 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-11`);
 				},
 			});
+
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
@@ -180,6 +183,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

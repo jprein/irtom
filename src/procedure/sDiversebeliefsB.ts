@@ -1,10 +1,11 @@
+/* eslint-disable prettier/prettier */
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../../src/types';
 import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
-import { hideBlockingState } from '../util/showOrHideBlockState';
+import { hideBlockingState, showBlockingState } from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -48,13 +49,12 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			.to(girl, {
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-${naySide}-nay`);
-				},
-			})
+		const tl = await gsap.timeline();
+		tl.to(girl, {
+			onComplete: () => {
+				data.sprite.play(`${slidePrefix}-${naySide}-nay`);
+			},
+		})
 			.to(
 				girl,
 				{
@@ -86,6 +86,11 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			);
+
+			
+		await tl.then();
+		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide response options
@@ -96,9 +101,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	await showAnimation();
 
 	// Short break before response choices
-	await sleep(1000);
+	await sleep(500);
 
 	// Show left/right response options and store participant response
-	await showTwoOptions(slidePrefix);
-	//await showBlockingState(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if(!stopBlockingState) await showBlockingState(slidePrefix);
 };

@@ -94,15 +94,14 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
-		await gsap
-			.timeline()
-			// first, animate man moving teddy into central box B
-			.to(manTeddy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
+		const tl = await gsap.timeline();
+		// first, animate man moving teddy into central box B
+		tl.to(manTeddy, {
+			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-2`);
+			},
+		})
 			.to([manTeddy, boxBClosed], {
 				autoAlpha: 0,
 				duration: 0.1,
@@ -276,7 +275,10 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-11`);
 				},
 			});
+
+		await tl.then();
 		await sleep(500);
+		tl.kill();
 	}
 
 	// In beginning, hide yes/no choice
@@ -287,9 +289,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	await showAnimation();
 
 	// Short break before showing response options
-	await sleep(1000);
+	await sleep(500);
 
 	// Show yes/no choice and store participant response
-	await showTwoOptions(slidePrefix);
-	await showBlockingState(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };
