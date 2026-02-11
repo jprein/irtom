@@ -60,6 +60,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set(boy, { autoAlpha: 1, x: -1200 });
 		gsap.set(man, { scale: 0.7, autoAlpha: 0 });
 		gsap.set([boyLeft, boyRight], { x: +200 });
+		gsap.set(man, { x: 0 });
 
 		// Play initial audio
 		await data.sprite.playPromise(`${slidePrefix}-1`);
