@@ -156,7 +156,7 @@ export default defineConfig({
 		extensions: ['.ts', '.js', '.json', '.yaml'],
 	},
 	server: {
-		open: '/index.html',
+		open: '/app.html',
 		strictPort: true,
 		port: 3000,
 	},
