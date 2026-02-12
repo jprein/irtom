@@ -52,20 +52,29 @@ export const showYesNoChoice = async (
 	});
 
 	// 1) blur + show yesGroup (keep durations explicit where needed)
-	tl.to(blurr, { delay: 1, autoAlpha: 0.7, duration: 0.3 })
-		.to(yesGroup, {
-			autoAlpha: 1,
-			duration: 0.5,
-			onStart: () => data.sprite.play('yes'),
-		})
+	tl.to(blurr, { delay: 1, autoAlpha: 0.7, duration: 0.3 });
 
-		// 2) YES: move face + features together using a single call each phase
-		// phase A: jump up
-		.to([yesFace, yesFacefeatures], {
-			y: (i) => (i === 0 ? -8 : -20),
-			duration: 0.3,
-			ease: 'none',
-		})
+	// for first yes/no training trial, enlarge the particular group to make it more salient
+	if (slidePrefix === 's-yesnotraining-a') {
+		tl.to(yesGroup, {
+			scale: 1.2,
+			duration: 0.4,
+		});
+	}
+
+	tl.to(yesGroup, {
+		autoAlpha: 1,
+		duration: 0.5,
+		onStart: () => data.sprite.play('yes'),
+	});
+
+	// 2) YES: move face + features together using a single call each phase
+	// phase A: jump up
+	tl.to([yesFace, yesFacefeatures], {
+		y: (i) => (i === 0 ? -8 : -20),
+		duration: 0.3,
+		ease: 'none',
+	})
 
 		// phase B: yoyo bounce (one tween instead of two)
 		.to([yesFace, yesFacefeatures], {
@@ -78,20 +87,30 @@ export const showYesNoChoice = async (
 		// phase C: reset + show thumbs at same time
 		.to([yesFace, yesFacefeatures], { y: 0, duration: 0.2 })
 		.to(yesThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
+		.to(yesGroup, { delay: 0.5, scale: 1, duration: 0.25 });
 
-		// 3) NO group
-		.to(noGroup, {
-			autoAlpha: 1,
-			duration: 0.5,
-			onStart: () => data.sprite.play('no'),
-		})
+	// 3) NO group
+	// for first yes/no training trial, enlarge the particular group to make it more salient
+	if (slidePrefix === 's-yesnotraining-a') {
+		tl.to(noGroup, {
+			scale: 1.2,
+			duration: 0.4,
+		});
+	}
 
-		// NO: left/right together
-		.to([noFace, noFacefeatures], {
-			x: (i) => (i === 0 ? 8 : 20),
-			duration: 0.3,
-			ease: 'none',
-		})
+	tl.to(noGroup, {
+		delay: 0.2,
+		autoAlpha: 1,
+		duration: 0.5,
+		onStart: () => data.sprite.play('no'),
+	});
+
+	// NO: left/right together
+	tl.to([noFace, noFacefeatures], {
+		x: (i) => (i === 0 ? 8 : 20),
+		duration: 0.3,
+		ease: 'none',
+	})
 		.to([noFace, noFacefeatures], {
 			x: (i) => (i === 0 ? -8 : -20),
 			duration: 0.3,
@@ -99,7 +118,8 @@ export const showYesNoChoice = async (
 			yoyo: true,
 		})
 		.to([noFace, noFacefeatures], { x: 0, duration: 0.2 })
-		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<');
+		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
+		.to(noGroup, { delay: 0.5, scale: 1, duration: 0.25 });
 
 	// If you truly need to await completion:
 	await tl.then();
