@@ -11,7 +11,7 @@ import {
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
-	const slidePrefix = 's-appearance-reality-b';
+	const slidePrefix = 's-appearancereality-b';
 
 	// Store correct response
 	data.procedure[data.currentSlide].correct = 'right';
