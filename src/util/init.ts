@@ -147,7 +147,6 @@ export const init = async () => {
 		touchscreen: isTouchDevice(),
 		t0: new Date(),
 		slideCounter: 0,
-		quitBeforeEnd: false,
 		procedure: {},
 		hasWebcam: DetectRTC.hasWebcam,
 		browserName: DetectRTC.browser.name,
@@ -241,7 +240,6 @@ export const init = async () => {
 	if (!config.devmode.on) {
 		window.onbeforeunload = function (evt: BeforeUnloadEvent) {
 			evt.preventDefault();
-			global.data.quitBeforeEnd = true;
 			uploadCsv();
 			return '';
 		};

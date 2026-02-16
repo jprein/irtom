@@ -43,7 +43,6 @@ declare let data: {
 	startTime: string;
 	endTime: string;
 	completionTime: string;
-	quitBeforeEnd: boolean;
 	totalSlides: number;
 	previousSlide: string;
 	currentSlide: string;

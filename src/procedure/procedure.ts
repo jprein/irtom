@@ -136,11 +136,15 @@ export const procedure = async () => {
 
 		// init default procedure response
 		data.procedure[currentSlide] = {
+			dimension: '',
 			slideNr: data.slideCounter,
-			slideDuration: 0,
+			slideDuration: null,
 			response: '',
+			correct: '',
+			score: null,
 			repeatOnClick: 0,
 			repeatIncorrect: 0,
+			analyse: null,
 		};
 
 		// get possible response buttons (next buttons, yes/no buttons)
@@ -342,6 +346,9 @@ export const procedure = async () => {
 		'totalSlides',
 		'videoExtension',
 		'hasWebcam',
+		'safari',
+		'isIOS',
+		'iOSSafari',
 		'sprite',
 		'spriteJSON',
 		'clickedRepeat',

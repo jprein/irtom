@@ -19,6 +19,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	// There is no correct response / no score
 	data.procedure[data.currentSlide].correct = '';
 	data.procedure[data.currentSlide].score = '';
+	data.procedure[data.currentSlide].dimension = 'training';
+	data.procedure[data.currentSlide].analyse = false;
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);

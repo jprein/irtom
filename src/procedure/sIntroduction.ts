@@ -132,4 +132,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.procedure[data.currentSlide].response = '';
 	data.procedure[data.currentSlide].correct = '';
 	data.procedure[data.currentSlide].score = '';
+	data.procedure[data.currentSlide].dimension = 'training';
+	data.procedure[data.currentSlide].analyse = false;
 };

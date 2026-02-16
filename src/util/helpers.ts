@@ -102,6 +102,9 @@ const generateCsvContent = (jsonData: any): string => {
 
 	// Extract the procedure keys (dynamic rows)
 	const procedureKeys = Object.keys(jsonData.procedure);
+	Object.values(jsonData.procedure).forEach((trial: any) => {
+		delete (trial as any).trainingTrial;
+	});
 
 	// Prepare the CSV header
 	const header = [
