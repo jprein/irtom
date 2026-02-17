@@ -7,6 +7,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	// swap slides automatically (don’t touch this)
 	swapSlides(currentSlide, previousSlide);
 
+	data.procedure[data.currentSlide].dimension = 'training';
+	data.procedure[data.currentSlide].analyse = false;
+
 	if (!config.devmode.on) {
 		exitFullscreen();
 	}

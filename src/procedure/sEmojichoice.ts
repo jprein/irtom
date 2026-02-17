@@ -17,14 +17,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// There is no correct response / no score
-	data.procedure[data.currentSlide].correct = '';
-	data.procedure[data.currentSlide].score = '';
 	data.procedure[data.currentSlide].dimension = 'training';
 	data.procedure[data.currentSlide].analyse = false;
-
-	// Swap slides
-	swapSlides(currentSlide, previousSlide);
-	data.simpleSlideCounter++;
 
 	// usually hide options, but in this trial we want to show emojis from beginning on
 	// get elements, so that we can disable pointerEvent before audio played

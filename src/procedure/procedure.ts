@@ -136,15 +136,15 @@ export const procedure = async () => {
 
 		// init default procedure response
 		data.procedure[currentSlide] = {
-			dimension: '',
+			dimension: undefined,
 			slideNr: data.slideCounter,
-			slideDuration: null,
-			response: '',
-			correct: '',
-			score: null,
+			slideDuration: undefined,
+			response: undefined,
+			correct: undefined,
+			score: undefined,
 			repeatOnClick: 0,
 			repeatIncorrect: 0,
-			analyse: null,
+			analyse: undefined,
 		};
 
 		// get possible response buttons (next buttons, yes/no buttons)

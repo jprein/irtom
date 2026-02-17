@@ -100,9 +100,8 @@ export const showTwoOptions = async (slidePrefix: string) => {
 		// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
 		data.procedure[data.currentSlide].response = response.id.split('-').pop();
 
-		// If the correct answer is empty, set score to empty
-		if (data.procedure[data.currentSlide].correct === '') {
-			data.procedure[data.currentSlide].score = '';
+		// If the correct answer is empty, keep score undefined (e.g. for training trials)
+		if (data.procedure[data.currentSlide].correct === undefined) {
 			// Otherwise, check if the response is correct, and store the score (0 = incorrect, 1 = correct)
 		} else {
 			data.procedure[data.currentSlide].score =
