@@ -10,7 +10,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	swapSlides(currentSlide, previousSlide);
 
 	const audio = document.getElementById('audio') as HTMLMediaElement;
-	// const pinda = document.getElementById('pinda') as HTMLVideoElement;
 	const speaker = document.getElementById(
 		'link-s-introduction-speaker',
 	) as SvgInHtml;
@@ -20,24 +19,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	const nextButton = document.getElementById(
 		'link-s-introduction-next',
 	) as SvgInHtml;
-	const childQuestion = document.getElementById('text-introChild') as SvgInHtml;
-	const adultQuestion = document.getElementById('text-introAdult') as SvgInHtml;
 	gsap.set([repeat, nextButton], { autoAlpha: 0, pointerEvents: 'none' });
-
-	// let preloadVideo: Response;
-	// const preloadVideo = await fetch(
-	// 	`./communities/${data.community}/video/s-introduction.${data.videoExtension}`,
-	// );
-
-	// const blob = await preloadVideo.blob();
-	// const url = URL.createObjectURL(blob);
-
-	if (data.agegroup === 'adult') {
-		gsap.set(childQuestion, { autoAlpha: 0 });
-	} else {
-		// default to child version
-		gsap.set(adultQuestion, { autoAlpha: 0 });
-	}
 
 	const playingTimeline = true;
 
@@ -60,14 +42,6 @@ export default async ({ currentSlide, previousSlide }) => {
 			});
 		});
 
-		// when pinda plays, next buttons and repeat are hidden and cannot be clicked
-		// pinda.addEventListener('play', () => {
-		// 	gsap.to([nextButton, repeat], {
-		// 		autoAlpha: 0,
-		// 		pointerEvents: 'none',
-		// 	});
-		// });
-
 		// once audio ended, show next button and repeat again
 		audio.addEventListener('ended', () => {
 			if (playingTimeline) {
@@ -82,48 +56,6 @@ export default async ({ currentSlide, previousSlide }) => {
 				});
 			}
 		});
-
-		// once pinda ended, show next button and repeat again, hide pinda
-		// pinda.addEventListener('ended', () => {
-		// 	gsap.to([nextButton, repeat], {
-		// 		autoAlpha: 1,
-		// 		pointerEvents: 'visible',
-		// 	});
-		// 	gsap.to(pinda, { autoAlpha: 0 });
-		// });
-
-		// start pinda video
-		// pinda.src = url;
-		// pinda.play();
-
-		// gsap
-		// 	.timeline()
-		// 	.to(repeat, {
-		// 		autoAlpha: 0.5,
-		// 		delay: 2,
-		// 		duration: 0.5,
-		// 	})
-		// 	.to(repeat, {
-		// 		filter: 'drop-shadow(0px 0px 14px #000)',
-		// 		delay: 1,
-		// 		repeat: 4,
-		// 		yoyo: true,
-		// 		reversed: true,
-		// 	})
-		// 	.to(nextButton, {
-		// 		autoAlpha: 0.5,
-		// 		delay: 2,
-		// 		onComplete: () => {
-		// 			playingTimeline = false;
-		// 		},
-		// 	})
-		// 	.to(nextButton, {
-		// 		filter: 'drop-shadow(0px 0px 14px #781633)',
-		// 		delay: 1,
-		// 		repeat: -1,
-		// 		yoyo: true,
-		// 		reversed: true,
-		// 	});
 	});
 
 	await getResponse(nextButton.id);

@@ -53,15 +53,10 @@ export const play = (
 
 export const stop = () => {
 	const audio = document.getElementById('audio') as HTMLAudioElement;
-	const pinda = document.getElementById('pinda') as HTMLVideoElement;
 
 	// stop audio
 	audio.pause();
 	audio.currentTime = 0;
-
-	// stop pinda
-	pinda.pause();
-	pinda.currentTime = 0;
 };
 
 // get duration of audio file

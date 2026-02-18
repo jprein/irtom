@@ -98,12 +98,6 @@ export const procedure = async () => {
 
 	data.totalSlides = currentProcedure.length;
 
-	// pinda video wrapper
-	const pinda = document.getElementById('pinda') as HTMLVideoElement;
-	const pindaNeutral = document.getElementById(
-		'pinda-neutral',
-	) as HTMLVideoElement;
-
 	// hide loading spinner
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
 	// parentBlock.removeAttribute('visibility');
@@ -137,8 +131,8 @@ export const procedure = async () => {
 		// init default procedure response
 		data.procedure[currentSlide] = {
 			dimension: undefined,
-			slideNr: data.slideCounter,
-			slideDuration: undefined,
+			trialNr: data.slideCounter,
+			trialDuration: undefined,
 			response: undefined,
 			correct: undefined,
 			score: undefined,
@@ -287,14 +281,10 @@ export const procedure = async () => {
 
 		// POST LOOP Actions (i.e., either an await button was clicked or video ended)
 		// save duration of each slide
-		data.procedure[currentSlide].slideDuration =
+		data.procedure[currentSlide].trialDuration =
 			new Date().getTime() - startTime;
 
 		if (slide !== 'sEnd') {
-			// always hide all pinda video videos
-			gsap.to([pinda, pindaNeutral], { autoAlpha: 0 });
-
-			// always hide response buttons (next, yes, no) for nicer UX
 			if (responseButtons.length > 0) {
 				await gsap.timeline().to(responseButtons, {
 					autoAlpha: 0,
@@ -353,6 +343,7 @@ export const procedure = async () => {
 		'spriteJSON',
 		'clickedRepeat',
 		'incorrectResponse',
+		'emoji',
 	].forEach((key) => {
 		if (key in data) {
 			delete data[key];

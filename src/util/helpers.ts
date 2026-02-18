@@ -109,7 +109,7 @@ const generateCsvContent = (jsonData: any): string => {
 	// Prepare the CSV header
 	const header = [
 		...staticFields,
-		'slide',
+		'trial',
 		...Object.keys(jsonData.procedure[procedureKeys[0]]),
 	];
 

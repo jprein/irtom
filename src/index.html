@@ -37,7 +37,7 @@
 				</video> -->
 
 				<form>
-					<h1 id="heading">Soziale Entwicklung von Kindern</h1>
+					<h1 id="heading">Soziale Entwicklung</h1>
 					<p id="leuphana" style="text-align: center; margin-bottom: 30px">
 						Leuphana Universität Lüneburg, Entwicklungspsychologie, und
 						Max-Planck-Institut für evolutionäre Anthropologie, Vergleichende
@@ -52,7 +52,7 @@
 							required
 							maxlength="30"
 							autocomplete="off"
-							onkeydown="return /[0-9a-z-_äöüß ]/i.test(event.key)"
+							onkeydown="return /[0-9a-z-_äöüß ]/i.test(event.key);"
 						/>
 						<label for="input-id" class="control-label" id="idLabel"
 							>Vor- und Nachname oder ID</label
@@ -71,38 +71,6 @@
 						</select>
 						<label for="input-community" class="control-label" id="community"
 							>Gemeinschaft</label
-						><i class="bar"></i>
-					</div>
-					<div id="form-birthday" style="margin-top: -15px">
-						<label
-							for="input-birthday"
-							style="font-size: 0.8rem; color: gray"
-							id="birthday"
-							>Geburtstag</label
-						><br />
-						<input
-							type="date"
-							id="input-birthday"
-							name="birthday"
-							autocomplete="off"
-							required
-						/>
-					</div>
-					<div id="form-gender" class="form-group">
-						<select id="input-gender" autocomplete="off" required>
-							<option id="chooseGender" value="" selected disabled>
-								Bitte auswählen...
-							</option>
-							<option id="female">weiblich</option>
-							<option id="male">männlich</option>
-							<option id="diverse">divers</option>
-						</select>
-						<label
-							for="input-gender"
-							class="control-label"
-							autocomplete="off"
-							id="gender"
-							>Geschlecht</label
 						><i class="bar"></i>
 					</div>
 
@@ -143,35 +111,38 @@
 							id="webcam-button"
 							type="button"
 							class="button"
-							onclick="mrec.startStream({
-													audio: false,
-													video: {
-														frameRate: {
-														min: 3,
-														ideal: 5,
-														max: 30,
-														},
-														width: {
-														min: 160,
-														ideal: 320,
-														max: 640,
-														},
-														height: {
-														min: 120,
-														ideal: 240,
-														max: 480,
-														},
-														facingMode: 'user',
-													},
-													}); mrec.openVideoPreview()"
+							onclick="
+								mrec.startStream({
+									audio: false,
+									video: {
+										frameRate: {
+											min: 3,
+											ideal: 5,
+											max: 30,
+										},
+										width: {
+											min: 160,
+											ideal: 320,
+											max: 640,
+										},
+										height: {
+											min: 120,
+											ideal: 240,
+											max: 480,
+										},
+										facingMode: 'user',
+									},
+								});
+								mrec.openVideoPreview();
+							"
 						>
-							<span id="webcamPreview"></span>
+							<span id="webcamPreview">Webcam-Vorschau</span>
 						</button>
 					</div>
 
 					<div class="button-container">
 						<button id="start-button" type="submit" class="button">
-							<span id="startButton"></span>
+							<span id="startButton">Start</span>
 						</button>
 					</div>
 				</form>

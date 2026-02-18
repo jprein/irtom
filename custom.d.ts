@@ -30,14 +30,11 @@ declare module '*.webm' {
 
 declare let data: {
 	id: string;
-	gender: 'female' | 'male' | 'diverse';
 	community: string;
-	birthday: string;
-	age: number;
-	agegroup: 'child' | 'adult';
 	datatransfer: 'server' | 'local' | 'both';
 	webcam: boolean;
 	hasWebcam: boolean;
+	isIOS: boolean;
 	t0: Date;
 	t1: Date;
 	startTime: string;
@@ -57,21 +54,21 @@ declare let data: {
 	incorrectResponse: boolean;
 	procedure: {
 		sIntroduction: {
-			slideNr: number;
-			slideDuration: number;
+			trialNr: number;
+			trialDuration: number;
 			correct: string;
 			response: string;
 			score: number;
 		};
 		sPerspectivetaking: {
-			slideNr: number;
-			slideDuration: number;
+			trialNr: number;
+			trialDuration: number;
 			correct: string;
 			response: string;
 			score: number;
 		};
 		sEnd: {
-			slideNr: number;
+			trialNr: number;
 			slideDuration: number;
 			correct: string;
 			response: string;
