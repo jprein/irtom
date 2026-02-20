@@ -8,6 +8,12 @@ export const createSprite = async (settingsObj) => {
 		try {
 			const AudioCtx = window.AudioContext;
 			ctx = new AudioCtx();
+
+			if (ctx.state === 'suspended') {
+				await ctx.resume();
+				console.log('AudioContext resumed');
+			}
+
 			audioBuffer = await getFile();
 		} catch (error) {
 			console.error('Initialization error for audio sprites:', error);
@@ -44,24 +50,32 @@ export const createSprite = async (settingsObj) => {
 	}
 
 	// Asynchronous play function that returns a promise
-	function playPromise(sampleName: string): Promise<void> {
-		return new Promise((resolve, reject) => {
-			if (!audioBuffer || !ctx) {
-				return reject(new Error('Audio sprite not initialized yet.'));
+	async function playPromise(sampleName: string): Promise<void> {
+		if (!audioBuffer || !ctx) {
+			throw new Error('Audio sprite not initialized yet.');
+		}
+
+		const sampleData = sprite[sampleName];
+		if (!sampleData) {
+			throw new Error('Invalid audio sprite sample name: ' + sampleName);
+		}
+
+		const startTime = sampleData[0] / 1000;
+		const duration = sampleData[1] / 1000;
+		console.log(ctx.state);
+		const sampleSource = ctx.createBufferSource();
+		sampleSource.buffer = audioBuffer;
+		sampleSource.connect(ctx.destination);
+		console.log(ctx.state);
+		// Wait until the audio ends
+		await new Promise<void>((resolve, reject) => {
+			sampleSource.onended = () => resolve();
+			console.log(ctx.state);
+			try {
+				sampleSource.start(ctx.currentTime, startTime, duration);
+			} catch (err) {
+				reject(err);
 			}
-			const sampleData = sprite[sampleName];
-			if (!sampleData) {
-				return reject(
-					new Error('Invalid audio sprite sample name: ' + sampleName),
-				);
-			}
-			const startTime = sampleData[0] / 1000;
-			const duration = sampleData[1] / 1000;
-			const sampleSource = ctx.createBufferSource();
-			sampleSource.buffer = audioBuffer;
-			sampleSource.connect(ctx.destination);
-			sampleSource.onended = resolve;
-			sampleSource.start(ctx.currentTime, startTime, duration);
 		});
 	}
 

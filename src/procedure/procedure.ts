@@ -95,8 +95,24 @@ export const procedure = async () => {
 		console.table(currentProcedure);
 		console.groupEnd();
 	}
+	// const procedureStartMs = performance.now();
+	// const logTiming = (label: string, fromMs?: number) => {
+	// 	const nowMs = performance.now();
+	// 	const sinceIntroMs = (nowMs - procedureStartMs).toFixed(1);
+	// 	const sinceMarker = fromMs
+	// 		? ` | +${(nowMs - fromMs).toFixed(1)}ms since marker`
+	// 		: '';
+	// 	console.log(
+	// 		`[sProcedure][${new Date().toISOString()}] +${sinceIntroMs}ms ${label}${sinceMarker}`,
+	// 	);
+	// };
 
 	data.totalSlides = currentProcedure.length;
+	// const audioStartMs = performance.now();
+	// logTiming('playPromise start', procedureStartMs);
+	// //await data.sprite.playPromise('s-introduction');
+	// await data.sprite.ensureReady();
+	// logTiming('playPromise resolved', audioStartMs);
 
 	// pinda video wrapper
 	const pinda = document.getElementById('pinda') as HTMLVideoElement;
@@ -358,7 +374,6 @@ export const procedure = async () => {
 			delete data[key];
 		}
 	});
-	debugger;
 	// const parentBlockLast = document.getElementById(
 	// 	's-blocking-state',
 	// ) as SvgInHtml;

@@ -28,7 +28,7 @@ import { setMousePointer, setScaleOnHover } from './styleDefaults';
 import Toastify from 'toastify-js';
 import DetectRTC from 'detectrtc';
 import 'toastify-js/src/toastify.css';
-import { createSprite } from './createSprite';
+//import { createSprite } from './createSprite';
 import {
 	initMedia,
 	isMediaRecorderSupported,
@@ -300,7 +300,7 @@ export const init = async () => {
 	data.spriteJSON = await spriteLookup.json();
 
 	// then,create the sprite instance
-	data.sprite = await createSprite(data.spriteJSON);
+	//data.sprite = await createSprite(data.spriteJSON);
 
 	if (config.devmode.on) {
 		global.translations = translations;
