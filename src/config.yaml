@@ -71,8 +71,8 @@ procedure:
   # You can nest only two levels deep
   german:
     - s-introduction
-    - s-emojichoice
-    - s-yesnotraining-a
+    # - s-emojichoice
+    # - s-yesnotraining-a
     # - s-yesnotraining-b
     # - s-yesnotraining-c
     # - s-yesnotraining-d
@@ -92,7 +92,7 @@ procedure:
     # - s-perspectivetaking-one-d
     # - s-dogtraining
     # - s-knowledgeaccess-c
-    - s-falsebelief-uc-a
+    # - s-falsebelief-uc-a
     # - s-diversedesires-c
     # - s-diversedesires-d
     # - s-appearancereality-a
@@ -109,7 +109,7 @@ procedure:
     # - s-falsebelief-col-b
     # - s-falsebelief-ui-a
     # - s-perspectivetaking-two-b
-    # - s-aspectuality-a
+    - s-aspectuality-a
     # - s-knowledgeaccess-a
     # - s-perspectivetaking-two-c
     # - s-aspectuality-b
