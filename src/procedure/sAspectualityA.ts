@@ -36,28 +36,28 @@ export default async ({ currentSlide, previousSlide }) => {
 	const boyRight = document.getElementById(
 		`link-${slidePrefix}-${data.community}-boy-right-standing`,
 	) as SvgInHtml;
-	const man = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man`,
+	const woman = document.getElementById(
+		`link-${slidePrefix}-${data.community}-woman`,
 	) as SvgInHtml;
-	const manCook = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-cook`,
+	const womanDoctor = document.getElementById(
+		`link-${slidePrefix}-${data.community}-woman-doctor`,
 	) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
-		gsap.set([boy, boyLeft, boyWaving, boyRight, manCook], {
+		gsap.set([boy, boyLeft, boyWaving, boyRight, womanDoctor], {
 			autoAlpha: 0,
 			x: 0,
 		});
-		gsap.set([manCook], {
+		gsap.set([womanDoctor], {
 			autoAlpha: 1,
 			x: 0,
 			y: 0,
 			scale: 1,
 		});
 		gsap.set(boy, { autoAlpha: 1, x: -1200 });
-		gsap.set(man, { scale: 0.7, x: 15, y: 30, autoAlpha: 0 });
+		gsap.set(woman, { scale: 1, x: 15, y: 30, autoAlpha: 0 });
 
 		// Play initial audio
 		await data.sprite.playPromise(`${slidePrefix}-1`);
@@ -73,26 +73,23 @@ export default async ({ currentSlide, previousSlide }) => {
 				data.sprite.play(`${slidePrefix}-2`);
 			},
 		})
-			.to(manCook, {
+			.to(womanDoctor, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
-				x: -150,
-				y: 120,
+				x: -350,
+				y: 200,
 				scale: 0.5,
 				duration: 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
-			.to(
-				boy,
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<+=0.5',
-			)
+			.to(boy, {
+				delay: 0.5,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
 			.to(boyLeft, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(manCook, {
+			.to(womanDoctor, {
 				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
@@ -105,24 +102,25 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
-			.to(man, {
+			.to(woman, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 + 0.5,
-				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
-			.to(man, {
+			.to(woman, {
 				delay: 2,
 				autoAlpha: 1,
 				duration: 0.1,
 			})
-			.to(man, {
+			.to(woman, {
 				delay: 1,
-				scale: 1,
+				scale: 1.7,
+				x: 300,
+				y: -100,
 				duration: 2,
 			})
-			.to(man, {
+			.to(woman, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 3.5,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
@@ -140,11 +138,11 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 0.1,
 			})
 			.to(boyLeft, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(man, {
+			.to(woman, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 1,
-				x: 1110,
-				y: -10,
-				scale: 0.7,
+				x: 1180,
+				y: -50,
+				scale: 1,
 				duration: 2.5,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-7`);
@@ -152,7 +150,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(boyRight, { autoAlpha: 1, duration: 0.1 }, '-=2')
 			.to(boyLeft, { autoAlpha: 0, duration: 0.1 }, '<')
-			.to(man, { delay: 1, autoAlpha: 0, duration: 0.1 })
+			.to(woman, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(boyRight, { delay: 0, autoAlpha: 0, duration: 0.1 })
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<');
 
