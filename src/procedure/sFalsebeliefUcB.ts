@@ -27,8 +27,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	const boy = document.getElementById(
 		`link-${slidePrefix}-${data.community}-boy`,
 	) as SvgInHtml;
-	const boyWithPuzzleAndCookie = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-puzzle-cookies`,
+	const boyWithPensAndCookie = document.getElementById(
+		`link-${slidePrefix}-${data.community}-boy-pens-cookies`,
 	) as SvgInHtml;
 	const girl = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl`,
@@ -39,22 +39,22 @@ export default async ({ currentSlide, previousSlide }) => {
 	const cookieBoxWithCookies = document.getElementById(
 		`${slidePrefix}-cb-cookies`,
 	) as SvgInHtml;
-	const cookieBoxWithPuzzle = document.getElementById(
-		`${slidePrefix}-cb-puzzle`,
+	const cookieBoxWithPens = document.getElementById(
+		`${slidePrefix}-cb-pens`,
 	) as SvgInHtml;
 	const cookieBoxEmpty = document.getElementById(
 		`${slidePrefix}-cb-empty`,
 	) as SvgInHtml;
-	const puzzleBoxClosed = document.getElementById(
+	const pensBoxClosed = document.getElementById(
 		`${slidePrefix}-pb-closed`,
 	) as SvgInHtml;
-	const puzzleBoxWithCookies = document.getElementById(
+	const pensBoxWithCookies = document.getElementById(
 		`${slidePrefix}-pb-cookies`,
 	) as SvgInHtml;
-	const puzzleBoxWithPuzzle = document.getElementById(
-		`${slidePrefix}-pb-puzzle`,
+	const pensBoxWithPens = document.getElementById(
+		`${slidePrefix}-pb-pens`,
 	) as SvgInHtml;
-	const puzzleBoxEmpty = document.getElementById(
+	const pensBoxEmpty = document.getElementById(
 		`${slidePrefix}-pb-empty`,
 	) as SvgInHtml;
 
@@ -63,23 +63,23 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set(
 			[
 				girl,
-				boyWithPuzzleAndCookie,
+				boyWithPensAndCookie,
 				boy,
 				cookieBoxClosed,
 				cookieBoxWithCookies,
-				cookieBoxWithPuzzle,
+				cookieBoxWithPens,
 				cookieBoxEmpty,
-				puzzleBoxClosed,
-				puzzleBoxWithCookies,
-				puzzleBoxWithPuzzle,
-				puzzleBoxEmpty,
+				pensBoxClosed,
+				pensBoxWithCookies,
+				pensBoxWithPens,
+				pensBoxEmpty,
 			],
 			{
 				autoAlpha: 0,
 				x: 0,
 			},
 		);
-		gsap.set([boy, girl, cookieBoxClosed, puzzleBoxClosed], {
+		gsap.set([boy, girl, cookieBoxClosed, pensBoxClosed], {
 			autoAlpha: 1,
 			x: 0,
 		});
@@ -91,19 +91,65 @@ export default async ({ currentSlide, previousSlide }) => {
 		const tl = await gsap.timeline();
 
 		tl.to(boy, {
-			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
+			delay: 0.5,
 			x: 0,
 			duration: 2,
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-2`);
 			},
 		})
-			.to([cookieBoxClosed, puzzleBoxClosed], {
+			.to([cookieBoxClosed, pensBoxClosed], {
+				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
 			.to(
-				[cookieBoxWithCookies, puzzleBoxWithPuzzle],
+				[cookieBoxWithCookies, pensBoxWithPens],
+				{
+					autoAlpha: 1,
+					duration: 0.1,
+				},
+				'<',
+			)
+			.to([boyWithPensAndCookie, cookieBoxEmpty, pensBoxEmpty], {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-3`);
+				},
+				autoAlpha: 1,
+				duration: 0.1,
+			})
+			.to(
+				[boy, cookieBoxWithCookies, pensBoxWithPens],
+				{
+					autoAlpha: 0,
+					duration: 0.1,
+				},
+				'<',
+			)
+			.to([boyWithPensAndCookie, cookieBoxEmpty, pensBoxEmpty], {
+				delay: 1,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to(
+				[boy, cookieBoxWithPens, pensBoxWithCookies],
+				{
+					autoAlpha: 1,
+					duration: 0.1,
+				},
+				'<',
+			)
+			.to([cookieBoxWithPens, pensBoxWithCookies], {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-4`);
+				},
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to(
+				[cookieBoxClosed, pensBoxClosed],
 				{
 					autoAlpha: 1,
 					duration: 0.1,
@@ -111,75 +157,14 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-3`);
-				},
+				x: 1200,
+				duration: 2,
+				delay: 3,
 			})
-			.to(
-				[boyWithPuzzleAndCookie, cookieBoxEmpty, puzzleBoxEmpty],
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(
-				[boy, cookieBoxWithCookies, puzzleBoxWithPuzzle],
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to([boyWithPuzzleAndCookie, cookieBoxEmpty, puzzleBoxEmpty], {
-				delay: 1,
-				autoAlpha: 0,
-				duration: 0.1,
-			})
-			.to(
-				[boy, cookieBoxWithPuzzle, puzzleBoxWithCookies],
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(boyWithPuzzleAndCookie, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 + 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-4`);
-				},
-			})
-			.to(
-				[cookieBoxWithPuzzle, puzzleBoxWithCookies],
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(
-				[cookieBoxClosed, puzzleBoxClosed],
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(
-				boy,
-				{
-					x: 1200,
-					duration: 2,
-					delay: 2,
-				},
-				'=+1',
-			)
 			.to(girl, {
 				x: 0,
 				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},

@@ -69,7 +69,7 @@ declare let data: {
 		};
 		sEnd: {
 			trialNr: number;
-			slideDuration: number;
+			trialDuration: number;
 			correct: string;
 			response: string;
 			score: number;
