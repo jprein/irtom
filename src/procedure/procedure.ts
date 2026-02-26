@@ -401,8 +401,8 @@ export const procedure = async () => {
 	}
 	// Save data depending on choice (local, server, both)
 	if (datatransfer === 'local') {
-		downloadCsv();
-		downloadWebcamVideo(data.webcam, data.id);
+		await downloadCsv();
+		await downloadWebcamVideo(data.webcam, data.id);
 	} else if (datatransfer === 'server') {
 		await uploadCsv();
 		await sleep(1000);
@@ -411,10 +411,12 @@ export const procedure = async () => {
 	} else {
 		await uploadCsv();
 		await sleep(1000);
-		downloadCsv();
-		downloadWebcamVideo(data.webcam, data.id);
 		await uploadWebcamVideo(data.webcam, data.id);
-		await sleep(2000);
+		await sleep(1000);
+		await downloadCsv();
+		await sleep(1000);
+		await downloadWebcamVideo(data.webcam, data.id);
+		await sleep(1000);
 	}
 
 	// users can leave page now
