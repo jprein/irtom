@@ -1,10 +1,7 @@
 import { gsap } from 'gsap';
 import { swapSlides } from '../../src/util/slideVisibility';
 import { getResponse } from '../../src/util/getResponse';
-import { startFullscreen } from '../../src/util/helpers';
-import config from '../config.yaml';
 import type { SvgInHtml } from '../../src/types';
-import { createSprite } from '../util/createSprite';
 
 export default async ({ currentSlide, previousSlide }) => {
 	const introStartMs = performance.now();
@@ -61,55 +58,18 @@ export default async ({ currentSlide, previousSlide }) => {
 			const clickStartMs = performance.now();
 			logTiming('speaker clicked', clickStartMs);
 
-			if (!config.devmode.on && !data.isIOS) {
-				startFullscreen(data.isIOS);
-				logTiming('startFullscreen triggered', clickStartMs);
-			}
-			//startFullscreen(data.isIOS);
-
-			// const audioStartMss = performance.now();
-			// logTiming('playPromise start', clickStartMs);
-			// await data.sprite.ensureReady();
-			// logTiming('playPromise resolved', audioStartMss);
-
-			// then,create the sprite instance
 			const audioStartMss = performance.now();
-			logTiming('createSprite start', clickStartMs);
-			data.sprite = await createSprite(data.spriteJSON);
-			logTiming('createSprite resolved', audioStartMss);
-
-			const audioStartMs = performance.now();
-			logTiming('playPromise start', audioStartMss);
+			logTiming('playPromise start', clickStartMs);
 			await data.sprite.playPromise('s-introduction');
-			logTiming('playPromise resolved', audioStartMs);
+			logTiming('playPromise resolved', audioStartMss);
 
-			const tl = gsap.timeline();
-			// tl.to(speaker, {
-			// 	onStart: () => {
-			// 		data.sprite.play('s-introduction');
-			// 	},
-			// });
-			tl.to(speaker, {
-				duration: 0.1,
-				autoAlpha: 0,
-				//delay: data.spriteJSON.sprite['s-introduction'][1] / 1000,
-			}).to(
-				[nextButton, repeat],
-				{
-					duration: 0.1,
-					autoAlpha: 1,
-					pointerEvents: 'auto',
-				},
-				'<',
-			);
-
-			const timelineStartMs = performance.now();
-			logTiming('timeline start', clickStartMs);
-			await tl.then();
-			logTiming('timeline resolved', timelineStartMs);
-
-			tl.kill();
-			logTiming('timeline killed / speaker flow done', clickStartMs);
+			// Keep this transition instant to avoid first-slide latency on slower devices.
+			gsap.set(speaker, { autoAlpha: 0, pointerEvents: 'none' });
+			gsap.set([nextButton, repeat], {
+				autoAlpha: 1,
+				pointerEvents: 'auto',
+			});
+			logTiming('controls revealed instantly', clickStartMs);
 		},
 		{ once: true },
 	);

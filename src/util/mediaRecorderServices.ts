@@ -213,7 +213,6 @@ export async function uploadLastRecordingInChunks(
 		onProgress,
 	}: UploadInChunksOptions = {},
 ): Promise<Response> {
-	debugger;
 	if (!lastRecordedBlob) {
 		throw new Error('No recording available to upload.');
 	}

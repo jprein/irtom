@@ -318,8 +318,12 @@ export const procedure = async () => {
 				});
 			}
 
-			// apply default gap duration
-			await sleep(config.globals.slideGapDuration);
+			// Keep the intro->next transition snappy; use default gap for all other slides.
+			const gapDuration =
+				currentSlide === 'sIntroduction' ? 0 : config.globals.slideGapDuration;
+			if (gapDuration > 0) {
+				await sleep(gapDuration);
+			}
 
 			// always hide div wrapper of text/audio feedback
 			const responseWrapper = document.querySelectorAll(
@@ -395,21 +399,22 @@ export const procedure = async () => {
 			console.warn('Failed to stop recording, continuing anyway:', e);
 		}
 	}
-
 	// Save data depending on choice (local, server, both)
 	if (datatransfer === 'local') {
 		downloadCsv();
 		downloadWebcamVideo(data.webcam, data.id);
 	} else if (datatransfer === 'server') {
-		uploadCsv();
-		await uploadWebcamVideo(data.webcam, data.id);
+		await uploadCsv();
 		await sleep(1000);
+		await uploadWebcamVideo(data.webcam, data.id);
+		await sleep(2000);
 	} else {
-		uploadCsv();
+		await uploadCsv();
+		await sleep(1000);
 		downloadCsv();
 		downloadWebcamVideo(data.webcam, data.id);
 		await uploadWebcamVideo(data.webcam, data.id);
-		await sleep(1000);
+		await sleep(2000);
 	}
 
 	// users can leave page now

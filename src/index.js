@@ -57,21 +57,6 @@ webcamElement.addEventListener('change', (e) => {
 	}
 });
 
-const button = document.getElementById('audio-button');
-const sound = document.getElementById('audio-preview');
-const submitBtn = document.getElementById('start-button');
-
-button.addEventListener('click', async (e) => {
-	e.preventDefault();
-	try {
-		sound.currentTime = 0; // restart sound each click (optional)
-		await sound.play();
-		submitBtn.disabled = false;
-	} catch (err) {
-		console.error('Audio failed:', err);
-	}
-});
-
 // handle submit button
 document.querySelector('form').addEventListener('submit', (e) => {
 	e.preventDefault();

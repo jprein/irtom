@@ -1,30 +1,44 @@
 export const getResponse = (id?: string | string[]) => {
 	return new Promise<Element>((resolve) => {
-		const handleResponse = (event: Event) => {
-			// take currentTarget instead of target
-			// so that we get the parent node where the eventlistener was attached to
-			const target = event.currentTarget as Element;
-			return resolve(target);
-		};
+		const targets: Element[] = [];
 
 		if (typeof id === 'string') {
-			document
-				.getElementById(id)!
-				.addEventListener('click', handleResponse, { once: true });
+			const target = document.getElementById(id);
+			if (target) targets.push(target);
 		}
 
 		if (Array.isArray(id)) {
 			id.forEach((id) => {
-				document
-					.getElementById(id)!
-					.addEventListener('click', handleResponse, { once: true });
+				const target = document.getElementById(id);
+				if (target) targets.push(target);
 			});
 		}
 
 		if (id === undefined) {
-			document
-				.getElementById('wrapper')!
-				.addEventListener('click', handleResponse, { once: true });
+			const wrapper = document.getElementById('wrapper');
+			if (wrapper) targets.push(wrapper);
 		}
+
+		let settled = false;
+
+		const cleanup = () => {
+			targets.forEach((target) => {
+				target.removeEventListener('pointerup', handleResponse);
+				target.removeEventListener('click', handleResponse);
+			});
+		};
+
+		const handleResponse = (event: Event) => {
+			if (settled) return;
+			settled = true;
+			cleanup();
+			// Use currentTarget to resolve the element where the listener was attached.
+			resolve(event.currentTarget as Element);
+		};
+
+		targets.forEach((target) => {
+			target.addEventListener('pointerup', handleResponse);
+			target.addEventListener('click', handleResponse);
+		});
 	});
 };

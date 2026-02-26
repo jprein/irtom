@@ -156,7 +156,7 @@ export const init = async () => {
 			(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 		// Enable webcam recording if selected in URL parameters
 		//if (global.data.hasWebcam && global.data.webcam && !global.data.iOSSafari) {
-		if (global.data.hasWebcam && global.data.webcam && !global.data.isIOS) {
+		if (global.data.hasWebcam && global.data.webcam) {
 			// !responseLog.meta.iOSSafari &&
 			if (!isMediaRecorderSupported()) {
 				console.log('MediaRecorder is not supported in this browser.');

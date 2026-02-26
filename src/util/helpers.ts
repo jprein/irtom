@@ -148,10 +148,10 @@ export const downloadCsv = (
 };
 
 // Function to upload the CSV
-export const uploadCsv = (
+export async function uploadCsv(
 	jsonData: any = data,
 	id: string = generateUserIdFilename('irtom', undefined, 'csv'),
-) => {
+) {
 	const csvContent = generateCsvContent(jsonData);
 
 	// Send the CSV content to the server, including the `id` as part of the request
@@ -183,7 +183,7 @@ export const uploadCsv = (
 		.catch((error) => {
 			console.error('Error:', error);
 		});
-};
+}
 
 // Function to download the webcam video
 export async function downloadWebcamVideo(webcam: boolean, id: string) {
