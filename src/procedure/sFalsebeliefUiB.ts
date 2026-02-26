@@ -15,6 +15,8 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Store correct response
 	data.procedure[data.currentSlide].correct = 'left';
+	data.procedure[data.currentSlide].dimension = 'falsebelief';
+	data.procedure[data.currentSlide].analyse = true;
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
@@ -137,7 +139,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(dogRunning, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(dogRunning, { x: 300, duration: 1.5 })
+			.to(dogRunning, { x: 220, duration: 1.5 })
 			.to(dogRunning, {
 				autoAlpha: 0,
 				duration: 0.1,
@@ -185,7 +187,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
-				x: -170,
+				x: -210,
 				y: -100,
 				scale: 0.8,
 				duration: 2,
@@ -201,7 +203,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				x: 0,
-				duration: 2,
+				duration: 2.5,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},

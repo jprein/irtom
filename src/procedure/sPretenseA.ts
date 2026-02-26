@@ -15,6 +15,8 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Store correct response
 	data.procedure[data.currentSlide].correct = 'right';
+	data.procedure[data.currentSlide].dimension = 'pretense';
+	data.procedure[data.currentSlide].analyse = true;
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
@@ -22,11 +24,11 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
-	const boyFront = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-front`,
+	const manFront = document.getElementById(
+		`link-${slidePrefix}-${data.community}-man-front`,
 	) as SvgInHtml;
-	const boyWithCycle = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-bike`,
+	const manWithMotorbike = document.getElementById(
+		`link-${slidePrefix}-${data.community}-man-motorbike`,
 	) as SvgInHtml;
 	const girlFront = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl-front`,
@@ -37,11 +39,11 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Define animation function
 	async function showAnimation() {
-		gsap.set([girlFront, boyWithCycle, boyFront, girlWithSpringBike], {
+		gsap.set([girlFront, manWithMotorbike, manFront, girlWithSpringBike], {
 			autoAlpha: 0,
 			x: 0,
 		});
-		gsap.set([boyFront, girlFront], {
+		gsap.set([manFront, girlFront], {
 			autoAlpha: 1,
 			x: 0,
 		});
@@ -49,29 +51,27 @@ export default async ({ currentSlide, previousSlide }) => {
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		const tl = await gsap.timeline();
-		tl.to(boyFront, {
+		tl.to(manFront, {
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-2`);
 			},
 		})
-			.to(boyFront, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+			.to(manFront, {
+				delay: 2,
 				autoAlpha: 0,
 				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-3`);
+				},
 			})
 			.to(
-				boyWithCycle,
+				manWithMotorbike,
 				{
 					autoAlpha: 1,
 					duration: 0.1,
 				},
 				'<',
 			)
-			.to(girlFront, {
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-3`);
-				},
-			})
 			.to(girlFront, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 0,

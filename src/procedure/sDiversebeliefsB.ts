@@ -5,7 +5,10 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
-import { hideBlockingState, showBlockingState } from '../util/showOrHideBlockState';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -28,6 +31,8 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Store correct response
 	data.procedure[data.currentSlide].correct = yaySide;
+	data.procedure[data.currentSlide].dimension = 'diversebeliefs';
+	data.procedure[data.currentSlide].analyse = true;
 
 	// Trial-specific animation
 	// Get all relevant elements
@@ -87,7 +92,6 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			);
 
-			
 		await tl.then();
 		await sleep(500);
 		tl.kill();
@@ -105,5 +109,5 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Show left/right response options and store participant response
 	const stopBlockingState = await showTwoOptions(slidePrefix);
-	if(!stopBlockingState) await showBlockingState(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

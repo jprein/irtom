@@ -11,10 +11,12 @@ import {
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
-	const slidePrefix = 's-appearance-reality-a';
+	const slidePrefix = 's-appearancereality-a';
 
 	// Store correct response
 	data.procedure[data.currentSlide].correct = 'left';
+	data.procedure[data.currentSlide].dimension = 'appearancereality';
+	data.procedure[data.currentSlide].analyse = true;
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);

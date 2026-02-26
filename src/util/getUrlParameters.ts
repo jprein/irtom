@@ -52,41 +52,6 @@ export const getUrlParameters = () => {
 		params.community = config.globals.defaultCommunity;
 	}
 
-	if (params.birthday) {
-		// exact regex for YYYY-MM-DD: https://stackoverflow.com/a/22061879/2258480
-		const yyyymmddRegex = /^\d{4}-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])$/;
-		if (!yyyymmddRegex.test(params.birthday)) {
-			Toastify({
-				escapeMarkup: false,
-				text: `<strong>Parameter Error</strong>: <small><code>birthday</code> must be in yyyy-mm-dd format!</small><br><br>Defaulting to: <code>${config.globals.defaultBirthday}</code>`,
-				duration: 0,
-				className: 'toast-info',
-			}).showToast();
-			params.birthday = config.globals.defaultBirthday;
-		}
-	} else {
-		params.birthday = config.globals.defaultBirthday;
-	}
-
-	if (params.gender) {
-		if (
-			params.gender !== 'female' &&
-			params.gender !== 'male' &&
-			params.gender !== 'diverse' &&
-			params.gender !== 'none'
-		) {
-			Toastify({
-				escapeMarkup: false,
-				text: `<strong>Parameter Error</strong>: <small><code>gender</code> must be one of: <code>female, male, diverse, none</code></small><br><br>Defaulting to: <code>${config.globals.defaultGender}</code>`,
-				duration: 0,
-				className: 'toast-info',
-			}).showToast();
-			params.gender = config.globals.defaultGender;
-		}
-	} else {
-		params.gender = config.globals.defaultGender;
-	}
-
 	if (params.datatransfer) {
 		if (
 			params.datatransfer !== 'both' &&

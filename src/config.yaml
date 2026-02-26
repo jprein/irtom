@@ -56,17 +56,10 @@ css:
       '[id$=-center]',
       '[id$=-right]',
     ]
-  pinda: # applies for pinda and neutral pinda videos
-    height: '30%' # pinda height
-    left: '0' # offset from left SVG edge, use 0 for none offset, otherwise px,%, etc. (e.g., '10px')
-    bottom: '0' # offset from bottom SVG edge, use 0 for none offset, otherwise px,%, etc. (e.g., '10px')
 
 globals:
   defaultSubjectId: demo
   defaultCommunity: german
-  defaultBirthday: '2100-01-01'
-  adultThresholdAge: 18 # 17 = child, 18 = adult
-  defaultGender: none
   defaultDataTransfer: local
   slideGapDuration: 500 # delay for most slides before transitioning to next
   playResponseFeedback: 0

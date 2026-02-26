@@ -15,6 +15,8 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Store correct response
 	data.procedure[data.currentSlide].correct = 'right';
+	data.procedure[data.currentSlide].dimension = 'knowledgeaccess';
+	data.procedure[data.currentSlide].analyse = true;
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
@@ -23,7 +25,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-pot`,
+		`link-${slidePrefix}-${data.community}-girl-bruise`,
 	) as SvgInHtml;
 	const mother = document.getElementById(
 		`link-${slidePrefix}-${data.community}-woman-doctor-nomask`,
@@ -42,49 +44,35 @@ export default async ({ currentSlide, previousSlide }) => {
 			autoAlpha: 1,
 		});
 
-		gsap.set([girl, mother], { autoAlpha: 1, x: -1200 });
-		gsap.set([father], { autoAlpha: 1, x: +1200 });
+		gsap.set([mother], { autoAlpha: 1, x: +1200 });
+		gsap.set([girl, father], { autoAlpha: 1, x: -1200 });
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		const tl = await gsap.timeline();
 		tl.to(mother, {
-			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 5,
+			// delay: 0.5,
+			x: 0,
+			duration: 2,
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-2`);
 			},
 		})
-			.to(
-				mother,
-				{
-					x: 0,
-					duration: 2,
-				},
-				'<',
-			)
 			.to(father, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
+				x: 0,
+				duration: 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
-			.to(
-				father,
-				{
-					x: 0,
-					duration: 2,
-				},
-				'<',
-			)
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 0.5,
+				x: 0,
+				duration: 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
-			})
-			.to(girl, {
-				x: 0,
-				duration: 2,
 			});
 
 		await tl.then();

@@ -273,10 +273,3 @@ a:visited {
 	margin: 0 auto;
 	max-width: 40%;
 }
-
-#input-birthday {
-	padding: 0.25rem;
-	margin: 0.25rem;
-	border: #999 0.0625rem solid;
-	border-radius: 0.25rem;
-}

@@ -28,6 +28,8 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Store correct response
 	data.procedure[data.currentSlide].correct = yaySide;
+	data.procedure[data.currentSlide].dimension = 'diversedesires';
+	data.procedure[data.currentSlide].analyse = true;
 
 	// Trial-specific animation
 	// Get all relevant elements

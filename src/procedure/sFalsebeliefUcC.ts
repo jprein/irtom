@@ -15,6 +15,8 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Store correct response
 	data.procedure[data.currentSlide].correct = 'left';
+	data.procedure[data.currentSlide].dimension = 'falsebelief';
+	data.procedure[data.currentSlide].analyse = true;
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
@@ -28,6 +30,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	const girl = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
+	const girlSpeaking = document.getElementById(
+		`link-${slidePrefix}-${data.community}-girl-speaking`,
+	) as SvgInHtml;
 	const boxClosed = document.getElementById(
 		`${slidePrefix}-box-closed`,
 	) as SvgInHtml;
@@ -37,7 +42,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Define animation function
 	async function showAnimation() {
-		gsap.set([girl, boy, boxClosed, boxOpen], {
+		gsap.set([girl, girlSpeaking, boy, boxClosed, boxOpen], {
 			autoAlpha: 0,
 			x: 0,
 		});
@@ -76,8 +81,12 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
+			.to(girl, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(girlSpeaking, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girlSpeaking, { delay: 1.5, autoAlpha: 0, duration: 0.1 })
+			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},

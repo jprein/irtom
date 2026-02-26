@@ -35,8 +35,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	const nextButton = document.getElementById(
 		'link-s-introduction-next',
 	) as SvgInHtml;
-	const childQuestion = document.getElementById('text-introChild') as SvgInHtml;
-	const adultQuestion = document.getElementById('text-introAdult') as SvgInHtml;
 	gsap.set([repeat, nextButton], { autoAlpha: 0, pointerEvents: 'none' });
 
 	// let preloadVideo: Response;

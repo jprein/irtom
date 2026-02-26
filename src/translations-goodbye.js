@@ -1,4 +1,4 @@
-const supportedLanguages = ['de', 'en', 'es'];
+const supportedLanguages = ['de', 'en'];
 const languageIds = [
 	'heading',
 	'leuphana',
@@ -11,22 +11,20 @@ const translations = {
 	heading: {
 		de: `Soziale Entwicklung`,
 		en: `Social Development`,
-		es: `Desarrollo social`,
 	},
 	leuphana: {
-		de: `Leuphana Universität Lüneburg, Abteilung Entwicklungspsychologie`,
-		en: `Leuphana University Lüneburg, Department of Developmental Psychology`,
-		es: `Universidad Leuphana de Lüneburg, Departamento de Psicología del Desarrollo`,
+		de: `von der Leuphana Universität Lüneburg, Entwicklungspsychologie, und <br>
+		dem Max-Planck-Institut für evolutionäre Anthropologie, Vergleichende Kulturpsychologie`,
+		en: `at the Leuphana University Lüneburg, Department of Developmental Psychology, and <br>
+		the Max Planck Institute for Evolutionary Anthropology, Comparative Cultural Psychology`,
 	},
 	imprint: {
 		de: `Impressum`,
 		en: `Imprint`,
-		es: `Pie de imprenta`,
 	},
 	dataProtection: {
 		de: `Datenschutz`,
 		en: `Data Protection`,
-		es: `Protección de datos `,
 	},
 	goodbye: {
 		de: `Toll - alles geschafft! Herzlichen Dank für's Mitspielen. Wir hoffen, es hat dir Spaß gemacht.
@@ -43,13 +41,6 @@ const translations = {
 			Best regards and see you soon, <br/>
 			Your research team from Leuphana University Lüneburg <br />
 			and the Max Planck Institute for Evolutionary Anthropology Leipzig`,
-		es: `Genial - ¡todo listo! Muchas gracias por participar. Esperamos que te haya gustado.
-			<br/><br/>Si tienes preguntas o comentarios, por favor contacta con nosotros a esta dirección de correo electrónico:
-			<a href="mailto:lueneluetten@leuphana.de">lueneluetten@leuphana.de</a>.
-			<br/><br/>¡Esperamos verte de nuevo!<br/><br/>
-			Un cordial saludo y hasta pronto, <br/>
-			El equipo de investigación de la Universidad Leuphana de Lüneburg <br />
-			y el Instituto Max Planck de Antropología Evolutiva de Leipzig`,
 	},
 };
 

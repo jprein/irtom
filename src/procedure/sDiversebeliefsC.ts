@@ -30,6 +30,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.procedure[data.currentSlide].correct =
 		yaySide === 'right' ? 'right' : 'left';
 
+	data.procedure[data.currentSlide].dimension = 'diversebeliefs';
+	data.procedure[data.currentSlide].analyse = true;
+
 	// Trial-specific animation
 	// Get all relevant elements
 	const boy = document.getElementById(

@@ -1,4 +1,4 @@
-const supportedLanguages = ['de', 'en', 'es'];
+const supportedLanguages = ['de', 'en'];
 const languageIds = [
 	'heading',
 	'leuphana',
@@ -10,12 +10,6 @@ const languageIds = [
 	'kikuyu',
 	'swahili',
 	'turkish',
-	'birthday',
-	'gender',
-	'chooseGender',
-	'female',
-	'male',
-	'diverse',
 	'dataTransfer',
 	'chooseDatatransfer',
 	'local',
@@ -36,132 +30,84 @@ const translations = {
 	heading: {
 		de: `Soziale Entwicklung`,
 		en: `Social Development`,
-		es: `Desarrollo social`,
 	},
 	leuphana: {
-		de: `Leuphana Universität Lüneburg, Abteilung Entwicklungspsychologie`,
-		en: `Leuphana University Lüneburg, Department of Developmental Psychology`,
-		es: `Universidad Leuphana de Lüneburg, Departamento de Psicología del Desarrollo`,
+		de: `von der Leuphana Universität Lüneburg, Entwicklungspsychologie, und <br>
+		dem Max-Planck-Institut für evolutionäre Anthropologie, Vergleichende Kulturpsychologie`,
+		en: `at the Leuphana University Lüneburg, Department of Developmental Psychology, and <br>
+		the Max Planck Institute for Evolutionary Anthropology, Comparative Cultural Psychology`,
 	},
 	idLabel: {
 		de: `Vor- und Nachname oder ID`,
 		en: `Name and Surname or ID`,
-		es: `Nombre y Apellido o DNI`,
 	},
 	community: {
 		de: `Gemeinschaft`,
 		en: `Community`,
-		es: `Comunidad`,
 	},
 	chooseCommunity: {
 		de: `Bitte wählen...`,
 		en: `Please select...`,
-		es: `Por favor seleccione...`,
 	},
 	english: {
 		de: `Englisch`,
 		en: `English`,
-		es: `Inglés`,
 	},
 	german: {
 		de: `Deutsch`,
 		en: `German`,
-		es: `Alemán`,
 	},
 	kikuyu: {
 		de: `Kikuyu`,
 		en: `Kikuyu`,
-		es: `Kikuyu`,
 	},
 	swahili: {
 		de: `Swahili`,
 		en: `Swahili`,
-		es: `Swahili`,
 	},
 	turkish: {
 		de: `Türkisch`,
 		en: `Turkish`,
-		es: `Turco`,
-	},
-	birthday: {
-		de: `Geburtstag`,
-		en: `Birthday`,
-		es: `Cumpleaños`,
-	},
-	gender: {
-		de: `Geschlecht`,
-		en: `Gender`,
-		es: `Sexo`,
-	},
-	chooseGender: {
-		de: `Bitte wählen...`,
-		en: `Please select...`,
-		es: `Por favor seleccione...`,
-	},
-	female: {
-		de: `Weiblich`,
-		en: `Female`,
-		es: `Feminino`,
-	},
-	male: {
-		de: `Männlich`,
-		en: `Male`,
-		es: `Masculino`,
-	},
-	diverse: {
-		de: `Divers`,
-		en: `Diverse`,
-		es: `Diverso`,
 	},
 	dataTransfer: {
 		de: `Datentransfer`,
 		en: `Data Transfer`,
-		es: `Transferencia de datos`,
 	},
 	chooseDatatransfer: {
 		de: `Bitte wählen...`,
 		en: `Please select...`,
-		es: `Por favor seleccione...`,
 	},
 	local: {
 		de: `Lokaler Download`,
 		en: `Local Download`,
-		es: `Descarga local`,
 	},
 	server: {
 		de: `Upload auf Leuphana Server`,
 		en: `Upload to Leuphana Server`,
-		es: `Subida al servidor de Leuphana`,
 	},
 	both: {
 		de: `Lokaler Download und Upload auf Leuphana Server`,
 		en: `Local Download and Upload to Leuphana Server`,
-		es: `Descarga local y subida al servidor de Leuphana`,
 	},
 	webcam: {
 		de: `Webcam`,
 		en: `Webcam`,
-		es: `Cámara web`,
 	},
 	chooseWebcam: {
 		de: `Bitte wählen...`,
 		en: `Please select...`,
-		es: `Por favor seleccione...`,
 	},
 	webcamTrue: {
 		de: `Ja`,
 		en: `Yes`,
-		es: `Sí`,
 	},
 	webcamFalse: {
 		de: `Nein`,
 		en: `No`,
-		es: `No`,
 	},
 	webcamPreview: {
 		de: `Webcam-Vorschau`,
 		en: `Webcam Preview`,
-		es: `Vista previa de la cámara web`,
 	},
 	audioButton:{
 		de: 'Audio testen',
@@ -171,17 +117,14 @@ const translations = {
 	startButton: {
 		de: `Start`,
 		en: `Start`,
-		es: `Inicio`,
 	},
 	imprint: {
 		de: `Impressum`,
 		en: `Imprint`,
-		es: `Pie de imprenta`,
 	},
 	dataProtection: {
 		de: `Datenschutz`,
 		en: `Data Protection`,
-		es: `Protección de datos `,
 	},
 	freepikAttribution: {
 		de: `Grafiken und Designelemente auf dieser Website enthalten Ressourcen
@@ -193,10 +136,6 @@ const translations = {
 		<a href="https://www.freepik.com/" target="_blank" id="freepik">Freepik</a>
 		used under Freepik’s Free License with required attribution. 
 		Some contents may have been edited or customized.`,
-		es: `Los gráficos y elementos de diseño de este sitio web incluyen recursos de 
-		<a href="https://www.freepik.com/" target="_blank" id="freepik">Freepik</a>
-		utilizados bajo la Licencia Libre de Freepik con la atribución requerida. 
-		Algunos contenidos pueden haber sido editados o personalizados.`,
 	},
 };
 

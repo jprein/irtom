@@ -16,14 +16,6 @@ div#root {
 	height: min(100vh, (100vw / var(--aspectRatio)));
 }
 
-#pinda,
-#pinda-neutral {
-	position: absolute;
-	height: 30%;
-	left: 0;
-	bottom: 0;
-}
-
 #fsplayer {
 	display: none;
 	position: absolute;

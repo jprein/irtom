@@ -48,28 +48,34 @@ export const showThreeOptions = async (slidePrefix: string) => {
 	await timeline
 		.to(optionLeft, {
 			delay: 0.5,
+			scale: 1.3,
 			autoAlpha: 1,
-			duration: 0.5,
+			duration: 0.3,
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-left`);
 			},
 		})
+		.to(optionLeft, { delay: 0.5, scale: 1, duration: 0.2 })
 		.to(optionCenter, {
-			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000 + 0.5,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000,
+			scale: 1.3,
 			autoAlpha: 1,
-			duration: 0.5,
+			duration: 0.3,
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-center`);
 			},
 		})
+		.to(optionCenter, { delay: 0.5, scale: 1, duration: 0.2 })
 		.to(optionRight, {
-			delay: data.spriteJSON.sprite[`${slidePrefix}-center`][1] / 1000 + 0.5,
+			delay: data.spriteJSON.sprite[`${slidePrefix}-center`][1] / 1000,
+			scale: 1.3,
 			autoAlpha: 1,
-			duration: 0.5,
+			duration: 0.3,
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-right`);
 			},
 		})
+		.to(optionRight, { delay: 0.5, scale: 1, duration: 0.2 })
 		.to([optionLeft, optionCenter, optionRight, repeat], {
 			delay: data.spriteJSON.sprite[`${slidePrefix}-right`][1] / 1000,
 			autoAlpha: 1,
@@ -92,9 +98,8 @@ export const showThreeOptions = async (slidePrefix: string) => {
 		// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
 		data.procedure[data.currentSlide].response = response.id.split('-').pop();
 
-		// If the correct answer is empty, set score to empty
-		if (data.procedure[data.currentSlide].correct === '') {
-			data.procedure[data.currentSlide].score = '';
+		// If the correct answer is empty, keep score undefined (e.g. for training trials)
+		if (data.procedure[data.currentSlide].correct === undefined) {
 			// Otherwise, check if the response is correct, and store the score (0 = incorrect, 1 = correct)
 		} else {
 			data.procedure[data.currentSlide].score =

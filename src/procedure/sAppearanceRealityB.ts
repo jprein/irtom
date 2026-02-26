@@ -11,10 +11,12 @@ import {
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
-	const slidePrefix = 's-appearance-reality-b';
+	const slidePrefix = 's-appearancereality-b';
 
 	// Store correct response
 	data.procedure[data.currentSlide].correct = 'right';
+	data.procedure[data.currentSlide].dimension = 'appearancereality';
+	data.procedure[data.currentSlide].analyse = true;
 
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
@@ -23,7 +25,10 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-slightright-standing`,
+		`link-${slidePrefix}-${data.community}-boy`,
+	) as SvgInHtml;
+	const boyKneeling = document.getElementById(
+		`link-${slidePrefix}-${data.community}-boy-kneeling`,
 	) as SvgInHtml;
 	const girl = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl`,
@@ -41,7 +46,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Define animation function
 	async function showAnimation() {
-		gsap.set([dogRunning, dogLying, holeHidden, girl, boy], {
+		gsap.set([dogRunning, dogLying, holeHidden, girl, boy, boyKneeling], {
 			autoAlpha: 0,
 		});
 
@@ -51,18 +56,14 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		gsap.set([dogRunning, girl], { autoAlpha: 1, x: -1200 });
 		gsap.set(boy, { autoAlpha: 1, x: -1200 });
-		gsap.set([hole, holeHidden], { y: -100 });
 
-		//await data.sprite.playPromise(`${slidePrefix}-1`);
+		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		const tl = await gsap.timeline();
 
 		tl.to(boy, {
 			x: -100,
 			duration: 2,
-			onStart: () => {
-				data.sprite.play(`${slidePrefix}-1`);
-			},
 		})
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
@@ -80,7 +81,10 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
+			.to(boy, { autoAlpha: 0, duration: 0.1 })
+			.to(boyKneeling, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(holeHidden, {
+				delay: 0.5,
 				autoAlpha: 1,
 				duration: 0.1,
 			})
@@ -92,9 +96,11 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			)
+			.to(boyKneeling, { delay: 1.5, autoAlpha: 0, duration: 0.1 })
+			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boy, {
 				delay: 2,
-				x: 1200,
+				x: 1250,
 				duration: 3,
 			})
 			.to(dogRunning, {

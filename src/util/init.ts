@@ -54,8 +54,6 @@ export const init = async () => {
 		id: 'testID',
 		community: 'german',
 		webcam: 'false',
-		birthday: '2100-01-01',
-		gender: 'none',
 		datatransfer: 'local',
 	};
 
@@ -79,10 +77,6 @@ export const init = async () => {
 		studyChoices = { ...defaultValues };
 	}
 
-	// calculate agegroup based on birthday
-	const birthdayMs = Date.parse(studyChoices.birthday);
-	const ageDiffMs = Date.now() - birthdayMs;
-	const ageInYears = new Date(ageDiffMs).getUTCFullYear() - 1970;
 	const wrapper = document.getElementById('wrapper')! as HTMLDivElement;
 	// load initial SVG file
 	wrapper.innerHTML = svgPath;
@@ -138,16 +132,11 @@ export const init = async () => {
 	global.data = {
 		id: studyChoices.id,
 		community: studyChoices.community,
-		birthday: studyChoices.birthday,
-		age: ageInYears,
-		agegroup: ageInYears < config.globals.adultThresholdAge ? 'child' : 'adult',
-		gender: studyChoices.gender,
 		datatransfer: studyChoices.datatransfer,
 		webcam: studyChoices.webcam == 'true' ? true : false,
 		touchscreen: isTouchDevice(),
 		t0: new Date(),
 		slideCounter: 0,
-		quitBeforeEnd: false,
 		procedure: {},
 		hasWebcam: DetectRTC.hasWebcam,
 		browserName: DetectRTC.browser.name,
@@ -245,36 +234,10 @@ export const init = async () => {
 	if (!config.devmode.on) {
 		window.onbeforeunload = function (evt: BeforeUnloadEvent) {
 			evt.preventDefault();
-			global.data.quitBeforeEnd = true;
 			uploadCsv();
 			return '';
 		};
 	}
-
-	// const pinda = document.getElementById('pinda') as HTMLVideoElement;
-	// const audio = document.getElementById('audio') as HTMLAudioElement;
-
-	// // set pinda global styles
-	// pinda.style.position = 'absolute';
-	// pinda.style.height = config.css.pinda.height;
-	// pinda.style.left = config.css.pinda.left;
-	// pinda.style.bottom = config.css.pinda.bottom;
-
-	// if (config.devmode.on) {
-	// 	audio.addEventListener('play', () => {
-	// 		audio.playbackRate = config.devmode.playbackRate;
-	// 	});
-	// }
-	// pinda.addEventListener('play', (e: Event) => {
-	// 	// if (config.devmode.on) {
-	// 	// 	console.log((e.target as HTMLVideoElement).src);
-	// 	// }
-	// 	gsap.set(pinda, { autoAlpha: 0 });
-	// 	gsap.to(pinda, { autoAlpha: 1 });
-	// 	if (config.devmode.on) {
-	// 		pinda.playbackRate = config.devmode.playbackRate;
-	// 	}
-	// });
 
 	// blocking state slide
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;

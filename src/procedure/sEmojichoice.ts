@@ -1,11 +1,12 @@
 import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
-import { hideThreeOptions } from '../../src/util/hideThreeOptions';
 import { showThreeOptions } from '../../src/util/showThreeOptions';
 import {
 	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
+import { gsap } from 'gsap';
+import type { SvgInHtml } from '../types';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -16,15 +17,25 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// There is no correct response / no score
-	data.procedure[data.currentSlide].correct = '';
-	data.procedure[data.currentSlide].score = '';
+	data.procedure[data.currentSlide].dimension = 'training';
+	data.procedure[data.currentSlide].analyse = false;
 
-	// Swap slides
-	swapSlides(currentSlide, previousSlide);
-	data.simpleSlideCounter++;
+	// usually hide options, but in this trial we want to show emojis from beginning on
+	// get elements, so that we can disable pointerEvent before audio played
+	const optionLeft = document.getElementById(
+		`${slidePrefix}-left`,
+	) as SvgInHtml;
+	const optionCenter = document.getElementById(
+		`${slidePrefix}-center`,
+	) as SvgInHtml;
+	const optionRight = document.getElementById(
+		`${slidePrefix}-right`,
+	) as SvgInHtml;
+	// Originally, hide response options
+	gsap.set([optionLeft, optionCenter, optionRight], {
+		pointerEvents: 'none',
+	});
 
-	// In beginning, hide response options
-	await hideThreeOptions(slidePrefix);
 	await hideBlockingState(slidePrefix);
 	// Short break before showing response options
 	await sleep(500);
