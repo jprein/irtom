@@ -4,23 +4,8 @@ import { getResponse } from '../../src/util/getResponse';
 import type { SvgInHtml } from '../../src/types';
 
 export default async ({ currentSlide, previousSlide }) => {
-	const introStartMs = performance.now();
-	const logTiming = (label: string, fromMs?: number) => {
-		const nowMs = performance.now();
-		const sinceIntroMs = (nowMs - introStartMs).toFixed(1);
-		const sinceMarker = fromMs
-			? ` | +${(nowMs - fromMs).toFixed(1)}ms since marker`
-			: '';
-		console.log(
-			`[sIntroduction][${new Date().toISOString()}] +${sinceIntroMs}ms ${label}${sinceMarker}`,
-		);
-	};
-
-	logTiming('entered slide');
-
 	// show slide
 	swapSlides(currentSlide, previousSlide);
-	logTiming('swapSlides done');
 
 	//const audio = document.getElementById('audio') as HTMLMediaElement;
 	const speaker = document.getElementById(
@@ -42,26 +27,18 @@ export default async ({ currentSlide, previousSlide }) => {
 	// const blob = await preloadVideo.blob();
 	// const url = URL.createObjectURL(blob);
 
-	if (data.agegroup === 'adult') {
-		gsap.set(childQuestion, { autoAlpha: 0 });
-	} else {
-		// default to child version
-		gsap.set(adultQuestion, { autoAlpha: 0 });
-	}
-	logTiming(`agegroup UI applied (${data.agegroup})`);
+	// if (data.agegroup === 'adult') {
+	// 	gsap.set(childQuestion, { autoAlpha: 0 });
+	// } else {
+	// 	// default to child version
+	// 	gsap.set(adultQuestion, { autoAlpha: 0 });
+	// }
 
 	//const playingTimeline = true;
-	logTiming(`device info os=${data.osName} isIOS=${data.isIOS}`);
 	speaker.addEventListener(
 		'click',
 		async () => {
-			const clickStartMs = performance.now();
-			logTiming('speaker clicked', clickStartMs);
-
-			const audioStartMss = performance.now();
-			logTiming('playPromise start', clickStartMs);
 			await data.sprite.playPromise('s-introduction');
-			logTiming('playPromise resolved', audioStartMss);
 
 			// Keep this transition instant to avoid first-slide latency on slower devices.
 			gsap.set(speaker, { autoAlpha: 0, pointerEvents: 'none' });
@@ -69,7 +46,6 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 1,
 				pointerEvents: 'auto',
 			});
-			logTiming('controls revealed instantly', clickStartMs);
 		},
 		{ once: true },
 	);
@@ -148,14 +124,10 @@ export default async ({ currentSlide, previousSlide }) => {
 	// 	});
 	//});
 
-	const responseWaitStartMs = performance.now();
-	logTiming('waiting for getResponse', responseWaitStartMs);
 	await getResponse(nextButton.id);
-	logTiming('getResponse resolved', responseWaitStartMs);
 
 	// introduction slide determines the header of our response log
 	data.procedure[data.currentSlide].response = '';
 	data.procedure[data.currentSlide].correct = '';
 	data.procedure[data.currentSlide].score = '';
-	logTiming('response fields written');
 };
