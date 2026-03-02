@@ -27,225 +27,168 @@ export default async ({ currentSlide, previousSlide }) => {
 	const girlLeft = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl-left-standing`,
 	) as SvgInHtml;
-	const girlFront = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-front`,
+	const girl = document.getElementById(
+		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
-	const womanStanding = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman-standing`,
+	const man = document.getElementById(
+		`link-${slidePrefix}-${data.community}-man`,
 	) as SvgInHtml;
-	const womanApron = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman-apron`,
+	const manApron = document.getElementById(
+		`link-${slidePrefix}-${data.community}-man-apron`,
 	) as SvgInHtml;
 	const keyHole = document.getElementById(
 		`s-false-belief-ui-a-keyhole`,
 	) as SvgInHtml;
-	const yellowDoorClose = document.getElementById(
-		`${slidePrefix}-door-yc`,
+	const whiteDoorClose = document.getElementById(
+		`${slidePrefix}-door-wc`,
 	) as SvgInHtml;
 
-	const yellowDoorOpen = document.getElementById(
-		`${slidePrefix}-door-yo`,
+	const whiteDoorOpen = document.getElementById(
+		`${slidePrefix}-door-wo`,
 	) as SvgInHtml;
 
-	const blueDoorClose = document.getElementById(
+	const brownDoorClose = document.getElementById(
 		`${slidePrefix}-door-bc`,
 	) as SvgInHtml;
 
-	const blueDoorOpen = document.getElementById(
+	const brownDoorOpen = document.getElementById(
 		`${slidePrefix}-door-bo`,
 	) as SvgInHtml;
 
-	const blueDoorOpenApron = document.getElementById(
+	const brownDoorOpenApron = document.getElementById(
 		`${slidePrefix}-door-bo-apron`,
 	) as SvgInHtml;
 
-	// Define animation function
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
 		gsap.set(
 			[
-				womanStanding,
-				womanApron,
+				man,
+				manApron,
 				girlLeft,
-				girlFront,
+				girl,
 				keyHole,
-				yellowDoorClose,
-				yellowDoorOpen,
-				blueDoorClose,
-				blueDoorOpen,
-				blueDoorOpenApron,
+				whiteDoorClose,
+				whiteDoorOpen,
+				brownDoorClose,
+				brownDoorOpen,
+				brownDoorOpenApron,
 			],
 			{
 				autoAlpha: 0,
 				x: 0,
 			},
 		);
-		gsap.set([girlFront, womanApron, yellowDoorClose, blueDoorClose], {
+		gsap.set([girl, manApron, whiteDoorClose, brownDoorClose], {
 			autoAlpha: 1,
 			x: 0,
 		});
-		gsap.set(womanStanding, { x: -600 });
+		gsap.set(man, { x: -450 });
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
 		const tl = await gsap.timeline();
 
-		tl.to(girlFront, {
-			x: +1200,
+		tl.to(girl, {
+			delay: 0.5,
+			x: +1000,
 			duration: 2,
-			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-2`);
 			},
 		})
-			.to(womanApron, {
-				x: -500,
+			.to(manApron, {
+				x: -450,
 				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
-			.to([blueDoorOpen], {
+			.to(brownDoorOpen, { autoAlpha: 1, duration: 0.1 })
+			.to(brownDoorClose, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to([man, brownDoorOpenApron], {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
 				autoAlpha: 1,
 				duration: 0.1,
-			})
-			.to(
-				[blueDoorClose],
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(womanApron, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
-			.to([womanStanding, blueDoorOpenApron], {
-				autoAlpha: 1,
-				duration: 0.1,
-			})
 			.to(
-				[womanApron, blueDoorOpen],
+				[manApron, brownDoorOpen],
 				{
 					autoAlpha: 0,
 					duration: 0.1,
 				},
 				'<',
 			)
-			.to(womanStanding, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 + 2,
+			.to(brownDoorOpenApron, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+				autoAlpha: 0,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
 			.to(
-				blueDoorOpenApron,
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(
-				blueDoorClose,
+				brownDoorClose,
 				{
 					autoAlpha: 1,
 					duration: 0.1,
 				},
 				'<',
 			)
-			.to(womanStanding, {
-				x: +400,
-				duration: 2,
-			})
-			.to(yellowDoorClose, {
-				autoAlpha: 0,
-				duration: 0.1,
-			})
-			.to(
-				yellowDoorOpen,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(womanStanding, {
-				y: -200,
-				duration: 2,
+			.to(man, { x: +300, duration: 2 })
+			.to(whiteDoorClose, { autoAlpha: 0, duration: 0.1 })
+			.to(whiteDoorOpen, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(man, {
 				delay: 1,
-			})
-			.to(womanStanding, {
-				duration: 0.1,
-				autoAlpha: 0,
-			})
-			.to(womanStanding, {
-				y: 0,
-			})
-			.to(
-				yellowDoorClose,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(
-				yellowDoorOpen,
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(girlFront, {
-				x: 0,
+				x: 400,
+				y: -150,
 				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 2,
+			})
+			.to(man, { y: 0, autoAlpha: 0, duration: 0 })
+			.to(whiteDoorClose, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(whiteDoorOpen, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(girl, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
+				x: -100,
+				duration: 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
-			.to(girlFront, {
-				x: -550,
+			.to(girl, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				x: -500,
+				y: -100,
 				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-7`);
 				},
 			})
-			.to(girlFront, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 4,
+			.to(girl, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
+				autoAlpha: 0,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-8`);
 				},
 			})
-			.to(girlFront, {
-				autoAlpha: 0,
-				duration: 0.1,
-			})
-			.to(
-				girlLeft,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(girlLeft, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(keyHole, {
+				delay: 2,
 				autoAlpha: 1,
-				duration: 0.1,
-				delay: 2,
+				duration: 0,
 			})
+			.to(girlLeft, { autoAlpha: 0, duration: 0.1 })
+			.to(girl, { x: -100, y: 0, autoAlpha: 1, duration: 0.1 }, '<')
 			.to(keyHole, {
-				delay: 2,
+				delay: 3,
 				autoAlpha: 0,
-				duration: 0.1,
+				duration: 0,
 			});
 
 		await tl.then();

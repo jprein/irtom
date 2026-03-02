@@ -69,14 +69,14 @@ export default async ({ currentSlide, previousSlide }) => {
 	const boySlightRight = document.getElementById(
 		`link-${slidePrefix}-${data.community}-boy-slightright-standing`,
 	) as SvgInHtml;
-	const fridgeClosed = document.getElementById(
-		`${slidePrefix}-fridge-closed`,
+	const cupboardClosed = document.getElementById(
+		`${slidePrefix}-cupboard-closed`,
 	) as SvgInHtml;
-	const fridgeEmpty = document.getElementById(
-		`${slidePrefix}-fridge-open-empty`,
+	const cupboardEmpty = document.getElementById(
+		`${slidePrefix}-cupboard-open-empty`,
 	) as SvgInHtml;
-	const fridgeOpen = document.getElementById(
-		`${slidePrefix}-fridge-open`,
+	const cupboardOpen = document.getElementById(
+		`${slidePrefix}-cupboard-open`,
 	) as SvgInHtml;
 	const purpleCup = document.getElementById(
 		`${slidePrefix}-cup-purple`,
@@ -116,9 +116,9 @@ export default async ({ currentSlide, previousSlide }) => {
 				girlFrontAngry,
 				girlFrontCup,
 				girlRightNay,
-				fridgeClosed,
-				fridgeEmpty,
-				fridgeOpen,
+				cupboardClosed,
+				cupboardEmpty,
+				cupboardOpen,
 				yellowCup,
 				blueCup,
 				purpleCup,
@@ -132,7 +132,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			},
 		);
 
-		gsap.set([girl, boy, water, vinegar, fridgeClosed, blueCup, yellowCup], {
+		gsap.set([girl, boy, water, vinegar, cupboardClosed, blueCup, yellowCup], {
 			autoAlpha: 1,
 		});
 
@@ -181,7 +181,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 				'<',
 			)
-			.to([fridgeEmpty, boyWithBottles], {
+			.to([cupboardEmpty, boyWithBottles], {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 3,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
@@ -190,28 +190,28 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 0.1,
 			})
 			.to(
-				[fridgeClosed, boy, waterAfter, vinegarAfter],
+				[cupboardClosed, boy, waterAfter, vinegarAfter],
 				{
 					autoAlpha: 0,
 					duration: 0.1,
 				},
 				'<',
 			)
-			.to([fridgeOpen, boy], {
+			.to([cupboardOpen, boy], {
 				delay: 1,
 				autoAlpha: 1,
 				duration: 0.1,
 			})
 			.to(
-				[fridgeEmpty, boyWithBottles],
+				[cupboardEmpty, boyWithBottles],
 				{
 					autoAlpha: 0,
 					duration: 0.1,
 				},
 				'<',
 			)
-			.to(fridgeClosed, { delay: 1, autoAlpha: 1, duration: 0.1 })
-			.to(fridgeOpen, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(cupboardClosed, { delay: 1, autoAlpha: 1, duration: 0.1 })
+			.to(cupboardOpen, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
 				onStart: () => {
@@ -230,7 +230,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(boyWithCup, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to([boyWithCup, girl], {
-				delay: 1,
+				delay: 2,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -243,7 +243,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(girlDrinking, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 1.5,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
@@ -320,9 +320,9 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girlFrontCup, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlFrontCup, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(girlBackCup, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(fridgeClosed, { delay: 1, autoAlpha: 0, duration: 0.1 })
-			.to(fridgeOpen, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(fridgeOpen, {
+			.to(cupboardClosed, { delay: 1, autoAlpha: 0, duration: 0.1 })
+			.to(cupboardEmpty, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(cupboardEmpty, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-11`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-12`);
@@ -330,10 +330,10 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 0,
 				duration: 0.1,
 			})
-			.to(fridgeClosed, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(cupboardClosed, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlBackCup, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(girlFrontCup, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(girlCup, { x: -300, duration: 0.1 }, '<')
+			.to(girlCup, { x: -500, duration: 0.1 }, '<')
 			.to(girlFrontCup, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(girlCup, { autoAlpha: 1, duration: 0.1 }, '<');
 
