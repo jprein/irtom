@@ -7,6 +7,13 @@
 // Directory = same folder where this PHP file is located
 $saveDir = __DIR__;
 
+function normalizeWebmFilename(string $name): string {
+    $base = basename($name);
+    // Remove one or more trailing ".webm" so we can append exactly once.
+    $withoutRepeatedWebm = preg_replace('/(?:\.webm)+$/i', '', $base);
+    return $withoutRepeatedWebm . '.webm';
+}
+
 // Must receive a file
 if (!isset($_FILES["vidfile"])) {
     http_response_code(400);
@@ -57,7 +64,8 @@ if ($isChunked) {
 
     // If this is the last chunk, rename .part file to final filename
     if ($chunkIndex === $totalChunks - 1) {
-        $finalPath = $saveDir . "/" . basename($originalFilename) . ".webm";
+        $finalFilename = normalizeWebmFilename($originalFilename);
+        $finalPath = $saveDir . "/" . $finalFilename;
 
         if (!rename($tempPath, $finalPath)) {
             http_response_code(500);
@@ -78,10 +86,7 @@ if ($isChunked) {
 // (your old behavior)
 // -----------------------
 
-$originalFilename = $_FILES["vidfile"]["name"];
-if (!str_contains($originalFilename, ".webm")) {
-    $originalFilename .= ".webm";
-}
+$originalFilename = normalizeWebmFilename($_FILES["vidfile"]["name"]);
 
 $targetPath = $saveDir . "/" . basename($originalFilename);
 

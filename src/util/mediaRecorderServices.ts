@@ -26,9 +26,9 @@ export async function initMedia(
 	const defaultConstraints: MediaStreamConstraints = {
 		audio: true,
 		video: {
-			width: { ideal: 640, max: 640 },
-			height: { ideal: 480, max: 480 },
-			frameRate: { ideal: 10, max: 15 },
+			width: { ideal: 320, max: 320 },
+			height: { ideal: 240, max: 240 },
+			frameRate: { ideal: 3, max: 5 },
 			facingMode: 'user',
 		},
 	};
@@ -44,9 +44,9 @@ export async function initMedia(
 
 			mediaStream = await navigator.mediaDevices.getUserMedia({
 				video: {
-					width: { ideal: 640, max: 640 },
-					height: { ideal: 480, max: 480 },
-					frameRate: { ideal: 10, max: 15 },
+					width: { ideal: 320, max: 320 },
+					height: { ideal: 240, max: 240 },
+					frameRate: { ideal: 3, max: 5 },
 					facingMode: 'user',
 				},
 				audio: false,
@@ -79,7 +79,8 @@ export function startRecording(): void {
 	]);
 
 	const options: MediaRecorderOptions = {
-		videoBitsPerSecond: 150_000,
+		videoBitsPerSecond: 80_000,
+		audioBitsPerSecond: 16_000,
 		...(mimeType ? { mimeType } : {}),
 	};
 

@@ -14,7 +14,8 @@
 		"dev": "bun vite",
 		"build": "bun vite build",
 		"preview": "bun vite preview",
-		"deploy": "bun run build && sh src/scripts/deploy.sh"
+		"deploy": "bun run build && sh src/scripts/deploy.sh",
+		"generateImageJSON": "sh src/scripts/generateImageJSON.sh"
 	},
 	"repository": {
 		"type": "git",

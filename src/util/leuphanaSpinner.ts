@@ -2,7 +2,10 @@ import type { SvgInHtml } from '../types';
 import { gsap } from 'gsap';
 
 export const addSpinner = async () => {
-	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
+	const parentBlock = document.getElementById(
+		's-blocking-state',
+	) as SvgInHtml | null;
+	if (!parentBlock) return;
 	parentBlock.removeAttribute('visibility');
 
 	gsap.set('#link-leuphana-cube', {
@@ -18,7 +21,10 @@ export const addSpinner = async () => {
 };
 
 export const hideSpinner = async () => {
-	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
+	const parentBlock = document.getElementById(
+		's-blocking-state',
+	) as SvgInHtml | null;
+	if (!parentBlock) return;
 	parentBlock.removeAttribute('visibility');
 
 	const blockingStateAnimation = gsap.getById('blocking-state-animation');

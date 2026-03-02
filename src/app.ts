@@ -3,6 +3,7 @@ import './css/style.css';
 import { procedure } from './procedure/procedure';
 import { init } from './util/init';
 import { createSprite } from './util/createSprite';
+import { preloadCommunityImages } from './util/preloadImages';
 import config from './config.yaml';
 import { startFullscreen } from './util/helpers';
 
@@ -48,6 +49,13 @@ import { startFullscreen } from './util/helpers';
 					if (!data.sprite || typeof data.sprite.playPromise !== 'function') {
 						throw new Error('Sprite initialization failed.');
 					}
+
+					if (!data.community) {
+						throw new Error('Community is required before image preloading.');
+					}
+
+					button.textContent = 'Loading images...';
+					await preloadCommunityImages(data.community);
 
 					overlay?.classList.add('hidden');
 					button.removeEventListener('click', onStart);

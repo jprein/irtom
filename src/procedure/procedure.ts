@@ -12,6 +12,7 @@ import {
 } from '../../src/util/helpers';
 import type { SvgInHtml } from '../../src/types';
 import { stopRecording } from '../util/mediaRecorderServices';
+import { addSpinner, hideSpinner } from '../util/leuphanaSpinner';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
@@ -399,24 +400,29 @@ export const procedure = async () => {
 			console.warn('Failed to stop recording, continuing anyway:', e);
 		}
 	}
-	// Save data depending on choice (local, server, both)
-	if (datatransfer === 'local') {
-		await downloadCsv();
-		await downloadWebcamVideo(data.webcam, data.id);
-	} else if (datatransfer === 'server') {
-		await uploadCsv();
-		await sleep(1000);
-		await uploadWebcamVideo(data.webcam, data.id);
-		await sleep(2000);
-	} else {
-		await uploadCsv();
-		await sleep(1000);
-		await uploadWebcamVideo(data.webcam, data.id);
-		await sleep(1000);
-		await downloadCsv();
-		await sleep(1000);
-		await downloadWebcamVideo(data.webcam, data.id);
-		await sleep(1000);
+	await addSpinner();
+	try {
+		// Save data depending on choice (local, server, both)
+		if (datatransfer === 'local') {
+			await downloadCsv();
+			await downloadWebcamVideo(data.webcam, data.id);
+		} else if (datatransfer === 'server') {
+			await uploadCsv();
+			await sleep(1000);
+			await uploadWebcamVideo(data.webcam, data.id);
+			await sleep(2000);
+		} else {
+			await uploadCsv();
+			await sleep(1000);
+			await uploadWebcamVideo(data.webcam, data.id);
+			await sleep(1000);
+			await downloadCsv();
+			await sleep(1000);
+			await downloadWebcamVideo(data.webcam, data.id);
+			await sleep(1000);
+		}
+	} finally {
+		await hideSpinner();
 	}
 
 	// users can leave page now

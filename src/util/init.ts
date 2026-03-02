@@ -166,9 +166,10 @@ export const init = async () => {
 					await initMedia({
 						audio: true,
 						video: {
-							frameRate: { min: 1, ideal: 5, max: 10 },
-							width: { min: 640, ideal: 640, max: 640 }, // keep it small
-							height: { min: 480, ideal: 480, max: 480 },
+							// Lower quality preset for faster uploads
+							frameRate: { min: 1, ideal: 3, max: 5 },
+							width: { min: 320, ideal: 320, max: 320 },
+							height: { min: 240, ideal: 240, max: 240 },
 							facingMode: 'user',
 						},
 					});
