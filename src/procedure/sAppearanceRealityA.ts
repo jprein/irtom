@@ -56,21 +56,13 @@ export default async ({ currentSlide, previousSlide }) => {
 	const boxEmpty = document.getElementById(
 		`${slidePrefix}-boxes-empty`,
 	) as SvgInHtml;
-	// const boxWithEmptyBottle = document.getElementById(
-	// 	`${slidePrefix}-boxes`,
-	// ) as SvgInHtml;
 	const lemonadeOpen = document.getElementById(
 		`${slidePrefix}-lemonade-open`,
 	) as SvgInHtml;
 	const lemonadeClosed = document.getElementById(
 		`${slidePrefix}-lemonade-closeds`,
 	) as SvgInHtml;
-	// const lemonadeOpenEmpty = document.getElementById(
-	// 	`${slidePrefix}-lemonade-open-Empty`,
-	// ) as SvgInHtml;
-	// const lemonadeClosedEmpty = document.getElementById(
-	// 	`${slidePrefix}-lemonade-closed-empty`,
-	// ) as SvgInHtml;
+
 	async function showAnimation() {
 		gsap.set(
 			[
@@ -88,9 +80,6 @@ export default async ({ currentSlide, previousSlide }) => {
 				boxEmpty,
 				lemonadeOpen,
 				lemonadeClosed,
-				// lemonadeOpenEmpty,
-				// lemonadeClosedEmpty,
-				// boxWithEmptyBottle,
 			],
 			{
 				autoAlpha: 0,
@@ -191,14 +180,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 0,
 				duration: 0.1,
 			})
-			.to(
-				cupboardClosed,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(cupboardClosed, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(lemonadeOpen, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 1,
 				autoAlpha: 0,
@@ -207,27 +189,13 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
-			.to(
-				lemonadeClosed,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(lemonadeClosed, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(lemonadeClosed, {
 				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
-			.to(
-				box,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(box, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				duration: 2,

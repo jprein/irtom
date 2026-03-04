@@ -70,7 +70,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to([girlHandsup, boxOpen], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
+				delay: 2,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {
@@ -84,7 +84,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 2,
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1.5,
 				x: 0,
 				duration: 2,
 				onStart: () => {
@@ -92,7 +92,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(boxClosed, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				x: 50,
 				y: -400,
 				duration: 0.1,
@@ -102,20 +102,17 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(boy, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(boyHandsup, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(boxClosed, { x: 0, y: -700, duration: 1, repeat: 1, yoyo: true })
-			.to(boyHandsup, { delay: 1, autoAlpha: 0, duration: 0.1 })
-			.to(
-				boy,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-					onComplete: () => {
-						data.sprite.play(`${slidePrefix}-5`);
-					},
+			.to(boxClosed, { x: 20, y: -750, duration: 1, repeat: 1, yoyo: true })
+			.to(boyHandsup, { autoAlpha: 0, duration: 0.1 })
+			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(boxClosed, {
+				x: 0,
+				y: 0,
+				duration: 1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-5`);
 				},
-				'<',
-			)
-			.to(boxClosed, { y: 0, duration: 1 })
+			})
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 1,
 				x: -1200,

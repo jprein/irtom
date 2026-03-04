@@ -64,27 +64,13 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
-			.to(
-				manWithMotorbike,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(manWithMotorbike, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlFront, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
-			.to(
-				girlWithSpringBike,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			);
+			.to(girlWithSpringBike, { autoAlpha: 1, duration: 0.1 }, '<');
 
 		await tl.then();
 		await sleep(500);

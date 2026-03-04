@@ -61,10 +61,10 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(dogRunning, {
 				delay: 1,
 				x: 0,
-				duration: 3,
+				duration: 2,
 			})
 			.to([boy, girl, dogRunning], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 + 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 2.5,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {

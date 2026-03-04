@@ -75,31 +75,24 @@ export default async ({ currentSlide, previousSlide }) => {
 		const tl = await gsap.timeline();
 
 		tl.to(girlWithBook, {
+			delay: 0.5,
 			x: 0,
 			duration: 2,
-			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-2`);
 			},
 		})
 			.to(boxClosed, {
 				duration: 0.1,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
 				autoAlpha: 0,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
-			.to(
-				boxOpenShoes,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(boxOpenShoes, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to([girlWithShoes, boxOpenBook], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
@@ -115,34 +108,24 @@ export default async ({ currentSlide, previousSlide }) => {
 				'<',
 			)
 			.to(boxClosed, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 + 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 + 0.5,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
-			.to(
-				boxOpenBook,
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(
-				girlWithShoes,
-				{
-					x: -1200,
-					duration: 2,
-				},
-				'=+2',
-			)
+			.to(boxOpenBook, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(girlWithShoes, {
+				delay: 2,
+				x: -1200,
+				duration: 2,
+			})
 			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 2,
 				autoAlpha: 1,
 				x: 0,
 				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},

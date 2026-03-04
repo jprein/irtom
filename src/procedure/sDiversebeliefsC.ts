@@ -55,44 +55,31 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		const tl = await gsap.timeline();
 		tl.to(boy, {
-			onComplete: () => {
+			x: 0,
+			duration: 2,
+			onStart: () => {
 				data.sprite.play(`${slidePrefix}-2`);
 			},
 		})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1.5,
-				x: 0,
-				duration: 2,
-				onComplete: () => {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3-${yaySide}`);
 				},
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3-${yaySide}`][1] / 1000,
+				delay:
+					data.spriteJSON.sprite[`${slidePrefix}-3-${yaySide}`][1] / 1000 - 1.5,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
-			.to(
-				boyYay,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(boyYay, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boy, {
 				delay: 1,
 				autoAlpha: 1,
 				duration: 0.1,
 			})
-			.to(
-				boyYay,
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			);
+			.to(boyYay, { autoAlpha: 0, duration: 0.1 }, '<');
 		await tl.then();
 		await sleep(500);
 		tl.kill();

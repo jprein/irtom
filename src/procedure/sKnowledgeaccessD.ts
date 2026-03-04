@@ -36,14 +36,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Define animation function
 	async function showAnimation() {
-		gsap.set([girl, mother, father], {
-			autoAlpha: 0,
-		});
-
-		gsap.set([girl, mother, father], {
-			autoAlpha: 1,
-		});
-
 		gsap.set([mother], { autoAlpha: 1, x: +1200 });
 		gsap.set([girl, father], { autoAlpha: 1, x: -1200 });
 
@@ -51,7 +43,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		const tl = await gsap.timeline();
 		tl.to(mother, {
-			// delay: 0.5,
 			x: 0,
 			duration: 2,
 			onStart: () => {
