@@ -223,13 +223,13 @@ export const procedure = async () => {
 
 		// Put in function so that we can remove the event listener again
 		const handleRepeatClick = async (arg?: boolean | MouseEvent) => {
+			const isIncorrectReplay = typeof arg === 'boolean' ? arg : false;
 			// If invoked as an event listener, arg will be a MouseEvent.
 			// In that case, we consider incorrectTraining to be false.
-			data.incorrectResponse = typeof arg === 'boolean' ? arg : false;
+			data.incorrectResponse = isIncorrectReplay;
 
 			if (data.incorrectResponse) {
 				data.procedure[currentSlide].repeatIncorrect += 1;
-				data.incorrectResponse = true;
 				console.log(
 					`%cRepeat ${currentSlide}. Reason: Incorrect response with feedback for the ${data.procedure[currentSlide].repeatIncorrect}x time.`,
 					'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
@@ -252,7 +252,10 @@ export const procedure = async () => {
 			// Run the slide behavior again
 			// data.clickedRepeat = true;
 			await runSlideBehavior();
-			if (data.procedure[data.currentSlide].trainingTrial) {
+			if (
+				isIncorrectReplay &&
+				data.procedure[data.currentSlide].trainingTrial
+			) {
 				// If correct response, play correct audio and move on to next trial
 				if (data.procedure[data.currentSlide].score === 1) {
 					//await data.sprite.playPromise(`${currentSlideKc}-correct`);
