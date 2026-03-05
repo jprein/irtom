@@ -25,25 +25,25 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const girlHiding = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-hiding`,
+		`link-${slidePrefix}-${data.community}-girl-hiding`
 	) as SvgInHtml;
 	const girlClimbing = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-climbing`,
+		`link-${slidePrefix}-${data.community}-girl-climbing`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const boySlightRight = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-slightright`,
+		`link-${slidePrefix}-${data.community}-boy-slightright`
 	) as SvgInHtml;
 	const dogRunning = document.getElementById(
-		`link-${slidePrefix}-dog-running`,
+		`link-${slidePrefix}-dog-running`
 	) as SvgInHtml;
 	const dogLying = document.getElementById(
-		`link-${slidePrefix}-dog-lying`,
+		`link-${slidePrefix}-dog-lying`
 	) as SvgInHtml;
 
 	// Define animation function
@@ -59,53 +59,49 @@ export default async ({ currentSlide, previousSlide }) => {
 		});
 		gsap.set(dogRunning, { x: -1200, autoAlpha: 1 });
 
-		// Play initial audio
-		await data.sprite.playPromise(`${slidePrefix}-1`);
-
 		// Animation sequence
 		const tl = await gsap.timeline();
 
 		tl.to(dogRunning, {
-			x: 0,
-			duration: 3,
-			onComplete: () => {
-				data.sprite.play(`${slidePrefix}-2`);
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
 			},
 		})
 			.to(dogRunning, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 0.5,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 2,
+				x: 0,
+				duration: 3,
+			})
+			.to(dogRunning, {
+				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-2`);
+				},
 			})
 			.to(dogLying, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(dogLying, {
-				delay: 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.5,
-				onComplete: () => {
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
 				x: -1200,
 				duration: 3,
 			})
-			.to(
-				boy,
-				{
-					x: 1200,
-					duration: 3,
-					onComplete: () => {
-						data.sprite.play(`${slidePrefix}-4`);
-					},
-				},
-				'<',
-			)
+			.to(boy, { x: 1200, duration: 3 }, '<')
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 3,
+				delay: 1,
 				x: -600,
 				duration: 2,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-4`);
+				},
 			})
 			.to(girl, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(girlClimbing, { autoAlpha: 1, duration: 0.1 }, '<')
@@ -115,42 +111,35 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
-				onComplete: () => {
+			})
+			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
+				x: -300,
+				duration: 3,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
-			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 1,
-				x: -300,
-				duration: 3,
-			})
 			.to(boy, { delay: 1, autoAlpha: 0, duration: 0.1 })
-			.to(
-				boySlightRight,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-					onComplete: () => {
-						data.sprite.play(`${slidePrefix}-6`);
-					},
-				},
-				'<',
-			)
+			.to(boySlightRight, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlHiding, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 5,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-6`);
+				},
 			})
 			.to(dogLying, {
-				delay: 5.5,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.1,
-				onComplete: () => {
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-7`);
 				},
 			})
 			.to(dogLying, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000 - 2,
+				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
@@ -159,21 +148,21 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: 1,
 				x: 700,
 				duration: 3,
-				onComplete: () => {
+			})
+			.to(dogRunning, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000 - 4,
+				autoAlpha: 0,
+				duration: 0.1,
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-8`);
 				},
 			})
-			.to(dogRunning, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 1,
-				autoAlpha: 0,
-				duration: 0.1,
-			})
 			.to(dogLying, { x: 650, autoAlpha: 1, duration: 0 }, '<')
 			.to(dogLying, {
-				delay: 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
-				onComplete: () => {
+				onStart: () => {
 					data.sprite.play(`${slidePrefix}-9`);
 				},
 			})
@@ -192,14 +181,14 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: 1,
 				x: 1200,
 				duration: 4,
-				onComplete: () => {
-					data.sprite.play(`${slidePrefix}-10`);
-				},
 			})
 			.to(girlHiding, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-10`][1] / 1000 - 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-9`][1] / 1000 - 2,
 				autoAlpha: 1,
 				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-10`);
+				},
 			})
 			.to(girlHiding, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(girlClimbing, { autoAlpha: 1, duration: 0.1 }, '<')
@@ -208,7 +197,6 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girl, { delay: 1, x: -1200, duration: 2 });
 
 		await tl.then();
-		await sleep(500);
 		tl.kill();
 	}
 

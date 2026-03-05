@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../../src/types';
 import { swapSlides } from '../../src/util/slideVisibility';
@@ -9,6 +8,7 @@ import {
 	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
+import { on } from 'events';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -56,41 +56,23 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		const tl = await gsap.timeline();
 		tl.to(girl, {
-			onComplete: () => {
+			delay: 0.5,
+			onStart: () => {
 				data.sprite.play(`${slidePrefix}-${naySide}-nay`);
 			},
 		})
-			.to(
-				girl,
-				{
-					delay:
-						data.spriteJSON.sprite[`${slidePrefix}-${naySide}-nay`][1] / 1000,
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(
-				girlYay,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(girl, {
+				delay: 1.5,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to(girlYay, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
 				delay: 1,
 				autoAlpha: 1,
 				duration: 0.1,
 			})
-			.to(
-				girlYay,
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			);
+			.to(girlYay, { autoAlpha: 0, duration: 0.1 }, '<');
 
 		await tl.then();
 		await sleep(500);

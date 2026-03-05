@@ -154,14 +154,6 @@ export const showYesNoChoice = async (
 
 		// Hide response slide
 		choiceSlide.setAttribute('visibility', 'hidden');
-
-		// play button response sounds only for the first trials
-		if (data.simpleSlideCounter <= config.globals.playResponseFeedback) {
-			const responseOption = ['ok', 'alright'];
-			const randomResponse =
-				responseOption[Math.floor(Math.random() * responseOption.length)];
-			await data.sprite.playPromise(`neutral-response-${randomResponse}`);
-		}
 	}
 	return stopBlockingState;
 };

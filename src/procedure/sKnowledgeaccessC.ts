@@ -24,7 +24,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
-	const girlHandsup = document.getElementById(
+	const girlKneeling = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl-kneeling`,
 	) as SvgInHtml;
 	const girl = document.getElementById(
@@ -46,7 +46,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		// Initially hide some agent elements
 		gsap.set([boy, girl], { x: -1200 });
 		gsap.set(dog, { x: 1200, autoAlpha: 1 });
-		gsap.set([girlHandsup, boxOpen], { autoAlpha: 0 });
+		gsap.set([girlKneeling, boxOpen], { autoAlpha: 0 });
 
 		// Animation sequence
 		const tl = await gsap.timeline();
@@ -57,30 +57,23 @@ export default async ({ currentSlide, previousSlide }) => {
 			},
 		})
 			.to(dog, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 2.5,
 				x: 0,
 				duration: 1.5,
+			})
+			.to(boxOpen, {
+				delay: 1,
+				autoAlpha: 1,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
 			})
-			.to(boxOpen, {
-				delay: 2,
-				autoAlpha: 1,
-				duration: 0.1,
-			})
 			.to(dog, { autoAlpha: 0, duration: 0.1 }, '<')
-			.to(boxOpen, { delay: 1, autoAlpha: 0, duration: 0.1 })
-			.to(
-				boxClosed,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(boxOpen, { delay: 2, autoAlpha: 0, duration: 0.1 })
+			.to(boxClosed, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
 				x: 0,
 				duration: 2,
 				onStart: () => {
@@ -88,45 +81,26 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
-			})
-			.to(
-				girlHandsup,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(boxClosed, {
-				x: 0,
-				duration: 0.3,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
-			.to(girlHandsup, {
+			.to(girlKneeling, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girlKneeling, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
-			.to(
-				girl,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boxClosed, {
 				x: 0,
 				y: 0,
 				duration: 1,
 			})
 			.to(girl, {
-				delay: 1,
 				x: -1200,
 				duration: 2,
 				onStart: () => {
@@ -142,7 +116,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-7`);
 				},

@@ -25,28 +25,28 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const boyLeft = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-left-standing`,
+		`link-${slidePrefix}-${data.community}-boy-left-standing`
 	) as SvgInHtml;
 	const boyWaving = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-left-waving`,
+		`link-${slidePrefix}-${data.community}-boy-left-waving`
 	) as SvgInHtml;
 	const boyRight = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-right-standing`,
+		`link-${slidePrefix}-${data.community}-boy-right-standing`
 	) as SvgInHtml;
 	const woman = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman`,
+		`link-${slidePrefix}-${data.community}-woman`
 	) as SvgInHtml;
 	const womanDoctor = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman-doctor`,
+		`link-${slidePrefix}-${data.community}-woman-doctor`
 	) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
-		gsap.set([boy, boyLeft, boyWaving, boyRight, womanDoctor], {
+		gsap.set([boyLeft, boyWaving, boyRight, womanDoctor], {
 			autoAlpha: 0,
 			x: 0,
 		});
@@ -66,7 +66,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		const tl = await gsap.timeline();
 
 		tl.to(boy, {
-			delay: 1.5,
+			delay: 1,
 			x: 0,
 			duration: 2,
 			onStart: () => {
@@ -140,9 +140,9 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(boyLeft, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(woman, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 1,
-				x: 1180,
+				x: 1150,
 				y: -50,
-				scale: 1,
+				scale: 0.8,
 				duration: 2.5,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-7`);

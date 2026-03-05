@@ -38,7 +38,8 @@
 	"homepage": "https://github.com/jprein/irtom",
 	"prettier": {
 		"useTabs": true,
-		"singleQuote": true
+		"singleQuote": true,
+		"trailingComma": "es5"
 	},
 	"devDependencies": {
 		"@eslint/js": "^9.39.2",

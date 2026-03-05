@@ -42,16 +42,17 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Define animation function
 	async function showAnimation() {
-		gsap.set([girl, girlSpeaking, boy, boxClosed, boxOpen], {
+		gsap.set([girlSpeaking, boxOpen], {
 			autoAlpha: 0,
 			x: 0,
 		});
 
-		gsap.set([boy, girl, boxClosed], {
+		gsap.set([girl, boxClosed], {
 			autoAlpha: 1,
 			x: 0,
 		});
-		gsap.set(boy, { x: 1200 });
+
+		gsap.set(boy, { autoAlpha: 1, x: 1200 });
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
@@ -66,59 +67,36 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
-			})
-			.to(
-				boxOpen,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
-			.to(girl, { autoAlpha: 0, duration: 0.1 }, '<')
-			.to(girlSpeaking, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(girlSpeaking, { delay: 1.5, autoAlpha: 0, duration: 0.1 })
-			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(boxOpen, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
+				delay: 0.2,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to(girlSpeaking, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girlSpeaking, { delay: 2, autoAlpha: 0, duration: 0.1 })
+			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(boxClosed, {
+				autoAlpha: 1,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
-			.to(
-				boxClosed,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(
-				boxOpen,
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
-			.to(
-				girl,
-				{
-					x: -1200,
-					duration: 2,
-				},
-				'=+2',
-			)
+			.to(boxOpen, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(girl, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+				x: -1200,
+				duration: 2,
+			})
 			.to(boy, {
+				delay: 1,
 				x: 0,
 				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},

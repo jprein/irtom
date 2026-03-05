@@ -8,6 +8,7 @@ import {
 	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
+import { on } from 'events';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -25,48 +26,49 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const boyKneeling = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-kneeling`,
+		`link-${slidePrefix}-${data.community}-boy-kneeling`
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const dogRunning = document.getElementById(
-		`link-${slidePrefix}-dog-running`,
+		`link-${slidePrefix}-dog-running`
 	) as SvgInHtml;
 	const dogLying = document.getElementById(
-		`link-${slidePrefix}-dog-lying`,
+		`link-${slidePrefix}-dog-lying`
 	) as SvgInHtml;
 	const hole = document.getElementById(`${slidePrefix}-hole`) as SvgInHtml;
 	const holeHidden = document.getElementById(
-		`${slidePrefix}-leafs-hole`,
+		`${slidePrefix}-leafs-hole`
 	) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
-		gsap.set([dogRunning, dogLying, holeHidden, girl, boy, boyKneeling], {
+		gsap.set([dogRunning, dogLying, holeHidden, girl, boyKneeling], {
 			autoAlpha: 0,
 		});
 
-		gsap.set([boy, hole], {
+		gsap.set(hole, {
 			autoAlpha: 1,
 		});
 
 		gsap.set([dogRunning, girl], { autoAlpha: 1, x: -1200 });
 		gsap.set(boy, { autoAlpha: 1, x: -1200 });
 
-		await data.sprite.playPromise(`${slidePrefix}-1`);
-
 		const tl = await gsap.timeline();
 
 		tl.to(boy, {
 			x: -100,
 			duration: 2,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
+			},
 		})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-2`);
 				},
@@ -76,7 +78,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 0.1,
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
@@ -88,52 +90,31 @@ export default async ({ currentSlide, previousSlide }) => {
 				autoAlpha: 1,
 				duration: 0.1,
 			})
-			.to(
-				hole,
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(hole, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(boyKneeling, { delay: 1.5, autoAlpha: 0, duration: 0.1 })
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boy, {
-				delay: 2,
+				delay: 1,
 				x: 1250,
 				duration: 3,
 			})
 			.to(dogRunning, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 3,
+				x: 0,
+				duration: 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
-			.to(dogRunning, {
-				x: 0,
-				duration: 2,
-			})
-			.to(dogLying, {
-				autoAlpha: 1,
-				duration: 0.1,
-			})
-			.to(
-				dogRunning,
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(dogLying, { autoAlpha: 1, duration: 0.1 })
+			.to(dogRunning, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
+				x: 0,
+				duration: 3,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
-			})
-			.to(girl, {
-				x: 0,
-				duration: 3,
 			});
 
 		await tl.then();

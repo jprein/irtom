@@ -62,14 +62,10 @@ export default async ({ currentSlide, previousSlide }) => {
 	async function showAnimation() {
 		gsap.set(
 			[
-				girl,
 				boyWithPensAndCookie,
-				boy,
-				cookieBoxClosed,
 				cookieBoxWithCookies,
 				cookieBoxWithPens,
 				cookieBoxEmpty,
-				pensBoxClosed,
 				pensBoxWithCookies,
 				pensBoxWithPens,
 				pensBoxEmpty,
@@ -79,12 +75,12 @@ export default async ({ currentSlide, previousSlide }) => {
 				x: 0,
 			},
 		);
-		gsap.set([boy, girl, cookieBoxClosed, pensBoxClosed], {
+		gsap.set([cookieBoxClosed, pensBoxClosed], {
 			autoAlpha: 1,
 			x: 0,
 		});
-		gsap.set(girl, { x: -1200 });
-		gsap.set(boy, { x: 1200 });
+		gsap.set(girl, { autoAlpha: 1, x: -1200 });
+		gsap.set(boy, { autoAlpha: 1, x: 1200 });
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 

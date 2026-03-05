@@ -25,31 +25,31 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const girlWatchingfilm = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-watchingfilm`,
+		`link-${slidePrefix}-${data.community}-girl-watchingfilm`
 	) as SvgInHtml;
 	const girlFilming = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-filming`,
+		`link-${slidePrefix}-${data.community}-girl-filming`
 	) as SvgInHtml;
 	const dogStanding = document.getElementById(
-		`link-${slidePrefix}-dog-standing`,
+		`link-${slidePrefix}-dog-standing`
 	) as SvgInHtml;
 	const dogLying = document.getElementById(
-		`link-${slidePrefix}-dog-lying`,
+		`link-${slidePrefix}-dog-lying`
 	) as SvgInHtml;
 	const dogBarking = document.getElementById(
-		`link-${slidePrefix}-dog-barking`,
+		`link-${slidePrefix}-dog-barking`
 	) as SvgInHtml;
 	const dogRunning = document.getElementById(
-		`link-${slidePrefix}-dog-running`,
+		`link-${slidePrefix}-dog-running`
 	) as SvgInHtml;
 	const phonesound = document.getElementById(
-		`${slidePrefix}-phonesound`,
+		`${slidePrefix}-phonesound`
 	) as SvgInHtml;
 
 	// Define animation function
@@ -67,7 +67,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			{
 				autoAlpha: 0,
 				x: 0,
-			},
+			}
 		);
 		gsap.set([girl, dogStanding], {
 			autoAlpha: 1,
@@ -89,33 +89,19 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to(dogBarking, {
-				delay: data.spriteJSON.sprite[`dog`][1] / 1000,
+				delay: 0.5,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`dog`);
 				},
 			})
-			.to(
-				dogStanding,
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(dogStanding, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(dogBarking, { delay: 1.5, autoAlpha: 0, duration: 0.1 })
-			.to(
-				dogStanding,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(dogStanding, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(
 				girlFilming,
 				{
@@ -123,70 +109,52 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 0,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(
-				dogStanding,
-				{
-					delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
-					autoAlpha: 0,
-					duration: 0.1,
-					onStart: () => {
-						data.sprite.play(`${slidePrefix}-2`);
-					},
-				},
-				'<',
-			)
-			.to(dogRunning, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(dogRunning, { x: 220, duration: 1.5 })
-			.to(dogRunning, {
+			.to(dogStanding, {
+				// delay: 2,
 				autoAlpha: 0,
 				duration: 0.1,
-			})
-			.to(
-				dogLying,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-2`);
 				},
-				'<',
-			)
+			})
+			.to(dogRunning, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(dogRunning, { x: 220, duration: 1.5 })
+			.to(dogRunning, { autoAlpha: 0, duration: 0.1 })
+			.to(dogLying, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(dogLying, {
 				delay: 1.5,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
 			.to(girlWatchingfilm, {
+				delay: 1,
 				autoAlpha: 1,
 				duration: 0.1,
-				delay: data.spriteJSON.sprite[`dog`][1] / 1000 + 2,
+			})
+			.to(girl, { autoAlpha: 0, duration: 0.1 }, '<')
+			.to(girlWatchingfilm, {
+				delay: 1,
 				onStart: () => {
 					data.sprite.play(`dog`);
 				},
 			})
-			.to(
-				[girl],
-				{
-					autoAlpha: 0,
-					duration: 0.1,
-				},
-				'<',
-			)
 			.to([girlWatchingfilm], {
-				delay: 2,
+				delay: 1,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
 			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 2,
 				x: -210,
 				y: -100,
 				scale: 0.8,
@@ -201,7 +169,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				duration: 0.1,
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 1,
 				x: 0,
 				duration: 2.5,
 				onStart: () => {
@@ -209,20 +177,20 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
 			.to(phonesound, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.1,
-				delay: data.spriteJSON.sprite[`dog`][1] / 1000 + 2,
 				onStart: () => {
 					data.sprite.play(`dog`);
 				},
 			})
-			.to(phonesound, { delay: 2, autoAlpha: 0, duration: 0.1 });
+			.to(phonesound, { delay: 1, autoAlpha: 0, duration: 0.1 });
 
 		await tl.then();
 		await sleep(500);

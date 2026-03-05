@@ -70,9 +70,9 @@ export default async ({ currentSlide, previousSlide }) => {
 			},
 		});
 
-		// For the case that Max doesn't like the cracker but the cucumber
+		// For the case that Max doesn't like the cookies but the candy
 		if (naySide === 'left') {
-			// Max first tries the cracker on the left
+			// Max first tries the cookies on the left
 			tl.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 0,
@@ -81,14 +81,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-3-nay`);
 				},
 			})
-				.to(
-					boyNay,
-					{
-						autoAlpha: 1,
-						duration: 0.1,
-					},
-					'<',
-				)
+				.to(boyNay, { autoAlpha: 1, duration: 0.1 }, '<')
 				.to(boyNay, {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-3-nay`][1] / 1000,
 					autoAlpha: 0,
@@ -97,7 +90,7 @@ export default async ({ currentSlide, previousSlide }) => {
 						data.sprite.play(`${slidePrefix}-4`);
 					},
 				})
-				// Max then tries the cracker on the right
+				// Max then tries the candy on the right
 				.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
 				.to(boy, {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
@@ -112,7 +105,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-5-yay`][1] / 1000,
 					autoAlpha: 0,
 					duration: 0.1,
-					onComplete: () => {
+					onStart: () => {
 						data.sprite.play(`${slidePrefix}-6`);
 					},
 				})
@@ -122,7 +115,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					x: 1200,
 					duration: 2,
 				});
-			// For the case that Max likes the cracker but not the cucumber
+			// For the case that Max likes the cookies but not the candy
 		} else {
 			tl.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
@@ -132,14 +125,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-3-yay`);
 				},
 			})
-				.to(
-					boyYay,
-					{
-						autoAlpha: 1,
-						duration: 0.1,
-					},
-					'<',
-				)
+				.to(boyYay, { autoAlpha: 1, duration: 0.1 }, '<')
 				.to(boyYay, {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-3-yay`][1] / 1000,
 					autoAlpha: 0,
@@ -162,7 +148,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-5-nay`][1] / 1000,
 					autoAlpha: 0,
 					duration: 0.1,
-					onComplete: () => {
+					onStart: () => {
 						data.sprite.play(`${slidePrefix}-6`);
 					},
 				})
