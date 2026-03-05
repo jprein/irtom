@@ -109,6 +109,11 @@ const translations = {
 		de: `Webcam-Vorschau`,
 		en: `Webcam Preview`,
 	},
+	audioButton:{
+		de: 'Audio testen',
+		en: 'Test Audio',
+		es: 'Probar audio',
+	},
 	startButton: {
 		de: `Start`,
 		en: `Start`,

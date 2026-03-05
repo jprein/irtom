@@ -28,7 +28,7 @@ import { setMousePointer, setScaleOnHover } from './styleDefaults';
 import Toastify from 'toastify-js';
 import DetectRTC from 'detectrtc';
 import 'toastify-js/src/toastify.css';
-import { createSprite } from './createSprite';
+//import { createSprite } from './createSprite';
 import {
 	initMedia,
 	isMediaRecorderSupported,
@@ -148,11 +148,15 @@ export const init = async () => {
 	DetectRTC.load(async () => {
 		global.data.hasWebcam = DetectRTC.hasWebcam;
 		global.data.browserName = DetectRTC.browser.name;
+		global.data.osName = DetectRTC.osName;
 		global.data.safari = DetectRTC.browser.isSafari == undefined ? false : true;
-		global.data.iOSSafari = global.data.safari && global.data.touchscreen;
-
+		//global.data.isIOS = global.data.safari && global.data.touchscreen;
+		global.data.isIOS =
+			/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+			(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
 		// Enable webcam recording if selected in URL parameters
-		if (global.data.hasWebcam && global.data.webcam && !global.data.iOSSafari) {
+		//if (global.data.hasWebcam && global.data.webcam && !global.data.iOSSafari) {
+		if (global.data.hasWebcam && global.data.webcam) {
 			// !responseLog.meta.iOSSafari &&
 			if (!isMediaRecorderSupported()) {
 				console.log('MediaRecorder is not supported in this browser.');
@@ -162,9 +166,10 @@ export const init = async () => {
 					await initMedia({
 						audio: true,
 						video: {
-							frameRate: { min: 1, ideal: 5, max: 10 },
-							width: { min: 640, ideal: 640, max: 640 }, // keep it small
-							height: { min: 480, ideal: 480, max: 480 },
+							// Lower quality preset for faster uploads
+							frameRate: { min: 1, ideal: 3, max: 5 },
+							width: { min: 320, ideal: 320, max: 320 },
+							height: { min: 240, ideal: 240, max: 240 },
 							facingMode: 'user',
 						},
 					});
@@ -259,7 +264,7 @@ export const init = async () => {
 	data.spriteJSON = await spriteLookup.json();
 
 	// then,create the sprite instance
-	data.sprite = await createSprite(data.spriteJSON);
+	//data.sprite = await createSprite(data.spriteJSON);
 
 	if (config.devmode.on) {
 		global.translations = translations;

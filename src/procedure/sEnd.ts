@@ -11,7 +11,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.procedure[data.currentSlide].analyse = false;
 
 	if (!config.devmode.on) {
-		exitFullscreen();
+		exitFullscreen(data.isIOS);
 	}
 
 	await sleep(2000);

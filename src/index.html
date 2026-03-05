@@ -107,42 +107,14 @@
 					</div>
 
 					<div class="button-container">
-						<button
-							id="webcam-button"
-							type="button"
-							class="button"
-							onclick="
-								mrec.startStream({
-									audio: false,
-									video: {
-										frameRate: {
-											min: 3,
-											ideal: 5,
-											max: 30,
-										},
-										width: {
-											min: 160,
-											ideal: 320,
-											max: 640,
-										},
-										height: {
-											min: 120,
-											ideal: 240,
-											max: 480,
-										},
-										facingMode: 'user',
-									},
-								});
-								mrec.openVideoPreview();
-							"
-						>
+						<button id="webcam-button" type="button" class="button">
 							<span id="webcamPreview">Webcam-Vorschau</span>
 						</button>
 					</div>
 
 					<div class="button-container">
 						<button id="start-button" type="submit" class="button">
-							<span id="startButton">Start</span>
+							<span id="startButton"></span>
 						</button>
 					</div>
 				</form>
@@ -173,6 +145,27 @@
 				</p>
 			</div>
 		</div>
-		<script src="https://unpkg.com/@ccp-eva/media-recorder"></script>
+		<div
+			id="webcam-modal"
+			class="camera-modal hidden"
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="webcam-modal-title"
+		>
+			<div class="camera-modal__card">
+				<div class="camera-modal__header">
+					<h2 id="webcam-modal-title">Webcam Preview</h2>
+					<button
+						id="webcam-modal-close"
+						type="button"
+						class="camera-modal__close"
+						aria-label="Close webcam preview"
+					>
+						×
+					</button>
+				</div>
+				<video id="webcam-modal-video" autoplay playsinline muted></video>
+			</div>
+		</div>
 	</body>
 </html>

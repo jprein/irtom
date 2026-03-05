@@ -12,6 +12,7 @@ import {
 } from '../../src/util/helpers';
 import type { SvgInHtml } from '../../src/types';
 import { stopRecording } from '../util/mediaRecorderServices';
+import { addSpinner, hideSpinner } from '../util/leuphanaSpinner';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
@@ -95,8 +96,24 @@ export const procedure = async () => {
 		console.table(currentProcedure);
 		console.groupEnd();
 	}
+	// const procedureStartMs = performance.now();
+	// const logTiming = (label: string, fromMs?: number) => {
+	// 	const nowMs = performance.now();
+	// 	const sinceIntroMs = (nowMs - procedureStartMs).toFixed(1);
+	// 	const sinceMarker = fromMs
+	// 		? ` | +${(nowMs - fromMs).toFixed(1)}ms since marker`
+	// 		: '';
+	// 	console.log(
+	// 		`[sProcedure][${new Date().toISOString()}] +${sinceIntroMs}ms ${label}${sinceMarker}`,
+	// 	);
+	// };
 
 	data.totalSlides = currentProcedure.length;
+	// const audioStartMs = performance.now();
+	// logTiming('playPromise start', procedureStartMs);
+	// //await data.sprite.playPromise('s-introduction');
+	// await data.sprite.ensureReady();
+	// logTiming('playPromise resolved', audioStartMs);
 
 	// hide loading spinner
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
@@ -177,6 +194,13 @@ export const procedure = async () => {
 			});
 		};
 
+		// Prefetch next slide module to reduce transition latency on slower devices.
+		if (nextSlide) {
+			const nextModulePath = `./${nextSlide}.ts`;
+			const nextLoader = slideModules[nextModulePath];
+			if (nextLoader) void nextLoader();
+		}
+
 		// ENABLE REPEAT BUTTON
 		// If a repeat element exists on the slide, attach a listener to re-run the behavior when clicked
 		let repeatSvg = document.querySelector(
@@ -199,13 +223,13 @@ export const procedure = async () => {
 
 		// Put in function so that we can remove the event listener again
 		const handleRepeatClick = async (arg?: boolean | MouseEvent) => {
+			const isIncorrectReplay = typeof arg === 'boolean' ? arg : false;
 			// If invoked as an event listener, arg will be a MouseEvent.
 			// In that case, we consider incorrectTraining to be false.
-			data.incorrectResponse = typeof arg === 'boolean' ? arg : false;
+			data.incorrectResponse = isIncorrectReplay;
 
 			if (data.incorrectResponse) {
 				data.procedure[currentSlide].repeatIncorrect += 1;
-				data.incorrectResponse = true;
 				console.log(
 					`%cRepeat ${currentSlide}. Reason: Incorrect response with feedback for the ${data.procedure[currentSlide].repeatIncorrect}x time.`,
 					'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
@@ -228,7 +252,10 @@ export const procedure = async () => {
 			// Run the slide behavior again
 			// data.clickedRepeat = true;
 			await runSlideBehavior();
-			if (data.procedure[data.currentSlide].trainingTrial) {
+			if (
+				isIncorrectReplay &&
+				data.procedure[data.currentSlide].trainingTrial
+			) {
 				// If correct response, play correct audio and move on to next trial
 				if (data.procedure[data.currentSlide].score === 1) {
 					//await data.sprite.playPromise(`${currentSlideKc}-correct`);
@@ -295,8 +322,12 @@ export const procedure = async () => {
 				});
 			}
 
-			// apply default gap duration
-			await sleep(config.globals.slideGapDuration);
+			// Keep the intro->next transition snappy; use default gap for all other slides.
+			const gapDuration =
+				currentSlide === 'sIntroduction' ? 0 : config.globals.slideGapDuration;
+			if (gapDuration > 0) {
+				await sleep(gapDuration);
+			}
 
 			// always hide div wrapper of text/audio feedback
 			const responseWrapper = document.querySelectorAll(
@@ -349,31 +380,62 @@ export const procedure = async () => {
 			delete data[key];
 		}
 	});
+	// const parentBlockLast = document.getElementById(
+	// 	's-blocking-state',
+	// ) as SvgInHtml;
+	// parentBlockLast.removeAttribute('visibility');
 
-	try {
-		await stopRecording();
-	} catch (e) {
-		console.warn('Failed to stop recording, continuing anyway:', e);
+	// gsap.set('#link-leuphana-cube', {
+	// 	transformOrigin: '50% 50%',
+	// });
+	// gsap.to('#link-leuphana-cube', {
+	// 	id: 'blocking-state-animation-last',
+	// 	duration: 3,
+	// 	rotation: 360,
+	// 	repeat: -1,
+	// 	ease: 'none',
+	// });
+
+	if (data.webcam == true) {
+		try {
+			await stopRecording({ stopStream: true });
+		} catch (e) {
+			console.warn('Failed to stop recording, continuing anyway:', e);
+		}
 	}
-
-	// Save data depending on choice (local, server, both)
-	if (datatransfer === 'local') {
-		downloadCsv();
-		downloadWebcamVideo(data.webcam, data.id);
-	} else if (datatransfer === 'server') {
-		uploadCsv();
-		await uploadWebcamVideo(data.webcam, data.id);
-		await sleep(1000);
-	} else {
-		uploadCsv();
-		downloadCsv();
-		downloadWebcamVideo(data.webcam, data.id);
-		await uploadWebcamVideo(data.webcam, data.id);
-		await sleep(1000);
+	await addSpinner();
+	try {
+		// Save data depending on choice (local, server, both)
+		if (datatransfer === 'local') {
+			await downloadCsv();
+			await downloadWebcamVideo(data.webcam, data.id);
+		} else if (datatransfer === 'server') {
+			await uploadCsv();
+			await sleep(1000);
+			await uploadWebcamVideo(data.webcam, data.id);
+			await sleep(2000);
+		} else {
+			await uploadCsv();
+			await sleep(1000);
+			await uploadWebcamVideo(data.webcam, data.id);
+			await sleep(1000);
+			await downloadCsv();
+			await sleep(1000);
+			await downloadWebcamVideo(data.webcam, data.id);
+			await sleep(1000);
+		}
+	} finally {
+		await hideSpinner();
 	}
 
 	// users can leave page now
 	window.onbeforeunload = null;
+
+	// const blockingStateAnimationLast = gsap.getById(
+	// 	'blocking-state-animation-last',
+	// );
+	// if (blockingStateAnimationLast) blockingStateAnimationLast.kill();
+	// parentBlockLast.setAttribute('visibility', 'hidden');
 
 	console.group(
 		'%cStudy Summary',

@@ -46,7 +46,8 @@ export const moveToCenterAnchor = (svg: SvgInHtml, x?: number, y?: number) => {
 	}
 };
 
-export const startFullscreen = () => {
+export const startFullscreen = (isIOS: boolean) => {
+	if (isIOS) return;
 	const elem = document.documentElement as HTMLElement & {
 		mozRequestFullScreen(): Promise<void>;
 		webkitRequestFullscreen(): Promise<void>;
@@ -63,7 +64,8 @@ export const startFullscreen = () => {
 	}
 };
 
-export const exitFullscreen = () => {
+export const exitFullscreen = (isIOS: boolean) => {
+	if (isIOS) return;
 	const elem = document as Document & {
 		mozCancelFullScreen(): Promise<void>;
 		webkitExitFullscreen(): Promise<void>;
@@ -130,8 +132,23 @@ const generateCsvContent = (jsonData: any): string => {
 	].join('\n');
 };
 
+const triggerBrowserDownload = async (blob: Blob, filename: string) => {
+	const url = window.URL.createObjectURL(blob);
+	const hiddenElement = document.createElement('a');
+	hiddenElement.style.display = 'none';
+	hiddenElement.href = url;
+	hiddenElement.download = filename;
+	document.body.appendChild(hiddenElement);
+	hiddenElement.click();
+	document.body.removeChild(hiddenElement);
+
+	// Let browser register the click/download before revoking the blob URL.
+	await sleep(0);
+	window.URL.revokeObjectURL(url);
+};
+
 // Function to download the CSV
-export const downloadCsv = (
+export const downloadCsv = async (
 	jsonData: any = data,
 	id: string = generateUserIdFilename('irtom', undefined, 'csv'),
 ) => {
@@ -139,49 +156,52 @@ export const downloadCsv = (
 
 	// Create a Blob and trigger the download
 	const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-	const hiddenElement = document.createElement('a');
-	hiddenElement.href = window.URL.createObjectURL(blob);
-	hiddenElement.download = id;
-	hiddenElement.click();
+	await triggerBrowserDownload(blob, id);
 };
 
 // Function to upload the CSV
-export const uploadCsv = (
+export async function uploadCsv(
 	jsonData: any = data,
 	id: string = generateUserIdFilename('irtom', undefined, 'csv'),
-) => {
+) {
 	const csvContent = generateCsvContent(jsonData);
 
-	// Send the CSV content to the server, including the `id` as part of the request
-	fetch('./data/data.php', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'text/csv',
-			'X-File-Name': id, // Include the file name in the headers
-		},
-		body: csvContent, // Send the CSV content as the body
-	})
-		.then((response) => response.json())
-		.then((data) => {
-			console.log('Success:', data);
-			if (data.success) {
-				Toastify({
-					text: '💾 CSV uploaded successfully!',
-					duration: 2000,
-					className: 'toast-info',
-				}).showToast();
-			} else {
-				Toastify({
-					text: '🤔 CSV upload failed!',
-					duration: 2000,
-					className: 'toast-error',
-				}).showToast();
-			}
-		})
-		.catch((error) => {
-			console.error('Error:', error);
+	try {
+		// Send the CSV content to the server, including the `id` as part of the request
+		const response = await fetch('./data/data.php', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'text/csv',
+				'X-File-Name': id, // Include the file name in the headers
+			},
+			body: csvContent, // Send the CSV content as the body
 		});
-};
+
+		const responseData = await response.json();
+		console.log('Success:', responseData);
+		if (!response.ok || !responseData.success) {
+			Toastify({
+				text: '🤔 CSV upload failed!',
+				duration: 2000,
+				className: 'toast-error',
+			}).showToast();
+			return;
+		}
+
+		Toastify({
+			text: '💾 CSV uploaded successfully!',
+			duration: 2000,
+			className: 'toast-info',
+		}).showToast();
+	} catch (error) {
+		console.error('Error uploading CSV:', error);
+		Toastify({
+			text: '🤔 CSV upload failed!',
+			duration: 2000,
+			className: 'toast-error',
+		}).showToast();
+	}
+}
 
 // Function to download the webcam video
 export async function downloadWebcamVideo(webcam: boolean, id: string) {
@@ -193,16 +213,13 @@ export async function downloadWebcamVideo(webcam: boolean, id: string) {
 	// mrec.downloadVideo(`irtom-${id}-${day}-${time}`);
 	try {
 		if (webcam === true) {
-			// give some time to create Video Blob
-
 			const day = new Date().toISOString().substring(0, 10);
-			const time = new Date().toISOString().substring(11, 19);
-			// save video on server
-
-			// save video locally
-			setTimeout(() => {
-				downloadLastRecording(`irtom-${id}-${day}-${time}`);
-			}, 2000);
+			const time = new Date()
+				.toISOString()
+				.substring(11, 19)
+				.replaceAll(':', '-');
+			downloadLastRecording(`irtom-${id}-${day}-${time}.webm`);
+			await sleep(0);
 		}
 	} catch (error) {
 		console.error('Error downloading video:', error);
@@ -238,26 +255,33 @@ export async function uploadWebcamVideo(webcam: boolean, id: string) {
 	// 	console.error('Error uploading video:', error);
 	// }
 	// await sleep(2000);
+	if (webcam === true) {
+		// give some time to create Video Blob
 
-	try {
-		if (webcam === true) {
-			// give some time to create Video Blob
+		const day = new Date().toISOString().substring(0, 10);
+		const time = new Date()
+			.toISOString()
+			.substring(11, 19)
+			.replaceAll(':', '-');
+		try {
+			await uploadLastRecordingInChunks('./data/upload_video.php', {
+				filename: `irtom-${id}-${day}-${time}.webm`,
+				chunkSize: 1024 * 1024,
+			});
 
-			const day = new Date().toISOString().substring(0, 10);
-			const time = new Date()
-				.toISOString()
-				.substring(11, 19)
-				.replaceAll(':', '-');
-			try {
-				await uploadLastRecordingInChunks('./data/upload_video.php', {
-					filename: `irtom-${id}-${day}-${time}`,
-				});
-			} catch (err) {
-				console.log('Error is in upload video', err);
-			}
+			Toastify({
+				text: '💾 Video uploaded successfully!',
+				duration: 2000,
+				className: 'toast-info',
+			}).showToast();
+		} catch (err) {
+			console.error('Error uploading video:', err);
+			Toastify({
+				text: '🤔 Video upload failed!',
+				duration: 2000,
+				className: 'toast-error',
+			}).showToast();
 		}
-	} catch (error) {
-		console.error('Error uploading video:', error);
 	}
 	await sleep(2000);
 }

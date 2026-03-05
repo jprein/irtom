@@ -34,6 +34,9 @@ declare let data: {
 	datatransfer: 'server' | 'local' | 'both';
 	webcam: boolean;
 	hasWebcam: boolean;
+	browserName: string;
+	osName: string;
+	safari: boolean;
 	isIOS: boolean;
 	t0: Date;
 	t1: Date;
