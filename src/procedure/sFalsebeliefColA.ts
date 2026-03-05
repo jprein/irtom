@@ -8,7 +8,6 @@ import {
 	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
-import { on } from 'events';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -26,16 +25,16 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const girlKneeling = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-kneeling`,
+		`link-${slidePrefix}-${data.community}-girl-kneeling`
 	) as SvgInHtml;
 	const dogRunning = document.getElementById(
-		`link-${slidePrefix}-dog-running`,
+		`link-${slidePrefix}-dog-running`
 	) as SvgInHtml;
 	const dogLying = document.getElementById(
-		`link-${slidePrefix}-dog-lying`,
+		`link-${slidePrefix}-dog-lying`
 	) as SvgInHtml;
 
 	// Define animation function
@@ -51,9 +50,6 @@ export default async ({ currentSlide, previousSlide }) => {
 		});
 		gsap.set(dogRunning, { autoAlpha: 1, x: 1200 });
 
-		// Play initial audio
-		// await data.sprite.playPromise(`${slidePrefix}-1`);
-
 		// Animation sequence
 		const tl = await gsap.timeline();
 		tl.to(dogRunning, {
@@ -63,7 +59,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		})
 			.to(dogRunning, {
 				delay: 1.5,
-				x: 0,
+				x: 100,
 				duration: 2,
 			})
 			.to(dogRunning, {

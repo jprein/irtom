@@ -25,66 +25,55 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girlLeft = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-left-standing`,
+		`link-${slidePrefix}-${data.community}-girl-left-standing`
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const man = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man`,
+		`link-${slidePrefix}-${data.community}-man`
 	) as SvgInHtml;
 	const manApron = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-apron`,
+		`link-${slidePrefix}-${data.community}-man-apron`
 	) as SvgInHtml;
 	const keyHole = document.getElementById(
-		`s-false-belief-ui-a-keyhole`,
+		`s-false-belief-ui-a-keyhole`
 	) as SvgInHtml;
 	const whiteDoorClose = document.getElementById(
-		`${slidePrefix}-door-wc`,
+		`${slidePrefix}-door-wc`
 	) as SvgInHtml;
 
 	const whiteDoorOpen = document.getElementById(
-		`${slidePrefix}-door-wo`,
+		`${slidePrefix}-door-wo`
 	) as SvgInHtml;
 
 	const brownDoorClose = document.getElementById(
-		`${slidePrefix}-door-bc`,
+		`${slidePrefix}-door-bc`
 	) as SvgInHtml;
 
 	const brownDoorOpen = document.getElementById(
-		`${slidePrefix}-door-bo`,
+		`${slidePrefix}-door-bo`
 	) as SvgInHtml;
 
 	const brownDoorOpenApron = document.getElementById(
-		`${slidePrefix}-door-bo-apron`,
+		`${slidePrefix}-door-bo-apron`
 	) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
 		gsap.set(
-			[
-				man,
-				manApron,
-				girlLeft,
-				girl,
-				keyHole,
-				whiteDoorClose,
-				whiteDoorOpen,
-				brownDoorClose,
-				brownDoorOpen,
-				brownDoorOpenApron,
-			],
+			[girlLeft, keyHole, whiteDoorOpen, brownDoorOpen, brownDoorOpenApron],
 			{
 				autoAlpha: 0,
 				x: 0,
-			},
+			}
 		);
 		gsap.set([girl, manApron, whiteDoorClose, brownDoorClose], {
 			autoAlpha: 1,
 			x: 0,
 		});
-		gsap.set(man, { x: -450 });
+		gsap.set(man, { autoAlpha: 0, x: -450 });
 
 		await data.sprite.playPromise(`${slidePrefix}-1`);
 
@@ -122,7 +111,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 0,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to(brownDoorOpenApron, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
@@ -132,14 +121,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
 			})
-			.to(
-				brownDoorClose,
-				{
-					autoAlpha: 1,
-					duration: 0.1,
-				},
-				'<',
-			)
+			.to(brownDoorClose, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(man, { x: +300, duration: 2 })
 			.to(whiteDoorClose, { autoAlpha: 0, duration: 0.1 })
 			.to(whiteDoorOpen, { autoAlpha: 1, duration: 0.1 }, '<')
@@ -147,7 +129,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				delay: 1,
 				x: 400,
 				y: -150,
-				duration: 2,
+				duration: 1.5,
 			})
 			.to(man, { y: 0, autoAlpha: 0, duration: 0 })
 			.to(whiteDoorClose, { autoAlpha: 1, duration: 0.1 }, '<')
@@ -170,7 +152,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000 - 1,
 				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {

@@ -25,22 +25,22 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const girlYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-yay`,
+		`link-${slidePrefix}-${data.community}-girl-yay`
 	) as SvgInHtml;
 	const girlNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-nay`,
+		`link-${slidePrefix}-${data.community}-girl-nay`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-nay`,
+		`link-${slidePrefix}-${data.community}-boy-nay`
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-yay`,
+		`link-${slidePrefix}-${data.community}-boy-yay`
 	) as SvgInHtml;
 	const carrot = document.getElementById(`${slidePrefix}-carrot`) as SvgInHtml;
 
@@ -52,16 +52,20 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set([girlYay, girlNay, boyYay, boyNay], { opacity: 0 });
 		gsap.set(carrot, { autoAlpha: 1 });
 
-		// Play initial audio
-		await data.sprite.playPromise(`${slidePrefix}-1`);
 		// Animation sequence
 		const tl = await gsap.timeline();
 		tl.to(girl, {
-			x: 0,
-			duration: 2,
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
+			},
 		})
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 2,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000 - 2,
+				x: 0,
+				duration: 2,
+			})
+			.to(girl, {
+				delay: 1,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
@@ -69,7 +73,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(girlYay, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 1,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
@@ -78,13 +82,13 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(girl, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girlYay, {
-				delay: 3,
+				delay: 2,
 				autoAlpha: 0,
 				duration: 0.1,
 			})
 			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlNay, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
@@ -99,7 +103,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 1,
 				x: -1200,
 				duration: 2,
 				onStart: () => {
@@ -107,7 +111,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				x: 0,
 				duration: 2,
 				onStart: () => {
@@ -115,7 +119,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
@@ -123,7 +127,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(boyNay, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
@@ -138,7 +142,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boyYay, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-9`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 1,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
@@ -153,14 +157,14 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boy, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-10`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-9`][1] / 1000,
 				x: 1200,
 				duration: 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-10`);
 				},
 			})
-			.to(carrot, { delay: 2, autoAlpha: 0, duration: 0.1 });
+			.to(carrot, { delay: 1, autoAlpha: 0, duration: 0.1 });
 
 		await tl.then();
 		await sleep(500);

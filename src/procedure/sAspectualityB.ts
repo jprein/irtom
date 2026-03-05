@@ -14,7 +14,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	const slidePrefix = 's-aspectuality-b';
 
 	// Store correct response
-	data.procedure[data.currentSlide].correct = 'right';
+	data.procedure[data.currentSlide].correct = 'left';
 	data.procedure[data.currentSlide].dimension = 'aspectuality';
 	data.procedure[data.currentSlide].analyse = true;
 
@@ -25,43 +25,43 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girlBallSqueezed = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-ball-squeezed`,
+		`link-${slidePrefix}-${data.community}-girl-ball-squeezed`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const girlBall = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-ball`,
+		`link-${slidePrefix}-${data.community}-girl-ball`
 	) as SvgInHtml;
 	const girlRightBall = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-right-ball`,
+		`link-${slidePrefix}-${data.community}-girl-right-ball`
 	) as SvgInHtml;
 	const girlLeftBall = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-left-ball`,
+		`link-${slidePrefix}-${data.community}-girl-left-ball`
 	) as SvgInHtml;
 	const girlTowel = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-ball-towel`,
+		`link-${slidePrefix}-${data.community}-girl-ball-towel`
 	) as SvgInHtml;
 	const girlRightTowel = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-right-towel`,
+		`link-${slidePrefix}-${data.community}-girl-right-towel`
 	) as SvgInHtml;
 	const girlLeftTowel = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-left-towel`,
+		`link-${slidePrefix}-${data.community}-girl-left-towel`
 	) as SvgInHtml;
 	const boxClosed = document.getElementById(
-		`${slidePrefix}-box-closed`,
+		`${slidePrefix}-box-closed`
 	) as SvgInHtml;
 	const boxOpen = document.getElementById(
-		`${slidePrefix}-box-open`,
+		`${slidePrefix}-box-open`
 	) as SvgInHtml;
 	const basketClosed = document.getElementById(
-		`${slidePrefix}-basket-closed`,
+		`${slidePrefix}-basket-closed`
 	) as SvgInHtml;
 	const basketOpen = document.getElementById(
-		`${slidePrefix}-basket-open`,
+		`${slidePrefix}-basket-open`
 	) as SvgInHtml;
 	const ball = document.getElementById(`${slidePrefix}-ball`) as SvgInHtml;
 
@@ -70,15 +70,10 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set(
 			[
 				girlBallSqueezed,
-				boy,
-				girl,
 				girlBall,
 				girlTowel,
-				boxClosed,
 				boxOpen,
-				basketClosed,
 				basketOpen,
-				ball,
 				girlLeftBall,
 				girlRightBall,
 				girlLeftTowel,
@@ -86,14 +81,15 @@ export default async ({ currentSlide, previousSlide }) => {
 			],
 			{
 				autoAlpha: 0,
-			},
+			}
 		);
 
-		gsap.set([girl, boy, basketClosed, boxClosed, ball], {
+		gsap.set([girl, basketClosed, boxClosed, ball], {
 			autoAlpha: 1,
 		});
+		gsap.set([girl, girlTowel, girlLeftTowel], { x: 0 });
 
-		gsap.set(boy, { x: -400 });
+		gsap.set(boy, { autoAlpha: 1, x: -400 });
 
 		// Play initial audio
 		await data.sprite.playPromise(`${slidePrefix}-1`);
@@ -102,7 +98,6 @@ export default async ({ currentSlide, previousSlide }) => {
 		const tl = await gsap.timeline();
 
 		tl.to([girl, ball], {
-			delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
 			autoAlpha: 0,
 			duration: 0.1,
 			onStart: () => {
@@ -125,20 +120,20 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
 				x: -1200,
 				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
 			.to(boxClosed, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
@@ -148,20 +143,22 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girlLeftBall, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlLeftBall, { delay: 1, autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girlBall, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(girlBall, {
-				delay: data.spriteJSON.sprite[`squeak`][1] / 1000 + 2,
+			.to(girlBall, {})
+			.to(girlBallSqueezed, {
+				delay: 2,
+				autoAlpha: 1,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`squeak`);
 				},
 			})
-			.to(girlBallSqueezed, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlBall, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girlBallSqueezed, { delay: 1, autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girlBall, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlBall, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 4,
 				autoAlpha: 1,
 				duration: 0.1,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-5`);
 				},
@@ -169,9 +166,9 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girl, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girlBall, { autoAlpha: 1, duration: 0.1 })
 			.to(girlBall, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				autoAlpha: 0,
 				duration: 0.1,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
@@ -188,50 +185,60 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to(boy, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
 				x: -400,
 				duration: 2,
-				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000 + 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-7`);
 				},
 			})
-			.to(girl, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 4,
+			.to(boxClosed, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-7`][1] / 1000,
+				autoAlpha: 0,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-8`);
 				},
 			})
-			.to(boxClosed, { autoAlpha: 0, duration: 0.1 })
 			.to(boxOpen, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(girlLeftTowel, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boxOpen, { delay: 0.5, autoAlpha: 0, duration: 0.1 })
 			.to(boxClosed, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(girlLeftTowel, { delay: 1, autoAlpha: 0, duration: 0.1 })
+			.to(girlLeftTowel, {
+				delay: 0.5,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
 			.to(girlTowel, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlTowel, {
-				delay: data.spriteJSON.sprite[`squeak`][1] / 1000 + 1,
+				delay: 2,
 				onStart: () => {
 					data.sprite.play(`squeak`);
 				},
 			})
-			.to(girlTowel, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-9`][1] / 1000 - 1,
+			.to(basketClosed, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 2,
+				autoAlpha: 0,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-9`);
 				},
 			})
-			.to(basketClosed, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(basketOpen, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girlTowel, { x: 80, duration: 1 })
+			.to(girlRightTowel, { x: 60, duration: 0 }, '<')
 			.to(girlTowel, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(girlRightTowel, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girl, { x: 100, duration: 0 }, '<')
 			.to(girlRightTowel, { delay: 1, autoAlpha: 0, duration: 0.1 })
 			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(basketOpen, { delay: 0.5, autoAlpha: 0, duration: 0.1 })
-			.to(basketClosed, { autoAlpha: 1, duration: 0.1 }, '<');
+			.to(basketClosed, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girl, { x: 400, duration: 1.5 });
 
 		await tl.then();
 		await sleep(500);

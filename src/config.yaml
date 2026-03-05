@@ -62,7 +62,6 @@ globals:
   defaultCommunity: german
   defaultDataTransfer: local
   slideGapDuration: 500 # delay for most slides before transitioning to next
-  playResponseFeedback: 0
 
 procedure:
   # use exact slide ids from Illustrator for values
@@ -109,7 +108,7 @@ procedure:
     # - s-falsebelief-col-b
     # - s-falsebelief-ui-a
     # - s-perspectivetaking-two-b
-    - s-aspectuality-a
+    # - s-aspectuality-a
     # - s-knowledgeaccess-a
     # - s-perspectivetaking-two-c
     # - s-aspectuality-b
@@ -119,7 +118,7 @@ procedure:
     # - s-diversedesires-b
     # - s-falsebelief-two-a
     # - s-deception-b
-    # - s-falsebelief-two-b
+    - s-falsebelief-two-b
     - s-end
 
   english:

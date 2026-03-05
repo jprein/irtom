@@ -25,64 +25,61 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Add trial-specific animation
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const boyBall = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-ball`,
+		`link-${slidePrefix}-${data.community}-boy-ball`
 	) as SvgInHtml;
 	const boyHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-handsup`,
+		`link-${slidePrefix}-${data.community}-boy-handsup`
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const boxOpen = document.getElementById(
-		`${slidePrefix}-box-open`,
+		`${slidePrefix}-box-open`
 	) as SvgInHtml;
 	const boxClosed = document.getElementById(
-		`${slidePrefix}-box-closed`,
+		`${slidePrefix}-box-closed`
 	) as SvgInHtml;
 
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some elements
-		gsap.set([boyBall, girl], { x: -1200 });
-		gsap.set(boyBall, { autoAlpha: 1 });
-		gsap.set([boy, boyHandsup, boxOpen], {
+		gsap.set(girl, { x: -1200 });
+		gsap.set(boyBall, { autoAlpha: 1, x: -1200 });
+		gsap.set([boyHandsup, boxOpen], {
 			autoAlpha: 0,
 		});
-		gsap.set(boy, { x: 0 });
+		gsap.set(boy, { autoAlpha: 0, x: 0 });
 
 		const tl = await gsap.timeline();
 
+		// Play initial audio
+		await data.sprite.playPromise(`${slidePrefix}-1`);
+
 		tl.to(boyBall, {
+			x: 0,
+			duration: 2,
 			onStart: () => {
-				data.sprite.play(`${slidePrefix}-1`);
+				data.sprite.play(`${slidePrefix}-2`);
 			},
 		})
-			.to(boyBall, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-1`][1] / 1000,
-				x: 0,
-				duration: 2,
-				onStart: () => {
-					data.sprite.play(`${slidePrefix}-2`);
-				},
-			})
 			.to([boyBall, boxClosed], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
 				autoAlpha: 0,
 				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-3`);
+				},
 			})
 			.to(
 				[boyHandsup, boxOpen],
 				{
 					autoAlpha: 1,
 					duration: 0.1,
-					onComplete: () => {
-						data.sprite.play(`${slidePrefix}-3`);
-					},
 				},
-				'<',
+				'<'
 			)
 			.to([boyHandsup, boxOpen], {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
