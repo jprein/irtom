@@ -150,6 +150,7 @@ export const procedure = async () => {
 			dimension: undefined,
 			trialNr: data.slideCounter,
 			trialDuration: undefined,
+			responseTimeSeconds: undefined,
 			response: undefined,
 			correct: undefined,
 			score: undefined,

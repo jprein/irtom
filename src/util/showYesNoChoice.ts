@@ -1,5 +1,4 @@
 import { gsap } from 'gsap';
-import config from '../config.yaml';
 import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
 
@@ -138,8 +137,12 @@ export const showYesNoChoice = async (
 
 	// Get Response (only add event listener for response if not clicked repeat; otherwise two...)
 	if (!data.clickedRepeat || data.incorrectResponse) {
+		const responseStartMs = Date.now();
 		const response = await getResponse([yesGroup.id, noGroup.id]);
 		stopBlockingState = false;
+		data.procedure[data.currentSlide].responseTimeSeconds = Number(
+			((Date.now() - responseStartMs) / 1000).toFixed(3),
+		);
 		// Response returns the clicked element.
 		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
 		// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")

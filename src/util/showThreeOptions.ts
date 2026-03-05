@@ -1,5 +1,4 @@
 import { gsap } from 'gsap';
-import config from '../config.yaml';
 import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
 
@@ -86,12 +85,16 @@ export const showThreeOptions = async (slidePrefix: string) => {
 
 	// Get Response
 	if (!data.clickedRepeat || data.incorrectResponse) {
+		const responseStartMs = Date.now();
 		const response = await getResponse([
 			optionLeft.id,
 			optionCenter.id,
 			optionRight.id,
 		]);
 		stopBlockingState = false;
+		data.procedure[data.currentSlide].responseTimeSeconds = Number(
+			((Date.now() - responseStartMs) / 1000).toFixed(3),
+		);
 
 		// Response returns the clicked element.
 		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
