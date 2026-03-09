@@ -14,7 +14,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	const slidePrefix = 's-diversedesires-a';
 
 	// Store correct response
-	data.procedure[data.currentSlide].correct = 'right';
+	data.procedure[data.currentSlide].correct = 'left';
 	data.procedure[data.currentSlide].dimension = 'diversedesires';
 	data.procedure[data.currentSlide].analyse = true;
 
@@ -25,22 +25,22 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const girlYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-left-yay`,
+		`link-${slidePrefix}-${data.community}-girl-left-yay`
 	) as SvgInHtml;
 	const girlNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-right-nay`,
+		`link-${slidePrefix}-${data.community}-girl-right-nay`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-left-nay`,
+		`link-${slidePrefix}-${data.community}-boy-left-nay`
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-right-yay`,
+		`link-${slidePrefix}-${data.community}-boy-right-yay`
 	) as SvgInHtml;
 
 	// Define animation function

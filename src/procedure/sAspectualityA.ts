@@ -14,7 +14,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	const slidePrefix = 's-aspectuality-a';
 
 	// Store correct response
-	data.procedure[data.currentSlide].correct = 'right';
+	data.procedure[data.currentSlide].correct = 'left';
 	data.procedure[data.currentSlide].dimension = 'aspectuality';
 	data.procedure[data.currentSlide].analyse = true;
 

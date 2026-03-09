@@ -15,7 +15,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	const slidePrefix = 's-appearancereality-b';
 
 	// Store correct response
-	data.procedure[data.currentSlide].correct = 'right';
+	data.procedure[data.currentSlide].correct = 'left';
 	data.procedure[data.currentSlide].dimension = 'appearancereality';
 	data.procedure[data.currentSlide].analyse = true;
 

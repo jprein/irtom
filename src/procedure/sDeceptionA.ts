@@ -15,7 +15,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	const choicePrefix = 's-yesnochoice';
 
 	// Store correct response
-	data.procedure[data.currentSlide].correct = 'right';
+	data.procedure[data.currentSlide].correct = 'no';
 	data.procedure[data.currentSlide].dimension = 'deception';
 	data.procedure[data.currentSlide].analyse = true;
 
