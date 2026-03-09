@@ -1,7 +1,7 @@
 {
   "src": [
-    "communities/english/combined.webm",
-    "communities/english/combined.mp3"
+    "communities/english/combined.mp3",
+    "communities/english/combined.webm"
   ],
   "sprite": {
     "neutral-response-alright": [

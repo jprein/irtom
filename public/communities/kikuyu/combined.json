@@ -1,7 +1,7 @@
 {
   "src": [
-    "communities/kikuyu/combined.webm",
-    "communities/kikuyu/combined.mp3"
+    "communities/kikuyu/combined.mp3",
+    "communities/kikuyu/combined.webm"
   ],
   "sprite": {
     "neutral-response-alright": [

@@ -1,5 +1,4 @@
 import { gsap } from 'gsap';
-import config from '../config.yaml';
 import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
 
@@ -8,16 +7,16 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
 	const repeat = document.getElementById(
-		`link-${slidePrefix}-repeat`,
+		`link-${slidePrefix}-repeat`
 	) as SvgInHtml;
 	const optionLeft = document.getElementById(
-		`${slidePrefix}-left`,
+		`${slidePrefix}-left`
 	) as SvgInHtml;
 	const optionRight = document.getElementById(
-		`${slidePrefix}-right`,
+		`${slidePrefix}-right`
 	) as SvgInHtml;
 	const subject = document.querySelector(
-		`[id*="${slidePrefix}"][id*="subject"]`,
+		`[id*="${slidePrefix}"][id*="subject"]`
 	) as SvgInHtml;
 
 	// Play audio
@@ -110,6 +109,20 @@ export const showTwoOptions = async (slidePrefix: string) => {
 					? 1
 					: 0;
 		}
+	}
+
+	// for two trials where participants provide their own opinion, play confirmation of choice
+	if (slidePrefix.startsWith('s-diversedesires-c')) {
+		if (data.procedure[data.currentSlide].response === 'left')
+			await data.sprite.playPromise('s-diversedesires-c-left-feedback');
+		if (data.procedure[data.currentSlide].response === 'right')
+			await data.sprite.playPromise('s-diversedesires-c-right-feedback');
+	}
+	if (slidePrefix.startsWith('s-diversebeliefs-a')) {
+		if (data.procedure[data.currentSlide].response === 'left')
+			await data.sprite.playPromise('s-diversebeliefs-a-left-feedback');
+		if (data.procedure[data.currentSlide].response === 'right')
+			await data.sprite.playPromise('s-diversebeliefs-a-right-feedback');
 	}
 	return stopBlockingState;
 };
