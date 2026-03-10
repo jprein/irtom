@@ -85,8 +85,8 @@ export const showYesNoChoice = async (
 		})
 
 		// phase C: reset + show thumbs at same time
-		.to([yesFace, yesFacefeatures], { y: 0, duration: 0.2 })
-		.to(yesThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
+		.to([yesFace, yesFacefeatures], { y: 0, duration: 0.1 })
+		.to(yesThumbs, { autoAlpha: 1, duration: 0.1 }, '<')
 		.to(yesGroup, { scale: 1, duration: 0.1 });
 
 	// 3) NO group
@@ -99,6 +99,7 @@ export const showYesNoChoice = async (
 	}
 
 	tl.to(noGroup, {
+		delay: 0.3,
 		autoAlpha: 1,
 		duration: 0.1,
 		onStart: () => data.sprite.play('no'),
@@ -116,9 +117,9 @@ export const showYesNoChoice = async (
 			repeat: 1,
 			yoyo: true,
 		})
-		.to([noFace, noFacefeatures], { x: 0, duration: 0.2 })
-		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
-		.to(noGroup, { scale: 1, duration: 0.25 });
+		.to([noFace, noFacefeatures], { x: 0, duration: 0.1 })
+		.to(noThumbs, { autoAlpha: 1, duration: 0.1 }, '<')
+		.to(noGroup, { scale: 1, duration: 0.1 });
 
 	// If you truly need to await completion:
 	await tl.then();
