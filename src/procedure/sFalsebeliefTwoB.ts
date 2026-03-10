@@ -101,6 +101,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		gsap.set([womanStanding, cupboardClosed], {
 			autoAlpha: 1,
+			x: 0,
 		});
 
 		gsap.set(girl, { autoAlpha: 1, x: +200 });
@@ -131,7 +132,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(womanSpeaking, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(womanStanding, {
-				delay: 2,
+				// delay: 1,
 				x: -1200,
 				duration: 2,
 				onStart: () => {
@@ -257,7 +258,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			})
 			.to(cupboardClosed, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(womenWithWindow, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-8`][1] / 1000 - 2,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
