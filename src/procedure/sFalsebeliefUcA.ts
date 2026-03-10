@@ -25,25 +25,25 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const girlWithShoes = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-shoes`,
+		`link-${slidePrefix}-${data.community}-girl-shoes`
 	) as SvgInHtml;
 	const girlWithBook = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-book`,
+		`link-${slidePrefix}-${data.community}-girl-book`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const boxClosed = document.getElementById(
-		`${slidePrefix}-box-closed`,
+		`${slidePrefix}-box-closed`
 	) as SvgInHtml;
 	const boxOpenShoes = document.getElementById(
-		`${slidePrefix}-box-shoes`,
+		`${slidePrefix}-box-shoes`
 	) as SvgInHtml;
 	const boxOpenBook = document.getElementById(
-		`${slidePrefix}-box-book`,
+		`${slidePrefix}-box-book`
 	) as SvgInHtml;
 
 	// Define animation function
@@ -61,7 +61,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			{
 				autoAlpha: 0,
 				x: 0,
-			},
+			}
 		);
 		gsap.set([girlWithBook, boxClosed, boy], {
 			autoAlpha: 1,
@@ -105,7 +105,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 0,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to(boxClosed, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 + 0.5,
@@ -124,7 +124,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 - 2,
 				autoAlpha: 1,
-				x: 0,
+				x: -60,
 				duration: 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-6`);
