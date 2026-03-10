@@ -3,6 +3,7 @@ import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
 
 export const showTwoOptions = async (slidePrefix: string) => {
+	const responseStartMs = Date.now();
 	let stopBlockingState = true;
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
@@ -91,7 +92,6 @@ export const showTwoOptions = async (slidePrefix: string) => {
 
 	// Get Response
 	if (!data.clickedRepeat || data.incorrectResponse) {
-		const responseStartMs = Date.now();
 		const response = await getResponse([optionLeft.id, optionRight.id]);
 		stopBlockingState = false;
 		data.procedure[data.currentSlide].responseTimeSeconds = Number(
