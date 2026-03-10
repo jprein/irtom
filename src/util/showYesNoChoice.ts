@@ -1,11 +1,10 @@
 import { gsap } from 'gsap';
-import config from '../config.yaml';
 import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
 
 export const showYesNoChoice = async (
 	slidePrefix: string,
-	choicePrefix: string,
+	choicePrefix: string
 ) => {
 	let stopBlockingState = true;
 	// Get elements for binary response format (yes/no animated nodding)
@@ -13,31 +12,31 @@ export const showYesNoChoice = async (
 	choiceSlide.setAttribute('visibility', 'visible');
 	const blurr = document.getElementById(`${choicePrefix}-blurr`) as SvgInHtml;
 	const repeat = document.getElementById(
-		`link-${choicePrefix}-repeat`,
+		`link-${choicePrefix}-repeat`
 	) as SvgInHtml;
 	const yesGroup = document.getElementById(
-		`${choicePrefix}-${data.emoji}-yes`,
+		`${choicePrefix}-${data.emoji}-yes`
 	) as SvgInHtml;
 	const yesThumbs = document.getElementById(
-		`${choicePrefix}-${data.emoji}-thumbs-yes`,
+		`${choicePrefix}-${data.emoji}-thumbs-yes`
 	) as SvgInHtml;
 	const yesFace = document.getElementById(
-		`${choicePrefix}-${data.emoji}-face-yes`,
+		`${choicePrefix}-${data.emoji}-face-yes`
 	) as SvgInHtml;
 	const yesFacefeatures = document.getElementById(
-		`${choicePrefix}-${data.emoji}-facefeatures-yes`,
+		`${choicePrefix}-${data.emoji}-facefeatures-yes`
 	) as SvgInHtml;
 	const noGroup = document.getElementById(
-		`${choicePrefix}-${data.emoji}-no`,
+		`${choicePrefix}-${data.emoji}-no`
 	) as SvgInHtml;
 	const noThumbs = document.getElementById(
-		`${choicePrefix}-${data.emoji}-thumbs-no`,
+		`${choicePrefix}-${data.emoji}-thumbs-no`
 	) as SvgInHtml;
 	const noFace = document.getElementById(
-		`${choicePrefix}-${data.emoji}-face-no`,
+		`${choicePrefix}-${data.emoji}-face-no`
 	) as SvgInHtml;
 	const noFacefeatures = document.getElementById(
-		`${choicePrefix}-${data.emoji}-facefeatures-no`,
+		`${choicePrefix}-${data.emoji}-facefeatures-no`
 	) as SvgInHtml;
 
 	// Play audio
@@ -52,19 +51,20 @@ export const showYesNoChoice = async (
 	});
 
 	// 1) blur + show yesGroup (keep durations explicit where needed)
-	tl.to(blurr, { delay: 1, autoAlpha: 0.7, duration: 0.3 });
+	tl.to(blurr, { delay: 0.5, autoAlpha: 0.7, duration: 0.1 });
 
 	// for first yes/no training trial, enlarge the particular group to make it more salient
 	if (slidePrefix === 's-yesnotraining-a') {
 		tl.to(yesGroup, {
 			scale: 1.2,
-			duration: 0.4,
+			duration: 0.2,
 		});
 	}
 
 	tl.to(yesGroup, {
+		delay: 0.5,
 		autoAlpha: 1,
-		duration: 0.5,
+		duration: 0.1,
 		onStart: () => data.sprite.play('yes'),
 	});
 
@@ -72,7 +72,7 @@ export const showYesNoChoice = async (
 	// phase A: jump up
 	tl.to([yesFace, yesFacefeatures], {
 		y: (i) => (i === 0 ? -8 : -20),
-		duration: 0.3,
+		duration: 0.1,
 		ease: 'none',
 	})
 
@@ -87,21 +87,20 @@ export const showYesNoChoice = async (
 		// phase C: reset + show thumbs at same time
 		.to([yesFace, yesFacefeatures], { y: 0, duration: 0.2 })
 		.to(yesThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
-		.to(yesGroup, { delay: 0.5, scale: 1, duration: 0.25 });
+		.to(yesGroup, { scale: 1, duration: 0.1 });
 
 	// 3) NO group
 	// for first yes/no training trial, enlarge the particular group to make it more salient
 	if (slidePrefix === 's-yesnotraining-a') {
 		tl.to(noGroup, {
 			scale: 1.2,
-			duration: 0.4,
+			duration: 0.2,
 		});
 	}
 
 	tl.to(noGroup, {
-		delay: 0.2,
 		autoAlpha: 1,
-		duration: 0.5,
+		duration: 0.1,
 		onStart: () => data.sprite.play('no'),
 	});
 
@@ -119,7 +118,7 @@ export const showYesNoChoice = async (
 		})
 		.to([noFace, noFacefeatures], { x: 0, duration: 0.2 })
 		.to(noThumbs, { autoAlpha: 1, duration: 0.5 }, '<')
-		.to(noGroup, { delay: 0.5, scale: 1, duration: 0.25 });
+		.to(noGroup, { scale: 1, duration: 0.25 });
 
 	// If you truly need to await completion:
 	await tl.then();

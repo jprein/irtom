@@ -26,9 +26,9 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	const timeline = gsap.timeline();
 	if (blurr) {
 		await timeline.to(blurr, {
-			delay: 1,
+			delay: 0.5,
 			autoAlpha: 0.7,
-			duration: 0.6,
+			duration: 0.1,
 		});
 	}
 
@@ -36,54 +36,58 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	if (subject) {
 		await timeline.to(subject, {
 			autoAlpha: 1,
-			duration: 0.5,
+			duration: 0.1,
 		});
 	}
+
+	// for training trials, slower response options
 	if (
 		slidePrefix.startsWith('s-leftrighttraining') ||
-		slidePrefix.startsWith('s-namestraining')
+		slidePrefix.startsWith('s-emojichoice') ||
+		slidePrefix.startsWith('s-yesnotraining')
 	) {
 		// Show response options
 		await timeline
 			.to(optionLeft, {
-				delay: 0.3,
+				delay: 0.5,
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 			})
 			.to(optionRight, {
-				delay: 1,
+				delay: 0.5,
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 			})
 			.to([optionLeft, optionRight, repeat], {
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 				pointerEvents: 'visible',
 				cursor: 'pointer',
 			});
-		// leftrighttraining-specific logic
+
+		// for all other trials, faster response options with animation
 	} else {
 		// Show response options
 		await timeline
 			.to(optionLeft, {
-				delay: 0.3,
+				delay: 0.2,
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-left`);
 				},
 			})
 			.to(optionRight, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000 + 0.3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000 + 0.2,
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-right`);
 				},
 			})
 			.to([optionLeft, optionRight, repeat], {
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 				pointerEvents: 'visible',
 				cursor: 'pointer',
 			});
