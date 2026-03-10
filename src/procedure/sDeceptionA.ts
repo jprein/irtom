@@ -102,7 +102,6 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girlAngry, { autoAlpha: 0, duration: 0 }, '<')
 			.to(girl, { autoAlpha: 1, duration: 0 }, '<')
 			.to(girl, { x: -1200, duration: 2 }, '<')
-			.to(cake, { autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000,
 				x: 0,
@@ -111,6 +110,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-6`);
 				},
 			})
+			.to(cake, { autoAlpha: 0, duration: 0 }, '<')
 			.to(boy, { x: 0, duration: 2 }, '<')
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 1.5,
