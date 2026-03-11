@@ -44,6 +44,7 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	if (
 		slidePrefix.startsWith('s-leftrighttraining') ||
 		slidePrefix.startsWith('s-emojichoice') ||
+		slidePrefix.startsWith('s-namestraining') ||
 		slidePrefix.startsWith('s-yesnotraining')
 	) {
 		// Show response options

@@ -7,8 +7,8 @@ svgBg: white
 hideUrlParameters: false
 slideTransition:
   override: true # force slide transitions
-  fadeOut: 0.25
-  fadeIn: 0.25
+  fadeOut: 0.2
+  fadeIn: 0.2
 css:
   # will be used within the init process to to add style="cursor: pointer" to the given ids
   # this uses querySelectorAll in styleDefaults.ts
@@ -62,8 +62,8 @@ css:
 globals:
   defaultSubjectId: demo
   defaultCommunity: german
-  defaultDataTransfer: local
-  slideGapDuration: 500 # delay for most slides before transitioning to next
+  defaultDataTransfer: server
+  slideGapDuration: 200 # delay for most slides before transitioning to next
 
 procedure:
   # use exact slide ids from Illustrator for values
@@ -74,7 +74,7 @@ procedure:
     - s-introduction
     # - s-emojichoice
     # - s-yesnotraining-a
-    # - s-yesnotraining-b
+    - s-yesnotraining-b
     # - s-yesnotraining-c
     # - s-yesnotraining-d
     # - s-yesnotraining-e
@@ -84,7 +84,7 @@ procedure:
     # - s-leftrighttraining-d
     # - s-namestraining
     # - s-perspectivetaking-one-a
-    # - s-pretense-a
+    # - s-perspectivetaking-two-c
     # - s-diversedesires-a
     # - s-perspectivetaking-one-b
     # - s-pretense-b
@@ -112,7 +112,7 @@ procedure:
     # - s-perspectivetaking-two-b
     # - s-aspectuality-a
     # - s-knowledgeaccess-a
-    # - s-perspectivetaking-two-c
+    # - s-pretense-a
     # - s-aspectuality-b
     # - s-falsebelief-ui-b
     # - s-perspectivetaking-two-d
