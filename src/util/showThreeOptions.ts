@@ -3,7 +3,6 @@ import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
 
 export const showThreeOptions = async (slidePrefix: string) => {
-	const responseStartMs = Date.now();
 	let stopBlockingState = true;
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
@@ -86,16 +85,16 @@ export const showThreeOptions = async (slidePrefix: string) => {
 
 	// Get Response
 	if (!data.clickedRepeat || data.incorrectResponse) {
+		const responseStartMs = Date.now();
 		const response = await getResponse([
 			optionLeft.id,
 			optionCenter.id,
 			optionRight.id,
 		]);
-		stopBlockingState = false;
-		data.procedure[data.currentSlide].responseTimeSeconds = Number(
-			((Date.now() - responseStartMs) / 1000).toFixed(3),
+		data.procedure[data.currentSlide].responseTime = Number(
+		((Date.now() - responseStartMs) / 1000).toFixed(2),
 		);
-
+		stopBlockingState = false;
 		// Response returns the clicked element.
 		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
 		// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")

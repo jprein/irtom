@@ -6,7 +6,6 @@ export const showYesNoChoice = async (
 	slidePrefix: string,
 	choicePrefix: string,
 ) => {
-	const responseStartMs = Date.now();
 	let stopBlockingState = true;
 	// Get elements for binary response format (yes/no animated nodding)
 	const choiceSlide = document.getElementById(`${choicePrefix}`) as SvgInHtml;
@@ -138,11 +137,12 @@ export const showYesNoChoice = async (
 
 	// Get Response (only add event listener for response if not clicked repeat; otherwise two...)
 	if (!data.clickedRepeat || data.incorrectResponse) {
+		const responseStartMs = Date.now();
 		const response = await getResponse([yesGroup.id, noGroup.id]);
-		stopBlockingState = false;
-		data.procedure[data.currentSlide].responseTimeSeconds = Number(
-			((Date.now() - responseStartMs) / 1000).toFixed(3),
+		data.procedure[data.currentSlide].responseTime = Number(
+		((Date.now() - responseStartMs) / 1000).toFixed(2),
 		);
+		stopBlockingState = false;
 		// Response returns the clicked element.
 		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
 		// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")
