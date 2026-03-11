@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import Toastify from 'toastify-js';
+import config from '../config.yaml';
 import {
 	downloadLastRecording,
 	uploadLastRecordingInChunks,
@@ -88,7 +89,7 @@ export const exitFullscreen = (isIOS: boolean) => {
 export const generateUserIdFilename = (
 	prefix = 'irtom',
 	postfix = 'data',
-	extension = 'json',
+	extension = 'json'
 ) => {
 	const day = new Date().toISOString().slice(0, 10);
 	const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
@@ -99,7 +100,7 @@ export const generateUserIdFilename = (
 const generateCsvContent = (jsonData: any): string => {
 	// Extract the static fields (non-procedure fields)
 	const staticFields = Object.keys(jsonData).filter(
-		(key) => key !== 'procedure',
+		(key) => key !== 'procedure'
 	);
 
 	// Extract the procedure keys (dynamic rows)
@@ -150,7 +151,7 @@ const triggerBrowserDownload = async (blob: Blob, filename: string) => {
 // Function to download the CSV
 export const downloadCsv = async (
 	jsonData: any = data,
-	id: string = generateUserIdFilename('irtom', undefined, 'csv'),
+	id: string = generateUserIdFilename('irtom', undefined, 'csv')
 ) => {
 	const csvContent = generateCsvContent(jsonData);
 
@@ -162,7 +163,7 @@ export const downloadCsv = async (
 // Function to upload the CSV
 export async function uploadCsv(
 	jsonData: any = data,
-	id: string = generateUserIdFilename('irtom', undefined, 'csv'),
+	id: string = generateUserIdFilename('irtom', undefined, 'csv')
 ) {
 	const csvContent = generateCsvContent(jsonData);
 
@@ -188,11 +189,13 @@ export async function uploadCsv(
 			return;
 		}
 
-		Toastify({
-			text: '💾 CSV uploaded successfully!',
-			duration: 2000,
-			className: 'toast-info',
-		}).showToast();
+		if (config.devmode.on) {
+			Toastify({
+				text: '💾 CSV uploaded successfully!',
+				duration: 2000,
+				className: 'toast-info',
+			}).showToast();
+		}
 	} catch (error) {
 		console.error('Error uploading CSV:', error);
 		Toastify({
@@ -269,11 +272,13 @@ export async function uploadWebcamVideo(webcam: boolean, id: string) {
 				chunkSize: 1024 * 1024,
 			});
 
-			Toastify({
-				text: '💾 Video uploaded successfully!',
-				duration: 2000,
-				className: 'toast-info',
-			}).showToast();
+			if (config.devmode.on) {
+				Toastify({
+					text: '💾 Video uploaded successfully!',
+					duration: 2000,
+					className: 'toast-info',
+				}).showToast();
+			}
 		} catch (err) {
 			console.error('Error uploading video:', err);
 			Toastify({

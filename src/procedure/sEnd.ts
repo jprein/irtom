@@ -4,6 +4,8 @@ import config from '../config.yaml';
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../../src/types';
 
+const PROCEDURE_FINISHED_EVENT = 'irtom:procedure-finished';
+
 export default async ({ currentSlide, previousSlide }) => {
 	// swap slides automatically (don’t touch this)
 	swapSlides(currentSlide, previousSlide);
@@ -39,7 +41,15 @@ export default async ({ currentSlide, previousSlide }) => {
 				if (!config.devmode.on) {
 					exitFullscreen(data.isIOS);
 				}
-				window.location.href = './goodbye.html';
+
+				// Redirect only after the procedure emits its finalized event.
+				window.addEventListener(
+					PROCEDURE_FINISHED_EVENT,
+					() => {
+						window.location.href = './goodbye.html';
+					},
+					{ once: true }
+				);
 				resolve();
 			},
 			{ once: true }
