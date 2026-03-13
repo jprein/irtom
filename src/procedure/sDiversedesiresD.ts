@@ -34,21 +34,21 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-${naySide}-nay`,
+		`link-${slidePrefix}-${data.community}-boy-${naySide}-nay`
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-${yaySide}-yay`,
+		`link-${slidePrefix}-${data.community}-boy-${yaySide}-yay`
 	) as SvgInHtml;
 
 	// also get the other (irrelevant) yay/nay agent sides to hide them
 	const boyNayHide = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-${yaySide}-nay`,
+		`link-${slidePrefix}-${data.community}-boy-${yaySide}-nay`
 	) as SvgInHtml;
 	const boyYayHide = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-${naySide}-yay`,
+		`link-${slidePrefix}-${data.community}-boy-${naySide}-yay`
 	) as SvgInHtml;
 
 	// Define animation function
@@ -57,15 +57,17 @@ export default async ({ currentSlide, previousSlide }) => {
 		gsap.set(boy, { x: 1200 });
 		gsap.set([boyNay, boyYay, boyNayHide, boyYayHide], { opacity: 0 });
 
-		// Play initial audio
-		await data.sprite.playPromise(`${slidePrefix}-1`);
-
 		// Animation sequence
 		const tl = await gsap.timeline();
 		tl.to(boy, {
+			delay: 0.2,
 			x: 0,
 			duration: 2,
-			onComplete: () => {
+			onStart: () => {
+				data.sprite.play(`${slidePrefix}-1`);
+			},
+		}).to(boy, {
+			onStart: () => {
 				data.sprite.play(`${slidePrefix}-2`);
 			},
 		});
@@ -105,16 +107,9 @@ export default async ({ currentSlide, previousSlide }) => {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-5-yay`][1] / 1000,
 					autoAlpha: 0,
 					duration: 0.1,
-					onStart: () => {
-						data.sprite.play(`${slidePrefix}-6`);
-					},
 				})
-				.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
-				.to(boy, {
-					delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
-					x: 1200,
-					duration: 2,
-				});
+				.to(boy, { autoAlpha: 1, duration: 0.1 }, '<');
+
 			// For the case that Max likes the cookies but not the candy
 		} else {
 			tl.to(boy, {
@@ -148,16 +143,8 @@ export default async ({ currentSlide, previousSlide }) => {
 					delay: data.spriteJSON.sprite[`${slidePrefix}-5-nay`][1] / 1000,
 					autoAlpha: 0,
 					duration: 0.1,
-					onStart: () => {
-						data.sprite.play(`${slidePrefix}-6`);
-					},
 				})
-				.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
-				.to(boy, {
-					delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000,
-					x: 1200,
-					duration: 2,
-				});
+				.to(boy, { autoAlpha: 1, duration: 0.1 }, '<');
 		}
 
 		await tl.then();

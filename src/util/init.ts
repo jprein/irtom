@@ -45,7 +45,7 @@ export const init = async () => {
 		studyChoices = JSON.parse(storedChoices);
 	} else {
 		console.log(
-			'No data found in local storage. Creating a studyChoices object.',
+			'No data found in local storage. Creating a studyChoices object.'
 		);
 	}
 
@@ -54,7 +54,7 @@ export const init = async () => {
 		id: 'testID',
 		community: 'german',
 		webcam: 'false',
-		datatransfer: 'local',
+		datatransfer: 'server',
 	};
 
 	// Check if studyChoices contains all required keys.
@@ -64,14 +64,14 @@ export const init = async () => {
 			if (!Object.prototype.hasOwnProperty.call(studyChoices, key)) {
 				studyChoices[key] = defaultValues[key];
 				console.log(
-					`Key "${key}" was missing. Set default value: "${defaultValues[key]}"`,
+					`Key "${key}" was missing. Set default value: "${defaultValues[key]}"`
 				);
 			}
 		});
 	} else {
 		console.log(
 			'Setting the studyChoices object to default values:',
-			JSON.stringify(defaultValues),
+			JSON.stringify(defaultValues)
 		);
 		// Create a new object with default values
 		studyChoices = { ...defaultValues };
@@ -84,7 +84,7 @@ export const init = async () => {
 	const svg = document.querySelector('svg')! as SvgInHtml;
 
 	// check if svg is voxified
-	if (!svg.hasAttribute('voxified')) {
+	if (config.devmode.on && !svg.hasAttribute('voxified')) {
 		Toastify({
 			escapeMarkup: false,
 			text:
@@ -116,7 +116,7 @@ export const init = async () => {
 	if (document.querySelectorAll('[display="none"]').length > 0) {
 		console.warn(
 			'Found elements with \'display="none"\' attribute. Make sure all objects are visible when exporting the SVG.',
-			'Use removeDisplayNone(); to bypass this temporarily. Details:',
+			'Use removeDisplayNone(); to bypass this temporarily. Details:'
 		);
 		console.warn(document.querySelectorAll('[display="none"]'));
 		removeDisplayNone();
@@ -189,7 +189,7 @@ export const init = async () => {
 
 	const translation = _.zipObject(
 		Object.keys(translations),
-		Object.values(translations).map((e) => e[data.community]),
+		Object.values(translations).map((e) => e[data.community])
 	);
 
 	// iterate over all text keys and add text into foreign objects
@@ -258,7 +258,7 @@ export const init = async () => {
 	// initialize audio sprite instance
 	// first, get the audio sprite JSON file
 	const spriteLookup = await fetch(
-		`./communities/${data.community}/combined.json`,
+		`./communities/${data.community}/combined.json`
 	);
 
 	data.spriteJSON = await spriteLookup.json();
@@ -288,7 +288,7 @@ export const init = async () => {
 	if (config.devmode.on) {
 		console.group(
 			'%cData object',
-			'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+			'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;'
 		);
 		console.log(data);
 		console.groupEnd();
@@ -297,7 +297,7 @@ export const init = async () => {
 	// in config.procedure, all communities are listed
 	// we filter all communities that are not our current community
 	const otherCommunities = Object.keys(config.procedure).filter(
-		(community) => community !== data.community,
+		(community) => community !== data.community
 	);
 
 	// for all other communities, we hide the community-specific SVG elements

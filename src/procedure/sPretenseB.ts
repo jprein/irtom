@@ -25,31 +25,31 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const boyKneeling = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-kneeling`,
+		`link-${slidePrefix}-${data.community}-boy-kneeling`
 	) as SvgInHtml;
 	const boyNoBrick = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-nobricks`,
+		`link-${slidePrefix}-${data.community}-boy-nobricks`
 	) as SvgInHtml;
 	const girlBrick = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-bricks`,
+		`link-${slidePrefix}-${data.community}-girl-bricks`
 	) as SvgInHtml;
 	const girlKneeling = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-kneeling`,
+		`link-${slidePrefix}-${data.community}-girl-kneeling`
 	) as SvgInHtml;
 	const girlBucket = document.getElementById(
-		`${slidePrefix}-bucket-girl`,
+		`${slidePrefix}-bucket-girl`
 	) as SvgInHtml;
 	const girlBucketWithBricks = document.getElementById(
-		`${slidePrefix}-bucket-girl-bricks`,
+		`${slidePrefix}-bucket-girl-bricks`
 	) as SvgInHtml;
 	const boyBucket = document.getElementById(
-		`${slidePrefix}-bucket-boy`,
+		`${slidePrefix}-bucket-boy`
 	) as SvgInHtml;
 	const brickAfter = document.getElementById(
-		`${slidePrefix}-bricks-after`,
+		`${slidePrefix}-bricks-after`
 	) as SvgInHtml;
 	const brickBefore = document.getElementById(
-		`${slidePrefix}-bricks-before`,
+		`${slidePrefix}-bricks-before`
 	) as SvgInHtml;
 
 	// Define animation function
@@ -69,7 +69,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			{
 				autoAlpha: 0,
 				x: 0,
-			},
+			}
 		);
 		gsap.set([boyKneeling, girlKneeling, boyBucket, girlBucket, brickBefore], {
 			autoAlpha: 1,
@@ -85,7 +85,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			},
 		})
 			.to([girlBrick, brickAfter], {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 - 1,
 				autoAlpha: 1,
 				duration: 0.1,
 			})
@@ -95,10 +95,10 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 0,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to([girlKneeling, girlBucketWithBricks], {
-				delay: 2,
+				delay: 1,
 				autoAlpha: 1,
 				duration: 0.1,
 			})
@@ -108,7 +108,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 0,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to(boyKneeling, {
 				onStart: () => {
@@ -116,7 +116,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(boyNoBrick, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
 				autoAlpha: 1,
 				duration: 0.1,
 			})
@@ -126,10 +126,10 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 0,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to(boyKneeling, {
-				delay: 2,
+				delay: 1,
 				autoAlpha: 1,
 				duration: 0.1,
 			})
@@ -139,7 +139,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 0,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			);
 
 		await tl.then();

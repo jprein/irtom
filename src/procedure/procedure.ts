@@ -19,6 +19,7 @@ const slideModules = import.meta.glob('./s*.ts');
 
 export const procedure = async () => {
 	let currentProcedure = _.cloneDeep(config.procedure[data.community]);
+	let endSlideCsvUploadPromise: Promise<void> | null = null;
 
 	// check if nested objects exist
 	let isNested = currentProcedure.some((e) => _.isPlainObject(e));
@@ -33,7 +34,7 @@ export const procedure = async () => {
 
 			// check if nested object is nested again
 			const isNestedAgain: boolean = currentProcedure[ni][nkey].some(
-				(e: string) => _.isPlainObject(e),
+				(e: string) => _.isPlainObject(e)
 			);
 
 			// if nested object is nested again, get nested key(s)
@@ -43,7 +44,7 @@ export const procedure = async () => {
 
 				// get new nested key order
 				const nnkeys = currentProcedure[ni][nkey].map(
-					(e: string[]) => Object.keys(e)[0],
+					(e: string[]) => Object.keys(e)[0]
 				) as string[];
 
 				// save shuffled order in data object
@@ -91,7 +92,7 @@ export const procedure = async () => {
 	if (config.devmode.on) {
 		console.group(
 			'%cProcedure for this community',
-			'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+			'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;'
 		);
 		console.table(currentProcedure);
 		console.groupEnd();
@@ -145,6 +146,14 @@ export const procedure = async () => {
 		data.nextSlide = nextSlide;
 		data.slideCounter++;
 
+		// Disable unload upload hook on the final slide to avoid duplicate CSV upload.
+		if (currentSlide === 'sEnd') {
+			window.onbeforeunload = null;
+			if (data.datatransfer !== 'local' && !endSlideCsvUploadPromise) {
+				endSlideCsvUploadPromise = uploadCsv();
+			}
+		}
+
 		// init default procedure response
 		data.procedure[currentSlide] = {
 			dimension: undefined,
@@ -161,7 +170,7 @@ export const procedure = async () => {
 
 		// get possible response buttons (next buttons, yes/no buttons)
 		const responseButtons = document.querySelectorAll(
-			`#${currentSlideKc} [id^=link][id$=next], #${currentSlideKc} [id^=link][id$=yes], #${currentSlideKc} [id^=link][id$=no]`,
+			`#${currentSlideKc} [id^=link][id$=next], #${currentSlideKc} [id^=link][id$=yes], #${currentSlideKc} [id^=link][id$=no]`
 		);
 
 		// start time tracking
@@ -205,14 +214,14 @@ export const procedure = async () => {
 		// ENABLE REPEAT BUTTON
 		// If a repeat element exists on the slide, attach a listener to re-run the behavior when clicked
 		let repeatSvg = document.querySelector(
-			`#${currentSlideKc} [id$="-repeat"]`,
+			`#${currentSlideKc} [id$="-repeat"]`
 		)! as SvgInHtml;
 
 		// If the repeat element is not found, try to get it from yes/no slide
 		if (!repeatSvg) {
 			repeatSvg = document.getElementById('s-yesnochoice-repeat') as SvgInHtml;
 			repeatSvg = document.querySelector(
-				`#s-yesnochoice [id$="-repeat"]`,
+				`#s-yesnochoice [id$="-repeat"]`
 			)! as SvgInHtml;
 		}
 
@@ -233,14 +242,14 @@ export const procedure = async () => {
 				data.procedure[currentSlide].repeatIncorrect += 1;
 				console.log(
 					`%cRepeat ${currentSlide}. Reason: Incorrect response with feedback for the ${data.procedure[currentSlide].repeatIncorrect}x time.`,
-					'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+					'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;'
 				);
 			} else {
 				data.procedure[currentSlide].repeatOnClick += 1;
 				data.clickedRepeat = true;
 				console.log(
 					`%cRepeat ${currentSlide}. Reason: Clicked repeat for the ${data.procedure[currentSlide].repeatOnClick}x time.`,
-					'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+					'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;'
 				);
 			}
 
@@ -332,7 +341,7 @@ export const procedure = async () => {
 
 			// always hide div wrapper of text/audio feedback
 			const responseWrapper = document.querySelectorAll(
-				'div [id^=wrapper-s]',
+				'div [id^=wrapper-s]'
 			) as NodeListOf<HTMLDivElement>;
 			responseWrapper.forEach((e) => {
 				e.style.display = 'none';
@@ -404,29 +413,52 @@ export const procedure = async () => {
 			console.warn('Failed to stop recording, continuing anyway:', e);
 		}
 	}
-	await addSpinner();
-	try {
-		// Save data depending on choice (local, server, both)
-		if (datatransfer === 'local') {
-			await downloadCsv();
-			await downloadWebcamVideo(data.webcam, data.id);
-		} else if (datatransfer === 'server') {
-			await uploadCsv();
-			await sleep(1000);
-			await uploadWebcamVideo(data.webcam, data.id);
-			await sleep(2000);
-		} else {
-			await uploadCsv();
-			await sleep(1000);
-			await uploadWebcamVideo(data.webcam, data.id);
-			await sleep(1000);
-			await downloadCsv();
-			await sleep(1000);
-			await downloadWebcamVideo(data.webcam, data.id);
-			await sleep(1000);
+
+	const ensureCsvUploaded = async () => {
+		if (datatransfer === 'local') return;
+		if (endSlideCsvUploadPromise) {
+			await endSlideCsvUploadPromise;
+			return;
 		}
-	} finally {
-		await hideSpinner();
+		await uploadCsv();
+	};
+
+	// Save data depending on choice (local, server, both)
+	if (datatransfer === 'local') {
+		await addSpinner();
+		try {
+			await downloadCsv();
+			await downloadWebcamVideo(data.webcam, data.id);
+		} finally {
+			await hideSpinner();
+		}
+	} else if (datatransfer === 'server') {
+		await ensureCsvUploaded();
+
+		if (data.webcam) {
+			await addSpinner();
+			try {
+				await sleep(1000);
+				await uploadWebcamVideo(data.webcam, data.id);
+				await sleep(2000);
+			} finally {
+				await hideSpinner();
+			}
+		}
+	} else {
+		await ensureCsvUploaded();
+		await addSpinner();
+		try {
+			await sleep(1000);
+			await uploadWebcamVideo(data.webcam, data.id);
+			await sleep(1000);
+			await downloadCsv();
+			await sleep(1000);
+			await downloadWebcamVideo(data.webcam, data.id);
+			await sleep(1000);
+		} finally {
+			await hideSpinner();
+		}
 	}
 
 	// users can leave page now
@@ -440,11 +472,16 @@ export const procedure = async () => {
 
 	console.group(
 		'%cStudy Summary',
-		'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;',
+		'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;'
 	);
 	console.log(`The study took ${completionTimeFormatted.minutes} minutes and ${completionTimeFormatted.seconds} seconds.`);
 	console.log('Here is what we stored:');
 	console.log(data);
 	console.groupEnd();
 	console.log('Procedure loop done');
+
+	// Notify sEnd.ts that finalization has completed and redirect can happen there.
+	if (finishedOnEndSlide) {
+		window.dispatchEvent(new Event('irtom:procedure-finished'));
+	}
 };

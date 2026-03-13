@@ -1,4 +1,6 @@
 import { initMedia, stopMediaStream } from './util/mediaRecorderServices';
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
 // check if URL Params already exist and store them
 const url = new URL(window.location.href);
 const params = new URLSearchParams(url.search);
@@ -101,9 +103,11 @@ const openPreviewModal = async () => {
 		}
 	} catch (error) {
 		console.error('Failed to open webcam preview:', error);
-		alert(
-			'Webcam preview could not be opened. Please allow camera permission and try again.',
-		);
+		Toastify({
+			text: 'Webcam preview could not be opened. Please allow camera permission and try again.',
+			duration: 4500,
+			className: 'toast-error',
+		}).showToast();
 	}
 };
 

@@ -1,3 +1,5 @@
+import Toastify from 'toastify-js';
+
 export const createSprite = async (settingsObj) => {
 	const { src, sprite } = settingsObj;
 	let audioBuffer;
@@ -63,9 +65,11 @@ export const createSprite = async (settingsObj) => {
 
 			if (ctx!.state === 'running') return true;
 
-			alert(
-				'Audio is blocked on this device. Tap OK, then tap anywhere on the page to enable sound.',
-			);
+			Toastify({
+				text: 'Audio is blocked on this device. Tap anywhere on the page to enable sound.',
+				duration: 4500,
+				className: 'toast-info',
+			}).showToast();
 			await waitForGesture();
 
 			try {
@@ -75,9 +79,11 @@ export const createSprite = async (settingsObj) => {
 			}
 
 			if (ctx!.state !== 'running') {
-				alert(
-					'Sound is still blocked. Please unmute your device and tap again.',
-				);
+				Toastify({
+					text: 'Sound is still blocked. Please unmute your device and tap again.',
+					duration: 4500,
+					className: 'toast-error',
+				}).showToast();
 				return false;
 			}
 			return true;

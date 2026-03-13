@@ -7,16 +7,16 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
 	const repeat = document.getElementById(
-		`link-${slidePrefix}-repeat`,
+		`link-${slidePrefix}-repeat`
 	) as SvgInHtml;
 	const optionLeft = document.getElementById(
-		`${slidePrefix}-left`,
+		`${slidePrefix}-left`
 	) as SvgInHtml;
 	const optionRight = document.getElementById(
-		`${slidePrefix}-right`,
+		`${slidePrefix}-right`
 	) as SvgInHtml;
 	const subject = document.querySelector(
-		`[id*="${slidePrefix}"][id*="subject"]`,
+		`[id*="${slidePrefix}"][id*="subject"]`
 	) as SvgInHtml;
 
 	// Play audio
@@ -26,9 +26,9 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	const timeline = gsap.timeline();
 	if (blurr) {
 		await timeline.to(blurr, {
-			delay: 1,
+			delay: 0.5,
 			autoAlpha: 0.7,
-			duration: 0.6,
+			duration: 0.1,
 		});
 	}
 
@@ -36,54 +36,59 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	if (subject) {
 		await timeline.to(subject, {
 			autoAlpha: 1,
-			duration: 0.5,
+			duration: 0.1,
 		});
 	}
+
+	// for training trials, slower response options
 	if (
 		slidePrefix.startsWith('s-leftrighttraining') ||
-		slidePrefix.startsWith('s-namestraining')
+		slidePrefix.startsWith('s-emojichoice') ||
+		slidePrefix.startsWith('s-namestraining') ||
+		slidePrefix.startsWith('s-yesnotraining')
 	) {
 		// Show response options
 		await timeline
 			.to(optionLeft, {
-				delay: 0.3,
+				delay: 0.5,
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 			})
 			.to(optionRight, {
-				delay: 1,
+				delay: 0.5,
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 			})
 			.to([optionLeft, optionRight, repeat], {
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 				pointerEvents: 'visible',
 				cursor: 'pointer',
 			});
-		// leftrighttraining-specific logic
+
+		// for all other trials, faster response options with animation
 	} else {
 		// Show response options
 		await timeline
 			.to(optionLeft, {
-				delay: 0.3,
+				delay: 0.2,
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-left`);
 				},
 			})
 			.to(optionRight, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000 + 0.3,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000 + 0.2,
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-right`);
 				},
 			})
 			.to([optionLeft, optionRight, repeat], {
 				autoAlpha: 1,
-				duration: 0.3,
+				duration: 0.1,
 				pointerEvents: 'visible',
 				cursor: 'pointer',
 			});
@@ -113,6 +118,20 @@ export const showTwoOptions = async (slidePrefix: string) => {
 					? 1
 					: 0;
 		}
+	}
+
+	// for two trials where participants provide their own opinion, play confirmation of choice
+	if (slidePrefix.startsWith('s-diversedesires-c')) {
+		if (data.procedure[data.currentSlide].response === 'left')
+			await data.sprite.playPromise('s-diversedesires-c-left-feedback');
+		if (data.procedure[data.currentSlide].response === 'right')
+			await data.sprite.playPromise('s-diversedesires-c-right-feedback');
+	}
+	if (slidePrefix.startsWith('s-diversebeliefs-a')) {
+		if (data.procedure[data.currentSlide].response === 'left')
+			await data.sprite.playPromise('s-diversebeliefs-a-left-feedback');
+		if (data.procedure[data.currentSlide].response === 'right')
+			await data.sprite.playPromise('s-diversebeliefs-a-right-feedback');
 	}
 	return stopBlockingState;
 };

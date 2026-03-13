@@ -40,15 +40,15 @@ const removeUnwantedFilesPlugin = {
 		// Delete unwanted files
 		await Promise.all(
 			[...pngFiles, ...aiFiles, ...experimentFiles].map((file) =>
-				fs.unlink(file),
-			),
+				fs.unlink(file)
+			)
 		);
 		// Remove unwanted directories recursively
 		await Promise.all(
-			audioDirs.map((dir) => fs.rm(dir, { recursive: true, force: true })),
+			audioDirs.map((dir) => fs.rm(dir, { recursive: true, force: true }))
 		);
 		await Promise.all(
-			oldAudioDirs.map((dir) => fs.rm(dir, { recursive: true, force: true })),
+			oldAudioDirs.map((dir) => fs.rm(dir, { recursive: true, force: true }))
 		);
 	},
 };
@@ -67,7 +67,7 @@ export default defineConfig({
 		rollupOptions: {
 			// 1) make each slide its own entry, so Rollup emits it with your entryFileNames pattern
 			input: {
-				index: 'src/index.html',
+				index: 'src/app.html',
 				app: path.resolve(__dirname, 'src/app.html'),
 				goodbye: path.resolve(__dirname, 'src/goodbye.html'),
 				...slides, // ← every slide.ts becomes an entry point named by its basename
@@ -156,7 +156,7 @@ export default defineConfig({
 		extensions: ['.ts', '.js', '.json', '.yaml'],
 	},
 	server: {
-		open: '/index.html',
+		open: '/app.html',
 		strictPort: true,
 		port: 3000,
 	},

@@ -9,6 +9,7 @@ import {
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 import { playCorrectIncorrectResponse } from '../util/playCorrectIncorrectResponse';
+import { delay } from 'lodash';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -27,27 +28,27 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const woman = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman`,
+		`link-${slidePrefix}-${data.community}-woman`
 	) as SvgInHtml;
 
 	const womanWaving = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman-waving`,
+		`link-${slidePrefix}-${data.community}-woman-waving`
 	) as SvgInHtml;
 
 	const man = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man`,
+		`link-${slidePrefix}-${data.community}-man`
 	) as SvgInHtml;
 
 	const manWaving = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-waving`,
+		`link-${slidePrefix}-${data.community}-man-waving`
 	) as SvgInHtml;
 
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 
 	const girlSpeaking = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-speaking`,
+		`link-${slidePrefix}-${data.community}-girl-speaking`
 	) as SvgInHtml;
 
 	// Define animation function
@@ -80,23 +81,45 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girlSpeaking, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, { delay: 1, autoAlpha: 1, duration: 0.1 })
 			.to(girlSpeaking, { autoAlpha: 0, duration: 0.1 }, '<')
-			.to(woman, { autoAlpha: 0, duration: 0.1 })
-			.to(womanWaving, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(womanWaving, { delay: 1, autoAlpha: 0, duration: 0.1 })
-			.to(woman, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(girl, {
-				autoAlpha: 1,
+			.to(woman, {
+				delay: 0.5,
+				autoAlpha: 0,
 				duration: 0.1,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
+			.to(womanWaving, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(womanWaving, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 + 0.5,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
+			.to(woman, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girl, {
+				autoAlpha: 1,
+				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-4`);
+				},
+			})
 			.to(girlSpeaking, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girl, { delay: 1, autoAlpha: 1, duration: 0.1 })
 			.to(girlSpeaking, { autoAlpha: 0, duration: 0.1 }, '<')
-			.to(man, { autoAlpha: 0, duration: 0.1 })
+			.to(man, {
+				delay: 0.5,
+				autoAlpha: 0,
+				duration: 0.1,
+				onStart: () => {
+					data.sprite.play(`${slidePrefix}-5`);
+				},
+			})
 			.to(manWaving, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(manWaving, { delay: 1, autoAlpha: 0, duration: 0.1 })
+			.to(manWaving, {
+				delay: data.spriteJSON.sprite[`${slidePrefix}-5`][1] / 1000 + 0.5,
+				autoAlpha: 0,
+				duration: 0.1,
+			})
 			.to(man, { autoAlpha: 1, duration: 0.1 }, '<');
 		await sleep(500);
 		await tl.then();

@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import Toastify from 'toastify-js';
+import config from '../config.yaml';
 
 /**
  * Copies all attributes from one HTML/SVG DOM element to another.
@@ -38,7 +39,7 @@ export const copyAttributes = (
 	source: Element,
 	target: Element,
 	skip?: string[],
-	drop?: string[],
+	drop?: string[]
 ) => {
 	// get source attributes
 	const sourceAttributes = Array.from(source.attributes);
@@ -48,16 +49,18 @@ export const copyAttributes = (
 
 	// check if there are intersecting elements for drop and skip, becuase they should be XOR
 	if (_.intersection(skip, drop).length > 0) {
-		Toastify({
-			text: `You have defined elements in both skip and drop. This is not allowed!`,
-			duration: 5000,
-			gravity: 'top', // `top` or `bottom`
-			position: 'right', // `left`, `center` or `right`
-			stopOnFocus: true, // Prevents dismissing of toast on hover
-			className: 'toast-info',
-		}).showToast();
+		if (config.devmode.on) {
+			Toastify({
+				text: `You have defined elements in both skip and drop. This is not allowed!`,
+				duration: 5000,
+				gravity: 'top', // `top` or `bottom`
+				position: 'right', // `left`, `center` or `right`
+				stopOnFocus: true, // Prevents dismissing of toast on hover
+				className: 'toast-info',
+			}).showToast();
+		}
 		throw Error(
-			'You have defined elements in both skip and drop. This is not allowed!',
+			'You have defined elements in both skip and drop. This is not allowed!'
 		);
 	}
 

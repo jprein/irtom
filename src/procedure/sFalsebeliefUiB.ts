@@ -71,6 +71,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		);
 		gsap.set([girl, dogStanding], {
 			autoAlpha: 1,
+			scale: 1,
 			x: 0,
 			y: 0,
 		});

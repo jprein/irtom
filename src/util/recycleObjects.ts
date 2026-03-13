@@ -1,6 +1,7 @@
 import Toastify from 'toastify-js';
 import { copyAttributes } from './copyAttributes';
 import _ from 'lodash';
+import config from '../config.yaml';
 
 export const recycleObjects = () => {
 	// get all placeholder elements that start with "ph-"
@@ -19,16 +20,16 @@ export const recycleObjects = () => {
 	// check for missmatching/widowed placeholder and link ids
 	const widowedPlaceholderIds = _.difference(
 		placeholderObjectIds,
-		linkedObjectIds,
+		linkedObjectIds
 	);
 	const widowedlinkedObjectIds = _.difference(
 		linkedObjectIds,
-		placeholderObjectIds,
+		placeholderObjectIds
 	);
 
 	const widowedIds = [...widowedPlaceholderIds, ...widowedlinkedObjectIds];
 
-	if (widowedIds.length > 0) {
+	if (config.devmode.on && widowedIds.length > 0) {
 		Toastify({
 			text: `⚮ Found widowed object recycling ids: ${widowedIds.length}. Check console!`,
 			duration: 5000,
@@ -43,7 +44,7 @@ export const recycleObjects = () => {
 		console.warn(
 			"You are using placeholder ids that don't have a matching link counterpart in the SVG!",
 			'Placeholder ids without matching link id:',
-			widowedPlaceholderIds,
+			widowedPlaceholderIds
 		);
 	}
 
@@ -51,7 +52,7 @@ export const recycleObjects = () => {
 		console.warn(
 			"You are using link ids that don't have a matching placeholder counterpart in the SVG!",
 			'Link ids without matching link id:',
-			widowedlinkedObjectIds,
+			widowedlinkedObjectIds
 		);
 	}
 
@@ -66,7 +67,7 @@ export const recycleObjects = () => {
 			document.getElementById(`ph-${id}`)!,
 			document.getElementById(`link-${id}`)!,
 			['fill', 'opacity'],
-			['overflow', 'transform'],
+			['overflow', 'transform']
 		);
 	});
 

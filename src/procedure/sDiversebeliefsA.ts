@@ -4,7 +4,10 @@ import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
 import { swapSlides } from '../../src/util/slideVisibility';
 import { gsap } from 'gsap';
-import { hideBlockingState } from '../util/showOrHideBlockState';
+import {
+	hideBlockingState,
+	showBlockingState,
+} from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -42,6 +45,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	await sleep(500);
 
 	// Show response options
-	await showTwoOptions(slidePrefix);
-	//await showBlockingState(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix);
+	if (!stopBlockingState) await showBlockingState(slidePrefix);
 };

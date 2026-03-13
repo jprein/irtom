@@ -46,7 +46,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some elements
-		gsap.set(girl, { x: -1200 });
+		gsap.set(girl, { x: 1200 });
 		gsap.set(boyBall, { autoAlpha: 1, x: -1200 });
 		gsap.set([boyHandsup, boxOpen], {
 			autoAlpha: 0,
@@ -89,7 +89,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to([boy, boxClosed], { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(boy, {
 				delay: 1,
-				x: 1200,
+				x: -1200,
 				duration: 2,
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-4`);

@@ -26,19 +26,19 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girlHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-waving`,
+		`link-${slidePrefix}-${data.community}-girl-waving`
 	) as SvgInHtml;
 
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 
 	const boyHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-waving`,
+		`link-${slidePrefix}-${data.community}-boy-waving`
 	) as SvgInHtml;
 
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 
 	// Initially hide agents with hands up
@@ -50,7 +50,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 		const tl = await gsap.timeline();
 		tl.to(girl, {
-			delay: 1,
 			autoAlpha: 0,
 			duration: 0.1,
 		})
@@ -63,7 +62,7 @@ export default async ({ currentSlide, previousSlide }) => {
 						data.sprite.play(`${slidePrefix}-2`);
 					},
 				},
-				'<',
+				'<'
 			)
 			.to(girlHandsup, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000,
@@ -79,7 +78,7 @@ export default async ({ currentSlide, previousSlide }) => {
 						data.sprite.play(`${slidePrefix}-3`);
 					},
 				},
-				'<',
+				'<'
 			)
 			.to(boy, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
@@ -95,7 +94,7 @@ export default async ({ currentSlide, previousSlide }) => {
 						data.sprite.play(`${slidePrefix}-4`);
 					},
 				},
-				'<',
+				'<'
 			)
 			.to(boyHandsup, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000,
@@ -108,7 +107,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			);
 
 		await tl.then();

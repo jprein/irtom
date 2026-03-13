@@ -73,4 +73,13 @@ select {
 	font-size: 18px;
 	font-weight: 600;
 	cursor: pointer;
+	background-color: #1cafe3;
+	color: #fff;
+}
+
+#audio-start-button:disabled {
+	opacity: 0.7;
+	background-color: #126b52;
+	color: #fff;
+	cursor: not-allowed;
 }

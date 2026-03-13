@@ -7,19 +7,19 @@ export const showThreeOptions = async (slidePrefix: string) => {
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
 	const repeat = document.getElementById(
-		`link-${slidePrefix}-repeat`,
+		`link-${slidePrefix}-repeat`
 	) as SvgInHtml;
 	const optionLeft = document.getElementById(
-		`${slidePrefix}-left`,
+		`${slidePrefix}-left`
 	) as SvgInHtml;
 	const optionCenter = document.getElementById(
-		`${slidePrefix}-center`,
+		`${slidePrefix}-center`
 	) as SvgInHtml;
 	const optionRight = document.getElementById(
-		`${slidePrefix}-right`,
+		`${slidePrefix}-right`
 	) as SvgInHtml;
 	const subject = document.querySelector(
-		`[id*="${slidePrefix}"][id*="subject"]`,
+		`[id*="${slidePrefix}"][id*="subject"]`
 	) as SvgInHtml;
 
 	// Play audio
@@ -29,9 +29,9 @@ export const showThreeOptions = async (slidePrefix: string) => {
 	const timeline = gsap.timeline();
 	if (blurr) {
 		await timeline.to(blurr, {
-			delay: 1,
+			delay: 0.5,
 			autoAlpha: 0.7,
-			duration: 0.6,
+			duration: 0.1,
 		});
 	}
 
@@ -39,46 +39,46 @@ export const showThreeOptions = async (slidePrefix: string) => {
 	if (subject) {
 		await timeline.to(subject, {
 			autoAlpha: 1,
-			duration: 0.5,
+			duration: 0.1,
 		});
 	}
 
 	// for all other slides, show directly yes and no response buttons
 	await timeline
 		.to(optionLeft, {
-			delay: 0.5,
+			delay: 0.2,
 			scale: 1.3,
 			autoAlpha: 1,
-			duration: 0.3,
+			duration: 0.5,
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-left`);
 			},
 		})
-		.to(optionLeft, { delay: 0.5, scale: 1, duration: 0.2 })
+		.to(optionLeft, { delay: 0.2, scale: 1, duration: 0.1 })
 		.to(optionCenter, {
 			delay: data.spriteJSON.sprite[`${slidePrefix}-left`][1] / 1000,
 			scale: 1.3,
 			autoAlpha: 1,
-			duration: 0.3,
+			duration: 0.5,
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-center`);
 			},
 		})
-		.to(optionCenter, { delay: 0.5, scale: 1, duration: 0.2 })
+		.to(optionCenter, { delay: 0.2, scale: 1, duration: 0.1 })
 		.to(optionRight, {
 			delay: data.spriteJSON.sprite[`${slidePrefix}-center`][1] / 1000,
 			scale: 1.3,
 			autoAlpha: 1,
-			duration: 0.3,
+			duration: 0.5,
 			onStart: () => {
 				data.sprite.play(`${slidePrefix}-right`);
 			},
 		})
-		.to(optionRight, { delay: 0.5, scale: 1, duration: 0.2 })
+		.to(optionRight, { delay: 0.2, scale: 1, duration: 0.1 })
 		.to([optionLeft, optionCenter, optionRight, repeat], {
 			delay: data.spriteJSON.sprite[`${slidePrefix}-right`][1] / 1000,
 			autoAlpha: 1,
-			duration: 0.5,
+			duration: 0.1,
 			pointerEvents: 'visible',
 			cursor: 'pointer',
 		});

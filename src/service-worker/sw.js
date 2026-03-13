@@ -24,12 +24,12 @@ const allowlist = [/^\/$/]; // Same allowlist for both dev and prod modes
 
 // To allow work offline
 registerRoute(
-	new NavigationRoute(createHandlerBoundToURL('index.html'), {
+	new NavigationRoute(createHandlerBoundToURL('app.html'), {
 		denylist: [
 			/\/assets\//,
 			/\/.*\.[^/]+$/, // IMPORTANT: excludes app.html and anything with an extension
 		],
-	}),
+	})
 );
 
 console.log('⚙️ Service Worker is running');

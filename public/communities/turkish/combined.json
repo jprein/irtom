@@ -1,7 +1,7 @@
 {
   "src": [
-    "communities/turkish/combined.webm",
-    "communities/turkish/combined.mp3"
+    "communities/turkish/combined.mp3",
+    "communities/turkish/combined.webm"
   ],
   "sprite": {
     "neutral-response-alright": [

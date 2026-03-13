@@ -1,7 +1,7 @@
 {
   "src": [
-    "communities/swahili/combined.webm",
-    "communities/swahili/combined.mp3"
+    "communities/swahili/combined.mp3",
+    "communities/swahili/combined.webm"
   ],
   "sprite": {
     "neutral-response-alright": [

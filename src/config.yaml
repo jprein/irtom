@@ -7,8 +7,8 @@ svgBg: white
 hideUrlParameters: false
 slideTransition:
   override: true # force slide transitions
-  fadeOut: 0.25
-  fadeIn: 0.25
+  fadeOut: 0.2
+  fadeIn: 0.2
 css:
   # will be used within the init process to to add style="cursor: pointer" to the given ids
   # this uses querySelectorAll in styleDefaults.ts
@@ -16,6 +16,7 @@ css:
   mousePointerObjects:
     [
       '#link-s-introduction-speaker',
+      '#link-s-end-speaker',
       '[id^=link][id$=next]',
       '[id^=link][id$=repeat]',
       '#s-yesnochoice-yellow-yes',
@@ -38,6 +39,7 @@ css:
   scaleOnHoverObjects:
     [
       '#link-s-introduction-speaker',
+      '#link-s-end-speaker',
       '[id^=link][id$=next]',
       '[id^=link][id$=repeat]',
       '#s-yesnochoice-yellow-yes',
@@ -60,8 +62,8 @@ css:
 globals:
   defaultSubjectId: demo
   defaultCommunity: german
-  defaultDataTransfer: local
-  slideGapDuration: 500 # delay for most slides before transitioning to next
+  defaultDataTransfer: server
+  slideGapDuration: 200 # delay for most slides before transitioning to next
 
 procedure:
   # use exact slide ids from Illustrator for values
@@ -69,55 +71,55 @@ procedure:
   # If you create a key with a sub array everything in the sub array will be randomized
   # You can nest only two levels deep
   german:
-    - s-introduction 
-    - s-emojichoice 
-    # - s-yesnotraining-a 
-    # - s-yesnotraining-b 
-    # - s-yesnotraining-c 
-    # - s-yesnotraining-d 
-    # - s-yesnotraining-e 
-    # - s-leftrighttraining-a 
-    # - s-leftrighttraining-b 
-    # - s-leftrighttraining-c 
-    # - s-leftrighttraining-d 
-    # - s-namestraining 
-    # - s-perspectivetaking-one-a 
-    # - s-pretense-a
+    - s-introduction
+    # - s-emojichoice
+    # - s-yesnotraining-a
+    - s-yesnotraining-b
+    # - s-yesnotraining-c
+    # - s-yesnotraining-d
+    # - s-yesnotraining-e
+    # - s-leftrighttraining-a
+    # - s-leftrighttraining-b
+    # - s-leftrighttraining-c
+    # - s-leftrighttraining-d
+    # - s-namestraining
+    # - s-perspectivetaking-one-a
+    # - s-perspectivetaking-two-c
     # - s-diversedesires-a
     # - s-perspectivetaking-one-b
-    # - s-pretense-b 
-    # - s-knowledgeaccess-b 
-    # - s-perspectivetaking-one-c 
-    # - s-perspectivetaking-one-d 
-    # - s-dogtraining 
-    # - s-knowledgeaccess-c 
-    # - s-falsebelief-uc-a 
-    # - s-diversedesires-c 
-    # - s-diversedesires-d 
-    # - s-appearancereality-a 
-    # - s-parentstraining 
-    # - s-knowledgeaccess-d 
-    # - s-falsebelief-uc-b 
-    # - s-diversebeliefs-a 
-    # - s-diversebeliefs-b 
+    # - s-pretense-b
+    # - s-knowledgeaccess-b
+    # - s-perspectivetaking-one-c
+    # - s-perspectivetaking-one-d
+    # - s-dogtraining
+    # - s-knowledgeaccess-c
+    # - s-falsebelief-uc-a
+    # - s-diversedesires-c
+    # - s-diversedesires-d
+    # - s-appearancereality-a
+    # - s-parentstraining
+    # - s-knowledgeaccess-d
+    # - s-falsebelief-uc-b
+    # - s-diversebeliefs-a
+    # - s-diversebeliefs-b
     # - s-diversebeliefs-c
-    # - s-falsebelief-uc-c 
-    # - s-falsebelief-col-a 
-    # - s-appearancereality-b 
-    # - s-perspectivetaking-two-a 
-    # - s-falsebelief-col-b 
-    # - s-falsebelief-ui-a 
-    # - s-perspectivetaking-two-b 
-    # - s-aspectuality-a 
+    # - s-falsebelief-uc-c
+    # - s-falsebelief-col-a
+    # - s-appearancereality-b
+    # - s-perspectivetaking-two-a
+    # - s-falsebelief-col-b
+    # - s-falsebelief-ui-a
+    # - s-perspectivetaking-two-b
+    # - s-aspectuality-a
     # - s-knowledgeaccess-a
-    # - s-perspectivetaking-two-c 
-    # - s-aspectuality-b 
-    # - s-falsebelief-ui-b 
-    # - s-perspectivetaking-two-d 
-    # - s-deception-a 
-    # - s-diversedesires-b  
-    # - s-falsebelief-two-a 
-    # - s-deception-b 
+    # - s-pretense-a
+    # - s-aspectuality-b
+    # - s-falsebelief-ui-b
+    # - s-perspectivetaking-two-d
+    # - s-deception-a
+    # - s-diversedesires-b
+    # - s-falsebelief-two-a
+    # - s-deception-b
     # - s-falsebelief-two-b
     - s-end
 
