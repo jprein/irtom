@@ -59,6 +59,7 @@ declare let data: {
 		sIntroduction: {
 			trialNr: number;
 			trialDuration: number;
+			responseTime: number;
 			correct: string;
 			response: string;
 			score: number;
@@ -66,6 +67,7 @@ declare let data: {
 		sPerspectivetaking: {
 			trialNr: number;
 			trialDuration: number;
+			responseTime: number;
 			correct: string;
 			response: string;
 			score: number;
@@ -73,6 +75,7 @@ declare let data: {
 		sEnd: {
 			trialNr: number;
 			trialDuration: number;
+			responseTime: number;
 			correct: string;
 			response: string;
 			score: number;

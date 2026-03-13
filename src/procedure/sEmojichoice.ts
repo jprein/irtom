@@ -11,7 +11,9 @@ import type { SvgInHtml } from '../types';
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
 	const slidePrefix = 's-emojichoice';
-
+	const repeat = document.getElementById(
+		`link-${slidePrefix}-repeat`,
+	) as SvgInHtml;
 	// Swap slides
 	swapSlides(currentSlide, previousSlide);
 	data.simpleSlideCounter++;
@@ -35,6 +37,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	gsap.set([optionLeft, optionCenter, optionRight], {
 		pointerEvents: 'none',
 	});
+	gsap.set(repeat, {
+		autoAlpha: 0,
+	});
 
 	await hideBlockingState(slidePrefix);
 	// Short break before showing response options
@@ -51,7 +56,10 @@ export default async ({ currentSlide, previousSlide }) => {
 		data.emoji = 'purple';
 
 	// Play motivating feedback for first choice
-	await data.sprite.playPromise(`${slidePrefix}-feedback`);
-
-	if (!stopBlockingState) await showBlockingState(slidePrefix);
+	
+	if (!stopBlockingState){
+		
+		await data.sprite.playPromise(`${slidePrefix}-feedback`);
+		await showBlockingState(slidePrefix);
+	} 
 };

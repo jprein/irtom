@@ -159,6 +159,7 @@ export const procedure = async () => {
 			dimension: undefined,
 			trialNr: data.slideCounter,
 			trialDuration: undefined,
+			responseTime: undefined,
 			response: undefined,
 			correct: undefined,
 			score: undefined,
@@ -357,10 +358,8 @@ export const procedure = async () => {
 	data.endTime = `${data.t1.getFullYear()}-${String(data.t1.getMonth() + 1).padStart(2, '0')}-${String(data.t1.getDate()).padStart(2, '0')}_${String(data.t1.getHours()).padStart(2, '0')}:${String(data.t1.getMinutes()).padStart(2, '0')}:${String(data.t1.getSeconds()).padStart(2, '0')}`;
 
 	const completionTimeMs = data.t1.getTime() - data.t0.getTime();
-	const minutes = millisToMinutesAndSeconds(completionTimeMs).minutes;
-	const seconds = millisToMinutesAndSeconds(completionTimeMs).seconds;
-	data.completionTime = `${minutes}-${seconds}`;
-	const finishedOnEndSlide = data.currentSlide === 'sEnd';
+	const completionTimeFormatted = millisToMinutesAndSeconds(completionTimeMs);
+	data.completionTime = `${completionTimeFormatted.minutes}.${completionTimeFormatted.seconds}`;
 
 	const datatransfer = data.datatransfer;
 	// get rid of unnecessary variables for researchers' response log
@@ -374,6 +373,7 @@ export const procedure = async () => {
 		'simpleSlideCounter',
 		't0',
 		't1',
+		'endTime',
 		'totalSlides',
 		'videoExtension',
 		'hasWebcam',
@@ -474,7 +474,7 @@ export const procedure = async () => {
 		'%cStudy Summary',
 		'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;'
 	);
-	console.log(`The study took ${minutes} minutes and ${seconds} seconds.`);
+	console.log(`The study took ${completionTimeFormatted.minutes} minutes and ${completionTimeFormatted.seconds} seconds.`);
 	console.log('Here is what we stored:');
 	console.log(data);
 	console.groupEnd();
