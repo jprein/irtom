@@ -140,8 +140,8 @@ export const showYesNoChoice = async (
 	if (!data.clickedRepeat || data.incorrectResponse) {
 		const responseStartMs = Date.now();
 		const response = await getResponse([yesGroup.id, noGroup.id]);
-		data.procedure[data.currentSlide].responseTime = Number(
-		((Date.now() - responseStartMs) / 1000).toFixed(2),
+		data.procedure[data.currentSlide].responseTimeSec = Number(
+			((Date.now() - responseStartMs) / 1000).toFixed(2)
 		);
 		stopBlockingState = false;
 		// Response returns the clicked element.

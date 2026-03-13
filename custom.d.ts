@@ -42,7 +42,7 @@ declare let data: {
 	t1: Date;
 	startTime: string;
 	endTime: string;
-	completionTime: string;
+	completionTimeMin: string;
 	totalSlides: number;
 	previousSlide: string;
 	currentSlide: string;
@@ -58,24 +58,24 @@ declare let data: {
 	procedure: {
 		sIntroduction: {
 			trialNr: number;
-			trialDuration: number;
-			responseTime: number;
+			trialDurationSec: number;
+			responseTimeSec: number;
 			correct: string;
 			response: string;
 			score: number;
 		};
 		sPerspectivetaking: {
 			trialNr: number;
-			trialDuration: number;
-			responseTime: number;
+			trialDurationSec: number;
+			responseTimeSec: number;
 			correct: string;
 			response: string;
 			score: number;
 		};
 		sEnd: {
 			trialNr: number;
-			trialDuration: number;
-			responseTime: number;
+			trialDurationSec: number;
+			responseTimeSec: number;
 			correct: string;
 			response: string;
 			score: number;

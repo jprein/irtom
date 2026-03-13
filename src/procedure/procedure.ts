@@ -19,7 +19,6 @@ const slideModules = import.meta.glob('./s*.ts');
 
 export const procedure = async () => {
 	let currentProcedure = _.cloneDeep(config.procedure[data.community]);
-	let endSlideCsvUploadPromise: Promise<void> | null = null;
 
 	// check if nested objects exist
 	let isNested = currentProcedure.some((e) => _.isPlainObject(e));
@@ -97,24 +96,8 @@ export const procedure = async () => {
 		console.table(currentProcedure);
 		console.groupEnd();
 	}
-	// const procedureStartMs = performance.now();
-	// const logTiming = (label: string, fromMs?: number) => {
-	// 	const nowMs = performance.now();
-	// 	const sinceIntroMs = (nowMs - procedureStartMs).toFixed(1);
-	// 	const sinceMarker = fromMs
-	// 		? ` | +${(nowMs - fromMs).toFixed(1)}ms since marker`
-	// 		: '';
-	// 	console.log(
-	// 		`[sProcedure][${new Date().toISOString()}] +${sinceIntroMs}ms ${label}${sinceMarker}`,
-	// 	);
-	// };
 
 	data.totalSlides = currentProcedure.length;
-	// const audioStartMs = performance.now();
-	// logTiming('playPromise start', procedureStartMs);
-	// //await data.sprite.playPromise('s-introduction');
-	// await data.sprite.ensureReady();
-	// logTiming('playPromise resolved', audioStartMs);
 
 	// hide loading spinner
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
@@ -127,10 +110,6 @@ export const procedure = async () => {
 	// PROCEDURE LOOP
 	// ================================================
 	for (const [index, slide] of currentProcedure.entries()) {
-		// if (index > 0) {
-		// 	await sleep(1000);
-		// 	await hideSpinner();
-		// }
 		// get previous, current and next slide
 		const previousSlide = currentProcedure[index - 1];
 		const currentSlide = slide;
@@ -138,7 +117,6 @@ export const procedure = async () => {
 		// kebab-cased version
 		const previousSlideKc = _.kebabCase(previousSlide);
 		const currentSlideKc = _.kebabCase(currentSlide);
-		// const nextSlideKc = _.kebabCase(nextSlide);
 
 		// store into data object
 		data.previousSlide = previousSlide;
@@ -149,17 +127,14 @@ export const procedure = async () => {
 		// Disable unload upload hook on the final slide to avoid duplicate CSV upload.
 		if (currentSlide === 'sEnd') {
 			window.onbeforeunload = null;
-			if (data.datatransfer !== 'local' && !endSlideCsvUploadPromise) {
-				endSlideCsvUploadPromise = uploadCsv();
-			}
 		}
 
 		// init default procedure response
 		data.procedure[currentSlide] = {
 			dimension: undefined,
 			trialNr: data.slideCounter,
-			trialDuration: undefined,
-			responseTime: undefined,
+			trialDurationSec: undefined,
+			responseTimeSec: undefined,
 			response: undefined,
 			correct: undefined,
 			score: undefined,
@@ -183,14 +158,6 @@ export const procedure = async () => {
 
 		// Import the slide behavior dynamically
 		// const runSlideBehavior = async () => {
-		// 	await (
-		// 		await import(`./${currentSlide}`)
-		// 	).default({
-		// 		currentSlide: currentSlideKc,
-		// 		previousSlide: previousSlideKc,
-		// 	});
-		// };
-
 		const runSlideBehavior = async () => {
 			const modulePath = `./${currentSlide}.ts`;
 			const loader = slideModules[modulePath];
@@ -266,15 +233,8 @@ export const procedure = async () => {
 				isIncorrectReplay &&
 				data.procedure[data.currentSlide].trainingTrial
 			) {
-				// If correct response, play correct audio and move on to next trial
-				if (data.procedure[data.currentSlide].score === 1) {
-					//await data.sprite.playPromise(`${currentSlideKc}-correct`);
-				}
 				// If incorrect response, reset score, play incorrect audio and repeat trial
-				else if (data.procedure[data.currentSlide].score === 0) {
-					//data.procedure[data.currentSlide].score = null;
-					//data.procedure[data.currentSlide].response = null;
-					//await data.sprite.playPromise(`${currentSlideKc}-incorrect`);
+				if (data.procedure[data.currentSlide].score === 0) {
 					await handleRepeatClick(true);
 				}
 			}
@@ -298,15 +258,8 @@ export const procedure = async () => {
 
 		// For training trials, we need to check the response. Repeat trial if incorrect.
 		if (data.procedure[data.currentSlide].trainingTrial) {
-			// If correct response, play correct audio and move on to next trial
-			if (data.procedure[data.currentSlide].score === 1) {
-				//await data.sprite.playPromise(`${currentSlideKc}-correct`);
-			}
 			// If incorrect response, reset score, play incorrect audio and repeat trial
-			else if (data.procedure[data.currentSlide].score === 0) {
-				//data.procedure[data.currentSlide].score = null;
-				//data.procedure[data.currentSlide].response = null;
-				//await data.sprite.playPromise(`${currentSlideKc}-incorrect`);
+			if (data.procedure[data.currentSlide].score === 0) {
 				await handleRepeatClick(true);
 			}
 		}
@@ -318,8 +271,10 @@ export const procedure = async () => {
 
 		// POST LOOP Actions (i.e., either an await button was clicked or video ended)
 		// save duration of each slide
-		data.procedure[currentSlide].trialDuration =
-			new Date().getTime() - startTime;
+		data.procedure[currentSlide].trialDurationSec = (
+			(new Date().getTime() - startTime) /
+			1000
+		).toFixed(2);
 
 		if (slide !== 'sEnd') {
 			if (responseButtons.length > 0) {
@@ -359,10 +314,14 @@ export const procedure = async () => {
 
 	const completionTimeMs = data.t1.getTime() - data.t0.getTime();
 	const completionTimeFormatted = millisToMinutesAndSeconds(completionTimeMs);
-	data.completionTime = `${completionTimeFormatted.minutes}.${completionTimeFormatted.seconds}`;
+	data.completionTimeMin = (completionTimeMs / 60000).toFixed(2);
+	const finishedOnEndSlide = data.currentSlide === 'sEnd';
 
 	const datatransfer = data.datatransfer;
+	let didDownloadCsvFallback = false;
 	// get rid of unnecessary variables for researchers' response log
+	// keep audiosprite for now, so that we can still play audio on s-end slide
+	// (audio sprite variables will be ignored in CSV data)
 	[
 		'currentProcedure',
 		'currentSlide',
@@ -380,8 +339,6 @@ export const procedure = async () => {
 		'safari',
 		'isIOS',
 		'iOSSafari',
-		'sprite',
-		'spriteJSON',
 		'clickedRepeat',
 		'incorrectResponse',
 		'emoji',
@@ -390,22 +347,21 @@ export const procedure = async () => {
 			delete data[key];
 		}
 	});
-	// const parentBlockLast = document.getElementById(
-	// 	's-blocking-state',
-	// ) as SvgInHtml;
-	// parentBlockLast.removeAttribute('visibility');
 
-	// gsap.set('#link-leuphana-cube', {
-	// 	transformOrigin: '50% 50%',
-	// });
-	// gsap.to('#link-leuphana-cube', {
-	// 	id: 'blocking-state-animation-last',
-	// 	duration: 3,
-	// 	rotation: 360,
-	// 	repeat: -1,
-	// 	ease: 'none',
-	// });
+	// log summary of study in console
+	console.group(
+		'%cStudy Summary',
+		'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;'
+	);
+	console.log(
+		`The study took ${completionTimeFormatted.minutes} minutes and ${completionTimeFormatted.seconds} seconds.`
+	);
+	console.log('Here is what we stored:');
+	console.log(data);
+	console.groupEnd();
+	console.log('Procedure loop done');
 
+	// Start data saving process
 	if (data.webcam == true) {
 		try {
 			await stopRecording({ stopStream: true });
@@ -416,11 +372,23 @@ export const procedure = async () => {
 
 	const ensureCsvUploaded = async () => {
 		if (datatransfer === 'local') return;
-		if (endSlideCsvUploadPromise) {
-			await endSlideCsvUploadPromise;
-			return;
+		try {
+			await uploadCsv();
+		} catch (error) {
+			if (config.devmode.on) {
+				console.warn(
+					'CSV upload failed. Downloading CSV locally as fallback.',
+					error
+				);
+			}
+			await addSpinner();
+			try {
+				await downloadCsv();
+				didDownloadCsvFallback = true;
+			} finally {
+				await hideSpinner();
+			}
 		}
-		await uploadCsv();
 	};
 
 	// Save data depending on choice (local, server, both)
@@ -451,8 +419,10 @@ export const procedure = async () => {
 		try {
 			await sleep(1000);
 			await uploadWebcamVideo(data.webcam, data.id);
-			await sleep(1000);
-			await downloadCsv();
+			if (!didDownloadCsvFallback) {
+				await sleep(1000);
+				await downloadCsv();
+			}
 			await sleep(1000);
 			await downloadWebcamVideo(data.webcam, data.id);
 			await sleep(1000);
@@ -463,22 +433,6 @@ export const procedure = async () => {
 
 	// users can leave page now
 	window.onbeforeunload = null;
-
-	// const blockingStateAnimationLast = gsap.getById(
-	// 	'blocking-state-animation-last',
-	// );
-	// if (blockingStateAnimationLast) blockingStateAnimationLast.kill();
-	// parentBlockLast.setAttribute('visibility', 'hidden');
-
-	console.group(
-		'%cStudy Summary',
-		'background-color: #1798AE ; color: #ffffff ; font-weight: bold ; padding: 4px ; border-radius: 5px;'
-	);
-	console.log(`The study took ${completionTimeFormatted.minutes} minutes and ${completionTimeFormatted.seconds} seconds.`);
-	console.log('Here is what we stored:');
-	console.log(data);
-	console.groupEnd();
-	console.log('Procedure loop done');
 
 	// Notify sEnd.ts that finalization has completed and redirect can happen there.
 	if (finishedOnEndSlide) {

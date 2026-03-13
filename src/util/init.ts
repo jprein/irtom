@@ -235,7 +235,7 @@ export const init = async () => {
 	if (!config.devmode.on) {
 		window.onbeforeunload = function (evt: BeforeUnloadEvent) {
 			evt.preventDefault();
-			uploadCsv();
+			void uploadCsv().catch(() => undefined);
 			return '';
 		};
 	}
