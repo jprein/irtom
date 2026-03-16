@@ -53,7 +53,7 @@ export const init = async () => {
 	const defaultValues = {
 		id: 'testID',
 		community: 'german',
-		webcam: 'false',
+		webcam: 'true',
 		datatransfer: 'server',
 	};
 
