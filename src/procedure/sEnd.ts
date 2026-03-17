@@ -57,8 +57,10 @@ export default async ({ currentSlide, previousSlide }) => {
 				exitFullscreen(data.isIOS);
 			}
 
+			const redirectUrl = `${window.location.origin}/irtom-consent/goodbye.html?id=${data.id}`;
+
 			if (procedureFinished) {
-				window.location.href = './goodbye.html';
+				window.location.href = redirectUrl;
 				return;
 			}
 
@@ -66,7 +68,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			window.addEventListener(
 				PROCEDURE_FINISHED_EVENT,
 				() => {
-					window.location.href = './goodbye.html';
+					window.location.href = redirectUrl;
 				},
 				{ once: true }
 			);

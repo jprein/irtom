@@ -43,7 +43,7 @@ import { startFullscreen } from './util/helpers';
 
 		await new Promise<void>((resolve) => {
 			const onStart = async () => {
-				const originalLabel = button.textContent ?? 'Start Audio';
+				const originalLabel = button.textContent ?? 'Klicke hier, um mit der Studie zu beginnen';
 				button.disabled = true;
 				const preparingLabel =
 					buttonTranslations.preparingAudio[
