@@ -35,5 +35,27 @@
 			<div id="wrapper"></div>
 			<script type="module" src="./app.ts"></script>
 		</div>
+		<div
+			id="webcam-modal"
+			class="camera-modal hidden"
+			role="dialog"
+			aria-modal="true"
+			aria-labelledby="webcam-modal-title"
+		>
+			<div class="camera-modal__card">
+				<div class="camera-modal__header">
+					<h2 id="webcam-modal-title">Webcam Preview</h2>
+					<button
+						id="webcam-modal-close"
+						type="button"
+						class="camera-modal__close"
+						aria-label="Close webcam preview"
+					>
+						×
+					</button>
+				</div>
+				<video id="webcam-modal-video" autoplay playsinline muted></video>
+			</div>
+		</div>
 	</body>
 </html>
