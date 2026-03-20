@@ -51,4 +51,11 @@ export const buttonTranslations = {
 		swahili: 'Karibu subiri: Picha zinaloading...',
 		turkish: 'Lütfen bekleyin: Resimler yükleniyor...',
 	},
+	finalizingData: {
+		german: 'Bitte warten: Daten werden gespeichert...',
+		english: 'Please wait: Saving data...',
+		kikuyu: 'Ruta mwega: Data irĩgũcokerwo...',
+		swahili: 'Karibu subiri: Data inahifadhiwa...',
+		turkish: 'Lütfen bekleyin: Veriler kaydediliyor...',
+	},
 };

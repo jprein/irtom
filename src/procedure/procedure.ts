@@ -11,11 +11,43 @@ import {
 	uploadWebcamVideo,
 } from '../../src/util/helpers';
 import type { SvgInHtml } from '../../src/types';
-import { stopRecording } from '../util/mediaRecorderServices';
-import { addSpinner, hideSpinner } from '../util/leuphanaSpinner';
+import { getLastRecordingBlob, stopRecording } from '../util/mediaRecorderServices';
+import { buttonTranslations } from '../translations';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
+
+const getTransferOverlayLabel = () => {
+	const communityKey =
+		data.community as keyof typeof buttonTranslations.finalizingData;
+
+	return (
+		buttonTranslations.finalizingData[communityKey] ??
+		'Please wait: Saving data...'
+	);
+};
+
+const showTransferOverlay = () => {
+	const overlay = document.getElementById(
+		'audio-start-overlay'
+	) as HTMLDivElement | null;
+	const button = document.getElementById(
+		'audio-start-button'
+	) as HTMLButtonElement | null;
+
+	if (!overlay || !button) return;
+
+	button.disabled = true;
+	button.textContent = getTransferOverlayLabel();
+	overlay.classList.remove('hidden');
+};
+
+const hideTransferOverlay = () => {
+	const overlay = document.getElementById(
+		'audio-start-overlay'
+	) as HTMLDivElement | null;
+	overlay?.classList.add('hidden');
+};
 
 export const procedure = async () => {
 	let currentProcedure = _.cloneDeep(config.procedure[data.community]);
@@ -405,10 +437,18 @@ export const procedure = async () => {
 	// 	repeat: -1,
 	// 	ease: 'none',
 	// });
+	let uploadAndDownloadFinshed = false;
+	let hasRecordedVideo = Boolean(getLastRecordingBlob());
 
 	if (data.webcam == true) {
 		try {
-			await stopRecording({ stopStream: true });
+			const recordedBlob = await stopRecording({ stopStream: true });
+			hasRecordedVideo = Boolean(recordedBlob ?? getLastRecordingBlob());
+			if (!hasRecordedVideo) {
+				console.warn(
+					'Webcam recording was enabled, but no video blob was captured. Skipping video upload/download.'
+				);
+			}
 		} catch (e) {
 			console.warn('Failed to stop recording, continuing anyway:', e);
 		}
@@ -425,39 +465,50 @@ export const procedure = async () => {
 
 	// Save data depending on choice (local, server, both)
 	if (datatransfer === 'local') {
-		await addSpinner();
+		uploadAndDownloadFinshed = false;
+		showTransferOverlay();
 		try {
 			await downloadCsv();
-			await downloadWebcamVideo(data.webcam, data.id);
+			await sleep(2000);
+			await downloadWebcamVideo(hasRecordedVideo, data.id);
+			await sleep(1000);
 		} finally {
-			await hideSpinner();
+			uploadAndDownloadFinshed = true;
+			hideTransferOverlay();
 		}
 	} else if (datatransfer === 'server') {
 		await ensureCsvUploaded();
-
-		if (data.webcam) {
-			await addSpinner();
+		if (hasRecordedVideo) {
+			uploadAndDownloadFinshed = false;
+			showTransferOverlay();
 			try {
 				await sleep(1000);
-				await uploadWebcamVideo(data.webcam, data.id);
+				await uploadWebcamVideo(hasRecordedVideo, data.id);
 				await sleep(2000);
 			} finally {
-				await hideSpinner();
+				uploadAndDownloadFinshed = true;
+				hideTransferOverlay();
 			}
 		}
 	} else {
 		await ensureCsvUploaded();
-		await addSpinner();
+		showTransferOverlay();
 		try {
-			await sleep(1000);
-			await uploadWebcamVideo(data.webcam, data.id);
-			await sleep(1000);
+			if (hasRecordedVideo) {
+				uploadAndDownloadFinshed = false;
+				await sleep(1000);
+				await uploadWebcamVideo(hasRecordedVideo, data.id);
+				await sleep(1000);
+			}
 			await downloadCsv();
-			await sleep(1000);
-			await downloadWebcamVideo(data.webcam, data.id);
-			await sleep(1000);
+			if (hasRecordedVideo) {
+				await sleep(1000);
+				await downloadWebcamVideo(hasRecordedVideo, data.id);
+				await sleep(1000);
+			}
 		} finally {
-			await hideSpinner();
+			uploadAndDownloadFinshed = true;
+			hideTransferOverlay();
 		}
 	}
 
@@ -481,7 +532,7 @@ export const procedure = async () => {
 	console.log('Procedure loop done');
 
 	// Notify sEnd.ts that finalization has completed and redirect can happen there.
-	if (finishedOnEndSlide) {
+	if (finishedOnEndSlide && uploadAndDownloadFinshed) {
 		window.dispatchEvent(new Event('irtom:procedure-finished'));
 	}
 };
