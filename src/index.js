@@ -1,30 +1,20 @@
 import { initMedia, stopMediaStream } from './util/mediaRecorderServices';
+import {
+	getUrlStudyChoices,
+	cleanStudyChoiceParamsFromUrl,
+} from './util/resolveStudyChoices';
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
-// check if URL Params already exist and store them
-const url = new URL(window.location.href);
-const params = new URLSearchParams(url.search);
+// Read study choices from URL first and normalize (trimmed, no whitespace-only values).
+const urlStudyChoices = getUrlStudyChoices();
 
-let id = '';
-let community = '';
-let datatransfer = '';
-let webcam = '';
+let id = urlStudyChoices.id ?? '';
+let community = urlStudyChoices.community ?? '';
+let datatransfer = urlStudyChoices.datatransfer ?? '';
+let webcam = urlStudyChoices.webcam ?? '';
 
-if (params.has('id')) {
-	id = params.get('id');
-}
-if (params.has('community')) {
-	community = params.get('community');
-}
-if (params.has('datatransfer')) {
-	datatransfer = params.get('datatransfer');
-}
-if (params.has('webcam')) {
-	webcam = params.get('webcam');
-}
-
-// remove all params from URL
-window.history.pushState({}, document.title, window.location.pathname);
+// Remove only study-choice params and keep unrelated query params/hash untouched.
+cleanStudyChoiceParamsFromUrl();
 
 // hide form fields for form data where URL params already existed
 if (id) {

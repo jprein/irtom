@@ -34,64 +34,13 @@ import {
 	isMediaRecorderSupported,
 	startRecording,
 } from './mediaRecorderServices';
+import { resolveStudyChoices, type StudyChoices } from './resolveStudyChoices';
 
-export const init = async () => {
-	// get study choices from local storage
-	const storedChoices = localStorage.getItem('storedChoices');
-	const urlParams = new URLSearchParams(window.location.search);
-	const urlChoices = {
-		id: urlParams.get('id'),
-		community: urlParams.get('community'),
-		datatransfer: urlParams.get('datatransfer'),
-		webcam: urlParams.get('webcam'),
-	};
-	const hasUrlChoices = Object.values(urlChoices).some(
-		(value) => value !== null && value !== ''
-	);
-	let studyChoices;
-
-	// If we find data in URL parameters, set studyChoices to that data
-	if (hasUrlChoices) {
-		studyChoices = Object.fromEntries(
-			Object.entries(urlChoices).filter(([, value]) => value)
-		);
-		console.log('Using study choices from URL parameters.', studyChoices);
-		// Alternatively, if we find data in local storage, set studyChoices to that data
-	} else if (storedChoices) {
-		studyChoices = JSON.parse(storedChoices);
-	} else {
-		console.log(
-			'No data found in local storage. Creating a studyChoices object.'
-		);
-	}
-
-	// Define default values for all required keys
-	const defaultValues = {
-		id: 'testID',
-		community: 'german',
-		datatransfer: 'server',
-		webcam: 'true',
-	};
-
-	// Check if studyChoices contains all required keys.
-	// If not, set defaults for missing keys
-	if (studyChoices) {
-		Object.keys(defaultValues).forEach((key) => {
-			if (!Object.prototype.hasOwnProperty.call(studyChoices, key)) {
-				studyChoices[key] = defaultValues[key];
-				console.log(
-					`Key "${key}" was missing. Set default value: "${defaultValues[key]}"`
-				);
-			}
-		});
-	} else {
-		console.log(
-			'Setting the studyChoices object to default values:',
-			JSON.stringify(defaultValues)
-		);
-		// Create a new object with default values
-		studyChoices = { ...defaultValues };
-	}
+export const init = async (initialStudyChoices?: StudyChoices) => {
+	// If initialStudyChoices are provided (e.g., from a previous page), use them.
+	// Otherwise, resolve study choices from URL/localStorage with defaults.
+	const studyChoices =
+		initialStudyChoices ?? resolveStudyChoices().studyChoices;
 
 	const wrapper = document.getElementById('wrapper')! as HTMLDivElement;
 	// load initial SVG file

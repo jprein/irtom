@@ -8,6 +8,7 @@ import { buttonTranslations } from './translations';
 import config from './config.yaml';
 import Toastify from 'toastify-js';
 import { startFullscreen } from './util/helpers';
+import { resolveStudyChoices } from './util/resolveStudyChoices';
 
 const AUDIO_INIT_TIMEOUT_MS = 20_000;
 const PREVIEW_STREAM_CONSTRAINTS: MediaStreamConstraints = {
@@ -54,62 +55,7 @@ const withTimeout = async <T>(
 };
 
 (async () => {
-	const syncStudyChoicesFromUrl = () => {
-		const params = new URLSearchParams(window.location.search);
-		const keys = ['id', 'community', 'webcam', 'datatransfer'] as const;
-		const urlChoices: Partial<Record<(typeof keys)[number], string>> = {};
-
-		const hasAnyStudyChoiceInUrl = keys.some((key) => {
-			const value = params.get(key);
-			return value !== null && value.trim() !== '';
-		});
-
-		if (!hasAnyStudyChoiceInUrl) {
-			return urlChoices;
-		}
-
-		const storedChoices: Record<string, string> = {};
-		const rawStoredChoices = localStorage.getItem('storedChoices');
-
-		if (rawStoredChoices) {
-			try {
-				const parsed = JSON.parse(rawStoredChoices) as Record<string, unknown>;
-				Object.entries(parsed).forEach(([key, value]) => {
-					if (typeof value === 'string') {
-						storedChoices[key] = value;
-					}
-				});
-			} catch (error) {
-				console.warn('Failed to parse storedChoices from localStorage:', error);
-			}
-		}
-
-		keys.forEach((key) => {
-			const value = params.get(key);
-			if (value !== null && value.trim() !== '') {
-				const trimmedValue = value.trim();
-				storedChoices[key] = trimmedValue;
-				urlChoices[key] = trimmedValue;
-			}
-		});
-
-		localStorage.setItem('storedChoices', JSON.stringify(storedChoices));
-
-		// Remove study-choice params from URL after persisting them.
-		keys.forEach((key) => {
-			params.delete(key);
-		});
-		const cleanedQuery = params.toString();
-		const cleanedUrl = `${window.location.pathname}${
-			cleanedQuery ? `?${cleanedQuery}` : ''
-		}${window.location.hash}`;
-		window.history.replaceState({}, document.title, cleanedUrl);
-
-		return urlChoices;
-	};
-
-	// First action on app page: capture study choices from URL into localStorage.
-	const urlStudyChoices = syncStudyChoicesFromUrl();
+	const { studyChoices, urlChoices } = resolveStudyChoices();
 
 	const webcamModal = document.getElementById(
 		'webcam-modal'
@@ -124,12 +70,11 @@ const withTimeout = async <T>(
 	let webcamPreviewStream: MediaStream | null = null;
 
 	const hasWebcamPreviewUrlParam = () => {
-		if (urlStudyChoices.webcam) {
-			return urlStudyChoices.webcam.toLowerCase() === 'true';
+		if (urlChoices.webcam) {
+			return urlChoices.webcam.toLowerCase() === 'true';
 		}
 
-		const webcamParam = new URLSearchParams(window.location.search).get('webcam');
-		return webcamParam?.trim().toLowerCase() === 'true';
+		return false;
 	};
 
 	const closeWebcamPreviewModal = () => {
@@ -188,7 +133,11 @@ const withTimeout = async <T>(
 	});
 
 	document.addEventListener('keydown', (event) => {
-		if (event.key === 'Escape' && webcamModal && !webcamModal.classList.contains('hidden')) {
+		if (
+			event.key === 'Escape' &&
+			webcamModal &&
+			!webcamModal.classList.contains('hidden')
+		) {
 			closeWebcamPreviewModal();
 		}
 	});
@@ -199,7 +148,7 @@ const withTimeout = async <T>(
 		void openWebcamPreviewModal();
 	}
 
-	await init();
+	await init(studyChoices);
 
 	const button = document.getElementById(
 		'audio-start-button'
@@ -232,7 +181,8 @@ const withTimeout = async <T>(
 
 		await new Promise<void>((resolve) => {
 			const onStart = async () => {
-				const originalLabel = button.textContent ?? 'Klicke hier, um mit der Studie zu beginnen';
+				const originalLabel =
+					button.textContent ?? 'Klicke hier, um mit der Studie zu beginnen';
 				button.disabled = true;
 				const preparingLabel =
 					buttonTranslations.preparingAudio[
