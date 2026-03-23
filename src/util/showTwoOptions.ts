@@ -18,6 +18,17 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	const subject = document.querySelector(
 		`[id*="${slidePrefix}"][id*="subject"]`
 	) as SvgInHtml;
+	const interactiveElements = [optionLeft, optionRight, repeat].filter(
+		(element): element is SvgInHtml => Boolean(element)
+	);
+
+	// Keep options non-clickable until all option audios are done.
+	if (interactiveElements.length > 0) {
+		gsap.set(interactiveElements, {
+			pointerEvents: 'none',
+			cursor: 'default',
+		});
+	}
 
 	// Play audio
 	await data.sprite.playPromise(`${slidePrefix}`);
@@ -58,13 +69,14 @@ export const showTwoOptions = async (slidePrefix: string) => {
 				delay: 0.5,
 				autoAlpha: 1,
 				duration: 0.1,
-			})
-			.to([optionLeft, optionRight, repeat], {
-				autoAlpha: 1,
-				duration: 0.1,
-				pointerEvents: 'visible',
-				cursor: 'pointer',
 			});
+
+		await timeline.to(interactiveElements, {
+			autoAlpha: 1,
+			duration: 0.1,
+			pointerEvents: 'visible',
+			cursor: 'pointer',
+		});
 
 		// for all other trials, faster response options with animation
 	} else {
@@ -85,13 +97,15 @@ export const showTwoOptions = async (slidePrefix: string) => {
 				onStart: () => {
 					data.sprite.play(`${slidePrefix}-right`);
 				},
-			})
-			.to([optionLeft, optionRight, repeat], {
-				autoAlpha: 1,
-				duration: 0.1,
-				pointerEvents: 'visible',
-				cursor: 'pointer',
 			});
+
+		// Enable clicking only after both audios are finished
+		await timeline.to(interactiveElements, {
+			autoAlpha: 1,
+			duration: 0.1,
+			pointerEvents: 'visible',
+			cursor: 'pointer',
+		});
 	}
 
 	// Get Response

@@ -83,3 +83,92 @@ select {
 	color: #fff;
 	cursor: not-allowed;
 }
+
+.hidden {
+	display: none;
+}
+
+.camera-modal {
+	position: fixed;
+	inset: 0;
+	background: rgba(29, 69, 103, 0.35);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 1rem;
+	z-index: 10000;
+}
+
+.camera-modal.hidden {
+	display: none;
+}
+
+.camera-modal__card {
+	position: relative;
+	width: min(92vw, 45rem);
+	background: #fff;
+	border-radius: 2rem;
+	padding: 1.25rem 1.25rem 1rem;
+	box-shadow:
+		0 8px 10px 1px rgba(0, 0, 0, 0.14),
+		0 3px 14px 2px rgba(0, 0, 0, 0.12),
+		0 5px 5px -3px rgba(0, 0, 0, 0.2);
+}
+
+.camera-modal__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 0.9rem;
+}
+
+.camera-modal__header h2 {
+	color: #1d4567;
+	margin: 0;
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+
+.camera-modal__close {
+	border: 1px solid #89485c;
+	background: #89485c;
+	color: #fff;
+	width: 2.25rem;
+	height: 2.25rem;
+	border-radius: 0.5rem;
+	font-size: 1.5rem;
+	line-height: 1;
+	cursor: pointer;
+	padding: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	transition:
+		background-color 0.28s ease,
+		box-shadow 0.28s ease,
+		transform 0.2s ease;
+}
+
+.camera-modal__close:hover {
+	background: #76394c;
+	box-shadow:
+		0 6px 10px 0 rgba(0, 0, 0, 0.14),
+		0 1px 18px 0 rgba(0, 0, 0, 0.12),
+		0 3px 5px -1px rgba(0, 0, 0, 0.2);
+}
+
+.camera-modal__close:focus {
+	outline: none;
+	transform: translateY(1px);
+}
+
+#webcam-modal-video {
+	display: block;
+	width: 100%;
+	max-height: 78vh;
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	background: #000;
+	border-radius: 1rem;
+	border: 0.0625rem solid #d2e0e7;
+}
