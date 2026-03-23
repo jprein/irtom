@@ -7,16 +7,26 @@ export const translations = {
 		turkish: '<h1 class="heading">Hoşgeldiniz</h1>',
 	},
 	intro: {
-		german:
-			'<p class="intro-text">Danke, dass du heute bei uns bist. Wir wollen ein kleines Spiel zusammen spielen. <br> Lass uns nun mehr über das Spiel anhören. Tippe auf den orangenen Lautsprecher-Knopf, um mehr zu erfahren.</p>',
+		german: `<p class="intro-text">
+			Wie schön, dass du heute mit uns spielen möchtest! <br> <br> 
+			In unserem Spiel werden dir viele Fragen gestellt. 
+			Wenn du ein Video erneut ansehen möchtest, klicke auf den runden Pfeil, der oben links in der Ecke erscheint. <br> <br>
+			Du kannst jederzeit eine kurze Pause machen, wenn du möchtest. 
+			Warte einfach, bis du auf den roten Weiter-Knopf tippst. 
+			Bitte bedenke, dass die Webcam-Aufnahme weiterhin läuft. <br> <br> 
+			Um mehr über das Spiel zu hören, tippe auf den orangenen Lautsprecher-Knopf.</p>`,
 		english: `<p class="intro-text">Thank you for joining us today. We want to play a little game together. <br> Let's listen to more information about our game. Please click on the orange speaker button to learn more.</p>`,
 		kikuyu: `<p class="intro-text">Wĩ ũruta mwega ũrũmĩte nĩ ũkĩambĩrĩrĩ. Nĩ ũrĩ na mwanajimbi mwaka mwaka ũno. <br> Ĩtwe nĩ tũkĩigua mahoya maiguru. Ĩkuru mwĩ mũ̃nũ ũrũ ngatho rũ ihũa rũ igweta rio mĩ.</p>`,
 		swahili: `<p class="intro-text">Asante kwa kujibu kauli leo. Tunataka kucheza mchezo kidogo pamoja. <br> Hayo usikilize habari zaidi kuhusu mchezo wetu. Tafadhali bofya kitufe kinene cha lugha kuona zaidi.</p>`,
 		turkish: `<p class="intro-text">Bugün bize katıldığınız için teşekkür ederiz. Küçük bir oyun oynamak istiyoruz. <br> Oyunumuz hakkında daha fazla bilgi dinleyelim. Lütfen daha fazla bilgi almak için turuncu hoparlör düğmesini tıklayın.</p>`,
 	},
 	thankYou: {
-		german:
-			'<h1 class="heading">Vielen Dank!</h1><br><p class="end-text">Super, alles geschafft. Tippe auf den orangenen Lautsprecher-Knopf, um eine Abschiedsnachricht zu hören. Um zu einem kleinen Dankeschön zu gelangen, tippe danach auf den Pfeil.</p>',
+		german: `<h1 class="heading">Geschafft — das Spiel ist nun vorbei! </h1>
+			<br><p class="end-text">
+			Das hast du großartig gemacht! Vielen Dank, dass du mit uns gespielt hast. <br> <br> 
+			Bitte habe noch einen Moment Geduld: Wir laden die Studiendaten hoch, damit wir sie später auswerten können. <br> <br>
+			Tippe auf den orangenen Lautsprecher-Knopf, um eine kurze Abschiedsnachricht zu hören. 
+			Danach erscheint ein roter Pfeil. Tippe darauf, um zu einem kleinen Dankeschön zu gelangen.</p>`,
 		english:
 			'<h1 class="heading">Thank you!</h1><br><p class="end-text">Excellent, you have completed the study. Click on the orange speaker button to listen to a goodbye message. To receive a small thank-you gift, please click on the arrow below.</p>',
 		kikuyu:

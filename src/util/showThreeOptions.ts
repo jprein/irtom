@@ -85,13 +85,16 @@ export const showThreeOptions = async (slidePrefix: string) => {
 
 	// Get Response
 	if (!data.clickedRepeat || data.incorrectResponse) {
+		const responseStartMs = Date.now();
 		const response = await getResponse([
 			optionLeft.id,
 			optionCenter.id,
 			optionRight.id,
 		]);
+		data.procedure[data.currentSlide].responseTimeSec = Number(
+			((Date.now() - responseStartMs) / 1000).toFixed(2)
+		);
 		stopBlockingState = false;
-
 		// Response returns the clicked element.
 		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")
 		// and only keep the last part of it, after the last hyphen - (e.g. "yes" or "no")

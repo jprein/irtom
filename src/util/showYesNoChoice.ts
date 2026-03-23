@@ -138,7 +138,11 @@ export const showYesNoChoice = async (
 
 	// Get Response (only add event listener for response if not clicked repeat; otherwise two...)
 	if (!data.clickedRepeat || data.incorrectResponse) {
+		const responseStartMs = Date.now();
 		const response = await getResponse([yesGroup.id, noGroup.id]);
+		data.procedure[data.currentSlide].responseTimeSec = Number(
+			((Date.now() - responseStartMs) / 1000).toFixed(2)
+		);
 		stopBlockingState = false;
 		// Response returns the clicked element.
 		// We take the ID of the clicked element (e.g. "link-s-perspectivetaking-yes")

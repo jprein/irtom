@@ -7,14 +7,16 @@
 	"scripts": {
 		"audiosprite": "sh src/scripts/audiosprite.sh",
 		"clean": "rimraf dist",
-		"fetchdata": "sh src/scripts/fetchdata.sh",
+		"fetchdataLL": "sh src/scripts/fetchdataLL.sh",
+		"fetchdataMPI": "sh src/scripts/fetchdataMPI.sh",
 		"lint": "eslint",
 		"prettier": "prettier --write \"**/*.{ts,js,json,yaml}\"",
 		"voxify": "node src/voxify/",
 		"dev": "bun vite",
 		"build": "bun vite build",
 		"preview": "bun vite preview",
-		"deploy": "bun run clean && bun run build && sh src/scripts/deploy.sh",
+		"deployLL": "bun run clean && bun run build && sh src/scripts/deployLL.sh",
+		"deployMPI": "bun run clean && bun run build && sh src/scripts/deployMPI.sh",
 		"generateImageJSON": "sh src/scripts/generateImageJSON.sh"
 	},
 	"repository": {

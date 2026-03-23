@@ -38,10 +38,26 @@ import {
 export const init = async () => {
 	// get study choices from local storage
 	const storedChoices = localStorage.getItem('storedChoices');
+	const urlParams = new URLSearchParams(window.location.search);
+	const urlChoices = {
+		id: urlParams.get('id'),
+		community: urlParams.get('community'),
+		datatransfer: urlParams.get('datatransfer'),
+		webcam: urlParams.get('webcam'),
+	};
+	const hasUrlChoices = Object.values(urlChoices).some(
+		(value) => value !== null && value !== ''
+	);
 	let studyChoices;
 
-	// If we find data in local storage, set studyChoices to that data
-	if (storedChoices) {
+	// If we find data in URL parameters, set studyChoices to that data
+	if (hasUrlChoices) {
+		studyChoices = Object.fromEntries(
+			Object.entries(urlChoices).filter(([, value]) => value)
+		);
+		console.log('Using study choices from URL parameters.', studyChoices);
+		// Alternatively, if we find data in local storage, set studyChoices to that data
+	} else if (storedChoices) {
 		studyChoices = JSON.parse(storedChoices);
 	} else {
 		console.log(
@@ -53,8 +69,8 @@ export const init = async () => {
 	const defaultValues = {
 		id: 'testID',
 		community: 'german',
-		webcam: 'false',
 		datatransfer: 'server',
+		webcam: 'true',
 	};
 
 	// Check if studyChoices contains all required keys.
@@ -235,7 +251,7 @@ export const init = async () => {
 	if (!config.devmode.on) {
 		window.onbeforeunload = function (evt: BeforeUnloadEvent) {
 			evt.preventDefault();
-			uploadCsv();
+			void uploadCsv().catch(() => undefined);
 			return '';
 		};
 	}

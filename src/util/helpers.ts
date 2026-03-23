@@ -100,7 +100,7 @@ export const generateUserIdFilename = (
 const generateCsvContent = (jsonData: any): string => {
 	// Extract the static fields (non-procedure fields)
 	const staticFields = Object.keys(jsonData).filter(
-		(key) => key !== 'procedure'
+		(key) => key !== 'procedure' && key !== 'sprite' && key !== 'spriteJSON'
 	);
 
 	// Extract the procedure keys (dynamic rows)
@@ -178,15 +178,23 @@ export async function uploadCsv(
 			body: csvContent, // Send the CSV content as the body
 		});
 
-		const responseData = await response.json();
+		const responseText = await response.text();
+		let responseData: { success?: boolean; message?: string } = {};
+		try {
+			responseData = responseText ? JSON.parse(responseText) : {};
+		} catch {
+			const responsePreview = responseText.slice(0, 120).replace(/\s+/g, ' ');
+			throw new Error(
+				`Upload endpoint did not return JSON. Response starts with: ${responsePreview}`
+			);
+		}
+
 		console.log('Success:', responseData);
 		if (!response.ok || !responseData.success) {
-			Toastify({
-				text: '🤔 CSV upload failed!',
-				duration: 2000,
-				className: 'toast-error',
-			}).showToast();
-			return;
+			throw new Error(
+				responseData.message ??
+					`CSV upload failed with status ${response.status}.`
+			);
 		}
 
 		if (config.devmode.on) {
@@ -197,23 +205,20 @@ export async function uploadCsv(
 			}).showToast();
 		}
 	} catch (error) {
-		console.error('Error uploading CSV:', error);
-		Toastify({
-			text: '🤔 CSV upload failed!',
-			duration: 2000,
-			className: 'toast-error',
-		}).showToast();
+		if (config.devmode.on) {
+			console.warn('CSV upload failed in uploadCsv().', error);
+			Toastify({
+				text: '🤔 CSV upload failed!',
+				duration: 2000,
+				className: 'toast-error',
+			}).showToast();
+		}
+		throw error;
 	}
 }
 
 // Function to download the webcam video
 export async function downloadWebcamVideo(webcam: boolean, id: string) {
-	// mrec.stopRecorder();
-	// // give some time to create Video Blob
-	// const day = new Date().toISOString().substring(0, 10);
-	// const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
-	// await sleep(2000);
-	// mrec.downloadVideo(`irtom-${id}-${day}-${time}`);
 	try {
 		if (webcam === true) {
 			const day = new Date().toISOString().substring(0, 10);
@@ -231,32 +236,6 @@ export async function downloadWebcamVideo(webcam: boolean, id: string) {
 
 // Function to upload the webcam video
 export async function uploadWebcamVideo(webcam: boolean, id: string) {
-	// // stop recorder and upload video
-	// mrec.stopRecorder();
-	// // show upload spinner
-	// mrec.modalContent(
-	// 	'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
-	// 	'#E1B4B4',
-	// );
-	// await sleep(2000);
-	// const day = new Date().toISOString().substring(0, 10);
-	// const time = new Date().toISOString().slice(11, 19).replaceAll(':', '-');
-	// try {
-	// 	mrec.uploadVideo(
-	// 		{
-	// 			fname: `irtom-${id}-${day}-${time}`,
-	// 			uploadContent:
-	// 				'<img src=\'assets/spinner-upload-de.svg\' style="width: 75vw">',
-	// 			uploadColor: '#E1B4B4',
-	// 			successContent:
-	// 				'<img src=\'assets/spinner-done-de.svg\' style="width: 75vw">',
-	// 			successColor: '#D3F9D3',
-	// 		},
-	// 		'./data/upload_video.php',
-	// 	);
-	// } catch (error) {
-	// 	console.error('Error uploading video:', error);
-	// }
 	// await sleep(2000);
 	if (webcam === true) {
 		// give some time to create Video Blob

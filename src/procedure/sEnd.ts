@@ -9,6 +9,15 @@ const PROCEDURE_FINISHED_EVENT = 'irtom:procedure-finished';
 export default async ({ currentSlide, previousSlide }) => {
 	// swap slides automatically (don’t touch this)
 	swapSlides(currentSlide, previousSlide);
+	let procedureFinished = false;
+
+	window.addEventListener(
+		PROCEDURE_FINISHED_EVENT,
+		() => {
+			procedureFinished = true;
+		},
+		{ once: true }
+	);
 
 	data.procedure[data.currentSlide].dimension = 'training';
 	data.procedure[data.currentSlide].analyse = false;
@@ -21,6 +30,12 @@ export default async ({ currentSlide, previousSlide }) => {
 	speaker.addEventListener(
 		'click',
 		async () => {
+			if (!data.sprite?.playPromise) {
+				if (config.devmode.on) {
+					console.warn('Audio sprite is unavailable on s-end speaker click.');
+				}
+				return;
+			}
 			await data.sprite.playPromise('s-end');
 
 			// Keep this transition instant to avoid first-slide latency on slower devices.
@@ -33,26 +48,31 @@ export default async ({ currentSlide, previousSlide }) => {
 		{ once: true }
 	);
 
-	// Wait for the next button click before returning
-	await new Promise<void>((resolve) => {
-		nextButton.addEventListener(
-			'click',
-			() => {
-				if (!config.devmode.on) {
-					exitFullscreen(data.isIOS);
-				}
+	// Do not block the procedure loop on this slide.
+	// Final data saving should start immediately when entering s-end.
+	nextButton.addEventListener(
+		'click',
+		() => {
+			if (!config.devmode.on) {
+				exitFullscreen(data.isIOS);
+			}
 
-				// Redirect only after the procedure emits its finalized event.
-				window.addEventListener(
-					PROCEDURE_FINISHED_EVENT,
-					() => {
-						window.location.href = './goodbye.html';
-					},
-					{ once: true }
-				);
-				resolve();
-			},
-			{ once: true }
-		);
-	});
+			const redirectUrl = `${window.location.origin}/irtom-consent/goodbye.html?id=${data.id}`;
+
+			if (procedureFinished) {
+				window.location.href = redirectUrl;
+				return;
+			}
+
+			// Redirect only after the procedure emits its finalized event.
+			window.addEventListener(
+				PROCEDURE_FINISHED_EVENT,
+				() => {
+					window.location.href = redirectUrl;
+				},
+				{ once: true }
+			);
+		},
+		{ once: true }
+	);
 };

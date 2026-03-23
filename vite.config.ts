@@ -67,7 +67,7 @@ export default defineConfig({
 		rollupOptions: {
 			// 1) make each slide its own entry, so Rollup emits it with your entryFileNames pattern
 			input: {
-				index: 'src/index.html',
+				index: path.resolve(__dirname, 'src/index.html'),
 				app: path.resolve(__dirname, 'src/app.html'),
 				goodbye: path.resolve(__dirname, 'src/goodbye.html'),
 				...slides, // ← every slide.ts becomes an entry point named by its basename
