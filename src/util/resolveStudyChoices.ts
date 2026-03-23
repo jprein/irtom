@@ -118,9 +118,6 @@ export const resolveStudyChoices = () => {
 	localStorage.setItem('storedChoices', JSON.stringify(studyChoices));
 	cleanStudyChoiceParamsFromUrl();
 
-	console.log('studyChoices', studyChoices);
-	console.log('urlChoices', urlChoices);
-
 	return {
 		studyChoices,
 		urlChoices,
