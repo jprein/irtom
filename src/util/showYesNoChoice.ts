@@ -38,6 +38,16 @@ export const showYesNoChoice = async (
 	const noFacefeatures = document.getElementById(
 		`${choicePrefix}-${data.emoji}-facefeatures-no`
 	) as SvgInHtml;
+	const interactiveElements = [yesGroup, noGroup, repeat].filter(
+		(element): element is SvgInHtml => Boolean(element)
+	);
+
+	if (interactiveElements.length > 0) {
+		gsap.set(interactiveElements, {
+			pointerEvents: 'none',
+			cursor: 'default',
+		});
+	}
 
 	// Play audio
 	await data.sprite.playPromise(`${slidePrefix}`);
@@ -49,6 +59,8 @@ export const showYesNoChoice = async (
 	const tl = gsap.timeline({
 		defaults: { ease: 'power1.inOut' },
 	});
+	let yesAudioDone: Promise<void> | null = null;
+	let noAudioDone: Promise<void> | null = null;
 
 	// 1) blur + show yesGroup (keep durations explicit where needed)
 	tl.to(blurr, { delay: 0.5, autoAlpha: 0.7, duration: 0.1 });
@@ -65,7 +77,9 @@ export const showYesNoChoice = async (
 		delay: 0.5,
 		autoAlpha: 1,
 		duration: 0.1,
-		onStart: () => data.sprite.play('yes'),
+		onStart: () => {
+			yesAudioDone = data.sprite.playPromise('yes').catch(() => undefined);
+		},
 	});
 
 	// 2) YES: move face + features together using a single call each phase
@@ -102,7 +116,9 @@ export const showYesNoChoice = async (
 		delay: 0.3,
 		autoAlpha: 1,
 		duration: 0.1,
-		onStart: () => data.sprite.play('no'),
+		onStart: () => {
+			noAudioDone = data.sprite.playPromise('no').catch(() => undefined);
+		},
 	});
 
 	// NO: left/right together
@@ -123,6 +139,7 @@ export const showYesNoChoice = async (
 
 	// If you truly need to await completion:
 	await tl.then();
+	await Promise.all([yesAudioDone, noAudioDone].filter(Boolean));
 
 	// For the very first yes/no response, play extra audio
 	if (data.currentSlide === 'sYesnotrainingA') {
@@ -130,7 +147,7 @@ export const showYesNoChoice = async (
 	}
 
 	// Make yes/no response options clickable
-	await gsap.to([yesGroup, noGroup, repeat], {
+	await gsap.to(interactiveElements, {
 		autoAlpha: 1,
 		pointerEvents: 'visible',
 		cursor: 'pointer',

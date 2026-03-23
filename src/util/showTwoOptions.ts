@@ -80,6 +80,8 @@ export const showTwoOptions = async (slidePrefix: string) => {
 
 		// for all other trials, faster response options with animation
 	} else {
+		let rightAudioDone: Promise<void> | null = null;
+
 		// Show response options
 		await timeline
 			.to(optionLeft, {
@@ -95,9 +97,14 @@ export const showTwoOptions = async (slidePrefix: string) => {
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
-					data.sprite.play(`${slidePrefix}-right`);
+					rightAudioDone = data.sprite.playPromise(`${slidePrefix}-right`);
 				},
 			});
+
+		// Keep options disabled until the second option audio has fully finished.
+		if (rightAudioDone) {
+			await rightAudioDone;
+		}
 
 		// Enable clicking only after both audios are finished
 		await timeline.to(interactiveElements, {

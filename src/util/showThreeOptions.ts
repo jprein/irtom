@@ -21,6 +21,19 @@ export const showThreeOptions = async (slidePrefix: string) => {
 	const subject = document.querySelector(
 		`[id*="${slidePrefix}"][id*="subject"]`
 	) as SvgInHtml;
+	const interactiveElements = [
+		optionLeft,
+		optionCenter,
+		optionRight,
+		repeat,
+	].filter((element): element is SvgInHtml => Boolean(element));
+
+	if (interactiveElements.length > 0) {
+		gsap.set(interactiveElements, {
+			pointerEvents: 'none',
+			cursor: 'default',
+		});
+	}
 
 	// Play audio
 	await data.sprite.playPromise(`${slidePrefix}`);
@@ -43,7 +56,9 @@ export const showThreeOptions = async (slidePrefix: string) => {
 		});
 	}
 
-	// for all other slides, show directly yes and no response buttons
+	let rightAudioDone: Promise<void> | null = null;
+
+	// for all other slides, show directly response buttons
 	await timeline
 		.to(optionLeft, {
 			delay: 0.2,
@@ -71,17 +86,23 @@ export const showThreeOptions = async (slidePrefix: string) => {
 			autoAlpha: 1,
 			duration: 0.5,
 			onStart: () => {
-				data.sprite.play(`${slidePrefix}-right`);
+				rightAudioDone = data.sprite
+					.playPromise(`${slidePrefix}-right`)
+					.catch(() => undefined);
 			},
 		})
-		.to(optionRight, { delay: 0.2, scale: 1, duration: 0.1 })
-		.to([optionLeft, optionCenter, optionRight, repeat], {
-			delay: data.spriteJSON.sprite[`${slidePrefix}-right`][1] / 1000,
-			autoAlpha: 1,
-			duration: 0.1,
-			pointerEvents: 'visible',
-			cursor: 'pointer',
-		});
+		.to(optionRight, { delay: 0.2, scale: 1, duration: 0.1 });
+
+	if (rightAudioDone) {
+		await rightAudioDone;
+	}
+
+	await gsap.to(interactiveElements, {
+		autoAlpha: 1,
+		duration: 0.1,
+		pointerEvents: 'visible',
+		cursor: 'pointer',
+	});
 
 	// Get Response
 	if (!data.clickedRepeat || data.incorrectResponse) {
