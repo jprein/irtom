@@ -11,7 +11,10 @@ import {
 	uploadWebcamVideo,
 } from '../../src/util/helpers';
 import type { SvgInHtml } from '../../src/types';
-import { getLastRecordingBlob, stopRecording } from '../util/mediaRecorderServices';
+import {
+	getLastRecordingBlob,
+	stopRecording,
+} from '../util/mediaRecorderServices';
 import { buttonTranslations } from '../translations';
 
 // register all slide modules in this folder
@@ -351,6 +354,7 @@ export const procedure = async () => {
 
 	const datatransfer = data.datatransfer;
 	let didDownloadCsvFallback = false;
+	let didDownloadWebcamFallback = false;
 	// get rid of unnecessary variables for researchers' response log
 	// keep audiosprite for now, so that we can still play audio on s-end slide
 	// (audio sprite variables will be ignored in CSV data)
@@ -422,63 +426,64 @@ export const procedure = async () => {
 					error
 				);
 			}
-			await addSpinner();
-			try {
-				await downloadCsv();
-				didDownloadCsvFallback = true;
-			} finally {
-				await hideSpinner();
+			await downloadCsv();
+			didDownloadCsvFallback = true;
+		}
+	};
+
+	const ensureWebcamUploaded = async () => {
+		if (datatransfer === 'local' || !hasRecordedVideo) return;
+		try {
+			await uploadWebcamVideo(hasRecordedVideo, data.id);
+		} catch (error) {
+			if (config.devmode.on) {
+				console.warn(
+					'Video upload failed. Downloading video locally as fallback.',
+					error
+				);
 			}
+			await downloadWebcamVideo(hasRecordedVideo, data.id);
+			didDownloadWebcamFallback = true;
 		}
 	};
 
 	// Save data depending on choice (local, server, both)
-	if (datatransfer === 'local') {
-		uploadAndDownloadFinshed = false;
-		showTransferOverlay();
-		try {
+	uploadAndDownloadFinshed = false;
+	showTransferOverlay();
+	try {
+		if (datatransfer === 'local') {
 			await downloadCsv();
 			await sleep(2000);
 			await downloadWebcamVideo(hasRecordedVideo, data.id);
 			await sleep(1000);
-		} finally {
-			uploadAndDownloadFinshed = true;
-			hideTransferOverlay();
-		}
-	} else if (datatransfer === 'server') {
-		await ensureCsvUploaded();
-		if (hasRecordedVideo) {
-			uploadAndDownloadFinshed = false;
-			showTransferOverlay();
-			try {
+		} else if (datatransfer === 'server') {
+			await ensureCsvUploaded();
+			if (hasRecordedVideo) {
 				await sleep(1000);
-				await uploadWebcamVideo(hasRecordedVideo, data.id);
+				await ensureWebcamUploaded();
 				await sleep(2000);
-			} finally {
-				uploadAndDownloadFinshed = true;
-				hideTransferOverlay();
 			}
-		}
-	} else {
-		await ensureCsvUploaded();
-		showTransferOverlay();
-		try {
-			if (hasRecordedVideo) {
-				uploadAndDownloadFinshed = false;
-				await sleep(1000);
-				await uploadWebcamVideo(hasRecordedVideo, data.id);
-				await sleep(1000);
-			}
-			await downloadCsv();
+		} else {
+			await ensureCsvUploaded();
 			if (hasRecordedVideo) {
 				await sleep(1000);
-				await downloadWebcamVideo(hasRecordedVideo, data.id);
+				await ensureWebcamUploaded();
 				await sleep(1000);
 			}
-		} finally {
-			uploadAndDownloadFinshed = true;
-			hideTransferOverlay();
+			if (!didDownloadCsvFallback) {
+				await downloadCsv();
+			}
+			if (hasRecordedVideo) {
+				await sleep(1000);
+				if (!didDownloadWebcamFallback) {
+					await downloadWebcamVideo(hasRecordedVideo, data.id);
+				}
+				await sleep(1000);
+			}
 		}
+	} finally {
+		uploadAndDownloadFinshed = true;
+		hideTransferOverlay();
 	}
 
 	// users can leave page now

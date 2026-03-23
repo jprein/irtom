@@ -265,6 +265,7 @@ export async function uploadWebcamVideo(webcam: boolean, id: string) {
 				duration: 2000,
 				className: 'toast-error',
 			}).showToast();
+			throw err;
 		}
 	}
 	await sleep(2000);
