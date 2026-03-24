@@ -63,9 +63,20 @@ const withTimeout = async <T>(
 	const webcamModalVideo = document.getElementById(
 		'webcam-modal-video'
 	) as HTMLVideoElement | null;
+	const webcamModalTitle = document.getElementById(
+		'webcam-modal-title'
+	) as HTMLHeadingElement | null;
 	const webcamModalClose = document.getElementById(
 		'webcam-modal-close'
 	) as HTMLButtonElement | null;
+
+	if (webcamModalTitle) {
+		const communityKey =
+			studyChoices.community as keyof typeof buttonTranslations.webcamModalTitle;
+		webcamModalTitle.textContent =
+			buttonTranslations.webcamModalTitle[communityKey] ??
+			buttonTranslations.webcamModalTitle.english;
+	}
 
 	let webcamPreviewStream: MediaStream | null = null;
 
