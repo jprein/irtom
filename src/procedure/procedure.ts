@@ -134,6 +134,42 @@ export const procedure = async () => {
 
 	data.totalSlides = currentProcedure.length;
 
+	// Start periodic safety CSV uploads once enough data has accumulated.
+	const SAFETY_UPLOAD_START_TRIAL = 8;
+	const SAFETY_UPLOAD_EVERY_N_TRIALS = 3;
+	// Serialize safety uploads so repeated triggers do not overlap.
+	let safetyCsvUploadQueue: Promise<void> = Promise.resolve();
+
+	const scheduleSafetyCsvUpload = (completedTrials: number) => {
+		if (data.datatransfer === 'local') {
+			return;
+		}
+
+		const shouldUploadSafetyCsv =
+			completedTrials >= SAFETY_UPLOAD_START_TRIAL &&
+			(completedTrials - SAFETY_UPLOAD_START_TRIAL) %
+				SAFETY_UPLOAD_EVERY_N_TRIALS ===
+				0;
+
+		if (!shouldUploadSafetyCsv) {
+			return;
+		}
+
+		// Queue the upload in the background and keep the study flow uninterrupted.
+		safetyCsvUploadQueue = safetyCsvUploadQueue.then(async () => {
+			try {
+				await uploadCsv();
+			} catch (error) {
+				if (config.devmode.on) {
+					console.warn(
+						`Safety CSV upload failed after trial ${completedTrials}.`,
+						error
+					);
+				}
+			}
+		});
+	};
+
 	// hide loading spinner
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
 	// parentBlock.removeAttribute('visibility');
@@ -340,6 +376,9 @@ export const procedure = async () => {
 			// stop any audio/video playback if it is still playing anything
 			stop();
 		}
+
+		// Safety copy upload cadence: after trial 8 and then every 3 trials.
+		scheduleSafetyCsvUpload(index + 1);
 	}
 
 	// save general variables for response log
@@ -414,6 +453,9 @@ export const procedure = async () => {
 			console.warn('Failed to stop recording, continuing anyway:', e);
 		}
 	}
+
+	// Ensure queued safety CSV uploads complete before final transfer logic starts.
+	await safetyCsvUploadQueue;
 
 	const ensureCsvUploaded = async () => {
 		if (datatransfer === 'local') return;
