@@ -24,11 +24,11 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
-	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`
+	const girl = document.getElementById(
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
-	const boyKneeling = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-kneeling`
+	const girlKneeling = document.getElementById(
+		`link-${slidePrefix}-${data.community}-girl-kneeling`
 	) as SvgInHtml;
 	const dogRunning = document.getElementById(
 		`link-${slidePrefix}-dog-running`
@@ -40,11 +40,11 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
-		gsap.set([boyKneeling, dogLying], {
+		gsap.set([girlKneeling, dogLying], {
 			autoAlpha: 0,
 			x: 0,
 		});
-		gsap.set(boy, {
+		gsap.set(girl, {
 			autoAlpha: 1,
 			x: 0,
 		});
@@ -71,7 +71,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				},
 			})
 			.to(dogLying, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(boy, {
+			.to(girl, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-2`][1] / 1000 + 1,
 				autoAlpha: 0,
 				duration: 0.1,
@@ -79,7 +79,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-3`);
 				},
 			})
-			.to(boyKneeling, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girlKneeling, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(dogLying, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000,
 				autoAlpha: 0,
@@ -88,9 +88,9 @@ export default async ({ currentSlide, previousSlide }) => {
 					data.sprite.play(`${slidePrefix}-4`);
 				},
 			})
-			.to(boyKneeling, { delay: 1, autoAlpha: 0, duration: 0.1 })
-			.to(boy, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(boy, {
+			.to(girlKneeling, { delay: 1, autoAlpha: 0, duration: 0.1 })
+			.to(girl, { autoAlpha: 1, duration: 0.1 }, '<')
+			.to(girl, {
 				delay: 2,
 				x: -1200,
 				duration: 2,
