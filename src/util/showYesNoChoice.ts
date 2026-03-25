@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
+import { isPauseResponse } from './pauseControls';
 
 export const showYesNoChoice = async (
 	slidePrefix: string,
@@ -157,6 +158,10 @@ export const showYesNoChoice = async (
 	if (!data.clickedRepeat || data.incorrectResponse) {
 		const responseStartMs = Date.now();
 		const response = await getResponse([yesGroup.id, noGroup.id]);
+		if (isPauseResponse(response)) {
+			choiceSlide.setAttribute('visibility', 'hidden');
+			return true;
+		}
 		data.procedure[data.currentSlide].responseTimeSec = Number(
 			((Date.now() - responseStartMs) / 1000).toFixed(2)
 		);

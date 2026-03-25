@@ -34,6 +34,8 @@ css:
       '[id$=-left]',
       '[id$=-center]',
       '[id$=-right]',
+      '[id^=link][id$=pause]',
+      '[id^=link][id$=resume]',
     ]
   # will be used within the init process to to add a zoom animation on hover
   scaleOnHoverObjects:
@@ -57,6 +59,8 @@ css:
       '[id$=-left]',
       '[id$=-center]',
       '[id$=-right]',
+      '[id^=link][id$=pause]',
+      '[id^=link][id$=resume]',
     ]
 
 globals:
@@ -71,7 +75,7 @@ procedure:
   # If you create a key with a sub array everything in the sub array will be randomized
   # You can nest only two levels deep
   german:
-    - s-introduction
+    # - s-introduction
     # - s-emojichoice
     # - s-yesnotraining-a
     # - s-yesnotraining-b
@@ -88,13 +92,13 @@ procedure:
     # - s-diversedesires-a
     # - s-perspectivetaking-one-b
     # - s-pretense-b
-    # - s-knowledgeaccess-b
+    - s-knowledgeaccess-b
     # - s-perspectivetaking-one-c
     # - s-perspectivetaking-one-d
     # - s-dogtraining
-    # - s-knowledgeaccess-c
+    - s-knowledgeaccess-c
     # - s-falsebelief-uc-a
-    # - s-diversedesires-c
+    - s-diversedesires-c
     # - s-diversedesires-d
     # - s-appearancereality-a
     # - s-parentstraining
@@ -104,7 +108,7 @@ procedure:
     # - s-diversebeliefs-b
     # - s-diversebeliefs-c
     # - s-falsebelief-uc-c
-    - s-falsebelief-col-a
+    # - s-falsebelief-col-a
     # - s-appearancereality-b
     # - s-perspectivetaking-two-a
     # - s-falsebelief-col-b

@@ -1,3 +1,10 @@
+import {
+	getActivePauseButton,
+	hidePauseButton,
+	isPauseResponse,
+	runPauseFlow,
+} from './pauseControls';
+
 export const getResponse = (id?: string | string[]) => {
 	return new Promise<Element>((resolve) => {
 		const targets: Element[] = [];
@@ -19,21 +26,35 @@ export const getResponse = (id?: string | string[]) => {
 			if (wrapper) targets.push(wrapper);
 		}
 
+		const pauseButton = getActivePauseButton();
+		if (
+			pauseButton &&
+			data.currentSlide !== 'sEnd' &&
+			(!('classList' in pauseButton) || !pauseButton.classList.contains('hidden'))
+		) {
+			targets.push(pauseButton);
+		}
+
 		let settled = false;
 
 		const cleanup = () => {
+			hidePauseButton();
 			targets.forEach((target) => {
 				target.removeEventListener('pointerup', handleResponse);
 				target.removeEventListener('click', handleResponse);
 			});
 		};
 
-		const handleResponse = (event: Event) => {
+		const handleResponse = async (event: Event) => {
 			if (settled) return;
 			settled = true;
 			cleanup();
+			const target = event.currentTarget as Element;
+			if (isPauseResponse(target)) {
+				await runPauseFlow();
+			}
 			// Use currentTarget to resolve the element where the listener was attached.
-			resolve(event.currentTarget as Element);
+			resolve(target);
 		};
 
 		targets.forEach((target) => {
