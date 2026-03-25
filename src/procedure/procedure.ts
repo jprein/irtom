@@ -20,6 +20,61 @@ import { buttonTranslations } from '../translations';
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
 
+const CSV_TRANSIENT_KEYS = [
+	'currentProcedure',
+	'currentSlide',
+	'datatransfer',
+	'nextSlide',
+	'previousSlide',
+	'slideCounter',
+	'simpleSlideCounter',
+	't0',
+	't1',
+	'endTime',
+	'totalSlides',
+	'videoExtension',
+	'hasWebcam',
+	'safari',
+	'isIOS',
+	'iOSSafari',
+	'clickedRepeat',
+	'incorrectResponse',
+	'emoji',
+] as const;
+
+const formatTimestamp = (date: Date) =>
+	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(
+		date.getDate()
+	).padStart(2, '0')}_${String(date.getHours()).padStart(2, '0')}:${String(
+		date.getMinutes()
+	).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
+
+const buildCsvUploadSnapshot = () => {
+	const snapshot = _.cloneDeep(data);
+
+	const start =
+		snapshot.t0 instanceof Date ? snapshot.t0 : new Date(snapshot.t0);
+	const end = new Date();
+
+	if (!Number.isNaN(start.getTime())) {
+		snapshot.startTime = formatTimestamp(start);
+		snapshot.completionTimeMin = (
+			(end.getTime() - start.getTime()) /
+			60000
+		).toFixed(2);
+	}
+
+	snapshot.endTime = formatTimestamp(end);
+
+	CSV_TRANSIENT_KEYS.forEach((key) => {
+		if (key in snapshot) {
+			delete snapshot[key];
+		}
+	});
+
+	return snapshot;
+};
+
 const getTransferOverlayLabel = () => {
 	const communityKey =
 		data.community as keyof typeof buttonTranslations.finalizingData;
@@ -155,10 +210,13 @@ export const procedure = async () => {
 			return;
 		}
 
+		// Freeze the payload now so queued uploads cannot pick up later in-progress slide state.
+		const safetySnapshot = buildCsvUploadSnapshot();
+
 		// Queue the upload in the background and keep the study flow uninterrupted.
 		safetyCsvUploadQueue = safetyCsvUploadQueue.then(async () => {
 			try {
-				await uploadCsv();
+				await uploadCsv(safetySnapshot);
 			} catch (error) {
 				if (config.devmode.on) {
 					console.warn(
