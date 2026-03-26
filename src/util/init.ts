@@ -104,7 +104,6 @@ export const init = async (initialStudyChoices?: StudyChoices) => {
 		clickedRepeat: false,
 		incorrectResponse: false,
 		emoji: 'yellow',
-		pauseCount: 0,
 		webcamRecordingReady: false,
 	};
 	//log user testing setup

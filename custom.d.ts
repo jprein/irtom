@@ -55,7 +55,6 @@ declare let data: {
 	spriteJSON;
 	clickedRepeat: boolean;
 	incorrectResponse: boolean;
-	pauseCount?: number;
 	webcamRecordingReady?: boolean;
 	procedure: {
 		sIntroduction: {

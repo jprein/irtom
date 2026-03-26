@@ -149,9 +149,6 @@ export const runPauseFlow = async () => {
 		setPausePlaceholderText('pauseSaving');
 		setPauseTextVisibility(true);
 
-		const pauseIndex = (data.pauseCount ?? 0) + 1;
-		data.pauseCount = pauseIndex;
-
 		const hadActiveRecording = isRecordingActive();
 		let hasRecordedVideo = false;
 
@@ -167,7 +164,7 @@ export const runPauseFlow = async () => {
 
 		try {
 			await persistStudyData({
-				videoId: `${data.id}-pause-${pauseIndex}`,
+				videoId: `${data.id}`,
 				hasRecordedVideo,
 				saveCsv: false,
 				saveVideo: true,
