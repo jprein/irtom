@@ -1,5 +1,6 @@
 import config from '../config.yaml';
 import {
+	buildCsvSnapshot,
 	downloadCsv,
 	downloadWebcamVideo,
 	sleep,
@@ -27,11 +28,12 @@ export const persistStudyData = async ({
 	let didDownloadWebcamFallback = false;
 	const shouldPersistCsv = saveCsv;
 	const shouldPersistVideo = saveVideo && hasRecordedVideo;
+	const csvSnapshot = buildCsvSnapshot(data);
 
 	const ensureCsvUploaded = async () => {
 		if (!shouldPersistCsv || datatransfer === 'local') return;
 		try {
-			await uploadCsv(data, csvId);
+			await uploadCsv(csvSnapshot, csvId);
 		} catch (error) {
 			if (config.devmode.on) {
 				console.warn(
@@ -39,7 +41,7 @@ export const persistStudyData = async ({
 					error
 				);
 			}
-			await downloadCsv(data, csvId);
+			await downloadCsv(csvSnapshot, csvId);
 			didDownloadCsvFallback = true;
 		}
 	};
@@ -62,7 +64,7 @@ export const persistStudyData = async ({
 
 	if (datatransfer === 'local') {
 		if (shouldPersistCsv) {
-			await downloadCsv(data, csvId);
+			await downloadCsv(csvSnapshot, csvId);
 			await sleep(2000);
 		}
 		if (shouldPersistVideo) {
@@ -84,7 +86,7 @@ export const persistStudyData = async ({
 			await sleep(1000);
 		}
 		if (shouldPersistCsv && !didDownloadCsvFallback) {
-			await downloadCsv(data, csvId);
+			await downloadCsv(csvSnapshot, csvId);
 		}
 		if (shouldPersistVideo) {
 			await sleep(1000);

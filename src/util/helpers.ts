@@ -6,6 +6,7 @@ import {
 	downloadLastRecording,
 	uploadLastRecordingInChunks,
 } from './mediaRecorderServices';
+import _ from 'lodash';
 
 // promised based timeout
 export const sleep = (ms = 2000) =>
@@ -96,33 +97,121 @@ export const generateUserIdFilename = (
 	return `${prefix}-${data.id}-${day}-${time}-${postfix}.${extension}`;
 };
 
-// Helper function to generate CSV content
-const generateCsvContent = (jsonData: any): string => {
-	// Extract the static fields (non-procedure fields)
-	const staticFields = Object.keys(jsonData).filter(
-		(key) => key !== 'procedure' && key !== 'sprite' && key !== 'spriteJSON'
-	);
+// define overall study variables that will be included in the CSV export and their order
+const STATIC_CSV_FIELD_ORDER = [
+	'id',
+	'community',
+	'osName',
+	'browserName',
+	'touchscreen',
+	'webcam',
+	'startTime',
+	'completionTimeMin',
+	'breaks',
+] as const;
 
-	// Extract the procedure keys (dynamic rows)
-	const procedureKeys = Object.keys(jsonData.procedure);
-	Object.values(jsonData.procedure).forEach((trial: any) => {
-		delete (trial as any).trainingTrial;
+// dedicated column name for the procedure step identifier in the CSV
+const CSV_TRIAL_COLUMN = 'trial' as const;
+
+// define trial-specific variables that will be included in the CSV export and their order
+const PROCEDURE_CSV_FIELD_ORDER = [
+	'trialNr',
+	'dimension',
+	'response',
+	'correct',
+	'score',
+	'repeatOnClick',
+	'repeatIncorrect',
+	'trialDurationSec',
+	'responseTimeSec',
+	'analyse',
+] as const;
+
+// define variables that should be excluded from the CSV export
+const CSV_TRANSIENT_KEYS = [
+	'currentProcedure',
+	'currentSlide',
+	'datatransfer',
+	'nextSlide',
+	'previousSlide',
+	'slideCounter',
+	'simpleSlideCounter',
+	't0',
+	't1',
+	'endTime',
+	'totalSlides',
+	'videoExtension',
+	'hasWebcam',
+	'safari',
+	'isIOS',
+	'iOSSafari',
+	'clickedRepeat',
+	'incorrectResponse',
+	'emoji',
+	'webcamRecordingReady',
+] as const;
+
+// format date as YYYY-MM-DD_HH-MM-SS for CSV export
+const formatCsvTimestamp = (date: Date) =>
+	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(
+		date.getDate()
+	).padStart(2, '0')}_${String(date.getHours()).padStart(2, '0')}:${String(
+		date.getMinutes()
+	).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
+
+// Build a snapshot of the data object for CSV export, excluding transient keys and formatting dates
+export const buildCsvSnapshot = (sourceData: any = data) => {
+	const csvSnapshot = _.cloneDeep(sourceData);
+
+	const start =
+		csvSnapshot.t0 instanceof Date ? csvSnapshot.t0 : new Date(csvSnapshot.t0);
+	const end = new Date();
+
+	if (!Number.isNaN(start.getTime())) {
+		csvSnapshot.startTime = formatCsvTimestamp(start);
+		csvSnapshot.completionTimeMin = (
+			(end.getTime() - start.getTime()) /
+			60000
+		).toFixed(2);
+	}
+
+	csvSnapshot.endTime = formatCsvTimestamp(end);
+
+	CSV_TRANSIENT_KEYS.forEach((key) => {
+		if (key in csvSnapshot) {
+			delete csvSnapshot[key];
+		}
 	});
 
-	// Prepare the CSV header
-	const header = [
-		...staticFields,
-		'trial',
-		...Object.keys(jsonData.procedure[procedureKeys[0]]),
-	];
+	return csvSnapshot;
+};
+
+// Helper function to generate CSV content
+// takes only the relevant fields defined in STATIC_CSV_FIELD_ORDER and PROCEDURE_CSV_FIELD_ORDER,
+// and formats them in the correct order for CSV export
+const generateCsvContent = (jsonData: any): string => {
+	const csvSnapshot = buildCsvSnapshot(jsonData);
+	const procedureData = csvSnapshot?.procedure ?? {};
+	const procedureKeys = Object.keys(procedureData);
+
+	const staticFields = STATIC_CSV_FIELD_ORDER.filter(
+		(field) => field in csvSnapshot
+	);
+
+	const knownProcedureFields = PROCEDURE_CSV_FIELD_ORDER.filter((field) =>
+		procedureKeys.some((step) => field in (procedureData[step] ?? {}))
+	);
+	const procedureFields = knownProcedureFields;
+
+	const header = [...staticFields, CSV_TRIAL_COLUMN, ...procedureFields];
 
 	// Prepare the CSV rows
 	const rows = procedureKeys.map((step) => {
-		const procedureData = jsonData.procedure[step];
+		const trialData = procedureData[step] ?? {};
 		return [
-			...staticFields.map((field) => jsonData[field]), // Add static field values
-			step, // Add the procedure step name
-			...Object.values(procedureData), // Add procedure-specific values
+			...staticFields.map((field) => csvSnapshot[field]), // Add static field values
+			step, // Add the procedure step name for CSV_TRIAL_COLUMN
+			...procedureFields.map((field) => trialData[field]), // Add procedure-specific values
 		];
 	});
 
@@ -133,6 +222,7 @@ const generateCsvContent = (jsonData: any): string => {
 	].join('\n');
 };
 
+// Helper function to trigger browser download of a Blob with a given filename
 const triggerBrowserDownload = async (blob: Blob, filename: string) => {
 	const url = window.URL.createObjectURL(blob);
 	const hiddenElement = document.createElement('a');

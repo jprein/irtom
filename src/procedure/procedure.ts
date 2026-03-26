@@ -2,7 +2,12 @@ import _ from 'lodash';
 import { gsap } from 'gsap';
 import config from '../config.yaml';
 import { stop } from '../../src/util/audio';
-import { millisToMinutesAndSeconds, sleep } from '../../src/util/helpers';
+import {
+	buildCsvSnapshot,
+	millisToMinutesAndSeconds,
+	sleep,
+	uploadCsv,
+} from '../../src/util/helpers';
 import type { SvgInHtml } from '../../src/types';
 import {
 	getLastRecordingBlob,
@@ -11,65 +16,9 @@ import {
 } from '../util/mediaRecorderServices';
 import { buttonTranslations } from '../translations';
 import { persistStudyData } from '../util/persistStudyData';
-import { uploadCsv } from '../../src/util/helpers';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
-
-const CSV_TRANSIENT_KEYS = [
-	'currentProcedure',
-	'currentSlide',
-	'datatransfer',
-	'nextSlide',
-	'previousSlide',
-	'slideCounter',
-	'simpleSlideCounter',
-	't0',
-	't1',
-	'endTime',
-	'totalSlides',
-	'videoExtension',
-	'hasWebcam',
-	'safari',
-	'isIOS',
-	'iOSSafari',
-	'clickedRepeat',
-	'incorrectResponse',
-	'emoji',
-] as const;
-
-const formatTimestamp = (date: Date) =>
-	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(
-		date.getDate()
-	).padStart(2, '0')}_${String(date.getHours()).padStart(2, '0')}:${String(
-		date.getMinutes()
-	).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
-
-const buildCsvUploadSnapshot = () => {
-	const snapshot = _.cloneDeep(data);
-
-	const start =
-		snapshot.t0 instanceof Date ? snapshot.t0 : new Date(snapshot.t0);
-	const end = new Date();
-
-	if (!Number.isNaN(start.getTime())) {
-		snapshot.startTime = formatTimestamp(start);
-		snapshot.completionTimeMin = (
-			(end.getTime() - start.getTime()) /
-			60000
-		).toFixed(2);
-	}
-
-	snapshot.endTime = formatTimestamp(end);
-
-	CSV_TRANSIENT_KEYS.forEach((key) => {
-		if (key in snapshot) {
-			delete snapshot[key];
-		}
-	});
-
-	return snapshot;
-};
 
 const getTransferOverlayLabel = () => {
 	const communityKey =
@@ -207,7 +156,7 @@ export const procedure = async () => {
 		}
 
 		// Freeze the payload now so queued uploads cannot pick up later in-progress slide state.
-		const safetySnapshot = buildCsvUploadSnapshot();
+		const safetySnapshot = buildCsvSnapshot(data);
 
 		// Queue the upload in the background and keep the study flow uninterrupted.
 		safetyCsvUploadQueue = safetyCsvUploadQueue.then(async () => {
@@ -445,35 +394,6 @@ export const procedure = async () => {
 	data.completionTimeMin = (completionTimeMs / 60000).toFixed(2);
 	const finishedOnEndSlide = data.currentSlide === 'sEnd';
 
-	// get rid of unnecessary variables for researchers' response log
-	// keep audiosprite for now, so that we can still play audio on s-end slide
-	// (audio sprite variables will be ignored in CSV data)
-	[
-		'currentProcedure',
-		'currentSlide',
-		'datatransfer',
-		'nextSlide',
-		'previousSlide',
-		'slideCounter',
-		'simpleSlideCounter',
-		't0',
-		't1',
-		'endTime',
-		'totalSlides',
-		'videoExtension',
-		'hasWebcam',
-		'safari',
-		'isIOS',
-		'iOSSafari',
-		'clickedRepeat',
-		'incorrectResponse',
-		'emoji',
-	].forEach((key) => {
-		if (key in data) {
-			delete data[key];
-		}
-	});
-
 	let uploadAndDownloadFinshed = false;
 	let hasRecordedVideo = false;
 
@@ -507,6 +427,9 @@ export const procedure = async () => {
 			console.warn('Failed to stop recording, continuing anyway:', e);
 		}
 	}
+
+	// Ensure queued safety CSV uploads complete before final transfer logic starts.
+	await safetyCsvUploadQueue;
 
 	// Save data depending on choice (local, server, both)
 	uploadAndDownloadFinshed = false;

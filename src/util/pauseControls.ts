@@ -53,8 +53,7 @@ const showNextButton = (slidePrefix = activeSlidePrefix) => {
 };
 
 const getPauseMessage = (key: 'pause' | 'pauseSaving') => {
-	const communityKey =
-		data.community as keyof typeof translations.pause;
+	const communityKey = data.community as keyof typeof translations.pause;
 	const translationGroup =
 		key === 'pause' ? translations.pause : pauseStatusTranslations.pauseSaving;
 
@@ -149,8 +148,7 @@ export const runPauseFlow = async () => {
 		setPausePlaceholderText('pauseSaving');
 		setPauseTextVisibility(true);
 
-		const pauseIndex = (data.pauseCount ?? 0) + 1;
-		data.pauseCount = pauseIndex;
+		data.breaks = (data.breaks ?? 0) + 1;
 
 		const hadActiveRecording = isRecordingActive();
 		let hasRecordedVideo = false;
