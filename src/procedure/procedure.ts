@@ -2,10 +2,7 @@ import _ from 'lodash';
 import { gsap } from 'gsap';
 import config from '../config.yaml';
 import { stop } from '../../src/util/audio';
-import {
-	millisToMinutesAndSeconds,
-	sleep,
-} from '../../src/util/helpers';
+import { millisToMinutesAndSeconds, sleep } from '../../src/util/helpers';
 import type { SvgInHtml } from '../../src/types';
 import {
 	getLastRecordingBlob,
@@ -14,9 +11,65 @@ import {
 } from '../util/mediaRecorderServices';
 import { buttonTranslations } from '../translations';
 import { persistStudyData } from '../util/persistStudyData';
+import { uploadCsv } from '../../src/util/helpers';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
+
+const CSV_TRANSIENT_KEYS = [
+	'currentProcedure',
+	'currentSlide',
+	'datatransfer',
+	'nextSlide',
+	'previousSlide',
+	'slideCounter',
+	'simpleSlideCounter',
+	't0',
+	't1',
+	'endTime',
+	'totalSlides',
+	'videoExtension',
+	'hasWebcam',
+	'safari',
+	'isIOS',
+	'iOSSafari',
+	'clickedRepeat',
+	'incorrectResponse',
+	'emoji',
+] as const;
+
+const formatTimestamp = (date: Date) =>
+	`${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(
+		date.getDate()
+	).padStart(2, '0')}_${String(date.getHours()).padStart(2, '0')}:${String(
+		date.getMinutes()
+	).padStart(2, '0')}:${String(date.getSeconds()).padStart(2, '0')}`;
+
+const buildCsvUploadSnapshot = () => {
+	const snapshot = _.cloneDeep(data);
+
+	const start =
+		snapshot.t0 instanceof Date ? snapshot.t0 : new Date(snapshot.t0);
+	const end = new Date();
+
+	if (!Number.isNaN(start.getTime())) {
+		snapshot.startTime = formatTimestamp(start);
+		snapshot.completionTimeMin = (
+			(end.getTime() - start.getTime()) /
+			60000
+		).toFixed(2);
+	}
+
+	snapshot.endTime = formatTimestamp(end);
+
+	CSV_TRANSIENT_KEYS.forEach((key) => {
+		if (key in snapshot) {
+			delete snapshot[key];
+		}
+	});
+
+	return snapshot;
+};
 
 const getTransferOverlayLabel = () => {
 	const communityKey =
@@ -131,6 +184,45 @@ export const procedure = async () => {
 	}
 
 	data.totalSlides = currentProcedure.length;
+
+	// Start periodic safety CSV uploads once enough data has accumulated.
+	const SAFETY_UPLOAD_START_TRIAL = 8;
+	const SAFETY_UPLOAD_EVERY_N_TRIALS = 3;
+	// Serialize safety uploads so repeated triggers do not overlap.
+	let safetyCsvUploadQueue: Promise<void> = Promise.resolve();
+
+	const scheduleSafetyCsvUpload = (completedTrials: number) => {
+		if (data.datatransfer === 'local') {
+			return;
+		}
+
+		const shouldUploadSafetyCsv =
+			completedTrials >= SAFETY_UPLOAD_START_TRIAL &&
+			(completedTrials - SAFETY_UPLOAD_START_TRIAL) %
+				SAFETY_UPLOAD_EVERY_N_TRIALS ===
+				0;
+
+		if (!shouldUploadSafetyCsv) {
+			return;
+		}
+
+		// Freeze the payload now so queued uploads cannot pick up later in-progress slide state.
+		const safetySnapshot = buildCsvUploadSnapshot();
+
+		// Queue the upload in the background and keep the study flow uninterrupted.
+		safetyCsvUploadQueue = safetyCsvUploadQueue.then(async () => {
+			try {
+				await uploadCsv(safetySnapshot);
+			} catch (error) {
+				if (config.devmode.on) {
+					console.warn(
+						`Safety CSV upload failed after trial ${completedTrials}.`,
+						error
+					);
+				}
+			}
+		});
+	};
 
 	// hide loading spinner
 	const parentBlock = document.getElementById('s-blocking-state') as SvgInHtml;
@@ -338,6 +430,9 @@ export const procedure = async () => {
 			// stop any audio/video playback if it is still playing anything
 			stop();
 		}
+
+		// Safety copy upload cadence: after trial 8 and then every 3 trials.
+		scheduleSafetyCsvUpload(index + 1);
 	}
 
 	// save general variables for response log

@@ -9,12 +9,10 @@ export const translations = {
 	intro: {
 		german: `<p class="intro-text">
 			Wie schön, dass du heute mit uns spielen möchtest! <br> <br> 
-			In unserem Spiel werden dir viele Fragen gestellt. 
-			Wenn du ein Video erneut ansehen möchtest, klicke auf den runden Pfeil, der oben links in der Ecke erscheint. <br> <br>
-			Du kannst jederzeit eine kurze Pause machen, wenn du möchtest. 
-			Warte einfach, bis du auf den roten Weiter-Knopf tippst. 
-			Bitte bedenke, dass die Webcam-Aufnahme weiterhin läuft. <br> <br> 
-			Um mehr über das Spiel zu hören, tippe auf den orangenen Lautsprecher-Knopf.</p>`,
+			In unserem Spiel stellen wir dir viele Fragen. 
+			Wenn du dir ein Video nochmal ansehen möchtest, tippe auf den runden Pfeil, der oben links in der Ecke erscheint. <br> <br>
+			Tippe auf das Pause-Zeichen, falls du eine kurze Pause brauchst. Um danach weiterzuspielen, tippst du einfach auf den Weiter-Knopf. <br> <br> 
+			Tippe jetzt auf den orangen Lautsprecher-Knopf, um mehr über das Spiel zu erfahren. Los geht's!</p>`,
 		english: `<p class="intro-text">Thank you for joining us today. We want to play a little game together. <br> Let's listen to more information about our game. Please click on the orange speaker button to learn more.</p>`,
 		kikuyu: `<p class="intro-text">Wĩ ũruta mwega ũrũmĩte nĩ ũkĩambĩrĩrĩ. Nĩ ũrĩ na mwanajimbi mwaka mwaka ũno. <br> Ĩtwe nĩ tũkĩigua mahoya maiguru. Ĩkuru mwĩ mũ̃nũ ũrũ ngatho rũ ihũa rũ igweta rio mĩ.</p>`,
 		swahili: `<p class="intro-text">Asante kwa kujibu kauli leo. Tunataka kucheza mchezo kidogo pamoja. <br> Hayo usikilize habari zaidi kuhusu mchezo wetu. Tafadhali bofya kitufe kinene cha lugha kuona zaidi.</p>`,
@@ -80,7 +78,14 @@ export const buttonTranslations = {
 		swahili: 'Karibu subiri: Data inahifadhiwa...',
 		turkish: 'Lütfen bekleyin: Veriler kaydediliyor...',
 	},
-	};
+	webcamModalTitle: {
+		german: 'Webcam-Vorschau',
+		english: 'Webcam Preview',
+		kikuyu: 'Webcam preview',
+		swahili: 'Muhtasari wa webcam',
+		turkish: 'Webcam Onizleme',
+	},
+};
 
 export const pauseStatusTranslations = {
 	pauseSaving: {
