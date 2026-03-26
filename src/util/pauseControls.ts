@@ -149,6 +149,9 @@ export const runPauseFlow = async () => {
 		setPausePlaceholderText('pauseSaving');
 		setPauseTextVisibility(true);
 
+		const pauseIndex = (data.pauseCount ?? 0) + 1;
+		data.pauseCount = pauseIndex;
+
 		const hadActiveRecording = isRecordingActive();
 		let hasRecordedVideo = false;
 
