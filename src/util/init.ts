@@ -29,12 +29,8 @@ import Toastify from 'toastify-js';
 import DetectRTC from 'detectrtc';
 import 'toastify-js/src/toastify.css';
 //import { createSprite } from './createSprite';
-import {
-	initMedia,
-	isMediaRecorderSupported,
-	startRecording,
-} from './mediaRecorderServices';
 import { resolveStudyChoices, type StudyChoices } from './resolveStudyChoices';
+import { startStudyRecordingIfEnabled } from './studyRecording';
 
 export const init = async (initialStudyChoices?: StudyChoices) => {
 	// If initialStudyChoices are provided (e.g., from a previous page), use them.
@@ -108,6 +104,8 @@ export const init = async (initialStudyChoices?: StudyChoices) => {
 		clickedRepeat: false,
 		incorrectResponse: false,
 		emoji: 'yellow',
+		pauseCount: 0,
+		webcamRecordingReady: false,
 	};
 	//log user testing setup
 	DetectRTC.load(async () => {
@@ -122,30 +120,7 @@ export const init = async (initialStudyChoices?: StudyChoices) => {
 		// Enable webcam recording if selected in URL parameters
 		//if (global.data.hasWebcam && global.data.webcam && !global.data.iOSSafari) {
 		if (global.data.hasWebcam && global.data.webcam) {
-			// !responseLog.meta.iOSSafari &&
-			if (!isMediaRecorderSupported()) {
-				console.log('MediaRecorder is not supported in this browser.');
-			} else {
-				try {
-					console.log('Requesting camera/microphone...');
-					await initMedia({
-						audio: true,
-						video: {
-							// Lower quality preset for faster uploads
-							frameRate: { min: 1, ideal: 3, max: 5 },
-							width: { min: 320, ideal: 320, max: 320 },
-							height: { min: 240, ideal: 240, max: 240 },
-							facingMode: 'user',
-						},
-					});
-					console.log('Camera ready. You can start recording.');
-
-					startRecording();
-					console.log('Recording started.');
-				} catch (error) {
-					console.error('Failed to access camera/microphone:', error);
-				}
-			}
+			await startStudyRecordingIfEnabled();
 		}
 	});
 

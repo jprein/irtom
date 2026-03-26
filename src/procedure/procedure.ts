@@ -2,20 +2,16 @@ import _ from 'lodash';
 import { gsap } from 'gsap';
 import config from '../config.yaml';
 import { stop } from '../../src/util/audio';
-import {
-	uploadCsv,
-	downloadCsv,
-	millisToMinutesAndSeconds,
-	sleep,
-	downloadWebcamVideo,
-	uploadWebcamVideo,
-} from '../../src/util/helpers';
+import { millisToMinutesAndSeconds, sleep } from '../../src/util/helpers';
 import type { SvgInHtml } from '../../src/types';
 import {
 	getLastRecordingBlob,
+	isRecordingActive,
 	stopRecording,
 } from '../util/mediaRecorderServices';
 import { buttonTranslations } from '../translations';
+import { persistStudyData } from '../util/persistStudyData';
+import { uploadCsv } from '../../src/util/helpers';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
@@ -449,9 +445,6 @@ export const procedure = async () => {
 	data.completionTimeMin = (completionTimeMs / 60000).toFixed(2);
 	const finishedOnEndSlide = data.currentSlide === 'sEnd';
 
-	const datatransfer = data.datatransfer;
-	let didDownloadCsvFallback = false;
-	let didDownloadWebcamFallback = false;
 	// get rid of unnecessary variables for researchers' response log
 	// keep audiosprite for now, so that we can still play audio on s-end slide
 	// (audio sprite variables will be ignored in CSV data)
@@ -482,7 +475,7 @@ export const procedure = async () => {
 	});
 
 	let uploadAndDownloadFinshed = false;
-	let hasRecordedVideo = Boolean(getLastRecordingBlob());
+	let hasRecordedVideo = false;
 
 	// log summary of study in console
 	console.group(
@@ -499,9 +492,12 @@ export const procedure = async () => {
 
 	// Start data saving process
 	if (data.webcam == true) {
+		const hadActiveRecording = isRecordingActive();
 		try {
 			const recordedBlob = await stopRecording({ stopStream: true });
-			hasRecordedVideo = Boolean(recordedBlob ?? getLastRecordingBlob());
+			hasRecordedVideo = hadActiveRecording
+				? Boolean(recordedBlob ?? getLastRecordingBlob())
+				: false;
 			if (!hasRecordedVideo) {
 				console.warn(
 					'Webcam recording was enabled, but no video blob was captured. Skipping video upload/download.'
@@ -512,75 +508,14 @@ export const procedure = async () => {
 		}
 	}
 
-	// Ensure queued safety CSV uploads complete before final transfer logic starts.
-	await safetyCsvUploadQueue;
-
-	const ensureCsvUploaded = async () => {
-		if (datatransfer === 'local') return;
-		try {
-			await uploadCsv();
-		} catch (error) {
-			if (config.devmode.on) {
-				console.warn(
-					'CSV upload failed. Downloading CSV locally as fallback.',
-					error
-				);
-			}
-			await downloadCsv();
-			didDownloadCsvFallback = true;
-		}
-	};
-
-	const ensureWebcamUploaded = async () => {
-		if (datatransfer === 'local' || !hasRecordedVideo) return;
-		try {
-			await uploadWebcamVideo(hasRecordedVideo, data.id);
-		} catch (error) {
-			if (config.devmode.on) {
-				console.warn(
-					'Video upload failed. Downloading video locally as fallback.',
-					error
-				);
-			}
-			await downloadWebcamVideo(hasRecordedVideo, data.id);
-			didDownloadWebcamFallback = true;
-		}
-	};
-
 	// Save data depending on choice (local, server, both)
 	uploadAndDownloadFinshed = false;
 	showTransferOverlay();
 	try {
-		if (datatransfer === 'local') {
-			await downloadCsv();
-			await sleep(2000);
-			await downloadWebcamVideo(hasRecordedVideo, data.id);
-			await sleep(1000);
-		} else if (datatransfer === 'server') {
-			await ensureCsvUploaded();
-			if (hasRecordedVideo) {
-				await sleep(1000);
-				await ensureWebcamUploaded();
-				await sleep(2000);
-			}
-		} else {
-			await ensureCsvUploaded();
-			if (hasRecordedVideo) {
-				await sleep(1000);
-				await ensureWebcamUploaded();
-				await sleep(1000);
-			}
-			if (!didDownloadCsvFallback) {
-				await downloadCsv();
-			}
-			if (hasRecordedVideo) {
-				await sleep(1000);
-				if (!didDownloadWebcamFallback) {
-					await downloadWebcamVideo(hasRecordedVideo, data.id);
-				}
-				await sleep(1000);
-			}
-		}
+		await persistStudyData({
+			hasRecordedVideo,
+			videoId: data.id,
+		});
 	} finally {
 		uploadAndDownloadFinshed = true;
 		hideTransferOverlay();

@@ -34,6 +34,18 @@ export const translations = {
 		turkish:
 			'<h1 class="heading">Çok Teşekkür Ederiz!</h1><br><p class="end-text">Harika, çalışmayı tamamladınız. Veda mesajını dinlemek için turuncu hoparlör düğmesini tıklayın. Küçük bir teşekkür hediyesi almak için lütfen aşağıdaki oka tıklayın.</p>',
 	},
+	pause: {
+		german:
+			'<div class="pause-text-wrap"><p class="pause-text">Die Studie ist pausiert. Drücke auf den Weiter-Knopf, um die Webcam-Aufnahme erneut zu starten und weiterzuspielen.</p></div>',
+		english:
+			'<div class="pause-text-wrap"><p class="pause-text">The study is paused. Press the Next button to restart the webcam recording and continue playing.</p></div>',
+		kikuyu:
+			'<div class="pause-text-wrap"><p class="pause-text">Kĩhurũko gĩrĩ ho. Kanda thiĩ mbere nĩguo ũgacokeria webcam na mũthiĩ mbere na mchezo.</p></div>',
+		swahili:
+			'<div class="pause-text-wrap"><p class="pause-text">Utafiti umesitishwa. Bofya kitufe cha endelea ili kuanzisha tena rekodi ya webcam na kuendelea kucheza.</p></div>',
+		turkish:
+			'<div class="pause-text-wrap"><p class="pause-text">Calisma duraklatildi. Webcam kaydini yeniden baslatip devam etmek icin Ileri dugmesine basin.</p></div>',
+	},
 };
 
 // Button translations for HTML elements (not SVG, so kept separate from svg-dependent translations)
@@ -72,5 +84,20 @@ export const buttonTranslations = {
 		kikuyu: 'Webcam preview',
 		swahili: 'Muhtasari wa webcam',
 		turkish: 'Webcam Onizleme',
+	},
+};
+
+export const pauseStatusTranslations = {
+	pauseSaving: {
+		german:
+			'<div class="pause-text-wrap"><p class="pause-text">Die Studie ist pausiert. Die Webcam-Aufnahme wird gespeichert...</p></div>',
+		english:
+			'<div class="pause-text-wrap"><p class="pause-text">The study is paused. Saving the webcam recording...</p></div>',
+		kikuyu:
+			'<div class="pause-text-wrap"><p class="pause-text">Kĩhurũko gĩrĩ ho. Kĩonereria gĩa webcam nĩgĩgũcokerwo...</p></div>',
+		swahili:
+			'<div class="pause-text-wrap"><p class="pause-text">Utafiti umesitishwa. Rekodi ya webcam inahifadhiwa...</p></div>',
+		turkish:
+			'<div class="pause-text-wrap"><p class="pause-text">Calisma duraklatildi. Webcam kaydi kaydediliyor...</p></div>',
 	},
 };

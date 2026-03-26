@@ -155,6 +155,10 @@ export function getLastRecordingBlob(): Blob | null {
 	return lastRecordedBlob;
 }
 
+export function isRecordingActive(): boolean {
+	return mediaRecorder?.state === 'recording';
+}
+
 /**
  * Create an object URL from the last recorded Blob.
  */

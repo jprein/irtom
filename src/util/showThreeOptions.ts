@@ -1,6 +1,7 @@
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
+import { isPauseResponse } from './pauseControls';
 
 export const showThreeOptions = async (slidePrefix: string) => {
 	let stopBlockingState = true;
@@ -112,6 +113,9 @@ export const showThreeOptions = async (slidePrefix: string) => {
 			optionCenter.id,
 			optionRight.id,
 		]);
+		if (isPauseResponse(response)) {
+			return true;
+		}
 		data.procedure[data.currentSlide].responseTimeSec = Number(
 			((Date.now() - responseStartMs) / 1000).toFixed(2)
 		);

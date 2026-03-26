@@ -2,8 +2,12 @@ import { gsap } from 'gsap';
 import { swapSlides } from '../../src/util/slideVisibility';
 import { getResponse } from '../../src/util/getResponse';
 import type { SvgInHtml } from '../../src/types';
+import { isPauseResponse } from '../util/pauseControls';
 
 export default async ({ currentSlide, previousSlide }) => {
+	data.procedure[data.currentSlide].dimension = 'training';
+	data.procedure[data.currentSlide].analyse = false;
+
 	// show slide
 	swapSlides(currentSlide, previousSlide);
 
@@ -31,9 +35,8 @@ export default async ({ currentSlide, previousSlide }) => {
 		{ once: true }
 	);
 
-	await getResponse(nextButton.id);
-
-	// introduction slide determines the header of our response log
-	data.procedure[data.currentSlide].dimension = 'training';
-	data.procedure[data.currentSlide].analyse = false;
+	const response = await getResponse(nextButton.id);
+	if (isPauseResponse(response)) {
+		return;
+	}
 };

@@ -34,6 +34,8 @@ css:
       '[id$=-left]',
       '[id$=-center]',
       '[id$=-right]',
+      '[id^=link][id$=pause]',
+      '[id^=link][id$=resume]',
     ]
   # will be used within the init process to to add a zoom animation on hover
   scaleOnHoverObjects:
@@ -57,6 +59,8 @@ css:
       '[id$=-left]',
       '[id$=-center]',
       '[id$=-right]',
+      '[id^=link][id$=pause]',
+      '[id^=link][id$=resume]',
     ]
 
 globals:
