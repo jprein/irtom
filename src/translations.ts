@@ -35,8 +35,12 @@ export const translations = {
 			'<h1 class="heading">Çok Teşekkür Ederiz!</h1><br><p class="end-text">Harika, çalışmayı tamamladınız. Veda mesajını dinlemek için turuncu hoparlör düğmesini tıklayın. Küçük bir teşekkür hediyesi almak için lütfen aşağıdaki oka tıklayın.</p>',
 	},
 	pause: {
-		german:
-			'<div class="pause-text-wrap"><p class="pause-text">Die Studie ist pausiert. Drücke auf den Weiter-Knopf, um die Webcam-Aufnahme erneut zu starten und weiterzuspielen.</p></div>',
+		german: `<div class="pause-text-wrap">
+			<p class="pause-text">
+			<br><br>
+			<strong>Wieder startklar? </strong><br>
+			Klickt auf den Pfeil, um weiterzuspielen.
+			Wer mit Webcam spielt: Sie startet wieder automatisch. </p></div>`,
 		english:
 			'<div class="pause-text-wrap"><p class="pause-text">The study is paused. Press the Next button to restart the webcam recording and continue playing.</p></div>',
 		kikuyu:
@@ -89,8 +93,11 @@ export const buttonTranslations = {
 
 export const pauseStatusTranslations = {
 	pauseSaving: {
-		german:
-			'<div class="pause-text-wrap"><p class="pause-text">Die Studie ist pausiert. Die Webcam-Aufnahme wird gespeichert...</p></div>',
+		german: `<div class="pause-text-wrap">
+			<p class="pause-text">
+			<strong>Kurze Pause! </strong><br>
+			Wir speichern euren Zwischenstand.
+			Wer mit Webcam spielt: Sie pausiert jetzt auch.</p></div>`,
 		english:
 			'<div class="pause-text-wrap"><p class="pause-text">The study is paused. Saving the webcam recording...</p></div>',
 		kikuyu:

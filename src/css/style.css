@@ -62,15 +62,15 @@ p {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	padding: 1rem 2rem;
+	padding: 0rem 0rem 0rem 2rem;
 	box-sizing: border-box;
 }
 
 .pause-text {
 	margin: 0;
 	font-family: 'Trebuchet MS', sans-serif;
-	font-size: 2rem;
-	line-height: 1.35;
+	font-size: 1.9rem;
+	line-height: 1.1;
 	text-align: center;
 }
 
