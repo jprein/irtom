@@ -6,7 +6,9 @@ import {
 } from './mediaRecorderServices';
 
 export const STUDY_RECORDING_CONSTRAINTS: MediaStreamConstraints = {
-	audio: true,
+	// Video-only recording keeps CPU usage lower on iPad and avoids
+	// microphone-related audio-session side effects in mobile browsers.
+	audio: false,
 	video: {
 		frameRate: { min: 1, ideal: 3, max: 5 },
 		width: { min: 320, ideal: 320, max: 320 },

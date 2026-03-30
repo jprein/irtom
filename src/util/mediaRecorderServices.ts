@@ -11,7 +11,7 @@ let stopPromiseResolve: ((blob: Blob | null) => void) | null = null;
  * @returns Promise<MediaStream>
  */
 export async function initMedia(
-	constraints?: MediaStreamConstraints,
+	constraints?: MediaStreamConstraints
 ): Promise<MediaStream> {
 	if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
 		throw new Error('getUserMedia is not supported in this browser.');
@@ -79,8 +79,8 @@ export function startRecording(): void {
 	]);
 
 	const options: MediaRecorderOptions = {
-		videoBitsPerSecond: 80_000,
-		audioBitsPerSecond: 16_000,
+		videoBitsPerSecond: 40_000,
+		audioBitsPerSecond: 8_000,
 		...(mimeType ? { mimeType } : {}),
 	};
 
@@ -116,7 +116,7 @@ export function startRecording(): void {
 }
 
 export function pickSupportedMimeType(
-	candidates: string[],
+	candidates: string[]
 ): string | undefined {
 	if (typeof MediaRecorder === 'undefined') return undefined;
 	if (typeof MediaRecorder.isTypeSupported !== 'function') return undefined;
@@ -216,7 +216,7 @@ export async function uploadLastRecordingInChunks(
 		additionalData = {},
 		fetchOptions = {},
 		onProgress,
-	}: UploadInChunksOptions = {},
+	}: UploadInChunksOptions = {}
 ): Promise<Response> {
 	if (!lastRecordedBlob) {
 		throw new Error('No recording available to upload.');
@@ -260,7 +260,7 @@ export async function uploadLastRecordingInChunks(
 
 		if (!response.ok) {
 			throw new Error(
-				`Chunk upload failed at index ${chunkIndex} with status ${response.status}`,
+				`Chunk upload failed at index ${chunkIndex} with status ${response.status}`
 			);
 		}
 

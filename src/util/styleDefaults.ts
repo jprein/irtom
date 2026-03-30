@@ -15,7 +15,27 @@ export const setScaleOnHover = () => {
 		const elements = document.querySelectorAll<HTMLElement>(query);
 		if (elements) {
 			elements.forEach((e) => {
+				// Keep centered scaling behavior for all later GSAP scale animations,
+				// even when hover listeners are disabled on touch devices.
 				gsap.set(e, { transformOrigin: '50% 50%' });
+			});
+		}
+	});
+
+	// Hover animations are meaningless on touch-only devices (iPad, phone).
+	// Skip creating dozens of idle GSAP tweens + event listeners.
+	if (
+		'ontouchstart' in window &&
+		navigator.maxTouchPoints > 0 &&
+		!window.matchMedia('(hover: hover)').matches
+	) {
+		return;
+	}
+
+	config.css.scaleOnHoverObjects.forEach((query: string) => {
+		const elements = document.querySelectorAll<HTMLElement>(query);
+		if (elements) {
+			elements.forEach((e) => {
 				const tween = gsap.to(e, {
 					scale: 1.2,
 					ease: 'none',

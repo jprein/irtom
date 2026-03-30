@@ -1,8 +1,6 @@
 import { gsap } from 'gsap';
 import _ from 'lodash';
 import type { SvgInHtml } from '../types';
-//import svgPath from '../../public/assets/experiment-voxified.svg?raw';
-import svgPath from '../../public/assets/experiment-voxified.svg?raw';
 import config from '../config.yaml';
 import { rectToForeignObject } from './rectToForeignObject';
 import { recycleObjects } from './recycleObjects';
@@ -40,7 +38,9 @@ export const init = async (initialStudyChoices?: StudyChoices) => {
 
 	const wrapper = document.getElementById('wrapper')! as HTMLDivElement;
 	// load initial SVG file
-	wrapper.innerHTML = svgPath;
+	const svgResponse = await fetch('assets/experiment-voxified.svg');
+	const svgText = await svgResponse.text();
+	wrapper.innerHTML = svgText;
 	// get main svg element
 	const svg = document.querySelector('svg')! as SvgInHtml;
 
@@ -202,6 +202,30 @@ export const init = async (initialStudyChoices?: StudyChoices) => {
 	);
 
 	data.spriteJSON = await spriteLookup.json();
+
+	// Kick off a background fetch of the actual audio binary so it is in the
+	// HTTP/SW cache by the time the user taps "Start Audio". The result is
+	// intentionally not awaited — if it fails silently the button-click flow
+	// will retry normally.
+	const audioEl = document.createElement('audio');
+	const srcCandidates = (data.spriteJSON.src ?? []) as string[];
+	const mp3Candidate = srcCandidates.find((url) =>
+		url.toLowerCase().endsWith('.mp3')
+	);
+	const webmCandidate = srcCandidates.find((url) =>
+		url.toLowerCase().endsWith('.webm')
+	);
+	const prefetchTarget =
+		(mp3Candidate &&
+			audioEl.canPlayType('audio/mpeg') !== '' &&
+			mp3Candidate) ||
+		(webmCandidate &&
+			audioEl.canPlayType('audio/webm; codecs=opus') !== '' &&
+			webmCandidate);
+
+	if (prefetchTarget) {
+		void fetch(prefetchTarget).catch(() => undefined);
+	}
 
 	// then,create the sprite instance
 	//data.sprite = await createSprite(data.spriteJSON);
