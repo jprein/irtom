@@ -10,7 +10,7 @@ import Toastify from 'toastify-js';
 import { startFullscreen } from './util/helpers';
 import { resolveStudyChoices } from './util/resolveStudyChoices';
 
-const AUDIO_INIT_TIMEOUT_MS = 20_000;
+const AUDIO_INIT_TIMEOUT_MS = 90_000;
 const PREVIEW_STREAM_CONSTRAINTS: MediaStreamConstraints = {
 	audio: false,
 	video: {
