@@ -33,6 +33,7 @@ export const showThreeOptions = async (slidePrefix: string) => {
 		gsap.set(interactiveElements, {
 			pointerEvents: 'none',
 			cursor: 'default',
+			scale: 1,
 		});
 	}
 

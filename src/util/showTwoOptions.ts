@@ -24,10 +24,14 @@ export const showTwoOptions = async (slidePrefix: string) => {
 	);
 
 	// Keep options non-clickable until all option audios are done.
+	// Reset scale to 1 to prevent stale hover-scale tweens from leaving an
+	// option visually enlarged (seen intermittently on iPad Chrome where
+	// mouseenter fires on tap and the mouseleave reset races with audio seeks).
 	if (interactiveElements.length > 0) {
 		gsap.set(interactiveElements, {
 			pointerEvents: 'none',
 			cursor: 'default',
+			scale: 1,
 		});
 	}
 
