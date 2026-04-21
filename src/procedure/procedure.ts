@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import { gsap } from 'gsap';
 import config from '../config.yaml';
-import { stop } from '../../src/util/audio';
 import {
 	buildCsvSnapshot,
 	millisToMinutesAndSeconds,
@@ -294,6 +293,9 @@ export const procedure = async () => {
 				);
 			}
 
+			// Stop any audio still playing before re-running the slide
+			data.sprite?.stop();
+
 			// Hide previous slide to avoid short flickering of old slide
 			const slideElement = document.getElementById(previousSlideKc);
 			if (slideElement) {
@@ -377,7 +379,7 @@ export const procedure = async () => {
 			});
 
 			// stop any audio/video playback if it is still playing anything
-			stop();
+			data.sprite?.stop();
 		}
 
 		// Safety copy upload cadence: after trial 8 and then every 3 trials.

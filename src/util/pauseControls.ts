@@ -2,7 +2,6 @@ import { gsap } from 'gsap';
 import Toastify from 'toastify-js';
 import type { SvgInHtml } from '../types';
 import { pauseStatusTranslations, translations } from '../translations';
-import { stop } from './audio';
 import {
 	getLastRecordingBlob,
 	isRecordingActive,
@@ -144,7 +143,7 @@ export const runPauseFlow = async () => {
 	pauseFlowPromise = (async () => {
 		hidePauseButton();
 		hideNextButton();
-		stop();
+		data.sprite?.stop();
 		setPausePlaceholderText('pauseSaving');
 		setPauseTextVisibility(true);
 
