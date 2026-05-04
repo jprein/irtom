@@ -24,7 +24,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide yes/no choice
 	await hideYesNoChoice(choicePrefix);
-	await hideBlockingState(slidePrefix);
+	await hideBlockingState();
 	// Short break before showing response options
 	await sleep(500);
 
@@ -33,6 +33,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	if (!stopBlockingState) {
 		await playCorrectIncorrectResponse(currentSlide);
-		await showBlockingState(slidePrefix);
+		await showBlockingState();
 	}
 };

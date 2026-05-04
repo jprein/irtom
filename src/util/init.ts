@@ -37,9 +37,10 @@ export const init = async (initialStudyChoices?: StudyChoices) => {
 		initialStudyChoices ?? resolveStudyChoices().studyChoices;
 
 	const wrapper = document.getElementById('wrapper')! as HTMLDivElement;
-	// load initial SVG file
-	const svgResponse = await fetch('assets/experiment-voxified.svg');
+	// load community-specific voxified SVG
+	const svgResponse = await fetch(`assets/${studyChoices.community}-experiment-voxified.svg`);
 	const svgText = await svgResponse.text();
+	//gsap.set(wrapper, { opacity: 0 });
 	wrapper.innerHTML = svgText;
 	// get main svg element
 	const svg = document.querySelector('svg')! as SvgInHtml;
@@ -275,4 +276,6 @@ export const init = async (initialStudyChoices?: StudyChoices) => {
 
 	// set default GSAP easing to 'none' for all animations
 	gsap.defaults({ ease: 'none' });
+
+	// gsap.to(wrapper, { opacity: 1, duration: 0.4, ease: 'power1.in' });
 };

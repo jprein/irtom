@@ -22,13 +22,13 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
-	await hideBlockingState(slidePrefix);
+	await hideBlockingState();
 
 	// Show left/right response options and store participant response
 	const stopBlockingState = await showTwoOptions(slidePrefix);
 
 	if (!stopBlockingState) {
 		await playCorrectIncorrectResponse(currentSlide);
-		await showBlockingState(slidePrefix);
+		await showBlockingState();
 	}
 };

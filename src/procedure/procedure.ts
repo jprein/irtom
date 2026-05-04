@@ -15,6 +15,7 @@ import {
 } from '../util/mediaRecorderServices';
 import { buttonTranslations } from '../translations';
 import { persistStudyData } from '../util/persistStudyData';
+import { hideBlockingState } from '../util/showOrHideBlockState';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
@@ -200,6 +201,7 @@ export const procedure = async () => {
 		// Disable unload upload hook on the final slide to avoid duplicate CSV upload.
 		if (currentSlide === 'sEnd') {
 			window.onbeforeunload = null;
+			hideBlockingState();
 		}
 
 		// init default procedure response

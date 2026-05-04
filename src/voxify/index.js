@@ -6,8 +6,11 @@ import { parse } from 'svgson';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Accept community as CLI argument: node src/voxify/ german
+const community = process.argv[2] ?? 'german';
+
 // original svg file from Illustrator
-const svgPath = path.resolve(__dirname, '../../public/assets/experiment.svg');
+const svgPath = path.resolve(__dirname, `../../public/assets/${community}-experiment.svg`);
 
 // load svg file
 const svgPlainText = await fs.readFile(svgPath, 'utf8');
@@ -55,12 +58,9 @@ Object.keys(imageIdUrlMapping).forEach((id) => {
 });
 
 //fs.writeFile(path.resolve(__dirname, '../assets/experiment-voxified.svg'), stringify(svgDom));
-fs.writeFile(
-	// path.resolve(__dirname, '../assets/experiment-voxified.svg'),
-	path.resolve(__dirname, '../../public/assets/experiment-voxified.svg'),
-	voxSvg,
-);
+const outputPath = path.resolve(__dirname, `../../public/assets/${community}-experiment-voxified.svg`);
+fs.writeFile(outputPath, voxSvg);
 
 console.log('------------------------------------------------------------');
-console.log('🦊 Voxified SVG file saved to assets/experiment-voxified.svg');
+console.log(`🦊 Voxified SVG saved to assets/${community}-experiment-voxified.svg`);
 console.log('------------------------------------------------------------\n');

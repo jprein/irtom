@@ -50,12 +50,12 @@ export default async ({ currentSlide, previousSlide }) => {
 		pointerEvents: 'none',
 	});
 
-	await hideBlockingState(slidePrefix);
+	await hideBlockingState();
 
 	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
 
 	if (!stopBlockingState) {
 		await playCorrectIncorrectResponse(currentSlide);
-		await showBlockingState(slidePrefix);
+		await showBlockingState();
 	}
 };

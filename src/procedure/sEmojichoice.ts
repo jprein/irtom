@@ -41,7 +41,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		autoAlpha: 0,
 	});
 
-	await hideBlockingState(slidePrefix);
+	await hideBlockingState();
 	// Short break before showing response options
 	await sleep(500);
 
@@ -58,8 +58,7 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Play motivating feedback for first choice
 	
 	if (!stopBlockingState){
-		
 		await data.sprite.playPromise(`${slidePrefix}-feedback`);
-		await showBlockingState(slidePrefix);
+		await showBlockingState();
 	} 
 };

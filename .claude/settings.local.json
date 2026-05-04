@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(grep -E \"\\\\.\\(js|ts|jsx|tsx|html|vue|svelte\\)$\")",
+      "Bash(sed -n '39,47p' \"/Users/mayurodedra/Documents/university/Jobs/DevPsy/Final Repo/irtom/src/util/init.ts\")",
+      "Bash(sed -n '272,282p' \"/Users/mayurodedra/Documents/university/Jobs/DevPsy/Final Repo/irtom/src/util/init.ts\")"
+    ]
+  }
+}
