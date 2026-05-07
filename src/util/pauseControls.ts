@@ -2,7 +2,6 @@ import { gsap } from 'gsap';
 import Toastify from 'toastify-js';
 import type { SvgInHtml } from '../types';
 import { pauseStatusTranslations, translations } from '../translations';
-import { stop } from './audio';
 import {
 	getLastRecordingBlob,
 	isRecordingActive,
@@ -12,24 +11,17 @@ import { persistStudyData } from './persistStudyData';
 import { resumeStudyRecordingIfEnabled } from './studyRecording';
 
 let pauseFlowPromise: Promise<void> | null = null;
-let activeSlidePrefix: string | null = null;
+const activeSlidePrefix: string | null = null;
 
-const getSvgPauseButton = (slidePrefix = activeSlidePrefix) =>
-	(slidePrefix
-		? document.getElementById(`link-${slidePrefix}-pause`)
-		: null) as SvgInHtml | null;
+const getSvgPauseButton = () =>
+	document.getElementById(`link-pause`) as SvgInHtml | null;
 
-const getSvgNextButton = (slidePrefix = activeSlidePrefix) =>
-	(slidePrefix
-		? document.getElementById(`link-${slidePrefix}-next`)
-		: null) as SvgInHtml | null;
+const getSvgNextButton = () =>
+	document.getElementById(`link-next`) as SvgInHtml | null;
 
-const getPauseTextNodes = (slidePrefix = activeSlidePrefix) =>
-	slidePrefix
-		? (document.querySelectorAll(
-				`#${slidePrefix} [id^="text-pause"]`
-			) as NodeListOf<SVGForeignObjectElement>)
-		: null;
+const getPauseTextNodes = () =>
+	document.querySelectorAll(`[id^="text-pause"]`
+			) as NodeListOf<SVGForeignObjectElement>
 
 const setSvgButtonVisibility = (
 	element: SvgInHtml | null,
@@ -44,12 +36,12 @@ const setSvgButtonVisibility = (
 	});
 };
 
-const hideNextButton = (slidePrefix = activeSlidePrefix) => {
-	setSvgButtonVisibility(getSvgNextButton(slidePrefix), false);
+export const hideNextButton = () => {
+	setSvgButtonVisibility(getSvgNextButton(), false);
 };
 
-const showNextButton = (slidePrefix = activeSlidePrefix) => {
-	setSvgButtonVisibility(getSvgNextButton(slidePrefix), true);
+export const showNextButton = () => {
+	setSvgButtonVisibility(getSvgNextButton(), true);
 };
 
 const getPauseMessage = (key: 'pause' | 'pauseSaving') => {
@@ -61,10 +53,9 @@ const getPauseMessage = (key: 'pause' | 'pauseSaving') => {
 };
 
 const setPauseTextVisibility = (
-	isVisible: boolean,
-	slidePrefix = activeSlidePrefix
+	isVisible: boolean
 ) => {
-	const pauseTextNodes = getPauseTextNodes(slidePrefix);
+	const pauseTextNodes = getPauseTextNodes();
 	if (!pauseTextNodes) return;
 
 	gsap.set(pauseTextNodes, {
@@ -75,7 +66,7 @@ const setPauseTextVisibility = (
 const setPausePlaceholderText = (translationKey: 'pause' | 'pauseSaving') => {
 	if (!activeSlidePrefix) return;
 
-	const pauseTextNodes = getPauseTextNodes(activeSlidePrefix);
+	const pauseTextNodes = getPauseTextNodes();
 	if (!pauseTextNodes) return;
 	const message = getPauseMessage(translationKey);
 
@@ -102,26 +93,26 @@ const waitForNext = () =>
 		svgNextButton.addEventListener('click', handleNext);
 	});
 
-export const setPauseControlContext = (slidePrefix: string | null) => {
-	const previousSlidePrefix = activeSlidePrefix;
-	if (previousSlidePrefix) {
-		setSvgButtonVisibility(getSvgPauseButton(previousSlidePrefix), false);
-		setPauseTextVisibility(false, previousSlidePrefix);
-		const previousResumeButton = document.getElementById(
-			`link-${previousSlidePrefix}-resume`
-		) as SvgInHtml | null;
-		setSvgButtonVisibility(previousResumeButton, false);
-	}
+export const setPauseControlContext = () => {
+	// const previousSlidePrefix = activeSlidePrefix;
+	// if (previousSlidePrefix) {
+	// 	setSvgButtonVisibility(getSvgPauseButton(), false);
+	// 	setPauseTextVisibility(false);
+	// 	const previousResumeButton = document.getElementById(
+	// 		`link-${previousSlidePrefix}-resume`
+	// 	) as SvgInHtml | null;
+	// 	setSvgButtonVisibility(previousResumeButton, false);
+	// }
 
-	activeSlidePrefix = slidePrefix;
-	if (slidePrefix) {
-		setSvgButtonVisibility(getSvgPauseButton(slidePrefix), false);
-		setPauseTextVisibility(false, slidePrefix);
-		const resumeButton = document.getElementById(
-			`link-${slidePrefix}-resume`
-		) as SvgInHtml | null;
-		setSvgButtonVisibility(resumeButton, false);
-	}
+	// activeSlidePrefix = slidePrefix;
+	//if () {
+		setSvgButtonVisibility(getSvgPauseButton(), false);
+		setPauseTextVisibility(false);
+		// const resumeButton = document.getElementById(
+		// 	`link-resume`
+		// ) as SvgInHtml | null;
+		// setSvgButtonVisibility(resumeButton, false);
+	//}
 };
 
 export const showPauseButton = () => {
@@ -144,7 +135,7 @@ export const runPauseFlow = async () => {
 	pauseFlowPromise = (async () => {
 		hidePauseButton();
 		hideNextButton();
-		stop();
+		data.sprite?.stop();
 		setPausePlaceholderText('pauseSaving');
 		setPauseTextVisibility(true);
 

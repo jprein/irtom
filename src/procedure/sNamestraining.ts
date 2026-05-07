@@ -117,7 +117,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
-	await hideBlockingState(slidePrefix);
+	await hideBlockingState();
 
 	// Show animation
 	await showAnimation();
@@ -130,6 +130,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	if (!stopBlockingState) {
 		await playCorrectIncorrectResponse(currentSlide);
-		await showBlockingState(slidePrefix);
+		await showBlockingState();
 	}
 };

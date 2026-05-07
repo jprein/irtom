@@ -23,11 +23,11 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide yes/no choice
 	await hideYesNoChoice(choicePrefix);
-	await hideBlockingState(slidePrefix);
+	await hideBlockingState();
 	// Short break before showing response options
 	await sleep(500);
 
 	// Show yes/no choice and store participant response
 	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
-	if (!stopBlockingState) await showBlockingState(slidePrefix);
+	if (!stopBlockingState) await showBlockingState();
 };

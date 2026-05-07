@@ -36,7 +36,7 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
-	await hideBlockingState(slidePrefix);
+	await hideBlockingState();
 
 	// Show animation
 	await showAnimation();
@@ -46,5 +46,5 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Show response options
 	const stopBlockingState = await showTwoOptions(slidePrefix);
-	if (!stopBlockingState) await showBlockingState(slidePrefix);
+	if (!stopBlockingState) await showBlockingState();
 };

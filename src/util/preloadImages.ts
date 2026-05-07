@@ -1,5 +1,4 @@
 const preloadCache = new Map<string, Promise<void>>();
-const REQUIRED_PRELOAD_ENTRIES = ['assets/experiment-voxified.svg'];
 
 const isAbsoluteUrl = (value: string) => /^https?:\/\//i.test(value);
 
@@ -68,7 +67,7 @@ async function preloadCommunityImagesInternal(
 	}
 
 	const combinedEntries = [
-		...new Set([...imageEntries, ...REQUIRED_PRELOAD_ENTRIES]),
+		...new Set([...imageEntries, `assets/${community}-experiment-voxified.svg`]),
 	];
 
 	if (combinedEntries.length === 0) {

@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import { gsap } from 'gsap';
 import config from '../config.yaml';
-import { stop } from '../../src/util/audio';
 import {
 	buildCsvSnapshot,
 	millisToMinutesAndSeconds,
@@ -16,6 +15,7 @@ import {
 } from '../util/mediaRecorderServices';
 import { buttonTranslations } from '../translations';
 import { persistStudyData } from '../util/persistStudyData';
+import { hideBlockingState } from '../util/showOrHideBlockState';
 
 // register all slide modules in this folder
 const slideModules = import.meta.glob('./s*.ts');
@@ -201,6 +201,7 @@ export const procedure = async () => {
 		// Disable unload upload hook on the final slide to avoid duplicate CSV upload.
 		if (currentSlide === 'sEnd') {
 			window.onbeforeunload = null;
+			hideBlockingState();
 		}
 
 		// init default procedure response
@@ -294,6 +295,9 @@ export const procedure = async () => {
 				);
 			}
 
+			// Stop any audio still playing before re-running the slide
+			data.sprite?.stop();
+
 			// Hide previous slide to avoid short flickering of old slide
 			const slideElement = document.getElementById(previousSlideKc);
 			if (slideElement) {
@@ -377,7 +381,7 @@ export const procedure = async () => {
 			});
 
 			// stop any audio/video playback if it is still playing anything
-			stop();
+			data.sprite?.stop();
 		}
 
 		// Safety copy upload cadence: after trial 8 and then every 3 trials.

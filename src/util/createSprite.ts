@@ -97,6 +97,10 @@ export const createSprite = async (settingsObj: {
 		howl.play(sampleName);
 	}
 
+	function stop() {
+		howl.stop();
+	}
+
 	async function playPromise(sampleName: string): Promise<void> {
 		return new Promise<void>((resolve, reject) => {
 			const id = howl.play(sampleName);
@@ -104,13 +108,8 @@ export const createSprite = async (settingsObj: {
 				reject(new Error(`Failed to play sprite segment: ${sampleName}`));
 				return;
 			}
-			howl.once(
-				'end',
-				() => {
-					resolve();
-				},
-				id
-			);
+			howl.once('end', () => resolve(), id);
+			howl.once('stop', () => resolve(), id);
 			howl.once(
 				'playerror',
 				(_soundId, err) => {
@@ -125,5 +124,5 @@ export const createSprite = async (settingsObj: {
 		});
 	}
 
-	return { play, playPromise };
+	return { play, playPromise, stop };
 };

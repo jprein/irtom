@@ -8,12 +8,12 @@ import {
 	showPauseButton,
 } from './pauseControls';
 
-export const hideNextOption = async (slidePrefix: string) => {
+export const hideNextOption = async () => {
 	const nextButton = document.getElementById(
-		`link-${slidePrefix}-next`
+		`link-next`
 	) as SvgInHtml;
 
-	setPauseControlContext(slidePrefix);
+	setPauseControlContext();
 	hidePauseButton();
 	gsap.set(nextButton, {
 		autoAlpha: 0,
@@ -21,12 +21,12 @@ export const hideNextOption = async (slidePrefix: string) => {
 	});
 };
 
-export const showNextOption = async (slidePrefix: string) => {
+export const showNextOption = async () => {
 	const nextButton = document.getElementById(
-		`link-${slidePrefix}-next`
+		`link-next`
 	) as SvgInHtml;
 
-	setPauseControlContext(slidePrefix);
+	setPauseControlContext();
 	await gsap.timeline().set(nextButton, {
 		delay: 0.2,
 		autoAlpha: 1,
@@ -37,7 +37,7 @@ export const showNextOption = async (slidePrefix: string) => {
 
 	showPauseButton();
 	const response = await getResponse(nextButton.id);
-	setPauseControlContext(null);
+	setPauseControlContext();
 	hidePauseButton();
 	if (isPauseResponse(response)) {
 		return;
