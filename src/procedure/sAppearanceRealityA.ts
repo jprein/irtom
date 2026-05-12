@@ -25,42 +25,42 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${data.community}-girl`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${data.community}-boy`
 	) as SvgInHtml;
 	const boyWithGlass = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-glass`,
+		`link-${slidePrefix}-${data.community}-boy-glass`
 	) as SvgInHtml;
 	const boyLemonadeUp = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-lemonade-up`,
+		`link-${slidePrefix}-${data.community}-boy-lemonade-up`
 	) as SvgInHtml;
 	const boyLemonadeDown = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-lemonade-down`,
+		`link-${slidePrefix}-${data.community}-boy-lemonade-down`
 	) as SvgInHtml;
 	const cupboardClosed = document.getElementById(
-		`${slidePrefix}-cupboard-closed`,
+		`${slidePrefix}-cupboard-closed`
 	) as SvgInHtml;
 	const cupboardOpen = document.getElementById(
-		`${slidePrefix}-cupboard-open`,
+		`${slidePrefix}-cupboard-open`
 	) as SvgInHtml;
 	const cupboardOpenWithGlass = document.getElementById(
-		`${slidePrefix}-cupboard-glass`,
+		`${slidePrefix}-cupboard-glass`
 	) as SvgInHtml;
 	const glass = document.getElementById(`${slidePrefix}-glass`) as SvgInHtml;
 	const glassEmpty = document.getElementById(
-		`${slidePrefix}-glass-empty`,
+		`${slidePrefix}-glass-empty`
 	) as SvgInHtml;
 	const box = document.getElementById(`${slidePrefix}-boxes`) as SvgInHtml;
 	const boxEmpty = document.getElementById(
-		`${slidePrefix}-boxes-empty`,
+		`${slidePrefix}-boxes-empty`
 	) as SvgInHtml;
 	const lemonadeOpen = document.getElementById(
-		`${slidePrefix}-lemonade-open`,
+		`${slidePrefix}-lemonade-open`
 	) as SvgInHtml;
 	const lemonadeClosed = document.getElementById(
-		`${slidePrefix}-lemonade-closeds`,
+		`${slidePrefix}-lemonade-closeds`
 	) as SvgInHtml;
 
 	async function showAnimation() {
@@ -83,7 +83,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			],
 			{
 				autoAlpha: 0,
-			},
+			}
 		);
 
 		gsap.set([girl, boy, box, glassEmpty, cupboardClosed], {
@@ -118,7 +118,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to([boyLemonadeUp, glassEmpty], {
 				delay: 1,
@@ -131,7 +131,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to([boyLemonadeDown], {
 				delay: 1,
@@ -144,7 +144,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to([glass, boy, cupboardClosed], {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-3`][1] / 1000 - 1,
@@ -160,7 +160,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to([boyWithGlass, cupboardOpen], {
 				delay: 1,
@@ -173,7 +173,7 @@ export default async ({ currentSlide, previousSlide }) => {
 					autoAlpha: 1,
 					duration: 0.1,
 				},
-				'<',
+				'<'
 			)
 			.to(cupboardOpenWithGlass, {
 				delay: 1,
