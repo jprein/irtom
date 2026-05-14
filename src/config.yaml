@@ -77,7 +77,7 @@ procedure:
   german:
     - s-introduction
     # - s-emojichoice
-    - s-yesnotraining-a
+    # - s-yesnotraining-a
     # - s-yesnotraining-b
     # - s-yesnotraining-c
     # - s-yesnotraining-d
@@ -138,8 +138,9 @@ procedure:
     - s-end
 
   swahili:
-    - s-introduction
-    - s-perspectivetaking-one-a
+    # - s-introduction
+    - s-falsebelief-col-a
+    - s-diversedesires-a
     - s-end
 
   turkish:
