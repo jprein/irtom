@@ -5,10 +5,8 @@ import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
-import { on } from 'events';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -124,7 +122,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
-	await hideBlockingState();
 
 	// Show animation
 	await showAnimation();

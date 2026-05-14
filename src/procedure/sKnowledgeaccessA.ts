@@ -5,7 +5,6 @@ import { sleep } from '../../src/util/helpers';
 import { hideYesNoChoice } from '../../src/util/hideYesNoChoice';
 import { showYesNoChoice } from '../../src/util/showYesNoChoice';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 
@@ -113,7 +112,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide yes/no choice
 	await hideYesNoChoice(choicePrefix);
-	await hideBlockingState();
 
 	// Show animation
 	await showAnimation();
