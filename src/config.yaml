@@ -101,7 +101,6 @@ procedure:
     # - s-diversedesires-c // !short
     # - s-diversedesires-d // !short
     # - s-appearancereality-a // !short
-    - s-parentstraining
     # - s-knowledgeaccess-d // !short
     # - s-falsebelief-uc-b // !short
     - s-diversebeliefs-a
@@ -112,6 +111,7 @@ procedure:
     - s-appearancereality-b
     - s-perspectivetaking-two-a
     # - s-falsebelief-col-b // !short
+    - s-parentstraining # previously before s-appearanceraality-a
     - s-falsebelief-ui-a
     # - s-perspectivetaking-two-b // !short
     - s-aspectuality-a
