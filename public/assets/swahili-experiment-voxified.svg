@@ -221,8 +221,8 @@
     </clipPath>
     <image id="image" width="400" height="400" xlink:href="assets/next.svg"/>
     <image id="image1" width="80" height="81" xlink:href="assets/speaker.svg"/>
-    <image id="image2" width="94" height="258" xlink:href="assets/swahili-girl-front.svg"/>
-    <image id="image3" width="47" height="69" xlink:href="assets/swahili-girl-portrait-smiling.svg"/>
+    <image id="image2" width="91" height="245" xlink:href="assets/swahili-girl-front.svg"/>
+    <image id="image3" width="51" height="62" xlink:href="assets/swahili-girl-portrait-smiling.svg"/>
     <image id="image4" width="426" height="426" xlink:href="assets/lueneluetten-logo.svg"/>
     <image id="image5" width="859" height="859" xlink:href="assets/repeat.svg"/>
   </defs>
@@ -496,9 +496,9 @@
         <image id="link-s-falsebelief-col-a-dog-lying" width="449" height="299" transform="translate(1166.3891 753.1137) scale(.4403)" xlink:href="assets/dog-left-lying.svg"/>
         <g id="swahili">
           <rect id="ph-s-falsebelief-col-a-swahili-girl-kneeling" class="st26" x="985.8" y="531.3" width="191.3" height="379.3"/>
-          <image id="link-s-falsebelief-col-a-swahili-girl-kneeling" width="100" height="203" transform="translate(984.6 513.4) scale(2)" xlink:href="assets/swahili-girl-right-kneeling.svg"/>
+          <image id="link-s-falsebelief-col-a-swahili-girl-kneeling" width="100" height="193" transform="translate(980.5652 515.4724) scale(2.0509)" xlink:href="assets/swahili-girl-right-kneeling.svg"/>
           <rect id="ph-s-falsebelief-col-a-swahili-girl" class="st26" x="859.9" y="474.4" width="200.5" height="545.1"/>
-          <image id="link-s-falsebelief-col-a-swahili-girl" transform="translate(859.8976 474.3571) scale(2.1127)" xlink:href="assets/swahili-girl-front.svg"/>
+          <image id="link-s-falsebelief-col-a-swahili-girl" transform="translate(858.1982 474.9823) scale(2.2197)" xlink:href="assets/swahili-girl-front.svg"/>
         </g>
         <rect id="ph-s-falsebelief-col-a-dog-running" class="st26" x="1145.5" y="807.4" width="262" height="197.2"/>
         <image id="link-s-falsebelief-col-a-dog-running" width="484" height="360" transform="translate(1159.1071 815.9509) scale(.5)" xlink:href="assets/dog-left-running.svg"/>
@@ -764,24 +764,24 @@
           </g>
         </g>
         <rect id="ph-s-falsebelief-col-a-swahili-subject" class="st26" x="880.8" y="129.2" width="158.1" height="226.1"/>
-        <image id="link-s-falsebelief-col-a-swahili-subject" transform="translate(881.1725 127.9285) scale(3.2932 3.3039)" xlink:href="assets/swahili-girl-portrait-smiling.svg"/>
+        <image id="link-s-falsebelief-col-a-swahili-subject" transform="translate(871.2327 135.4023) scale(3.4247 3.4358)" xlink:href="assets/swahili-girl-portrait-smiling.svg"/>
       </g>
       <g id="s-diversedesires-a">
         <rect id="ph-s-diversedesires-a-floor" class="st26" y="430" width="1920" height="650"/>
         <image id="link-s-diversedesires-a-floor" class="st24" width="9600" height="3600" transform="translate(0 430) scale(.2 .2)" xlink:href="assets/floor.svg"/>
         <g id="swahili1" data-name="swahili">
           <rect id="ph-s-diversedesires-a-swahili-girl" class="st26" x="799.4" y="18.5" width="321.3" height="899.3"/>
-          <image id="link-s-diversedesires-a-swahili-girl" transform="translate(792.5004 10.0822) scale(3.5154)" xlink:href="assets/swahili-girl-front.svg"/>
+          <image id="link-s-diversedesires-a-swahili-girl" transform="translate(789.6727 11.1225) scale(3.6935)" xlink:href="assets/swahili-girl-front.svg"/>
           <rect id="ph-s-diversedesires-a-swahili-girl-right-nay" class="st26" x="792.5" y="16.5" width="325.1" height="897.5"/>
-          <image id="link-s-diversedesires-a-swahili-girl-right-nay" width="86" height="258" transform="translate(817.4538 13.5329) scale(3.4904)" xlink:href="assets/swahili-girl-right-nay.svg"/>
+          <image id="link-s-diversedesires-a-swahili-girl-right-nay" width="85" height="248" transform="translate(813.6573 14.8163) scale(3.6208)" xlink:href="assets/swahili-girl-right-nay.svg"/>
           <rect id="ph-s-diversedesires-a-swahili-girl-left-yay" class="st26" x="785.4" y="16.5" width="299.3" height="897.5"/>
-          <image id="link-s-diversedesires-a-swahili-girl-left-yay" width="86" height="258" transform="translate(785.4169 13.2747) scale(3.4798)" xlink:href="assets/swahili-girl-left-yay.svg"/>
+          <image id="link-s-diversedesires-a-swahili-girl-left-yay" width="85" height="248" transform="translate(781.6319 14.5541) scale(3.6098)" xlink:href="assets/swahili-girl-left-yay.svg"/>
           <rect id="ph-s-diversedesires-a-swahili-boy" class="st26" x="799.4" y="53.8" width="321.3" height="864.1"/>
-          <image id="link-s-diversedesires-a-swahili-boy" width="95" height="249" transform="translate(791.7162 57.6907) scale(3.4513)" xlink:href="assets/swahili-boy-front.svg"/>
+          <image id="link-s-diversedesires-a-swahili-boy" width="96" height="251" transform="translate(791.3622 57.8259) scale(3.4227)" xlink:href="assets/swahili-boy-front.svg"/>
           <rect id="ph-s-diversedesires-a-swahili-boy-left-nay" class="st26" x="803.8" y="52.2" width="278.2" height="860.8"/>
-          <image id="link-s-diversedesires-a-swahili-boy-left-nay" width="78" height="245" transform="translate(803.7622 58.3667) scale(3.4886)" xlink:href="assets/swahili-boy-left-nay.svg"/>
+          <image id="link-s-diversedesires-a-swahili-boy-left-nay" width="78" height="243" transform="translate(802.7466 58.6913) scale(3.5146)" xlink:href="assets/swahili-boy-left-nay.svg"/>
           <rect id="ph-s-diversedesires-a-swahili-boy-right-yay" class="st26" x="802.9" y="52.2" width="278.2" height="860.8"/>
-          <image id="link-s-diversedesires-a-swahili-boy-right-yay" width="78" height="245" transform="translate(808.0347 61.6332) scale(3.4701)" xlink:href="assets/swahili-boy-right-yay.svg"/>
+          <image id="link-s-diversedesires-a-swahili-boy-right-yay" width="79" height="243" transform="translate(805.4427 62.4671) scale(3.4918)" xlink:href="assets/swahili-boy-right-yay.svg"/>
         </g>
         <g id="s-diversedesires-a-table">
           <g>
@@ -1051,7 +1051,7 @@
           </g>
         </g>
         <rect id="ph-s-diversedesires-a-swahili-subject" class="st26" x="866.1" y="104.6" width="187.7" height="242.2"/>
-        <image id="link-s-diversedesires-a-swahili-subject" transform="translate(881.1726 127.9286) scale(3.2932 3.3039)" xlink:href="assets/swahili-girl-portrait-smiling.svg"/>
+        <image id="link-s-diversedesires-a-swahili-subject" transform="translate(871.2327 135.4023) scale(3.4247 3.4358)" xlink:href="assets/swahili-girl-portrait-smiling.svg"/>
       </g>
       <g id="s-introduction">
         <rect id="ph-s-introduction-next" class="st14" x="1750" y="920" width="120" height="120"/>
