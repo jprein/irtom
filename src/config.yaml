@@ -144,6 +144,8 @@ procedure:
     # - s-end
 
   turkish:
-    - s-introduction
-    - s-perspectivetaking-one-a
-    - s-end
+    # - s-perspectivetaking-one-a
+    # - s-perspectivetaking-two-c
+    # - s-knowledgeaccess-c
+    - s-falsebelief-col-a
+    - s-perspectivetaking-two-a
