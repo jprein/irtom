@@ -4,29 +4,141 @@
     "communities/turkish/combined.webm"
   ],
   "sprite": {
-    "neutral-response-alright": [
+    "dog": [
       0,
+      848.2539682539683
+    ],
+    "neutral-response-alright": [
+      2000,
       1045.3514739229024
     ],
     "neutral-response-ok": [
-      3000,
+      5000,
       1024.0136054421764
     ],
     "no": [
-      6000,
-      1045.3514739229029
+      8000,
+      580.5668934240363
     ],
     "pop": [
-      9000,
+      10000,
       548.571428571428
     ],
+    "s-falsebelief-col-a-1": [
+      12000,
+      4607.528344671202
+    ],
+    "s-falsebelief-col-a-2": [
+      18000,
+      2420.61224489796
+    ],
+    "s-falsebelief-col-a-3": [
+      22000,
+      1600.0000000000014
+    ],
+    "s-falsebelief-col-a-4": [
+      25000,
+      4689.410430839004
+    ],
+    "s-falsebelief-col-a-5": [
+      31000,
+      4094.353741496597
+    ],
+    "s-falsebelief-col-a-6": [
+      37000,
+      4500
+    ],
+    "s-falsebelief-col-a-left": [
+      43000,
+      1721.4739229024972
+    ],
+    "s-falsebelief-col-a-right": [
+      46000,
+      1824.1950113378707
+    ],
+    "s-falsebelief-col-a": [
+      49000,
+      4867.4149659863915
+    ],
+    "s-knowledgeaccess-c-1": [
+      55000,
+      4218.662131519274
+    ],
+    "s-knowledgeaccess-c-2": [
+      61000,
+      3825.374149659865
+    ],
+    "s-knowledgeaccess-c-3": [
+      66000,
+      976.4852607709713
+    ],
+    "s-knowledgeaccess-c-4": [
+      68000,
+      1658.458049886619
+    ],
+    "s-knowledgeaccess-c-5": [
+      71000,
+      1362.0181405895692
+    ],
+    "s-knowledgeaccess-c-6": [
+      74000,
+      1869.0022675736914
+    ],
+    "s-knowledgeaccess-c-7": [
+      77000,
+      1365.328798185942
+    ],
+    "s-knowledgeaccess-c-9": [
+      80000,
+      1597.43764172336
+    ],
+    "s-knowledgeaccess-c-left": [
+      83000,
+      609.1156462585019
+    ],
+    "s-knowledgeaccess-c-right": [
+      85000,
+      771.6326530612179
+    ],
+    "s-knowledgeaccess-c": [
+      87000,
+      2212.154195011337
+    ],
     "s-perspectivetaking-one-a": [
-      11000,
-      1045.3514739229029
+      91000,
+      4349.319727891157
+    ],
+    "s-perspectivetaking-two-a-left": [
+      97000,
+      1031.632653061223
+    ],
+    "s-perspectivetaking-two-a-right": [
+      100000,
+      1018.4807256235899
+    ],
+    "s-perspectivetaking-two-a": [
+      103000,
+      5453.469387755106
+    ],
+    "s-perspectivetaking-two-c-left": [
+      110000,
+      650.9750566893473
+    ],
+    "s-perspectivetaking-two-c-right": [
+      112000,
+      844.2857142857179
+    ],
+    "s-perspectivetaking-two-c": [
+      114000,
+      10256.303854875285
+    ],
+    "squeak": [
+      126000,
+      533.3333333333314
     ],
     "yes": [
-      14000,
-      1024.0136054421764
+      128000,
+      627.8684807256241
     ]
   }
 }
