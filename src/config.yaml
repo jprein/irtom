@@ -144,8 +144,11 @@ procedure:
     # - s-end
 
   turkish:
-    # - s-perspectivetaking-one-a
-    # - s-perspectivetaking-two-c
-    # - s-knowledgeaccess-c
+    - s-perspectivetaking-one-a
+    - s-perspectivetaking-two-c
+    - s-knowledgeaccess-c
+    - s-diversebeliefs-a
+    - s-diversebeliefs-b
+    - s-diversebeliefs-c
     - s-falsebelief-col-a
     - s-perspectivetaking-two-a
