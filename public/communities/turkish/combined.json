@@ -188,36 +188,44 @@
       171000,
       4349.319727891157
     ],
-    "s-perspectivetaking-two-a-left": [
+    "s-perspectivetaking-one-b": [
       177000,
+      3551.7687074830064
+    ],
+    "s-perspectivetaking-one-d": [
+      182000,
+      3317.55102040816
+    ],
+    "s-perspectivetaking-two-a-left": [
+      187000,
       1031.632653061223
     ],
     "s-perspectivetaking-two-a-right": [
-      180000,
+      190000,
       1018.4807256235899
     ],
     "s-perspectivetaking-two-a": [
-      183000,
+      193000,
       5453.469387755093
     ],
     "s-perspectivetaking-two-c-left": [
-      190000,
+      200000,
       650.9750566893331
     ],
     "s-perspectivetaking-two-c-right": [
-      192000,
+      202000,
       844.2857142857179
     ],
     "s-perspectivetaking-two-c": [
-      194000,
+      204000,
       10256.303854875285
     ],
     "squeak": [
-      206000,
+      216000,
       533.3333333333314
     ],
     "yes": [
-      208000,
+      218000,
       627.8684807256241
     ]
   }
