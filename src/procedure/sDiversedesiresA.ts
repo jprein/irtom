@@ -5,7 +5,6 @@ import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 
@@ -46,8 +45,8 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Define animation function
 	async function showAnimation() {
 		// Initially hide some agent elements
-		gsap.set(boy, { x: -1200 });
-		gsap.set(girl, { x: 1200 });
+		gsap.set(boy, { x: -1200, autoAlpha: 1 });
+		gsap.set(girl, { x: 1200, autoAlpha: 1 });
 		gsap.set([girlYay, girlNay, boyYay, boyNay], { autoAlpha: 0 });
 
 		// Play initial audio
@@ -171,7 +170,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
-	await hideBlockingState();
 
 	// Show animation
 	await showAnimation();

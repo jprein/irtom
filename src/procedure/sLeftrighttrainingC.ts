@@ -3,7 +3,6 @@ import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import { playCorrectIncorrectResponse } from '../util/playCorrectIncorrectResponse';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 
@@ -22,7 +21,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
-	await hideBlockingState();
 
 	// Show left/right response options and store participant response
 	const stopBlockingState = await showTwoOptions(slidePrefix);

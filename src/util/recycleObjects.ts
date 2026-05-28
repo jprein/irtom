@@ -66,7 +66,7 @@ export const recycleObjects = () => {
 		copyAttributes(
 			document.getElementById(`ph-${id}`)!,
 			document.getElementById(`link-${id}`)!,
-			['fill', 'opacity'],
+			['fill', 'opacity','class'],
 			['overflow', 'transform']
 		);
 	});

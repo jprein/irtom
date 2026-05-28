@@ -2,7 +2,6 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { showThreeOptions } from '../../src/util/showThreeOptions';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 import { gsap } from 'gsap';
@@ -41,7 +40,6 @@ export default async ({ currentSlide, previousSlide }) => {
 		autoAlpha: 0,
 	});
 
-	await hideBlockingState();
 	// Short break before showing response options
 	await sleep(500);
 

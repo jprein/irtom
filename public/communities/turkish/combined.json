@@ -4,29 +4,229 @@
     "communities/turkish/combined.webm"
   ],
   "sprite": {
-    "neutral-response-alright": [
+    "dog": [
       0,
+      848.2539682539683
+    ],
+    "neutral-response-alright": [
+      2000,
       1045.3514739229024
     ],
     "neutral-response-ok": [
-      3000,
+      5000,
       1024.0136054421764
     ],
     "no": [
-      6000,
-      1045.3514739229029
+      8000,
+      580.5668934240363
     ],
     "pop": [
-      9000,
+      10000,
       548.571428571428
     ],
+    "s-diversebeliefs-a-1": [
+      12000,
+      6000
+    ],
+    "s-diversebeliefs-a-left-feedback": [
+      19000,
+      3160.566893424036
+    ],
+    "s-diversebeliefs-a-left": [
+      24000,
+      1118.0045351473923
+    ],
+    "s-diversebeliefs-a-right-feedback": [
+      27000,
+      3107.777777777777
+    ],
+    "s-diversebeliefs-a-right": [
+      32000,
+      1360.975056689341
+    ],
+    "s-diversebeliefs-a": [
+      35000,
+      5734.263038548754
+    ],
+    "s-diversebeliefs-b-1": [
+      42000,
+      1289.1836734693882
+    ],
+    "s-diversebeliefs-b-left-nay": [
+      45000,
+      2957.0068027210896
+    ],
+    "s-diversebeliefs-b-left": [
+      49000,
+      1124.4444444444425
+    ],
+    "s-diversebeliefs-b-right-nay": [
+      52000,
+      2635.487528344669
+    ],
+    "s-diversebeliefs-b-right": [
+      56000,
+      1200.0000000000027
+    ],
+    "s-diversebeliefs-b": [
+      59000,
+      3562.1088435374163
+    ],
+    "s-diversebeliefs-c-1-left": [
+      64000,
+      2699.4331065759666
+    ],
+    "s-diversebeliefs-c-1-right": [
+      68000,
+      2467.5963718820813
+    ],
+    "s-diversebeliefs-c-2": [
+      72000,
+      1569.9999999999932
+    ],
+    "s-diversebeliefs-c-3-left": [
+      75000,
+      2923.3786848072614
+    ],
+    "s-diversebeliefs-c-3-right": [
+      79000,
+      3105.6916099773275
+    ],
+    "s-diversebeliefs-c-left": [
+      84000,
+      453.33333333333314
+    ],
+    "s-diversebeliefs-c-right": [
+      86000,
+      659.3877551020455
+    ],
+    "s-diversebeliefs-c": [
+      88000,
+      2330.2721088435305
+    ],
+    "s-falsebelief-col-a-1": [
+      92000,
+      4607.528344671209
+    ],
+    "s-falsebelief-col-a-2": [
+      98000,
+      2420.6122448979527
+    ],
+    "s-falsebelief-col-a-3": [
+      102000,
+      1599.9999999999943
+    ],
+    "s-falsebelief-col-a-4": [
+      105000,
+      4689.410430839004
+    ],
+    "s-falsebelief-col-a-5": [
+      111000,
+      4094.3537414966045
+    ],
+    "s-falsebelief-col-a-6": [
+      117000,
+      4500
+    ],
+    "s-falsebelief-col-a-left": [
+      123000,
+      1721.47392290249
+    ],
+    "s-falsebelief-col-a-right": [
+      126000,
+      1824.1950113378634
+    ],
+    "s-falsebelief-col-a": [
+      129000,
+      4867.414965986399
+    ],
+    "s-knowledgeaccess-c-1": [
+      135000,
+      4218.662131519267
+    ],
+    "s-knowledgeaccess-c-2": [
+      141000,
+      3825.374149659865
+    ],
+    "s-knowledgeaccess-c-3": [
+      146000,
+      976.4852607709713
+    ],
+    "s-knowledgeaccess-c-4": [
+      148000,
+      1658.458049886633
+    ],
+    "s-knowledgeaccess-c-5": [
+      151000,
+      1362.018140589555
+    ],
+    "s-knowledgeaccess-c-6": [
+      154000,
+      1869.0022675737055
+    ],
+    "s-knowledgeaccess-c-7": [
+      157000,
+      1365.328798185942
+    ],
+    "s-knowledgeaccess-c-9": [
+      160000,
+      1597.43764172336
+    ],
+    "s-knowledgeaccess-c-left": [
+      163000,
+      609.1156462585161
+    ],
+    "s-knowledgeaccess-c-right": [
+      165000,
+      771.6326530612321
+    ],
+    "s-knowledgeaccess-c": [
+      167000,
+      2212.154195011351
+    ],
     "s-perspectivetaking-one-a": [
-      11000,
-      1045.3514739229029
+      171000,
+      4349.319727891157
+    ],
+    "s-perspectivetaking-one-b": [
+      177000,
+      3551.7687074830064
+    ],
+    "s-perspectivetaking-one-d": [
+      182000,
+      3317.55102040816
+    ],
+    "s-perspectivetaking-two-a-left": [
+      187000,
+      1031.632653061223
+    ],
+    "s-perspectivetaking-two-a-right": [
+      190000,
+      1018.4807256235899
+    ],
+    "s-perspectivetaking-two-a": [
+      193000,
+      5453.469387755093
+    ],
+    "s-perspectivetaking-two-c-left": [
+      200000,
+      650.9750566893331
+    ],
+    "s-perspectivetaking-two-c-right": [
+      202000,
+      844.2857142857179
+    ],
+    "s-perspectivetaking-two-c": [
+      204000,
+      10256.303854875285
+    ],
+    "squeak": [
+      216000,
+      533.3333333333314
     ],
     "yes": [
-      14000,
-      1024.0136054421764
+      218000,
+      627.8684807256241
     ]
   }
 }

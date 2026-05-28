@@ -3,7 +3,6 @@ import { sleep } from '../util/helpers';
 import { hideYesNoChoice } from '../util/hideYesNoChoice';
 import { showYesNoChoice } from '../util/showYesNoChoice';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 import { playCorrectIncorrectResponse } from '../util/playCorrectIncorrectResponse';
@@ -24,7 +23,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide yes/no choice
 	await hideYesNoChoice(choicePrefix);
-	await hideBlockingState();
 
 	// Short break before showing response options
 	await sleep(500);
