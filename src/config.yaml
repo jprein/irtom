@@ -144,13 +144,19 @@ procedure:
     # - s-end
 
   turkish:
-    - s-perspectivetaking-one-a
-    - s-perspectivetaking-two-c
-    - s-perspectivetaking-one-b
-    - s-perspectivetaking-one-d
-    - s-knowledgeaccess-c
-    - s-diversebeliefs-a
-    - s-diversebeliefs-b
-    - s-diversebeliefs-c
-    - s-falsebelief-col-a
-    - s-perspectivetaking-two-a
+    # - s-perspectivetaking-one-a
+    # - s-perspectivetaking-two-c
+    # - s-perspectivetaking-one-b
+    # - s-perspectivetaking-one-d
+    # - s-knowledgeaccess-c
+    # - s-diversebeliefs-a
+    # - s-diversebeliefs-b
+    # - s-diversebeliefs-c
+    # - s-falsebelief-col-a
+    # - s-perspectivetaking-two-a
+    - s-aspectuality-a
+    - s-aspectuality-b
+    - s-falsebelief-ui-a
+    - s-appearancereality-b
+    - s-falsebelief-uc-a
+    - s-falsebelief-uc-c

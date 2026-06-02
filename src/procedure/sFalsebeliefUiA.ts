@@ -36,7 +36,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-${data.community}-man-apron`
 	) as SvgInHtml;
 	const keyHole = document.getElementById(
-		`s-false-belief-ui-a-keyhole`
+		`s-falsebelief-ui-a-keyhole`
 	) as SvgInHtml;
 	const whiteDoorClose = document.getElementById(
 		`${slidePrefix}-door-wc`
