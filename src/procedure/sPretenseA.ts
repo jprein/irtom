@@ -24,13 +24,13 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const manFront = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-front`,
+		`link-${slidePrefix}-${data.community}-man`,
 	) as SvgInHtml;
 	const manWithMotorbike = document.getElementById(
 		`link-${slidePrefix}-${data.community}-man-motorbike`,
 	) as SvgInHtml;
 	const girlFront = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-front`,
+		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
 	const girlWithSpringBike = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl-springbike`,

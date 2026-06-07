@@ -144,19 +144,38 @@ procedure:
     # - s-end
 
   turkish:
-    # - s-perspectivetaking-one-a
-    # - s-perspectivetaking-two-c
-    # - s-perspectivetaking-one-b
-    # - s-perspectivetaking-one-d
-    # - s-knowledgeaccess-c
-    # - s-diversebeliefs-a
-    # - s-diversebeliefs-b
-    # - s-diversebeliefs-c
-    # - s-falsebelief-col-a
-    # - s-perspectivetaking-two-a
-    - s-aspectuality-a
-    - s-aspectuality-b
-    - s-falsebelief-ui-a
-    - s-appearancereality-b
+    - s-introduction
+    - s-emojichoice
+    - s-yesnotraining-a
+    - s-yesnotraining-b
+    - s-yesnotraining-e
+    - s-leftrighttraining-a
+    - s-leftrighttraining-b
+    - s-namestraining
+    - s-perspectivetaking-one-a
+    - s-perspectivetaking-two-c
+    - s-diversedesires-a
+    - s-perspectivetaking-one-b
+    - s-pretense-b
+    - s-perspectivetaking-one-d
+    - s-dogtraining
+    - s-knowledgeaccess-c
     - s-falsebelief-uc-a
+    - s-diversebeliefs-a
+    - s-diversebeliefs-b
+    - s-diversebeliefs-c
     - s-falsebelief-uc-c
+    - s-falsebelief-col-a
+    - s-appearancereality-b
+    - s-perspectivetaking-two-a
+    - s-parentstraining # previously before s-appearanceraality-a
+    - s-falsebelief-ui-a
+    - s-aspectuality-a
+    - s-knowledgeaccess-a
+    - s-pretense-a
+    - s-aspectuality-b
+    - s-deception-a
+    - s-diversedesires-b
+    - s-deception-b
+    - s-end
+
