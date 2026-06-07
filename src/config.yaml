@@ -79,30 +79,19 @@ procedure:
     - s-emojichoice
     - s-yesnotraining-a
     - s-yesnotraining-b
-    # - s-yesnotraining-c // !short
-    # - s-yesnotraining-d // !short
     - s-yesnotraining-e
     - s-leftrighttraining-a
     - s-leftrighttraining-b
-    # - s-leftrighttraining-c // !short
-    # - s-leftrighttraining-d // !short
     - s-namestraining
     - s-perspectivetaking-one-a
     - s-perspectivetaking-two-c
     - s-diversedesires-a
     - s-perspectivetaking-one-b
     - s-pretense-b
-    # - s-knowledgeaccess-b // !short
-    # - s-perspectivetaking-one-c // !short
     - s-perspectivetaking-one-d
     - s-dogtraining
     - s-knowledgeaccess-c
     - s-falsebelief-uc-a
-    # - s-diversedesires-c // !short
-    # - s-diversedesires-d // !short
-    # - s-appearancereality-a // !short
-    # - s-knowledgeaccess-d // !short
-    # - s-falsebelief-uc-b // !short
     - s-diversebeliefs-a
     - s-diversebeliefs-b
     - s-diversebeliefs-c
@@ -110,21 +99,15 @@ procedure:
     - s-falsebelief-col-a
     - s-appearancereality-b
     - s-perspectivetaking-two-a
-    # - s-falsebelief-col-b // !short
-    - s-parentstraining # previously before s-appearanceraality-a
+    - s-parentstraining
     - s-falsebelief-ui-a
-    # - s-perspectivetaking-two-b // !short
     - s-aspectuality-a
     - s-knowledgeaccess-a
     - s-pretense-a
     - s-aspectuality-b
-    # - s-falsebelief-ui-b // !short
-    # - s-perspectivetaking-two-d // !short
     - s-deception-a
     - s-diversedesires-b
-    # - s-falsebelief-two-a // !short
     - s-deception-b
-    # - s-falsebelief-two-b // !short
     - s-end
 
   english:
@@ -168,7 +151,7 @@ procedure:
     - s-falsebelief-col-a
     - s-appearancereality-b
     - s-perspectivetaking-two-a
-    - s-parentstraining # previously before s-appearanceraality-a
+    - s-parentstraining
     - s-falsebelief-ui-a
     - s-aspectuality-a
     - s-knowledgeaccess-a
