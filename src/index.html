@@ -30,18 +30,36 @@
 	<body>
 		<div id="root">
 			<div class="container">
-				<img id="irtom-logo" src="favicon.svg" alt="irToM Logo" />
-
 				<!-- <video controls width="100%" src="movie.mp4">
 					Your browser does not support the video tag.
 				</video> -->
 
 				<form>
-					<h1 id="heading">Soziale Entwicklung</h1>
-					<p id="leuphana" style="text-align: center; margin-bottom: 30px">
-						Leuphana Universität Lüneburg, Entwicklungspsychologie, und
-						Max-Planck-Institut für evolutionäre Anthropologie, Vergleichende
-						Kulturpsychologie<br />
+					<div id="logo-heading-row">
+						<img id="irtom-logo" src="favicon.svg" alt="irToM Logo" />
+						<h1 id="heading">
+							<span id="heading-main">irToM</span>
+							<span id="heading-sub">Testbatterie für Soziale Kognition</span>
+						</h1>
+					</div>
+					<hr />
+					<p id="thanks">
+						Vielen Dank für Ihr Interesse an unserer Testbatterie:
+					</p>
+					<p id="citation">
+						Prein, J., &amp; Bohn, M. (2026).
+						<br />
+						<em
+							>irToM: An IRT-Based Battery For Cross-Cultural Theory Of Mind
+							Assessment.
+						</em>
+						<br />
+						Evolving documentation:
+						<a
+							href="https://docs.google.com/document/d/1dHVhf0QEHMAsenv-v86MFsKYKHWRKCx34BoMd6SAVcI/edit?usp=sharing"
+							target="_blank"
+							>https://docs.google.com/document/d/1dHVhf0QEHMAsenv-v86MFsKYKHWRKCx34BoMd6SAVcI/edit?usp=sharing</a
+						>
 					</p>
 					<hr />
 					<!-- regex to allow case insensitive alpha numeric inputs including spaces, ß and äöü: /[0-9a-z-_äöüß ]/i -->
@@ -55,7 +73,7 @@
 							onkeydown="return /[0-9a-z-_äöüß ]/i.test(event.key);"
 						/>
 						<label for="input-id" class="control-label" id="idLabel"
-							>Vor- und Nachname oder ID</label
+							>Bitte tragen Sie hier einen Namen oder Pseudonym ein:</label
 						><i class="bar"></i>
 					</div>
 					<div id="form-community" class="form-group">
@@ -106,6 +124,12 @@
 						><i class="bar"></i>
 					</div>
 
+					<p id="downloadinfo">
+						Studiendaten (.json) und Webcam-Videos (.webm, falls ausgewählt)
+						werden nach Abschluss der Studie direkt in Ihrem Downloads-Ordner
+						gespeichert. Es erfolgt keine weitere Speicherung an anderen Orten.
+					</p>
+
 					<div class="button-container">
 						<button id="webcam-button" type="button" class="button">
 							<span id="webcamPreview">Webcam-Vorschau</span>
@@ -143,6 +167,13 @@
 					mit der erforderlichen Namensnennung verwendet werden. Einige Inhalte
 					können bearbeitet oder angepasst worden sein.
 				</p>
+				<div id="institution-logos">
+					<img src="./assets/leuphana.svg" alt="Leuphana University" />
+					<img
+						src="./assets/mpi-ccp.svg"
+						alt="MPI for Evolutionary Anthropology"
+					/>
+				</div>
 			</div>
 		</div>
 		<div

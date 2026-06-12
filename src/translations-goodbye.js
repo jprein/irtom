@@ -1,22 +1,29 @@
 const supportedLanguages = ['de', 'en'];
 const languageIds = [
-	'heading',
-	'leuphana',
+	'heading-main',
+	'heading-sub',
+	'goodbye',
+	'info',
 	'imprint',
 	'dataProtection',
-	'goodbye',
 ];
 
 const translations = {
-	heading: {
-		de: `Soziale Entwicklung`,
-		en: `Social Development`,
+	'heading-main': {
+		de: `irToM`,
+		en: `irToM`,
 	},
-	leuphana: {
-		de: `von der Leuphana Universität Lüneburg, Entwicklungspsychologie, und <br>
-		dem Max-Planck-Institut für evolutionäre Anthropologie, Vergleichende Kulturpsychologie`,
-		en: `at the Leuphana University Lüneburg, Department of Developmental Psychology, and <br>
-		the Max Planck Institute for Evolutionary Anthropology, Comparative Cultural Psychology`,
+	'heading-sub': {
+		de: `Testbatterie für Soziale Kognition`,
+		en: `Test battery for Social Cognition`,
+	},
+	info: {
+		de: `Weitere Informationen über die Testbatterie:`,
+		en: `Additional information about the test battery:`,
+	},
+	thanks: {
+		de: `Vielen Dank für Ihr Interesse an unserer Testbatterie:`,
+		en: `Thank you for your interest in our test battery:`,
 	},
 	imprint: {
 		de: `Impressum`,
@@ -27,18 +34,28 @@ const translations = {
 		en: `Data Protection`,
 	},
 	goodbye: {
-		de: `Toll - alles geschafft! Herzlichen Dank für's Mitspielen. Wir hoffen, es hat dir Spaß gemacht.
-			<br/><br/>Falls ihr Fragen oder Anmerkungen habt, wendet euch bitte an diese E-Mail-Adresse: 
-			<a href="mailto:lueneluetten@leuphana.de">lueneluetten@leuphana.de</a>.
-			<br/><br/>Wir freuen uns auf ein Wiedersehen!<br/><br/>
-			Herzliche Grüße und bis bald, <br/> 
+		de: `Toll - alles geschafft! Herzlichen Dank, dass Sie unsere Testbatterie
+			nutzen. 
+			<br />
+			<br />
+			Falls Sie Fragen oder Anmerkungen habt, schreiben Sie uns bitte an
+			diese E-Mail-Adresse:
+			<a href="mailto:lueneluetten@leuphana.de">lueneluetten@leuphana.de</a
+			>.
+			<br />
+			<br />
+			Wir freuen uns von Ihnen zu hören!
+			<br />
+			<br />
+			Herzliche Grüße,
+			<br />
 			Ihr Forschungsteam von der Leuphana Universität Lüneburg <br />
 			und dem Max-Planck-Institut für evolutionäre Anthropologie Leipzig`,
-		en: `Great - all done! Thank you very much for participating. We hope you enjoyed it.
+		en: `Great - all done! Thank you very much for using our test battery.
 			<br/><br/>In case you have any questions or comments, please contact us at this email address:
 			<a href="mailto:lueneluetten@leuphana.de">lueneluetten@leuphana.de</a>.
-			<br/><br/>We look forward to seeing you again!<br/><br/>
-			Best regards and see you soon, <br/>
+			<br/><br/>We look forward to hearing from you!<br/><br/>
+			All the best, <br/>
 			Your research team from Leuphana University Lüneburg <br />
 			and the Max Planck Institute for Evolutionary Anthropology Leipzig`,
 	},

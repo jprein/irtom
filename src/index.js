@@ -10,7 +10,7 @@ const urlStudyChoices = getUrlStudyChoices();
 
 let id = urlStudyChoices.id ?? '';
 let community = urlStudyChoices.community ?? '';
-let datatransfer = urlStudyChoices.datatransfer ?? '';
+let datatransfer = urlStudyChoices.datatransfer ?? 'local';
 let webcam = urlStudyChoices.webcam ?? '';
 
 // Remove only study-choice params and keep unrelated query params/hash untouched.

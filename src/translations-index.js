@@ -1,7 +1,8 @@
 const supportedLanguages = ['de', 'en'];
 const languageIds = [
-	'heading',
-	'leuphana',
+	'heading-main',
+	'heading-sub',
+	'thanks',
 	'idLabel',
 	'community',
 	'chooseCommunity',
@@ -19,6 +20,7 @@ const languageIds = [
 	'chooseWebcam',
 	'webcamTrue',
 	'webcamFalse',
+	'downloadinfo',
 	'webcamPreview',
 	'startButton',
 	'imprint',
@@ -27,23 +29,25 @@ const languageIds = [
 ];
 
 const translations = {
-	heading: {
-		de: `Soziale Entwicklung`,
-		en: `Social Development`,
+	'heading-main': {
+		de: `irToM`,
+		en: `irToM`,
 	},
-	leuphana: {
-		de: `von der Leuphana Universität Lüneburg, Entwicklungspsychologie, und <br>
-		dem Max-Planck-Institut für evolutionäre Anthropologie, Vergleichende Kulturpsychologie`,
-		en: `at the Leuphana University Lüneburg, Department of Developmental Psychology, and <br>
-		the Max Planck Institute for Evolutionary Anthropology, Comparative Cultural Psychology`,
+	'heading-sub': {
+		de: `Testbatterie für Soziale Kognition`,
+		en: `Test battery for Social Cognition`,
+	},
+	thanks: {
+		de: `Vielen Dank für Ihr Interesse an unserer Testbatterie: `,
+		en: `Thank you for your interest in our test battery: `,
 	},
 	idLabel: {
-		de: `Vor- und Nachname oder ID`,
-		en: `Name and Surname or ID`,
+		de: `Bitte tragen Sie hier einen Namen oder Pseudonym ein:`,
+		en: `Please enter a name or pseudonym here:`,
 	},
 	community: {
-		de: `Gemeinschaft`,
-		en: `Community`,
+		de: `Bitte wählen Sie die Sprache aus:`,
+		en: `Please select a language:`,
 	},
 	chooseCommunity: {
 		de: `Bitte wählen...`,
@@ -90,8 +94,8 @@ const translations = {
 		en: `Local Download and Upload to Leuphana Server`,
 	},
 	webcam: {
-		de: `Webcam`,
-		en: `Webcam`,
+		de: `Möchten Sie eine Webcam-Aufnahme starten?`,
+		en: `Would you like to start a webcam recording?`,
 	},
 	chooseWebcam: {
 		de: `Bitte wählen...`,
@@ -109,7 +113,7 @@ const translations = {
 		de: `Webcam-Vorschau`,
 		en: `Webcam Preview`,
 	},
-	audioButton:{
+	audioButton: {
 		de: 'Audio testen',
 		en: 'Test Audio',
 		es: 'Probar audio',
@@ -117,6 +121,10 @@ const translations = {
 	startButton: {
 		de: `Start`,
 		en: `Start`,
+	},
+	downloadinfo: {
+		de: `Studiendaten (.json) und Webcam-Videos (.webm, falls ausgewählt) werden nach Abschluss der Studie direkt in Ihrem Downloads-Ordner gespeichert. Es erfolgt keine weitere Speicherung an anderen Orten.`,
+		en: `Study data (.json) and webcam video (.webm, if enabled) are saved directly to your Downloads folder after study completion. No additional copies will be stored elsewhere.`,
 	},
 	imprint: {
 		de: `Impressum`,

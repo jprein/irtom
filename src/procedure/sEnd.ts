@@ -57,7 +57,7 @@ export default async ({ currentSlide, previousSlide }) => {
 				exitFullscreen(data.isIOS);
 			}
 
-			const redirectUrl = `${window.location.origin}/irtom-consent/goodbye.html?id=${data.id}`;
+			const redirectUrl = `${window.location.origin}/irtom/goodbye.html`;
 
 			if (procedureFinished) {
 				window.location.href = redirectUrl;
