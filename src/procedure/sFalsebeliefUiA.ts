@@ -5,7 +5,6 @@ import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 
@@ -37,7 +36,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		`link-${slidePrefix}-${data.community}-man-apron`
 	) as SvgInHtml;
 	const keyHole = document.getElementById(
-		`s-false-belief-ui-a-keyhole`
+		`s-falsebelief-ui-a-keyhole`
 	) as SvgInHtml;
 	const whiteDoorClose = document.getElementById(
 		`${slidePrefix}-door-wc`
@@ -180,7 +179,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
-	await hideBlockingState();
 
 	// Show animation
 	await showAnimation();

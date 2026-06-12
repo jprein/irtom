@@ -5,11 +5,9 @@ import { hideYesNoChoice } from '../util/hideYesNoChoice';
 import { showYesNoChoice } from '../util/showYesNoChoice';
 import { sleep } from '../util/helpers';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 import { playCorrectIncorrectResponse } from '../util/playCorrectIncorrectResponse';
-import { delay } from 'lodash';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -128,7 +126,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideYesNoChoice(choicePrefix);
-	await hideBlockingState();
 
 	// Show animation
 	await showAnimation();

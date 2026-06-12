@@ -3,7 +3,6 @@ import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 
@@ -22,7 +21,6 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
-	await hideBlockingState();
 
 	// Short break before showing response options
 	await sleep(500);

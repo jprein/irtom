@@ -3,7 +3,6 @@ import { hideYesNoChoice } from '../../src/util/hideYesNoChoice';
 import { showYesNoChoice } from '../../src/util/showYesNoChoice';
 import { playCorrectIncorrectResponse } from '../util/playCorrectIncorrectResponse';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 import { gsap } from 'gsap';
@@ -50,7 +49,6 @@ export default async ({ currentSlide, previousSlide }) => {
 		pointerEvents: 'none',
 	});
 
-	await hideBlockingState();
 
 	const stopBlockingState = await showYesNoChoice(slidePrefix, choicePrefix);
 

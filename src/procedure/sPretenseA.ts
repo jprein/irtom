@@ -5,7 +5,6 @@ import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
 import {
-	hideBlockingState,
 	showBlockingState,
 } from '../util/showOrHideBlockState';
 
@@ -25,13 +24,13 @@ export default async ({ currentSlide, previousSlide }) => {
 	// Trial-specific animation
 	// Get all relevant elements
 	const manFront = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-front`,
+		`link-${slidePrefix}-${data.community}-man`,
 	) as SvgInHtml;
 	const manWithMotorbike = document.getElementById(
 		`link-${slidePrefix}-${data.community}-man-motorbike`,
 	) as SvgInHtml;
 	const girlFront = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-front`,
+		`link-${slidePrefix}-${data.community}-girl`,
 	) as SvgInHtml;
 	const girlWithSpringBike = document.getElementById(
 		`link-${slidePrefix}-${data.community}-girl-springbike`,
@@ -78,7 +77,6 @@ export default async ({ currentSlide, previousSlide }) => {
 	}
 	// In beginning, hide response options
 	await hideTwoOptions(slidePrefix);
-	await hideBlockingState();
 
 	// Show animation
 	await showAnimation();

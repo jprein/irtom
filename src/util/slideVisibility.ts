@@ -1,6 +1,7 @@
 import type { SvgInHtml } from '../types';
 import { gsap } from 'gsap';
 import config from '../config.yaml';
+import { hideBlockingState } from './showOrHideBlockState';
 
 /**
  * Removes display="none" from all DOM elements
@@ -148,6 +149,7 @@ export const swapSlides = (
 		removeChildVisibiltyStyleAttribs(slideToHide);
 		document.getElementById(slideToHide)!.setAttribute('visibility', 'hidden');
 		document.getElementById(slideToHide)!.removeAttribute('style');
+		void hideBlockingState();
 	}
 	// if fadeDurations is defined, we use GSAP to fade in and out between slides (using opacity)
 	if (fadeDurations && visibleSlides) {
@@ -188,6 +190,7 @@ export const swapSlides = (
 						.getElementById(slideToShow)!
 						.setAttribute('visibility', 'visible');
 				}
+				void hideBlockingState();
 			},
 		});
 	}
