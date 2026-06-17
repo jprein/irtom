@@ -193,7 +193,7 @@ const withTimeout = async <T>(
 		await new Promise<void>((resolve) => {
 			const onStart = async () => {
 				const originalLabel =
-					button.textContent ?? 'Klicke hier, um mit der Studie zu beginnen';
+					button.textContent ?? 'Hier klicken, um mit der Studie zu beginnen';
 				button.disabled = true;
 				const preparingLabel =
 					buttonTranslations.preparingAudio[
