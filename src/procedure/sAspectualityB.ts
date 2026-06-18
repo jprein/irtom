@@ -4,9 +4,7 @@ import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import { gsap } from 'gsap';
-import {
-	showBlockingState,
-} from '../util/showOrHideBlockState';
+import { showBlockingState } from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -142,7 +140,6 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girlLeftBall, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlLeftBall, { delay: 1, autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girlBall, { autoAlpha: 1, duration: 0.1 }, '<')
-			.to(girlBall, {})
 			.to(girlBallSqueezed, {
 				delay: 2,
 				autoAlpha: 1,
@@ -155,7 +152,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(girlBallSqueezed, { delay: 1, autoAlpha: 0, duration: 0.1 }, '<')
 			.to(girlBall, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(girlBall, {
-				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 4,
+				delay: data.spriteJSON.sprite[`${slidePrefix}-4`][1] / 1000 - 3.5,
 				autoAlpha: 1,
 				duration: 0.1,
 				onStart: () => {
