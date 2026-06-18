@@ -1,5 +1,12 @@
 import { swapSlides } from '../../src/util/slideVisibility';
 import { exitFullscreen } from '../../src/util/helpers';
+import {
+	buildCsvSnapshot,
+	downloadCsv,
+	downloadWebcamVideo,
+	generateUserIdFilename,
+} from '../../src/util/helpers';
+import { getLastRecordingBlob } from '../../src/util/mediaRecorderServices';
 import config from '../config.yaml';
 import { gsap } from 'gsap';
 import type { SvgInHtml } from '../../src/types';
@@ -24,6 +31,9 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	const speaker = document.getElementById('link-s-end-speaker') as SvgInHtml;
 	const nextButton = document.getElementById('link-s-end-next') as SvgInHtml;
+	const downloadButton = document.getElementById(
+		'link-s-end-download'
+	) as SvgInHtml;
 	gsap.set(nextButton, { autoAlpha: 0, pointerEvents: 'none' });
 
 	// Play audio and show next button on speaker click
@@ -47,6 +57,49 @@ export default async ({ currentSlide, previousSlide }) => {
 		},
 		{ once: true }
 	);
+
+	// Trigger file download on download button click
+	const triggerLocalDataDownload = async () => {
+		const csvSnapshot = buildCsvSnapshot(data);
+		await downloadCsv(
+			csvSnapshot,
+			generateUserIdFilename('irtom', undefined, 'csv')
+		);
+
+		if (data.webcam !== true) {
+			return;
+		}
+
+		const hasRecordedVideo = Boolean(getLastRecordingBlob());
+		if (!hasRecordedVideo && config.devmode.on) {
+			console.warn(
+				'No webcam recording blob is available yet. Skipping local webcam download.'
+			);
+		}
+
+		await downloadWebcamVideo(hasRecordedVideo, data.id);
+	};
+
+	downloadButton.addEventListener('click', () => {
+		if (procedureFinished) {
+			void triggerLocalDataDownload();
+			return;
+		}
+
+		window.addEventListener(
+			PROCEDURE_FINISHED_EVENT,
+			() => {
+				void triggerLocalDataDownload();
+			},
+			{ once: true }
+		);
+
+		if (config.devmode.on) {
+			console.log(
+				'Waiting for procedure finalization before starting local data download.'
+			);
+		}
+	});
 
 	// Do not block the procedure loop on this slide.
 	// Final data saving should start immediately when entering s-end.

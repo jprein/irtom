@@ -4,9 +4,7 @@ import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
 import type { SvgInHtml } from '../types';
-import {
-	showBlockingState,
-} from '../util/showOrHideBlockState';
+import { showBlockingState } from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide

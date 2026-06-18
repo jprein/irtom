@@ -1,4 +1,5 @@
 import Toastify from 'toastify-js';
+import { buttonTranslations } from '../translations';
 import {
 	initMedia,
 	isMediaRecorderSupported,
@@ -49,8 +50,12 @@ export const resumeStudyRecordingIfEnabled = async () => {
 
 	const didResume = await startStudyRecordingIfEnabled();
 	if (!didResume) {
+		const communityKey =
+			data.community as keyof typeof buttonTranslations.webcamRecordingResumeFailed;
 		Toastify({
-			text: 'Webcam recording could not be restarted. The study will continue without video.',
+			text:
+				buttonTranslations.webcamRecordingResumeFailed[communityKey] ??
+				buttonTranslations.webcamRecordingResumeFailed.english,
 			duration: 4500,
 			className: 'toast-error',
 		}).showToast();

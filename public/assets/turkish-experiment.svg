@@ -21889,6 +21889,8 @@
         <use id="link-s-end-lueneluetten-logo" transform="translate(1589 109) scale(.5)" xlink:href="#image8"/>
         <rect id="ph-s-end-speaker" class="st3860" x="899.6" y="799.5" width="120" height="120"/>
         <use id="link-s-end-speaker" class="st3191" transform="translate(899.6 799.5) scale(1.5 1.5)" xlink:href="#image4"/>
+        <rect id="ph-s-end-download" class="st3860" x="22" y="19.8" width="79.2" height="79.2"/>
+        <image id="link-s-end-download" width="650" height="650" transform="translate(24 20.8) scale(.1)" xlink:href="download.png"/>
       </g>
       <g id="s-deception-b">
         <rect id="ph-s-deception-b-floor" class="st3828" y="430" width="1920" height="650"/>

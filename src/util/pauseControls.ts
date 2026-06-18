@@ -1,7 +1,11 @@
 import { gsap } from 'gsap';
 import Toastify from 'toastify-js';
 import type { SvgInHtml } from '../types';
-import { pauseStatusTranslations, translations } from '../translations';
+import {
+	buttonTranslations,
+	pauseStatusTranslations,
+	translations,
+} from '../translations';
 import {
 	getLastRecordingBlob,
 	isRecordingActive,
@@ -20,8 +24,9 @@ const getSvgNextButton = () =>
 	document.getElementById(`link-next`) as SvgInHtml | null;
 
 const getPauseTextNodes = () =>
-	document.querySelectorAll(`[id^="text-pause"]`
-			) as NodeListOf<SVGForeignObjectElement>
+	document.querySelectorAll(
+		`[id^="text-pause"]`
+	) as NodeListOf<SVGForeignObjectElement>;
 
 const setSvgButtonVisibility = (
 	element: SvgInHtml | null,
@@ -52,9 +57,7 @@ const getPauseMessage = (key: 'pause' | 'pauseSaving') => {
 	return translationGroup[communityKey] ?? translationGroup.english;
 };
 
-const setPauseTextVisibility = (
-	isVisible: boolean
-) => {
+const setPauseTextVisibility = (isVisible: boolean) => {
 	const pauseTextNodes = getPauseTextNodes();
 	if (!pauseTextNodes) return;
 
@@ -106,12 +109,12 @@ export const setPauseControlContext = () => {
 
 	// activeSlidePrefix = slidePrefix;
 	//if () {
-		setSvgButtonVisibility(getSvgPauseButton(), false);
-		setPauseTextVisibility(false);
-		// const resumeButton = document.getElementById(
-		// 	`link-resume`
-		// ) as SvgInHtml | null;
-		// setSvgButtonVisibility(resumeButton, false);
+	setSvgButtonVisibility(getSvgPauseButton(), false);
+	setPauseTextVisibility(false);
+	// const resumeButton = document.getElementById(
+	// 	`link-resume`
+	// ) as SvgInHtml | null;
+	// setSvgButtonVisibility(resumeButton, false);
 	//}
 };
 
@@ -163,8 +166,12 @@ export const runPauseFlow = async () => {
 			});
 		} catch (error) {
 			console.warn('Pause save failed, continuing to resume state.', error);
+			const communityKey =
+				data.community as keyof typeof buttonTranslations.pauseSaveFailed;
 			Toastify({
-				text: 'Saving during pause failed. You can still resume the study.',
+				text:
+					buttonTranslations.pauseSaveFailed[communityKey] ??
+					buttonTranslations.pauseSaveFailed.english,
 				duration: 4500,
 				className: 'toast-error',
 			}).showToast();

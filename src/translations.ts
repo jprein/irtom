@@ -129,6 +129,97 @@ export const buttonTranslations = {
 		swahili: 'Muhtasari wa webcam',
 		turkish: 'Webcam Onizleme',
 	},
+	uploadFallbackDownload: {
+		german:
+			'Upload hat nicht funktioniert, stattdessen wird ein Download gestartet.',
+		english: 'Upload did not work, download is triggered instead',
+		kikuyu:
+			'Gũtũmwo kwa data gũtikĩhota, gwĩtherio ya gũikira irĩhũrũkĩte handũ hayo.',
+		swahili: 'Upakiaji haukufanya kazi, upakuaji unaanzishwa badala yake.',
+		turkish: 'Yukleme calismadi, bunun yerine indirme baslatiliyor.',
+	},
+	webcamPreviewUnsupported: {
+		german: 'Die Webcam-Vorschau wird in diesem Browser nicht unterstützt.',
+		english: 'Webcam preview is not supported in this browser.',
+		kikuyu: 'Kũrora mbere kwa webcam gũtirĩ mũhianano na browser ĩno.',
+		swahili: 'Muhtasari wa webcam hautumiki kwenye kivinjari hiki.',
+		turkish: 'Webcam önizleme bu tarayıcıda desteklenmiyor.',
+	},
+	webcamPreviewOpenFailed: {
+		german:
+			'Die Webcam-Vorschau konnte nicht geöffnet werden. Bitte Kamera-Berechtigung erlauben und erneut versuchen.',
+		english:
+			'Webcam preview could not be opened. Please allow camera permission and try again.',
+		kikuyu:
+			'Kũrora mbere kwa webcam gutingĩhote gũhingũrwo. Tafadhali heana ruhusa ya kamera na ũgerie rĩngĩ.',
+		swahili:
+			'Muhtasari wa webcam haukuweza kufunguliwa. Tafadhali ruhusu idhini ya kamera na ujaribu tena.',
+		turkish:
+			'Webcam önizleme açılamadı. Lütfen kamera izni verin ve tekrar deneyin.',
+	},
+	audioInitFailed: {
+		german:
+			'Audio-Initialisierung fehlgeschlagen. Bitte Gerät entstummen und erneut auf "Audio starten" tippen.',
+		english:
+			'Audio initialization failed. Please unmute your device and tap "Start Audio" again.',
+		kikuyu:
+			'Kũambĩrĩrĩa kwa sauti gũtikĩhota. Tafadhali igũra sauti ya kifaa gĩaku na ũgũte "Start Audio" rĩngĩ.',
+		swahili:
+			'Uanzishaji wa sauti umeshindikana. Tafadhali washa sauti ya kifaa chako na gusa "Start Audio" tena.',
+		turkish:
+			'Ses başlatma başarısız oldu. Lütfen cihazınızın sesini açın ve yeniden "Start Audio" düğmesine dokunun.',
+	},
+	pauseSaveFailed: {
+		german:
+			'Speichern während der Pause fehlgeschlagen. Sie können die Studie trotzdem fortsetzen.',
+		english: 'Saving during pause failed. You can still resume the study.',
+		kikuyu:
+			'Gũhĩka data rĩrĩa mũhurũko gũtikĩhota. No no ũngĩthiĩ mbere na kĩganio.',
+		swahili:
+			'Uhifadhi wakati wa mapumziko umeshindikana. Bado unaweza kuendelea na utafiti.',
+		turkish:
+			'Mola sırasında kaydetme başarısız oldu. Çalışmayı yine de sürdürebilirsiniz.',
+	},
+	webcamRecordingResumeFailed: {
+		german:
+			'Die Webcam-Aufnahme konnte nicht neu gestartet werden. Die Studie wird ohne Video fortgesetzt.',
+		english:
+			'Webcam recording could not be restarted. The study will continue without video.',
+		kikuyu:
+			'Gũrekoda kwa webcam gutingĩhote kũambĩrĩrĩrwo rĩngĩ. Kĩganio gĩgũthiĩ mbere hatarĩ video.',
+		swahili:
+			'Kurekodi kwa webcam hakuweza kuanzishwa tena. Utafiti utaendelea bila video.',
+		turkish:
+			'Webcam kaydı yeniden başlatılamadı. Çalışma videosuz devam edecek.',
+	},
+	csvUploadSuccess: {
+		german: 'CSV erfolgreich hochgeladen!',
+		english: 'CSV uploaded successfully!',
+		kikuyu: 'CSV nĩ yatũmĩtwo wega!',
+		swahili: 'CSV imepakiwa kwa mafanikio!',
+		turkish: 'CSV başarıyla yüklendi!',
+	},
+	csvUploadFailed: {
+		german: 'CSV-Upload fehlgeschlagen!',
+		english: 'CSV upload failed!',
+		kikuyu: 'Gũtũmwo kwa CSV gũtikĩhota!',
+		swahili: 'Upakiaji wa CSV umeshindikana!',
+		turkish: 'CSV yükleme başarısız oldu!',
+	},
+	videoUploadSuccess: {
+		german: 'Video erfolgreich hochgeladen!',
+		english: 'Video uploaded successfully!',
+		kikuyu: 'Video nĩ yatũmĩtwo wega!',
+		swahili: 'Video imepakiwa kwa mafanikio!',
+		turkish: 'Video başarıyla yüklendi!',
+	},
+	videoUploadFailed: {
+		german: 'Video-Upload fehlgeschlagen!',
+		english: 'Video upload failed!',
+		kikuyu: 'Gũtũmwo kwa video gũtikĩhota!',
+		swahili: 'Upakiaji wa video umeshindikana!',
+		turkish: 'Video yükleme başarısız oldu!',
+	},
 };
 
 export const pauseStatusTranslations = {

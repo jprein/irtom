@@ -56,6 +56,8 @@ const withTimeout = async <T>(
 
 (async () => {
 	const { studyChoices, urlChoices } = resolveStudyChoices();
+	const communityKey =
+		studyChoices.community as keyof typeof buttonTranslations.webcamModalTitle;
 
 	const webcamModal = document.getElementById(
 		'webcam-modal'
@@ -71,8 +73,6 @@ const withTimeout = async <T>(
 	) as HTMLButtonElement | null;
 
 	if (webcamModalTitle) {
-		const communityKey =
-			studyChoices.community as keyof typeof buttonTranslations.webcamModalTitle;
 		webcamModalTitle.textContent =
 			buttonTranslations.webcamModalTitle[communityKey] ??
 			buttonTranslations.webcamModalTitle.english;
@@ -107,7 +107,9 @@ const withTimeout = async <T>(
 	const openWebcamPreviewModal = async () => {
 		if (!navigator.mediaDevices?.getUserMedia) {
 			Toastify({
-				text: 'Webcam preview is not supported in this browser.',
+				text:
+					buttonTranslations.webcamPreviewUnsupported[communityKey] ??
+					buttonTranslations.webcamPreviewUnsupported.english,
 				duration: 4500,
 				className: 'toast-error',
 			}).showToast();
@@ -129,7 +131,9 @@ const withTimeout = async <T>(
 		} catch (error) {
 			console.error('Failed to open webcam preview:', error);
 			Toastify({
-				text: 'Webcam preview could not be opened. Please allow camera permission and try again.',
+				text:
+					buttonTranslations.webcamPreviewOpenFailed[communityKey] ??
+					buttonTranslations.webcamPreviewOpenFailed.english,
 				duration: 4500,
 				className: 'toast-error',
 			}).showToast();
@@ -244,7 +248,9 @@ const withTimeout = async <T>(
 				} catch (error) {
 					console.error('Failed to start audio:', error);
 					Toastify({
-						text: 'Audio initialization failed. Please unmute your device and tap "Start Audio" again.',
+						text:
+							buttonTranslations.audioInitFailed[communityKey] ??
+							buttonTranslations.audioInitFailed.english,
 						duration: 4500,
 						className: 'toast-error',
 					}).showToast();

@@ -3,6 +3,7 @@ import {
 	getUrlStudyChoices,
 	cleanStudyChoiceParamsFromUrl,
 } from './util/resolveStudyChoices';
+import { buttonTranslations } from './translations';
 import Toastify from 'toastify-js';
 import 'toastify-js/src/toastify.css';
 // Read study choices from URL first and normalize (trimmed, no whitespace-only values).
@@ -69,6 +70,19 @@ const previewConstraints = {
 	},
 };
 
+const getCurrentCommunityKey = () => {
+	if (community) {
+		return community;
+	}
+
+	const communitySelect = document.getElementById('input-community');
+	if (communitySelect && communitySelect.selectedIndex >= 0) {
+		return communitySelect.options[communitySelect.selectedIndex].id;
+	}
+
+	return 'english';
+};
+
 const closePreviewModal = () => {
 	if (webcamModal) {
 		webcamModal.classList.add('hidden');
@@ -93,8 +107,11 @@ const openPreviewModal = async () => {
 		}
 	} catch (error) {
 		console.error('Failed to open webcam preview:', error);
+		const communityKey = getCurrentCommunityKey();
 		Toastify({
-			text: 'Webcam preview could not be opened. Please allow camera permission and try again.',
+			text:
+				buttonTranslations.webcamPreviewOpenFailed[communityKey] ??
+				buttonTranslations.webcamPreviewOpenFailed.english,
 			duration: 4500,
 			className: 'toast-error',
 		}).showToast();

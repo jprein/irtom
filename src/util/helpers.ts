@@ -2,6 +2,7 @@ import { gsap } from 'gsap';
 import type { SvgInHtml } from '../types';
 import Toastify from 'toastify-js';
 import config from '../config.yaml';
+import { buttonTranslations } from '../translations';
 import {
 	downloadLastRecording,
 	uploadLastRecordingInChunks,
@@ -288,8 +289,12 @@ export async function uploadCsv(
 		}
 
 		if (config.devmode.on) {
+			const communityKey =
+				data.community as keyof typeof buttonTranslations.csvUploadSuccess;
 			Toastify({
-				text: '💾 CSV uploaded successfully!',
+				text:
+					buttonTranslations.csvUploadSuccess[communityKey] ??
+					buttonTranslations.csvUploadSuccess.english,
 				duration: 2000,
 				className: 'toast-info',
 			}).showToast();
@@ -297,8 +302,12 @@ export async function uploadCsv(
 	} catch (error) {
 		if (config.devmode.on) {
 			console.warn('CSV upload failed in uploadCsv().', error);
+			const communityKey =
+				data.community as keyof typeof buttonTranslations.csvUploadFailed;
 			Toastify({
-				text: '🤔 CSV upload failed!',
+				text:
+					buttonTranslations.csvUploadFailed[communityKey] ??
+					buttonTranslations.csvUploadFailed.english,
 				duration: 2000,
 				className: 'toast-error',
 			}).showToast();
@@ -342,16 +351,24 @@ export async function uploadWebcamVideo(webcam: boolean, id: string) {
 			});
 
 			if (config.devmode.on) {
+				const communityKey =
+					data.community as keyof typeof buttonTranslations.videoUploadSuccess;
 				Toastify({
-					text: '💾 Video uploaded successfully!',
+					text:
+						buttonTranslations.videoUploadSuccess[communityKey] ??
+						buttonTranslations.videoUploadSuccess.english,
 					duration: 2000,
 					className: 'toast-info',
 				}).showToast();
 			}
 		} catch (err) {
 			console.error('Error uploading video:', err);
+			const communityKey =
+				data.community as keyof typeof buttonTranslations.videoUploadFailed;
 			Toastify({
-				text: '🤔 Video upload failed!',
+				text:
+					buttonTranslations.videoUploadFailed[communityKey] ??
+					buttonTranslations.videoUploadFailed.english,
 				duration: 2000,
 				className: 'toast-error',
 			}).showToast();

@@ -442,6 +442,7 @@ export const procedure = async () => {
 		await persistStudyData({
 			hasRecordedVideo,
 			videoId: data.id,
+			showUploadFallbackBanner: true,
 		});
 	} finally {
 		uploadAndDownloadFinshed = true;

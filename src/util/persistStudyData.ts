@@ -1,4 +1,6 @@
 import config from '../config.yaml';
+import Toastify from 'toastify-js';
+import { buttonTranslations } from '../translations';
 import {
 	buildCsvSnapshot,
 	downloadCsv,
@@ -14,6 +16,7 @@ interface PersistStudyDataOptions {
 	hasRecordedVideo?: boolean;
 	saveCsv?: boolean;
 	saveVideo?: boolean;
+	showUploadFallbackBanner?: boolean;
 }
 
 export const persistStudyData = async ({
@@ -22,13 +25,38 @@ export const persistStudyData = async ({
 	hasRecordedVideo = false,
 	saveCsv = true,
 	saveVideo = true,
+	showUploadFallbackBanner = false,
 }: PersistStudyDataOptions = {}) => {
 	const datatransfer = data.datatransfer;
 	let didDownloadCsvFallback = false;
 	let didDownloadWebcamFallback = false;
+	let didShowUploadFallbackBanner = false;
 	const shouldPersistCsv = saveCsv;
 	const shouldPersistVideo = saveVideo && hasRecordedVideo;
 	const csvSnapshot = buildCsvSnapshot(data);
+	const communityKey =
+		data.community as keyof typeof buttonTranslations.uploadFallbackDownload;
+	const uploadFallbackBannerText =
+		buttonTranslations.uploadFallbackDownload[communityKey] ??
+		buttonTranslations.uploadFallbackDownload.english;
+
+	const showUploadFallbackBannerOnce = () => {
+		if (!showUploadFallbackBanner || didShowUploadFallbackBanner) {
+			return;
+		}
+
+		Toastify({
+			text: uploadFallbackBannerText,
+			duration: 5000,
+			gravity: 'top',
+			position: 'center',
+			close: true,
+			stopOnFocus: true,
+			className: 'toast-error',
+		}).showToast();
+
+		didShowUploadFallbackBanner = true;
+	};
 
 	const ensureCsvUploaded = async () => {
 		if (!shouldPersistCsv || datatransfer === 'local') return;
@@ -41,6 +69,7 @@ export const persistStudyData = async ({
 					error
 				);
 			}
+			showUploadFallbackBannerOnce();
 			await downloadCsv(csvSnapshot, csvId);
 			didDownloadCsvFallback = true;
 		}
@@ -57,6 +86,7 @@ export const persistStudyData = async ({
 					error
 				);
 			}
+			showUploadFallbackBannerOnce();
 			await downloadWebcamVideo(hasRecordedVideo, videoId);
 			didDownloadWebcamFallback = true;
 		}
