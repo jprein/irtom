@@ -104,9 +104,10 @@ export default defineConfig({
 				config: true,
 			},
 			manifest: {
-				name: 'irToM',
-				short_name: 'irToM',
-				description: 'This is the irToM as a PWA.',
+				name: 'irToM-ger',
+				short_name: 'irToM-ger',
+				description:
+					'This is the irToM with defauls for data collection in Germany.',
 				background_color: '#cee1e8',
 				theme_color: '#cee1e8',
 				start_url: './',

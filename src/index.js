@@ -10,7 +10,7 @@ import 'toastify-js/src/toastify.css';
 const urlStudyChoices = getUrlStudyChoices();
 
 let id = urlStudyChoices.id ?? '';
-let community = urlStudyChoices.community ?? 'turkish';
+let community = urlStudyChoices.community ?? 'german';
 let datatransfer = urlStudyChoices.datatransfer ?? 'both';
 let webcam = urlStudyChoices.webcam ?? 'true';
 
