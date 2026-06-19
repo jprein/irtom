@@ -20,7 +20,6 @@ const languageIds = [
 	'chooseWebcam',
 	'webcamTrue',
 	'webcamFalse',
-	'downloadinfo',
 	'webcamPreview',
 	'startButton',
 	'imprint',
@@ -121,10 +120,6 @@ const translations = {
 	startButton: {
 		de: `Start`,
 		en: `Start`,
-	},
-	downloadinfo: {
-		de: `Studiendaten (.csv) und Webcam-Videos (.webm, falls ausgewählt) werden nach Abschluss der Studie direkt in Ihrem Downloads-Ordner gespeichert. Es erfolgt keine weitere Speicherung an anderen Orten.`,
-		en: `Study data (.csv) and webcam video (.webm, if enabled) are saved directly to your Downloads folder after study completion. No additional copies will be stored elsewhere.`,
 	},
 	imprint: {
 		de: `Impressum`,
