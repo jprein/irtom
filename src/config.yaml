@@ -121,10 +121,10 @@ procedure:
     - s-end
 
   swahili:
-    # - s-introduction
+    - s-introduction
     - s-diversedesires-a
     - s-falsebelief-col-a
-    # - s-end
+    - s-end
 
   turkish:
     - s-introduction
@@ -161,4 +161,3 @@ procedure:
     - s-diversedesires-b
     - s-deception-b
     - s-end
-
