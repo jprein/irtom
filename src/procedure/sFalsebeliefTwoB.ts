@@ -24,26 +24,27 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 	const girlBox = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-box`
+		`link-${slidePrefix}-${svgCommunity}-girl-box`
 	) as SvgInHtml;
 	const girlCookieBox = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-cookiebox`
+		`link-${slidePrefix}-${svgCommunity}-girl-cookiebox`
 	) as SvgInHtml;
 	const girlCookie = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-cookies`
+		`link-${slidePrefix}-${svgCommunity}-girl-cookies`
 	) as SvgInHtml;
 	const womanGroceries = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman-grocery`
+		`link-${slidePrefix}-${svgCommunity}-woman-grocery`
 	) as SvgInHtml;
 	const womanStanding = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman-standing`
+		`link-${slidePrefix}-${svgCommunity}-woman-standing`
 	) as SvgInHtml;
 	const womanSpeaking = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman-speaking`
+		`link-${slidePrefix}-${svgCommunity}-woman-speaking`
 	) as SvgInHtml;
 	const womenWithWindow = document.getElementById(
 		`${slidePrefix}-window`

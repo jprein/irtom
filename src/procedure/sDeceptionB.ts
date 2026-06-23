@@ -23,50 +23,51 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 	const girlDrinking = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-drinking`
+		`link-${slidePrefix}-${svgCommunity}-girl-drinking`
 	) as SvgInHtml;
 	const girlRightNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-right-nay`
+		`link-${slidePrefix}-${svgCommunity}-girl-right-nay`
 	) as SvgInHtml;
 	const girlFrontAngry = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-front-angry`
+		`link-${slidePrefix}-${svgCommunity}-girl-front-angry`
 	) as SvgInHtml;
 	const girlCup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-cup`
+		`link-${slidePrefix}-${svgCommunity}-girl-cup`
 	) as SvgInHtml;
 	const girlBackCup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-back-cup`
+		`link-${slidePrefix}-${svgCommunity}-girl-back-cup`
 	) as SvgInHtml;
 	const girlFrontCup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-front-cup`
+		`link-${slidePrefix}-${svgCommunity}-girl-front-cup`
 	) as SvgInHtml;
 	const boyWithWater = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-water`
+		`link-${slidePrefix}-${svgCommunity}-boy-water`
 	) as SvgInHtml;
 	const boyWithVinegar = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-vinegar`
+		`link-${slidePrefix}-${svgCommunity}-boy-vinegar`
 	) as SvgInHtml;
 	const boyWithBottles = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-bottles`
+		`link-${slidePrefix}-${svgCommunity}-boy-bottles`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`
+		`link-${slidePrefix}-${svgCommunity}-boy`
 	) as SvgInHtml;
 	const boyWithCup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-cup`
+		`link-${slidePrefix}-${svgCommunity}-boy-cup`
 	) as SvgInHtml;
 	const boyLeft = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-left`
+		`link-${slidePrefix}-${svgCommunity}-boy-left`
 	) as SvgInHtml;
 	const boyLaughing = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-laughing`
+		`link-${slidePrefix}-${svgCommunity}-boy-laughing`
 	) as SvgInHtml;
 	const boySlightRight = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-slightright-standing`
+		`link-${slidePrefix}-${svgCommunity}-boy-slightright-standing`
 	) as SvgInHtml;
 	const cupboardClosed = document.getElementById(
 		`${slidePrefix}-cupboard-closed`

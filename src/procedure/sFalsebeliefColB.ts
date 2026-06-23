@@ -22,35 +22,36 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// Add trial-specific animation
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`
+		`link-${slidePrefix}-${svgCommunity}-boy`
 	) as SvgInHtml;
 	const boyTeddy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-teddy`
+		`link-${slidePrefix}-${svgCommunity}-boy-teddy`
 	) as SvgInHtml;
 	const boyHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-handsup`
+		`link-${slidePrefix}-${svgCommunity}-boy-handsup`
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 	const girlTeddy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-teddy`
+		`link-${slidePrefix}-${svgCommunity}-girl-teddy`
 	) as SvgInHtml;
 	const girlHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-handsup`
+		`link-${slidePrefix}-${svgCommunity}-girl-handsup`
 	) as SvgInHtml;
 	const man = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man`
+		`link-${slidePrefix}-${svgCommunity}-man`
 	) as SvgInHtml;
 	const manTeddy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-teddy`
+		`link-${slidePrefix}-${svgCommunity}-man-teddy`
 	) as SvgInHtml;
 	const manTeddySpeaking = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-teddy-speaking`
+		`link-${slidePrefix}-${svgCommunity}-man-teddy-speaking`
 	) as SvgInHtml;
 	const manHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-handsup`
+		`link-${slidePrefix}-${svgCommunity}-man-handsup`
 	) as SvgInHtml;
 	const boxAOpen = document.getElementById(
 		`${slidePrefix}-boxA-open`

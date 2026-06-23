@@ -23,17 +23,18 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girlLeft = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-left-standing`
+		`link-${slidePrefix}-${svgCommunity}-girl-left-standing`
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 	const man = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man`
+		`link-${slidePrefix}-${svgCommunity}-man`
 	) as SvgInHtml;
 	const manApron = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-apron`
+		`link-${slidePrefix}-${svgCommunity}-man-apron`
 	) as SvgInHtml;
 	const keyHole = document.getElementById(
 		`s-falsebelief-ui-a-keyhole`

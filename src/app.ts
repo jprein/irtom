@@ -240,7 +240,7 @@ const withTimeout = async <T>(
 							data.community as keyof typeof buttonTranslations.loadingImages
 						] ?? 'Loading images...';
 					button.textContent = loadingLabel;
-					await preloadCommunityImages(data.community);
+					await preloadCommunityImages(data.svgCommunity ?? data.community);
 
 					overlay?.classList.add('hidden');
 					button.removeEventListener('click', onStart);

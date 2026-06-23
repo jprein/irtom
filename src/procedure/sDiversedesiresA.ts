@@ -4,9 +4,7 @@ import { swapSlides } from '../../src/util/slideVisibility';
 import { sleep } from '../../src/util/helpers';
 import { hideTwoOptions } from '../../src/util/hideTwoOptions';
 import { showTwoOptions } from '../../src/util/showTwoOptions';
-import {
-	showBlockingState,
-} from '../util/showOrHideBlockState';
+import { showBlockingState } from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -23,23 +21,24 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 	const girlYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-left-yay`
+		`link-${slidePrefix}-${svgCommunity}-girl-left-yay`
 	) as SvgInHtml;
 	const girlNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-right-nay`
+		`link-${slidePrefix}-${svgCommunity}-girl-right-nay`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`
+		`link-${slidePrefix}-${svgCommunity}-boy`
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-left-nay`
+		`link-${slidePrefix}-${svgCommunity}-boy-left-nay`
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-right-yay`
+		`link-${slidePrefix}-${svgCommunity}-boy-right-yay`
 	) as SvgInHtml;
 
 	// Define animation function

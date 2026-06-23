@@ -24,17 +24,18 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// Add trial-specific animation
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${svgCommunity}-boy`,
 	) as SvgInHtml;
 	const boyKneeling = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-kneeling`,
+		`link-${slidePrefix}-${svgCommunity}-boy-kneeling`,
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${svgCommunity}-girl`,
 	) as SvgInHtml;
 	const girlKneeling = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-kneeling`,
+		`link-${slidePrefix}-${svgCommunity}-girl-kneeling`,
 	) as SvgInHtml;
 	const dogLying = document.getElementById(
 		`link-${slidePrefix}-dog-lying`,

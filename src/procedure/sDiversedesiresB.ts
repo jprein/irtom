@@ -23,23 +23,24 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 	const girlYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-yay`
+		`link-${slidePrefix}-${svgCommunity}-girl-yay`
 	) as SvgInHtml;
 	const girlNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-nay`
+		`link-${slidePrefix}-${svgCommunity}-girl-nay`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`
+		`link-${slidePrefix}-${svgCommunity}-boy`
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-nay`
+		`link-${slidePrefix}-${svgCommunity}-boy-nay`
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-yay`
+		`link-${slidePrefix}-${svgCommunity}-boy-yay`
 	) as SvgInHtml;
 	const carrot = document.getElementById(`${slidePrefix}-carrot`) as SvgInHtml;
 

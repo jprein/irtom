@@ -31,6 +31,7 @@ declare module '*.webm' {
 declare let data: {
 	id: string;
 	community: string;
+	svgCommunity: string;
 	datatransfer: 'server' | 'local' | 'both';
 	webcam: boolean;
 	hasWebcam: boolean;

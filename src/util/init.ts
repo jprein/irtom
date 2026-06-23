@@ -37,8 +37,16 @@ export const init = async (initialStudyChoices?: StudyChoices) => {
 		initialStudyChoices ?? resolveStudyChoices().studyChoices;
 
 	const wrapper = document.getElementById('wrapper')! as HTMLDivElement;
+	// Resolve which SVG to load — may differ from the audio community (see config.globals.svgCommunityMap).
+	const svgCommunity: string =
+		(config.globals.svgCommunityMap as Record<string, string> | undefined)?.[
+			studyChoices.community
+		] ?? studyChoices.community;
+
 	// load community-specific voxified SVG
-	const svgResponse = await fetch(`assets/${studyChoices.community}-experiment-voxified.svg`);
+	const svgResponse = await fetch(
+		`assets/${svgCommunity}-experiment-voxified.svg`
+	);
 	const svgText = await svgResponse.text();
 	//gsap.set(wrapper, { opacity: 0 });
 	wrapper.innerHTML = svgText;
@@ -94,6 +102,7 @@ export const init = async (initialStudyChoices?: StudyChoices) => {
 	global.data = {
 		id: studyChoices.id,
 		community: studyChoices.community,
+		svgCommunity,
 		datatransfer: studyChoices.datatransfer,
 		webcam: studyChoices.webcam == 'true' ? true : false,
 		touchscreen: isTouchDevice(),
@@ -262,7 +271,7 @@ export const init = async (initialStudyChoices?: StudyChoices) => {
 	// in config.procedure, all communities are listed
 	// we filter all communities that are not our current community
 	const otherCommunities = Object.keys(config.procedure).filter(
-		(community) => community !== data.community
+		(community) => community !== data.svgCommunity
 	);
 
 	// for all other communities, we hide the community-specific SVG elements

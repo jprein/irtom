@@ -34,14 +34,15 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${svgCommunity}-boy`,
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-${naySide}-pointing`,
+		`link-${slidePrefix}-${svgCommunity}-boy-${naySide}-pointing`,
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-${yaySide}-pointing`,
+		`link-${slidePrefix}-${svgCommunity}-boy-${yaySide}-pointing`,
 	) as SvgInHtml;
 
 	// Define animation function

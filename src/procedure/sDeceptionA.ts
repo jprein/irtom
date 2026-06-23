@@ -24,23 +24,24 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`
+		`link-${slidePrefix}-${svgCommunity}-boy`
 	) as SvgInHtml;
 	const girlSpeaking = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-speaking`
+		`link-${slidePrefix}-${svgCommunity}-girl-speaking`
 	) as SvgInHtml;
 	const girlAngry = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-front-angry`
+		`link-${slidePrefix}-${svgCommunity}-girl-front-angry`
 	) as SvgInHtml;
 	const woman = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman`
+		`link-${slidePrefix}-${svgCommunity}-woman`
 	) as SvgInHtml;
 	const womanPointing = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman-pointing`
+		`link-${slidePrefix}-${svgCommunity}-woman-pointing`
 	) as SvgInHtml;
 	const cake = document.getElementById(
 		`${slidePrefix}-cake-plate`
