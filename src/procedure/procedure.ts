@@ -343,7 +343,7 @@ export const procedure = async () => {
 		}
 
 		// Remove the event listener
-		repeatSvg.removeEventListener('click', handleRepeatClick);
+		repeatSvg?.removeEventListener('click', handleRepeatClick);
 
 		// ----------------------------------------------------------------------------
 
