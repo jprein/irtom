@@ -43,7 +43,7 @@ export const translations = {
 			Danach erscheint ein roter Pfeil. Tippen Sie darauf, um die Studie zu beenden.</p>`,
 		english: `<h1 class="heading">Done — the study is now complete!</h1>
 			<br><p class="end-text">
-			Well done! Thank you very much for participating with us. <br><br>
+			Well done! Thank you very much for playing with us. <br><br>
 			Please be patient for a moment: We are saving the study data so we can analyse it later. <br><br>
 			Tap the orange speaker button to hear a short farewell message.
 			A red arrow will then appear. Tap it to finish the study.</p>`,
