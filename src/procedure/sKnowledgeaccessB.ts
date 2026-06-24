@@ -23,17 +23,18 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girlHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-handsup`,
+		`link-${slidePrefix}-${svgCommunity}-girl-handsup`,
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`,
+		`link-${slidePrefix}-${svgCommunity}-girl`,
 	) as SvgInHtml;
 	const boyHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-handsup`,
+		`link-${slidePrefix}-${svgCommunity}-boy-handsup`,
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${svgCommunity}-boy`,
 	) as SvgInHtml;
 	const boxOpen = document.getElementById(
 		`${slidePrefix}-box-open`,

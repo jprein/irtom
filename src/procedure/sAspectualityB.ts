@@ -21,32 +21,33 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girlBallSqueezed = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-ball-squeezed`
+		`link-${slidePrefix}-${svgCommunity}-girl-ball-squeezed`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`
+		`link-${slidePrefix}-${svgCommunity}-boy`
 	) as SvgInHtml;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 	const girlBall = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-ball`
+		`link-${slidePrefix}-${svgCommunity}-girl-ball`
 	) as SvgInHtml;
 	const girlRightBall = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-right-ball`
+		`link-${slidePrefix}-${svgCommunity}-girl-right-ball`
 	) as SvgInHtml;
 	const girlLeftBall = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-left-ball`
+		`link-${slidePrefix}-${svgCommunity}-girl-left-ball`
 	) as SvgInHtml;
 	const girlTowel = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-ball-towel`
+		`link-${slidePrefix}-${svgCommunity}-girl-ball-towel`
 	) as SvgInHtml;
 	const girlRightTowel = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-right-towel`
+		`link-${slidePrefix}-${svgCommunity}-girl-right-towel`
 	) as SvgInHtml;
 	const girlLeftTowel = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-left-towel`
+		`link-${slidePrefix}-${svgCommunity}-girl-left-towel`
 	) as SvgInHtml;
 	const boxClosed = document.getElementById(
 		`${slidePrefix}-box-closed`

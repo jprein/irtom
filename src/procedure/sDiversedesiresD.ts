@@ -32,22 +32,23 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`
+		`link-${slidePrefix}-${svgCommunity}-boy`
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-${naySide}-nay`
+		`link-${slidePrefix}-${svgCommunity}-boy-${naySide}-nay`
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-${yaySide}-yay`
+		`link-${slidePrefix}-${svgCommunity}-boy-${yaySide}-yay`
 	) as SvgInHtml;
 
 	// also get the other (irrelevant) yay/nay agent sides to hide them
 	const boyNayHide = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-${yaySide}-nay`
+		`link-${slidePrefix}-${svgCommunity}-boy-${yaySide}-nay`
 	) as SvgInHtml;
 	const boyYayHide = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-${naySide}-yay`
+		`link-${slidePrefix}-${svgCommunity}-boy-${naySide}-yay`
 	) as SvgInHtml;
 
 	// Define animation function

@@ -23,20 +23,21 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`
+		`link-${slidePrefix}-${svgCommunity}-boy`
 	) as SvgInHtml;
 	const boyWithGlass = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-glass`
+		`link-${slidePrefix}-${svgCommunity}-boy-glass`
 	) as SvgInHtml;
 	const boyLemonadeUp = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-lemonade-up`
+		`link-${slidePrefix}-${svgCommunity}-boy-lemonade-up`
 	) as SvgInHtml;
 	const boyLemonadeDown = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-lemonade-down`
+		`link-${slidePrefix}-${svgCommunity}-boy-lemonade-down`
 	) as SvgInHtml;
 	const cupboardClosed = document.getElementById(
 		`${slidePrefix}-cupboard-closed`

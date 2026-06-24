@@ -22,14 +22,15 @@ export default async ({ currentSlide, previousSlide }) => {
 	data.simpleSlideCounter++;
 
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`,
+		`link-${slidePrefix}-${svgCommunity}-boy`,
 	) as SvgInHtml;
 	const boyNay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-nay`,
+		`link-${slidePrefix}-${svgCommunity}-boy-nay`,
 	) as SvgInHtml;
 	const boyYay = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-yay`,
+		`link-${slidePrefix}-${svgCommunity}-boy-yay`,
 	) as SvgInHtml;
 
 	// Define animation function

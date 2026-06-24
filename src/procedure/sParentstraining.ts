@@ -25,28 +25,29 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const woman = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman`
+		`link-${slidePrefix}-${svgCommunity}-woman`
 	) as SvgInHtml;
 
 	const womanWaving = document.getElementById(
-		`link-${slidePrefix}-${data.community}-woman-waving`
+		`link-${slidePrefix}-${svgCommunity}-woman-waving`
 	) as SvgInHtml;
 
 	const man = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man`
+		`link-${slidePrefix}-${svgCommunity}-man`
 	) as SvgInHtml;
 
 	const manWaving = document.getElementById(
-		`link-${slidePrefix}-${data.community}-man-waving`
+		`link-${slidePrefix}-${svgCommunity}-man-waving`
 	) as SvgInHtml;
 
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 
 	const girlSpeaking = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-speaking`
+		`link-${slidePrefix}-${svgCommunity}-girl-speaking`
 	) as SvgInHtml;
 
 	// Define animation function

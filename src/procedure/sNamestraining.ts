@@ -24,20 +24,21 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girlHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-waving`
+		`link-${slidePrefix}-${svgCommunity}-girl-waving`
 	) as SvgInHtml;
 
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 
 	const boyHandsup = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy-waving`
+		`link-${slidePrefix}-${svgCommunity}-boy-waving`
 	) as SvgInHtml;
 
 	const boy = document.getElementById(
-		`link-${slidePrefix}-${data.community}-boy`
+		`link-${slidePrefix}-${svgCommunity}-boy`
 	) as SvgInHtml;
 
 	// Initially hide agents with hands up

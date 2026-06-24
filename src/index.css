@@ -254,7 +254,7 @@ h2 {
 }
 
 #citation,
-#downloadinfo,
+#studysettings,
 #freepikAttribution {
 	font-size: 13px;
 }
@@ -275,7 +275,7 @@ h2 {
 	margin-bottom: 30px;
 }
 
-#downloadinfo {
+#studysettings {
 	margin-bottom: 20px;
 	font-weight: bold;
 	font-style: italic;

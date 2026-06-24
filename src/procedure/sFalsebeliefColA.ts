@@ -4,9 +4,7 @@ import { swapSlides } from '../util/slideVisibility';
 import { sleep } from '../util/helpers';
 import { hideTwoOptions } from '../util/hideTwoOptions';
 import { showTwoOptions } from '../util/showTwoOptions';
-import {
-	showBlockingState,
-} from '../util/showOrHideBlockState';
+import { showBlockingState } from '../util/showOrHideBlockState';
 
 export default async ({ currentSlide, previousSlide }) => {
 	// Name of slide
@@ -23,11 +21,12 @@ export default async ({ currentSlide, previousSlide }) => {
 
 	// Trial-specific animation
 	// Get all relevant elements
+	const svgCommunity = data.svgCommunity ?? data.community;
 	const girl = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl`
+		`link-${slidePrefix}-${svgCommunity}-girl`
 	) as SvgInHtml;
 	const girlKneeling = document.getElementById(
-		`link-${slidePrefix}-${data.community}-girl-kneeling`
+		`link-${slidePrefix}-${svgCommunity}-girl-kneeling`
 	) as SvgInHtml;
 	const dogRunning = document.getElementById(
 		`link-${slidePrefix}-dog-running`
