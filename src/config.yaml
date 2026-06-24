@@ -36,6 +36,7 @@ css:
       '[id$=-right]',
       '[id^=link][id$=pause]',
       '[id^=link][id$=resume]',
+      '[id^=link][id$=download]',
     ]
   # will be used within the init process to to add a zoom animation on hover
   scaleOnHoverObjects:
@@ -61,6 +62,7 @@ css:
       '[id$=-right]',
       '[id^=link][id$=pause]',
       '[id^=link][id$=resume]',
+      '[id^=link][id$=download]',
     ]
 
 globals:
@@ -161,4 +163,3 @@ procedure:
     - s-diversedesires-b
     - s-deception-b
     - s-end
-
