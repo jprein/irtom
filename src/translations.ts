@@ -29,10 +29,10 @@ export const translations = {
 			Gusa ishara ya kusimama ikiwa mtoto anahitaji mapumziko mafupi. Ili kuendelea, gusa tu mshale wa kuendelea. <br><br>
 			Sasa gusa kitufe cha sauti cha rangi ya machungwa kujifunza zaidi kuhusu utafiti. Twende!</p>`,
 		turkish: `<p class="intro-text">Hoş geldiniz! Bu kılavuz, çalışma yöneticisi olarak size yöneliktir. <br><br>
-			Çalışma sırasında çocuğa birçok soru sorulacaktır.
+			Çalışma sırasında çocuğa sorular sorulacaktır.
 			Çocuk bir videoyu tekrar izlemek isterse, sol üst köşede beliren yuvarlak oka dokunun. <br><br>
-			Çocuğun kısa bir mola ihtiyacı varsa duraklama işaretine dokunun. Sonradan devam etmek için ileri okuna dokunun. <br><br>
-			Çalışma hakkında daha fazla bilgi edinmek için şimdi turuncu hoparlör düğmesine dokunun. Hadi başlayalım!</p>`,
+			Çocuğun kısa bir mola ihtiyacı varsa duraklama simgesine dokunun. Devam etmek için ileri okuna dokunun.<br><br>
+			Çalışma hakkında daha fazla bilgi edinmek için şimdi turuncu hoparlör düğmesine dokunun. Başlayabiliriz!</p>`,
 	},
 	thankYou: {
 		german: `<h1 class="heading">Geschafft — das Spiel ist nun vorbei! </h1>
@@ -61,8 +61,8 @@ export const translations = {
 			Kisha mshale mwekundu utaonekana. Gusa ili kumaliza utafiti.</p>`,
 		turkish: `<h1 class="heading">Tamamlandı — çalışma artık bitti!</h1>
 			<br><p class="end-text">
-			Çok güzel! Bizimle oynadığın(ız) için çok teşekkür ederiz.
-			Lütfen bir dakika bekleyin: Çalışmanın verilerini kaydediyoruz, ki daha sonra inceleyebiliriz. 
+			Çok güzel! Bizimle oynadığınız için çok teşekkür ederiz.
+			Lütfen bir dakika bekleyin: Çalışmanın verilerini kaydediyoruz daha sonra inceleyebilmek icin. 
 			Kısa bir veda mesajı duymak için turuncu hoparlör düğmesine dokunun.
 			Ardından ekranda kırmızı bir ok görünecektir. Çalışmayı bitirmek için bu oka dokunun.
 			</p>`,

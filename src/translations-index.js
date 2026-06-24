@@ -6,10 +6,10 @@ const languageIds = [
 	'idLabel',
 	'community',
 	'chooseCommunity',
-	'english',
+	// 'english',
 	'german',
-	'kikuyu',
-	'swahili',
+	// 'kikuyu',
+	// 'swahili',
 	'turkish',
 	'dataTransfer',
 	'chooseDatatransfer',
@@ -20,6 +20,7 @@ const languageIds = [
 	'chooseWebcam',
 	'webcamTrue',
 	'webcamFalse',
+	'studysettings',
 	'webcamPreview',
 	'startButton',
 	'imprint',
@@ -107,6 +108,14 @@ const translations = {
 	webcamFalse: {
 		de: `Nein`,
 		en: `No`,
+	},
+	studysettings: {
+		de: `Studiendaten (.csv) und Webcam-Videos (.webm, falls ausgewählt)
+		werden nach Abschluss der Studie direkt in Ihrem Downloads-Ordner
+		gespeichert. Es erfolgt keine weitere Speicherung an anderen Orten.`,
+		en: `Study data (.csv) and webcam videos (.webm, if selected)
+		will be saved directly to your downloads folder after the study is completed.
+		There will be no further storage in other locations.`,
 	},
 	webcamPreview: {
 		de: `Webcam-Vorschau`,

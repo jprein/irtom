@@ -11,8 +11,8 @@ const urlStudyChoices = getUrlStudyChoices();
 
 let id = urlStudyChoices.id ?? '';
 let community = urlStudyChoices.community ?? '';
-let datatransfer = urlStudyChoices.datatransfer ?? 'both';
-let webcam = urlStudyChoices.webcam ?? 'true';
+let datatransfer = urlStudyChoices.datatransfer ?? 'local';
+let webcam = urlStudyChoices.webcam ?? '';
 
 // Remove only study-choice params and keep unrelated query params/hash untouched.
 cleanStudyChoiceParamsFromUrl();
@@ -37,31 +37,6 @@ if (webcam) {
 	const webcamElement = document.getElementById('input-webcam');
 	webcamElement.required = false;
 	webcamElement.parentElement.style.display = 'none';
-}
-
-// Display already-saved settings as text where form fields are hidden
-const studysettingsEl = document.getElementById('studysettings');
-if (studysettingsEl && (community || datatransfer || webcam)) {
-	const communityOpt = community
-		? document.querySelector(`#input-community option#${community}`)
-		: null;
-	const datatransferOpt = datatransfer
-		? document.querySelector(`#input-datatransfer option#${datatransfer}`)
-		: null;
-	const webcamOpt = document.querySelector(
-		`#input-webcam option[value="${webcam}"]`
-	);
-	const parts = [
-		communityOpt?.textContent.trim(),
-		datatransferOpt?.textContent.trim(),
-		webcamOpt && `Webcam ${webcamOpt.textContent.trim()}`,
-	].filter(Boolean);
-	if (parts.length > 0) {
-		const heading = window.navigator.language.startsWith('de')
-			? 'Studieneinstellungen'
-			: 'Study settings';
-		studysettingsEl.innerHTML = `${heading}:<br>${parts.join(' · ')}`;
-	}
 }
 
 // when webcam option false/no is selected, hide the webcam preview button
