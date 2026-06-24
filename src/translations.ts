@@ -31,7 +31,7 @@ export const translations = {
 		turkish: `<p class="intro-text">Hoş geldiniz! Bu kılavuz, çalışma yöneticisi olarak size yöneliktir. <br><br>
 			Çalışma sırasında çocuğa birçok soru sorulacaktır.
 			Çocuk bir videoyu tekrar izlemek isterse, sol üst köşede beliren yuvarlak oka dokunun. <br><br>
-			Çocuğun kısa bir mola ihtiyacı varsa duraklama simgesine dokunun. Devam etmek için ileri okuna dokunun. <br><br>
+			Çocuğun kısa bir mola ihtiyacı varsa duraklama işaretine dokunun. Sonradan devam etmek için ileri okuna dokunun. <br><br>
 			Çalışma hakkında daha fazla bilgi edinmek için şimdi turuncu hoparlör düğmesine dokunun. Hadi başlayalım!</p>`,
 	},
 	thankYou: {
@@ -61,10 +61,11 @@ export const translations = {
 			Kisha mshale mwekundu utaonekana. Gusa ili kumaliza utafiti.</p>`,
 		turkish: `<h1 class="heading">Tamamlandı — çalışma artık bitti!</h1>
 			<br><p class="end-text">
-			Çok iyi yaptınız! Bizimle katıldığınız için çok teşekkür ederiz. <br><br>
-			Lütfen bir an sabırlı olun: Çalışma verilerini kaydediyoruz, böylece daha sonra analiz edebiliriz. <br><br>
+			Çok güzel! Bizimle oynadığın(ız) için çok teşekkür ederiz.
+			Lütfen bir dakika bekleyin: Çalışmanın verilerini kaydediyoruz, ki daha sonra inceleyebiliriz. 
 			Kısa bir veda mesajı duymak için turuncu hoparlör düğmesine dokunun.
-			Ardından kırmızı bir ok belirecektir. Çalışmayı bitirmek için üzerine dokunun.</p>`,
+			Ardından ekranda kırmızı bir ok görünecektir. Çalışmayı bitirmek için bu oka dokunun.
+			</p>`,
 	},
 	pause: {
 		german: `<div class="pause-text-wrap">
