@@ -63,7 +63,7 @@ export default async ({ currentSlide, previousSlide }) => {
 		const csvSnapshot = buildCsvSnapshot(data);
 		await downloadCsv(
 			csvSnapshot,
-			generateUserIdFilename('irtom', undefined, 'csv')
+			generateUserIdFilename('gdp-irtom', undefined, 'csv')
 		);
 
 		if (data.webcam !== true) {
