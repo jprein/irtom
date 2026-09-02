@@ -7,9 +7,19 @@ import {
 } from './mediaRecorderServices';
 
 export const STUDY_RECORDING_CONSTRAINTS: MediaStreamConstraints = {
-	// Video-only recording keeps CPU usage lower on iPad and avoids
-	// microphone-related audio-session side effects in mobile browsers.
-	audio: false,
+	// Audio is on so the recording captures trial sound and the
+	// child/participant's speech alongside the video. Keep the mic
+	// constraints minimal (no AGC/echo-cancel/noise-suppress DSP, mono,
+	// low sample rate) to limit the extra CPU/battery load on iPad; if a
+	// device has no mic access, initMedia() already falls back to
+	// video-only recording.
+	audio: {
+		echoCancellation: false,
+		noiseSuppression: false,
+		autoGainControl: false,
+		channelCount: 1,
+		sampleRate: 16000,
+	},
 	video: {
 		frameRate: { min: 1, ideal: 3, max: 5 },
 		width: { min: 320, ideal: 320, max: 320 },
