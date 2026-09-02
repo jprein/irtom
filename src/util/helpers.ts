@@ -89,7 +89,7 @@ export const exitFullscreen = (isIOS: boolean) => {
 };
 
 export const generateUserIdFilename = (
-	prefix = 'irtom',
+	prefix = 'gdp-irtom',
 	postfix = 'data',
 	extension = 'json'
 ) => {
@@ -242,7 +242,7 @@ const triggerBrowserDownload = async (blob: Blob, filename: string) => {
 // Function to download the CSV
 export const downloadCsv = async (
 	jsonData: any = data,
-	id: string = generateUserIdFilename('irtom', undefined, 'csv')
+	id: string = generateUserIdFilename('gdp-irtom', undefined, 'csv')
 ) => {
 	const csvContent = generateCsvContent(jsonData);
 
@@ -254,7 +254,7 @@ export const downloadCsv = async (
 // Function to upload the CSV
 export async function uploadCsv(
 	jsonData: any = data,
-	id: string = generateUserIdFilename('irtom', undefined, 'csv')
+	id: string = generateUserIdFilename('gdp-irtom', undefined, 'csv')
 ) {
 	const csvContent = generateCsvContent(jsonData);
 
@@ -325,7 +325,7 @@ export async function downloadWebcamVideo(webcam: boolean, id: string) {
 				.toISOString()
 				.substring(11, 19)
 				.replaceAll(':', '-');
-			downloadLastRecording(`irtom-${id}-${day}-${time}.webm`);
+			downloadLastRecording(`gdp-irtom-${id}-${day}-${time}.webm`);
 			await sleep(0);
 		}
 	} catch (error) {
@@ -346,7 +346,7 @@ export async function uploadWebcamVideo(webcam: boolean, id: string) {
 			.replaceAll(':', '-');
 		try {
 			await uploadLastRecordingInChunks('./data/upload_video.php', {
-				filename: `irtom-${id}-${day}-${time}.webm`,
+				filename: `gdp-irtom-${id}-${day}-${time}.webm`,
 				chunkSize: 1024 * 1024,
 			});
 

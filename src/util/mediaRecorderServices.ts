@@ -35,20 +35,32 @@ export async function initMedia(
 
 	const finalConstraints = constraints ?? defaultConstraints;
 
+	// Errors that can plausibly mean "the mic specifically is unavailable"
+	// (missing device, no permission, device busy/unsatisfiable, or the
+	// iOS audio-session quirk) rather than the camera being unavailable too.
+	const MIC_FALLBACK_ERROR_NAMES = new Set([
+		'NotFoundError',
+		'NotAllowedError',
+		'NotReadableError',
+		'OverconstrainedError',
+		'AbortError',
+	]);
+
 	try {
 		mediaStream = await navigator.mediaDevices.getUserMedia(finalConstraints);
 	} catch (err) {
-		// iOS-ish microphone edge case
-		if (String(err).includes('No AVAudioSessionCaptureDevice')) {
-			console.warn('iOS cannot access microphone. Retrying without audio...');
+		const wantsAudio = !!finalConstraints.audio;
+		const isMicError =
+			(err instanceof Error && MIC_FALLBACK_ERROR_NAMES.has(err.name)) ||
+			String(err).includes('No AVAudioSessionCaptureDevice');
+
+		if (wantsAudio && isMicError) {
+			console.warn(
+				'Microphone unavailable (or permission denied). Retrying with video only...'
+			);
 
 			mediaStream = await navigator.mediaDevices.getUserMedia({
-				video: {
-					width: { ideal: 320, max: 320 },
-					height: { ideal: 240, max: 240 },
-					frameRate: { ideal: 3, max: 5 },
-					facingMode: 'user',
-				},
+				video: finalConstraints.video ?? true,
 				audio: false,
 			});
 		} else {
