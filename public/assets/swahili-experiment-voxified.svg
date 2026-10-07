@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg voxified="true" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 1920 1080">
-  <!-- Generator: Adobe Illustrator 30.8.1, SVG Export Plug-In . SVG Version: 2.1.4 Build 1)  -->
+  <!-- Generator: Adobe Illustrator 30.8.2, SVG Export Plug-In . SVG Version: 2.1.4 Build 7)  -->
   <defs>
     <style>
       .st0 {
@@ -26357,7 +26357,7 @@
           <rect id="ph-s-aspectuality-b-swahili-boy" class="st3578" x="803" y="61.3" width="314" height="860.7"/>
           <image id="link-s-aspectuality-b-swahili-boy" transform="translate(796.547 63.3882) scale(3.4344)" xlink:href="assets/swahili-boy-front.svg"/>
           <rect id="ph-s-aspectuality-b-swahili-girl-ball-squeezed" class="st3578" x="825" y="61.3" width="270.1" height="859.5"/>
-          <image id="link-s-aspectuality-b-swahili-girl-ball-squeezed" width="80" height="250" transform="translate(824.9866 61.3279) scale(3.4378)" xlink:href="assets/swahili-girl-ball-squeezed.svg"/>
+          <image id="link-s-aspectuality-b-swahili-girl-ball-squeezed" width="82" height="248" transform="translate(820.8563 62.6715) scale(3.4547)" xlink:href="assets/swahili-girl-ball-squeezed.svg"/>
         </g>
         <g id="s-aspectuality-b-table">
           <g>
@@ -28528,7 +28528,7 @@
       </g>
       <g id="s-falsebelief-ui-a">
         <rect id="ph-s-falsebelief-ui-a-floor" class="st3578" y="705" width="1920" height="375"/>
-        <image id="link-s-falsebelief-ui-a-floor" class="st223" transform="translate(0 705) scale(.2 .1)" xlink:href="assets/floor.svg"/>
+        <image id="link-s-falsebelief-ui-a-floor" transform="translate(0 705) scale(.2 .1)" xlink:href="assets/floor.svg"/>
         <path id="s-falsebelief-ui-a-wall" class="st5015" d="M0,705V0h1920c0,15,0,690.4,0,705H0Z"/>
         <g id="s-falsebelief-ui-a-door-bo-apron">
           <rect class="st4764" x="415.9" y="95.2" width="326" height="605.7"/>

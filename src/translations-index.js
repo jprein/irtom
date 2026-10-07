@@ -6,7 +6,6 @@ const languageIds = [
 	'idLabel',
 	'community',
 	'chooseCommunity',
-	'kikuyu',
 	'swahili',
 	'dataTransfer',
 	'chooseDatatransfer',
