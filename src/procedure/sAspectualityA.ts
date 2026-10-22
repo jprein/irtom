@@ -140,7 +140,7 @@ export default async ({ currentSlide, previousSlide }) => {
 			.to(boyLeft, { autoAlpha: 1, duration: 0.1 }, '<')
 			.to(woman, {
 				delay: data.spriteJSON.sprite[`${slidePrefix}-6`][1] / 1000 - 1,
-				x: 1150,
+				x: svgCommunity === 'swahili' ? 1000 : 1150,
 				y: -50,
 				scale: 0.8,
 				duration: 2.5,
