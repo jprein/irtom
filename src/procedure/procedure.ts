@@ -298,6 +298,10 @@ export const procedure = async () => {
 			// Stop any audio still playing before re-running the slide
 			data.sprite?.stop();
 
+			// Remove next button and overlay. swapSlides only does this when there
+			// is a previous slide, so the first slide of a procedure would stay blocked.
+			await hideBlockingState();
+
 			// Hide previous slide to avoid short flickering of old slide
 			const slideElement = document.getElementById(previousSlideKc);
 			if (slideElement) {

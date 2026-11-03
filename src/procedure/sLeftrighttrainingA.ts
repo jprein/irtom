@@ -23,7 +23,9 @@ export default async ({ currentSlide, previousSlide }) => {
 	await hideTwoOptions(slidePrefix);
 
 	// Show left/right response options and store participant response
-	const stopBlockingState = await showTwoOptions(slidePrefix);
+	const stopBlockingState = await showTwoOptions(slidePrefix, {
+		showOptionsWithAudio: true,
+	});
 
 	if (!stopBlockingState) {
 		await playCorrectIncorrectResponse(currentSlide);

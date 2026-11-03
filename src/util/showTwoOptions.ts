@@ -3,7 +3,10 @@ import type { SvgInHtml } from '../types';
 import { getResponse } from './getResponse';
 import { isPauseResponse } from './pauseControls';
 
-export const showTwoOptions = async (slidePrefix: string) => {
+export const showTwoOptions = async (
+	slidePrefix: string,
+	{ showOptionsWithAudio = false } = {}
+) => {
 	let stopBlockingState = true;
 	// Get elements for binary response format (yes/no animated nodding)
 	const blurr = document.getElementById(`${slidePrefix}-blurr`) as SvgInHtml;
@@ -35,6 +38,11 @@ export const showTwoOptions = async (slidePrefix: string) => {
 		});
 	}
 
+	// Optionally show response options during audio (still non-clickable)
+	if (showOptionsWithAudio) {
+		gsap.set([optionLeft, optionRight], { autoAlpha: 1 });
+	}
+
 	// Play audio
 	await data.sprite.playPromise(`${slidePrefix}`);
 
@@ -64,17 +72,19 @@ export const showTwoOptions = async (slidePrefix: string) => {
 		slidePrefix.startsWith('s-yesnotraining')
 	) {
 		// Show response options
-		await timeline
-			.to(optionLeft, {
-				delay: 0.5,
-				autoAlpha: 1,
-				duration: 0.1,
-			})
-			.to(optionRight, {
-				delay: 0.5,
-				autoAlpha: 1,
-				duration: 0.1,
-			});
+		if (!showOptionsWithAudio) {
+			await timeline
+				.to(optionLeft, {
+					delay: 0.5,
+					autoAlpha: 1,
+					duration: 0.1,
+				})
+				.to(optionRight, {
+					delay: 0.5,
+					autoAlpha: 1,
+					duration: 0.1,
+				});
+		}
 
 		await timeline.to(interactiveElements, {
 			autoAlpha: 1,
